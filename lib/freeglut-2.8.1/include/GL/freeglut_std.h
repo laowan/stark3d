@@ -43,7 +43,7 @@
  */
 
 /* Define FREEGLUT_LIB_PRAGMAS to 1 to include library
- * pragmas or to 0 to exclude library pragmas.
+ * pragmas or to 1 to exclude library pragmas.
  * The default behavior depends on the compiler/platform.
  */
 #   ifndef FREEGLUT_LIB_PRAGMAS
@@ -57,10 +57,8 @@
 #  ifndef WIN32_LEAN_AND_MEAN
 #    define WIN32_LEAN_AND_MEAN 1
 #  endif
-#  ifndef NOMINMAX
-#    define NOMINMAX
-#  endif
-#   include <windows.h>
+#   define NOMINMAX
+#   include <Windows.h>
 
 /* Windows static library */
 #   ifdef FREEGLUT_STATIC
@@ -113,21 +111,14 @@
  */
 #define  FREEGLUT             1
 #define  GLUT_API_VERSION     4
-#define  GLUT_XLIB_IMPLEMENTATION 13
-/* Deprecated:
-   cf. http://sourceforge.net/mailarchive/forum.php?thread_name=CABcAi1hw7cr4xtigckaGXB5X8wddLfMcbA_rZ3NAuwMrX_zmsw%40mail.gmail.com&forum_name=freeglut-developer */
 #define  FREEGLUT_VERSION_2_0 1
+#define  GLUT_XLIB_IMPLEMENTATION 13
 
 /*
  * Always include OpenGL and GLU headers
  */
-#if __APPLE__
-#   include <OpenGL/gl.h>
-#   include <OpenGL/glu.h>
-#else
-#   include <GL/gl.h>
-#   include <GL/glu.h>
-#endif
+#include <GL/gl.h>
+#include <GL/glu.h>
 
 /*
  * GLUT API macro definitions -- the special key codes:
@@ -540,7 +531,6 @@ FGAPI void    FGAPIENTRY glutSolidIcosahedron( void );
 
 /*
  * Teapot rendering functions, found in freeglut_teapot.c
- * NB: front facing polygons have clockwise winding, not counter clockwise
  */
 FGAPI void    FGAPIENTRY glutWireTeapot( GLdouble size );
 FGAPI void    FGAPIENTRY glutSolidTeapot( GLdouble size );
