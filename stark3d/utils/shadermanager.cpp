@@ -1,13 +1,13 @@
 #include "shadermanager.h"
 
-namespace Util { namespace Shader {
+namespace Util {
 
 void ShaderManager::use(ShaderType type)
 {
     std::map<ShaderType, Shader*>::iterator it = _shaderMap.find(type);
     if (it == _shaderMap.end())
     {
-        Shader* shader;
+        Shader* shader = NULL;
         switch (type)
         {
         case SD_NORMAL:
@@ -15,8 +15,11 @@ void ShaderManager::use(ShaderType type)
             break;
         }
 
-        shader->use();
-        _shaderMap[type] = shader;
+        if (shader)
+        {
+            shader->use();
+            _shaderMap[type] = shader;
+        }
     }
     else
     {
@@ -24,4 +27,4 @@ void ShaderManager::use(ShaderType type)
     }
 }
 
-} }
+}

@@ -3,7 +3,7 @@
 
 #include <string>
 
-namespace Util { namespace Shader {
+namespace Util {
 
 class Shader
 {
@@ -19,6 +19,6 @@ private:
     int _program;
 };
 
-} }
+}
 
 #endif

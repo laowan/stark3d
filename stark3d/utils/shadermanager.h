@@ -4,7 +4,7 @@
 #include "shader.h"
 #include <map>
 
-namespace Util { namespace Shader {
+namespace Util {
 
 class ShaderManager
 {
@@ -29,6 +29,6 @@ private:
     std::map<ShaderType, Shader*> _shaderMap;
 };
 
-}}
+}
 
 #endif

@@ -3,60 +3,61 @@
 #include <GL/freeglut.h>
 
 #include <stdio.h>
-
+#include "utils/matrix.h"
 #include "utils/shadermanager.h"
 
-using namespace Util::Shader;
+#include <glm/gtc/type_ptr.hpp>
+
+using namespace Util;
 
 const float vertexData[] = {
-    0.25f, 0.25f, 0.75f, 1.0f,
-    0.25f, -0.25f, 0.75f, 1.0f,
-    -0.25f, 0.25f, 0.75f, 1.0f,
+    -50.0f,  50.0f,  50.0f, 1.0f,
+     50.0f, -50.0f,  50.0f, 1.0f,
+     50.0f,  50.0f,  50.0f, 1.0f,
 
-    0.25f, -0.25f, 0.75f, 1.0f,
-    -0.25f, -0.25f, 0.75f, 1.0f,
-    -0.25f, 0.25f, 0.75f, 1.0f,
+    -50.0f,  50.0f,  50.0f, 1.0f,
+    -50.0f, -50.0f,  50.0f, 1.0f,
+     50.0f, -50.0f,  50.0f, 1.0f,
 
-    0.25f, 0.25f, -0.75f, 1.0f,
-    -0.25f, 0.25f, -0.75f, 1.0f,
-    0.25f, -0.25f, -0.75f, 1.0f,
+     50.0f, -50.0f, -50.0f, 1.0f,
+    -50.0f,  50.0f, -50.0f, 1.0f,
+     50.0f,  50.0f, -50.0f, 1.0f,
 
-    0.25f, -0.25f, -0.75f, 1.0f,
-    -0.25f, 0.25f, -0.75f, 1.0f,
-    -0.25f, -0.25f, -0.75f, 1.0f,
+    -50.0f, -50.0f, -50.0f, 1.0f,
+    -50.0f,  50.0f, -50.0f, 1.0f,
+     50.0f, -50.0f, -50.0f, 1.0f,
 
-    -0.25f, 0.25f, 0.75f, 1.0f,
-    -0.25f, -0.25f, 0.75f, 1.0f,
-    -0.25f, -0.25f, -0.75f, 1.0f,
+    -50.0f, -50.0f, -50.0f, 1.0f,
+    -50.0f, -50.0f,  50.0f, 1.0f,
+    -50.0f,  50.0f,  50.0f, 1.0f,
 
-    -0.25f, 0.25f, 0.75f, 1.0f,
-    -0.25f, -0.25f, -0.75f, 1.0f,
-    -0.25f, 0.25f, -0.75f, 1.0f,
+    -50.0f,  50.0f, -50.0f, 1.0f,
+    -50.0f, -50.0f, -50.0f, 1.0f,
+    -50.0f,  50.0f,  50.0f, 1.0f,
 
-    0.25f, 0.25f, 0.75f, 1.0f,
-    0.25f, -0.25f, -0.75f, 1.0f,
-    0.25f, -0.25f, 0.75f, 1.0f,
+     50.0f, -50.0f,  50.0f, 1.0f,
+     50.0f, -50.0f, -50.0f, 1.0f,
+     50.0f,  50.0f,  50.0f, 1.0f,
 
-    0.25f, 0.25f, 0.75f, 1.0f,
-    0.25f, 0.25f, -0.75f, 1.0f,
-    0.25f, -0.25f, -0.75f, 1.0f,
+     50.0f, -50.0f, -50.0f, 1.0f,
+     50.0f,  50.0f, -50.0f, 1.0f,
+     50.0f,  50.0f,  50.0f, 1.0f,
 
-    0.25f, 0.25f, -0.75f, 1.0f,
-    0.25f, 0.25f, 0.75f, 1.0f,
-    -0.25f, 0.25f, 0.75f, 1.0f,
+    -50.0f,  50.0f,  50.0f, 1.0f,
+     50.0f,  50.0f,  50.0f, 1.0f,
+     50.0f,  50.0f, -50.0f, 1.0f,
 
-    0.25f, 0.25f, -0.75f, 1.0f,
-    -0.25f, 0.25f, 0.75f, 1.0f,
-    -0.25f, 0.25f, -0.75f, 1.0f,
+    -50.0f,  50.0f, -50.0f, 1.0f,
+    -50.0f,  50.0f,  50.0f, 1.0f,
+     50.0f,  50.0f, -50.0f, 1.0f,
 
-    0.25f, -0.25f, -0.75f, 1.0f,
-    -0.25f, -0.25f, 0.75f, 1.0f,
-    0.25f, -0.25f, 0.75f, 1.0f,
+     50.0f, -50.0f,  50.0f, 1.0f,
+    -50.0f, -50.0f,  50.0f, 1.0f,
+     50.0f, -50.0f, -50.0f, 1.0f,
 
-    0.25f, -0.25f, -0.75f, 1.0f,
-    -0.25f, -0.25f, -0.75f, 1.0f,
-    -0.25f, -0.25f, 0.75f, 1.0f,
-
+    -50.0f, -50.0f,  50.0f, 1.0f,
+    -50.0f, -50.0f, -50.0f, 1.0f,
+     50.0f, -50.0f, -50.0f, 1.0f,
 
 
 
@@ -107,21 +108,127 @@ const float vertexData[] = {
     0.0f, 1.0f, 1.0f, 1.0f,
     0.0f, 1.0f, 1.0f, 1.0f,
     0.0f, 1.0f, 1.0f, 1.0f,
-
 };
+
+double gsExtent = 200.0;
+int gsPixWidth;
+int gsPixHeight;
+double gsHpixScale; // 投影空间中一个单位对应屏幕上多少个像素
+double gsVpixScale;
+Matrix gsModelMat;
+Matrix gsViewMat;  // view to world
+glm::mat4 gsProjMat;
+
+Matrix gsTmpMat;
+int gsTmpX;
+int gsTmpY;
+int gsMoveBtn;
 
 GLuint vertexBufferObject;
 GLuint vao;
 GLuint offsetUniform;
+GLuint mvpUniform;
+
+glm::mat4 getProjMat()
+{
+    glm::mat4 mat;
+    double h_w = (double)gsPixHeight / gsPixWidth;
+    double wdth, hght;
+
+    if (h_w > 1.0)
+    {
+        wdth = gsExtent / 2.0;
+        hght = gsExtent * h_w / 2.0;
+    }
+    else
+    {
+        wdth = gsExtent / h_w / 2.0;
+        hght = gsExtent / 2.0;
+    }
+
+    float nearVal = 100.0, farVal = -100.0;
+    mat[0].x = 1.0/wdth; mat[1].x = 0.0;      mat[2].x = 0.0;                  mat[3].x = 0.0;
+    mat[0].y = 0.0;      mat[1].y = 1.0/hght; mat[2].y = 0.0;                  mat[3].y = 0.0;
+    mat[0].z = 0.0;      mat[1].z = 0.0;      mat[2].z = 2.0/(nearVal-farVal); mat[3].z = (farVal+nearVal)/(nearVal-farVal);
+    mat[0].w = 0.0;      mat[1].w = 0.0;      mat[2].w = 0.0;                  mat[3].w = 1.0;
+    return mat;
+}
+
+glm::mat4 getModelViewProjMat()
+{
+    Matrix mat;
+    mat.xx = gsViewMat.xx; mat.yx = gsViewMat.xy; mat.zx = gsViewMat.xz;
+    mat.xy = gsViewMat.yx; mat.yy = gsViewMat.yy; mat.zy = gsViewMat.yz;
+    mat.xz = gsViewMat.zx; mat.yz = gsViewMat.zy; mat.zz = gsViewMat.zz;
+
+    mat.xt = -gsViewMat.xx*gsViewMat.xt - gsViewMat.xy*gsViewMat.yt - gsViewMat.xz*gsViewMat.zt;
+    mat.yt = -gsViewMat.yx*gsViewMat.xt - gsViewMat.yy*gsViewMat.yt - gsViewMat.yz*gsViewMat.zt;
+    mat.zt = -gsViewMat.zx*gsViewMat.xt - gsViewMat.zy*gsViewMat.yt - gsViewMat.zz*gsViewMat.zt;
+
+    glm::mat4 mvMat = mat.glMatrix();
+    glm::mat4 projMat = getProjMat();
+    glm::mat4 mvpMat = projMat * mvMat;
+    
+    return mvpMat;
+}
 
 void MouseMotion(int x, int y)
 {
     printf("mouse motion (%d, %d)\n", x, y);
+
+    if (gsMoveBtn == 1) // middle button, pan
+    {
+        gsViewMat = gsTmpMat;
+        double dx, dy, dz;
+        dx = (gsTmpX - x) / gsHpixScale;
+        dy = (y - gsTmpY) / gsVpixScale;
+        dz = 0;
+
+        // transfer (dx, dy, dz) to world space
+        double tmpX, tmpY, tmpZ;
+        tmpX = gsViewMat.xx * dx + gsViewMat.yx * dy + gsViewMat.zx * dz + gsViewMat.xt;
+        tmpY = gsViewMat.xy * dx + gsViewMat.yy * dy + gsViewMat.zy * dz + gsViewMat.yt;
+        tmpZ = gsViewMat.xz * dx + gsViewMat.yz * dy + gsViewMat.zz * dz + gsViewMat.zt;
+
+        dx = tmpX;
+        dy = tmpY;
+        dz = tmpZ;
+
+        gsViewMat.xt = dx;
+        gsViewMat.yt = dy;
+        gsViewMat.zt = dz;
+    }
+
+    if (gsMoveBtn == 2) // right mouse button, rot
+    {
+        gsViewMat = gsTmpMat;
+
+        double factor = 4.0 * (1.57079632679489661923 / gsExtent);
+        double ang_y = factor * (gsTmpX - x) / gsHpixScale;
+        double ang_x = factor * (gsTmpY - y) / gsVpixScale;
+
+        Matrix& mat = gsViewMat;
+        gsViewMat.rot(mat.yx, mat.yy, mat.yz, ang_y);
+        gsViewMat.rot(mat.xx, mat.xy, mat.xz, ang_x);
+    }
+
     glutPostRedisplay();
 }
 
 void MouseButton(int button, int state, int x, int y)
 {
+    if (state == 0)
+    {
+        gsMoveBtn = button;
+        gsTmpX = x;
+        gsTmpY = y;
+        gsTmpMat = gsViewMat;
+    }
+    else
+    {
+        gsMoveBtn = -1;
+    }
+
     printf("mouse button %d, %d, (%d, %d)\n", button, state, x, y);
     glutPostRedisplay();
 }
@@ -129,11 +236,45 @@ void MouseButton(int button, int state, int x, int y)
 void MouseWheel(int wheel, int direction, int x, int y)
 {
     printf("mouse wheel %d, %d, (%d, %d)\n", wheel, direction, x, y);
+
+    double zoomFactor;
+    zoomFactor = 1.0 + (160.0/(gsExtent*gsHpixScale)) * fabs((double)direction);
+
+    if (direction > 0)
+        gsExtent = gsExtent/zoomFactor;
+    else
+        gsExtent = gsExtent*zoomFactor;
+
+    if (gsPixHeight > gsPixWidth)
+    {
+        gsHpixScale = gsPixWidth / gsExtent;
+        gsVpixScale = gsHpixScale;
+    }
+    else
+    {
+        gsVpixScale = gsPixHeight / gsExtent;
+        gsHpixScale = gsVpixScale;
+    }
+
     glutPostRedisplay();
 }
 
 static void resize(int width, int height)
 {
+    gsPixWidth = width;
+    gsPixHeight = height;
+
+    if (gsPixHeight > gsPixWidth)
+    {
+        gsHpixScale = gsPixWidth / gsExtent;
+        gsVpixScale = gsHpixScale;
+    }
+    else
+    {
+        gsVpixScale = gsPixHeight / gsExtent;
+        gsHpixScale = gsVpixScale;
+    }
+
     glViewport(0, 0, width, height);
 }
 
@@ -146,18 +287,22 @@ static void init(void)
 
     ShaderManager* sm = ShaderManager::instance();
     sm->use(ShaderManager::SD_NORMAL); 
-    
+
     Shader* sd = sm->getShader(ShaderManager::SD_NORMAL);
     int program = sd->program();
 
+    glBindAttribLocation(program, 0, "position");
+    glBindAttribLocation(program, 1, "color");
+
     offsetUniform = glGetUniformLocation(program, "offset");
+    mvpUniform = glGetUniformLocation(program, "uModelViewProjMat");
 
     glGenVertexArrays(1, &vao);
     glBindVertexArray(vao);
 
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
-    glFrontFace(GL_CW);
+    glFrontFace(GL_CCW);
 
 }
 
@@ -172,6 +317,9 @@ static void display(void)
     glUniform2f(offsetUniform, 0.0f, 0.0f);
     size_t colorData = sizeof(vertexData) / 2;
 
+    // calculate the mvp matrix and apply it to the shader
+    glm::mat4 mvp = getModelViewProjMat();
+    glUniformMatrix4fv(mvpUniform, 1, GL_FALSE, glm::value_ptr(mvp));
 
     glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
     glEnableVertexAttribArray(0);
@@ -184,7 +332,6 @@ static void display(void)
     glDisableVertexAttribArray(0);
     glDisableVertexAttribArray(1);
 
-
     glutSwapBuffers();
     glutPostRedisplay();
 }
@@ -196,6 +343,11 @@ static void keyboard(unsigned char key, int x, int y)
     case 27:
     case 'Q':
     case 'q': glutLeaveMainLoop();      break;
+    case 's':
+        {
+        gsViewMat = Matrix();
+        break;
+        }
     default:
         break;
     }
@@ -226,9 +378,9 @@ static void idle(void)
 
 int main(int argc, char *argv[])
 {
+    glutInit(&argc, argv);
     glutInitWindowSize(800, 600);
     glutInitWindowPosition(40, 40);
-    glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH | GLUT_MULTISAMPLE);
 
     int window = glutCreateWindow("Stark 3D");
@@ -251,15 +403,6 @@ int main(int argc, char *argv[])
         printf("err when glload init\n");
         return 1;
     }
-
-    if (!glload::IsVersionGEQ(3, 3))
-    {
-        printf("Your OpenGL version is %i, %i. You must have at least OpenGL 3.3 to run this tutorial.\n",
-            glload::GetMajorVersion(), glload::GetMinorVersion());
-        glutDestroyWindow(window);
-        return 0;
-    }
-
 
     init();
 

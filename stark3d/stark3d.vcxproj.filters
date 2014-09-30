@@ -24,12 +24,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="color.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="rasterizer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="utils\framework.cpp">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
@@ -39,14 +33,11 @@
     <ClCompile Include="utils\shader.cpp">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
+    <ClCompile Include="utils\matrix.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="color.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="rasterizer.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="utils\framework.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
@@ -54,6 +45,9 @@
       <Filter>Header Files\utils</Filter>
     </ClInclude>
     <ClInclude Include="utils\shader.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\matrix.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
   </ItemGroup>

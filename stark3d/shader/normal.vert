@@ -1,14 +1,16 @@
-#version 330
+#version 140
 
-layout(location = 0) in vec4 position;
-layout(location = 1) in vec4 color;
+in vec4 position;
+in vec4 color;
 
 smooth out vec4 theColor;
 
 uniform vec2 offset;
+uniform mat4 uModelViewMat;
+uniform mat4 uModelViewProjMat;
 
 void main()
 {
-    gl_Position = position + vec4(offset.x, offset.y, 0.0, 0.0);
+    gl_Position = uModelViewProjMat * position;
     theColor = color;
 }

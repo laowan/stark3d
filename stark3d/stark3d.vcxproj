@@ -11,17 +11,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="color.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="rasterizer.cpp" />
     <ClCompile Include="utils\framework.cpp" />
+    <ClCompile Include="utils\matrix.cpp" />
     <ClCompile Include="utils\shader.cpp" />
     <ClCompile Include="utils\shadermanager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="color.hpp" />
-    <ClInclude Include="rasterizer.hpp" />
     <ClInclude Include="utils\framework.h" />
+    <ClInclude Include="utils\matrix.h" />
     <ClInclude Include="utils\shader.h" />
     <ClInclude Include="utils\shadermanager.h" />
   </ItemGroup>
@@ -66,14 +64,14 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\lib\freeglut-2.8.1\include;$(SolutionDir)..\lib\glload\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\lib\freeglut-2.8.1\include;$(SolutionDir)..\lib\glload\include;$(SolutionDir)..\lib\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)..\lib\freeglut-2.8.1\lib\x86;$(SolutionDir)..\lib\glload\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>freeglut.lib;glloadD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glloadD.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
