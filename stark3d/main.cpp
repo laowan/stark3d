@@ -3,8 +3,10 @@
 #include <GL/freeglut.h>
 
 #include <stdio.h>
+#include "utils/modules.h"
 #include "utils/matrix.h"
 #include "utils/shadermanager.h"
+#include "utils/scene.h"
 
 #include <glm/gtc/type_ptr.hpp>
 
@@ -378,35 +380,54 @@ static void idle(void)
 
 int main(int argc, char *argv[])
 {
-    glutInit(&argc, argv);
-    glutInitWindowSize(800, 600);
-    glutInitWindowPosition(40, 40);
-    glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH | GLUT_MULTISAMPLE);
+    Modules::init();
+    SceneNode* node1 = new SceneNode();
+    Modules::sceneManager().addNode(node1);
 
-    int window = glutCreateWindow("Stark 3D");
+    SceneNode* node2 = new SceneNode();
+    Modules::sceneManager().addNode(node2);
 
-    glutReshapeFunc(resize);
-    glutDisplayFunc(display);
-    glutKeyboardFunc(keyboard);
-    glutSpecialFunc(special);
-    glutIdleFunc(idle);
+    SceneNode* node3 = new SceneNode();
+    Modules::sceneManager().addNode(node1, node3);
 
-    glutMouseFunc(MouseButton);
-    glutMotionFunc(MouseMotion);
-    glutMouseWheelFunc(MouseWheel);
+    SceneNode* node4 = new SceneNode();
+    Modules::sceneManager().addNode(node1, node4);
 
-    glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_CONTINUE_EXECUTION);
+    SceneNode* node5 = new SceneNode();
+    Modules::sceneManager().addNode(node1, node5);
 
-    glload::LoadTest test = glload::LoadFunctions();
-    if (!test)
-    {
-        printf("err when glload init\n");
-        return 1;
-    }
+    Modules::sceneManager().render();
+    
 
-    init();
-
-    glutMainLoop();
+//     glutInit(&argc, argv);
+//     glutInitWindowSize(800, 600);
+//     glutInitWindowPosition(40, 40);
+//     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH | GLUT_MULTISAMPLE);
+// 
+//     int window = glutCreateWindow("Stark 3D");
+// 
+//     glutReshapeFunc(resize);
+//     glutDisplayFunc(display);
+//     glutKeyboardFunc(keyboard);
+//     glutSpecialFunc(special);
+//     glutIdleFunc(idle);
+// 
+//     glutMouseFunc(MouseButton);
+//     glutMotionFunc(MouseMotion);
+//     glutMouseWheelFunc(MouseWheel);
+// 
+//     glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_CONTINUE_EXECUTION);
+// 
+//     glload::LoadTest test = glload::LoadFunctions();
+//     if (!test)
+//     {
+//         printf("err when glload init\n");
+//         return 1;
+//     }
+// 
+//     init();
+// 
+//     glutMainLoop();
 
     return 0;
 }

@@ -14,12 +14,16 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="utils\framework.cpp" />
     <ClCompile Include="utils\matrix.cpp" />
+    <ClCompile Include="utils\modules.cpp" />
+    <ClCompile Include="utils\scene.cpp" />
     <ClCompile Include="utils\shader.cpp" />
     <ClCompile Include="utils\shadermanager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="utils\framework.h" />
     <ClInclude Include="utils\matrix.h" />
+    <ClInclude Include="utils\modules.h" />
+    <ClInclude Include="utils\scene.h" />
     <ClInclude Include="utils\shader.h" />
     <ClInclude Include="utils\shadermanager.h" />
   </ItemGroup>
