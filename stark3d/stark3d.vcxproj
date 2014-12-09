@@ -12,18 +12,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="modules.cpp" />
+    <ClCompile Include="scene\cube.cpp" />
+    <ClCompile Include="scene\scene.cpp" />
+    <ClCompile Include="scene\terrain.cpp" />
     <ClCompile Include="utils\framework.cpp" />
     <ClCompile Include="utils\matrix.cpp" />
-    <ClCompile Include="utils\modules.cpp" />
-    <ClCompile Include="utils\scene.cpp" />
     <ClCompile Include="utils\shader.cpp" />
     <ClCompile Include="utils\shadermanager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="modules.h" />
+    <ClInclude Include="scene\cube.h" />
+    <ClInclude Include="scene\scene.h" />
+    <ClInclude Include="scene\terrain.h" />
     <ClInclude Include="utils\framework.h" />
     <ClInclude Include="utils\matrix.h" />
-    <ClInclude Include="utils\modules.h" />
-    <ClInclude Include="utils\scene.h" />
     <ClInclude Include="utils\shader.h" />
     <ClInclude Include="utils\shadermanager.h" />
   </ItemGroup>

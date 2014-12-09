@@ -3,114 +3,17 @@
 #include <GL/freeglut.h>
 
 #include <stdio.h>
-#include "utils/modules.h"
+#include "modules.h"
 #include "utils/matrix.h"
 #include "utils/shadermanager.h"
-#include "utils/scene.h"
+#include "scene/scene.h"
+#include "scene/terrain.h"
+#include "scene/cube.h"
 
 #include <glm/gtc/type_ptr.hpp>
 
 using namespace Util;
-
-const float vertexData[] = {
-    -50.0f,  50.0f,  50.0f, 1.0f,
-     50.0f, -50.0f,  50.0f, 1.0f,
-     50.0f,  50.0f,  50.0f, 1.0f,
-
-    -50.0f,  50.0f,  50.0f, 1.0f,
-    -50.0f, -50.0f,  50.0f, 1.0f,
-     50.0f, -50.0f,  50.0f, 1.0f,
-
-     50.0f, -50.0f, -50.0f, 1.0f,
-    -50.0f,  50.0f, -50.0f, 1.0f,
-     50.0f,  50.0f, -50.0f, 1.0f,
-
-    -50.0f, -50.0f, -50.0f, 1.0f,
-    -50.0f,  50.0f, -50.0f, 1.0f,
-     50.0f, -50.0f, -50.0f, 1.0f,
-
-    -50.0f, -50.0f, -50.0f, 1.0f,
-    -50.0f, -50.0f,  50.0f, 1.0f,
-    -50.0f,  50.0f,  50.0f, 1.0f,
-
-    -50.0f,  50.0f, -50.0f, 1.0f,
-    -50.0f, -50.0f, -50.0f, 1.0f,
-    -50.0f,  50.0f,  50.0f, 1.0f,
-
-     50.0f, -50.0f,  50.0f, 1.0f,
-     50.0f, -50.0f, -50.0f, 1.0f,
-     50.0f,  50.0f,  50.0f, 1.0f,
-
-     50.0f, -50.0f, -50.0f, 1.0f,
-     50.0f,  50.0f, -50.0f, 1.0f,
-     50.0f,  50.0f,  50.0f, 1.0f,
-
-    -50.0f,  50.0f,  50.0f, 1.0f,
-     50.0f,  50.0f,  50.0f, 1.0f,
-     50.0f,  50.0f, -50.0f, 1.0f,
-
-    -50.0f,  50.0f, -50.0f, 1.0f,
-    -50.0f,  50.0f,  50.0f, 1.0f,
-     50.0f,  50.0f, -50.0f, 1.0f,
-
-     50.0f, -50.0f,  50.0f, 1.0f,
-    -50.0f, -50.0f,  50.0f, 1.0f,
-     50.0f, -50.0f, -50.0f, 1.0f,
-
-    -50.0f, -50.0f,  50.0f, 1.0f,
-    -50.0f, -50.0f, -50.0f, 1.0f,
-     50.0f, -50.0f, -50.0f, 1.0f,
-
-
-
-    0.0f, 0.0f, 1.0f, 1.0f,
-    0.0f, 0.0f, 1.0f, 1.0f,
-    0.0f, 0.0f, 1.0f, 1.0f,
-
-    0.0f, 0.0f, 1.0f, 1.0f,
-    0.0f, 0.0f, 1.0f, 1.0f,
-    0.0f, 0.0f, 1.0f, 1.0f,
-
-    0.8f, 0.8f, 0.8f, 1.0f,
-    0.8f, 0.8f, 0.8f, 1.0f,
-    0.8f, 0.8f, 0.8f, 1.0f,
-
-    0.8f, 0.8f, 0.8f, 1.0f,
-    0.8f, 0.8f, 0.8f, 1.0f,
-    0.8f, 0.8f, 0.8f, 1.0f,
-
-    0.0f, 1.0f, 0.0f, 1.0f,
-    0.0f, 1.0f, 0.0f, 1.0f,
-    0.0f, 1.0f, 0.0f, 1.0f,
-
-    0.0f, 1.0f, 0.0f, 1.0f,
-    0.0f, 1.0f, 0.0f, 1.0f,
-    0.0f, 1.0f, 0.0f, 1.0f,
-
-    0.5f, 0.5f, 0.0f, 1.0f,
-    0.5f, 0.5f, 0.0f, 1.0f,
-    0.5f, 0.5f, 0.0f, 1.0f,
-
-    0.5f, 0.5f, 0.0f, 1.0f,
-    0.5f, 0.5f, 0.0f, 1.0f,
-    0.5f, 0.5f, 0.0f, 1.0f,
-
-    1.0f, 0.0f, 0.0f, 1.0f,
-    1.0f, 0.0f, 0.0f, 1.0f,
-    1.0f, 0.0f, 0.0f, 1.0f,
-
-    1.0f, 0.0f, 0.0f, 1.0f,
-    1.0f, 0.0f, 0.0f, 1.0f,
-    1.0f, 0.0f, 0.0f, 1.0f,
-
-    0.0f, 1.0f, 1.0f, 1.0f,
-    0.0f, 1.0f, 1.0f, 1.0f,
-    0.0f, 1.0f, 1.0f, 1.0f,
-
-    0.0f, 1.0f, 1.0f, 1.0f,
-    0.0f, 1.0f, 1.0f, 1.0f,
-    0.0f, 1.0f, 1.0f, 1.0f,
-};
+using namespace Scene;
 
 double gsExtent = 200.0;
 int gsPixWidth;
@@ -127,8 +30,6 @@ int gsTmpY;
 int gsMoveBtn;
 
 GLuint vertexBufferObject;
-GLuint vao;
-GLuint offsetUniform;
 GLuint mvpUniform;
 
 glm::mat4 getProjMat()
@@ -282,10 +183,15 @@ static void resize(int width, int height)
 
 static void init(void)
 {
-    glGenBuffers(1, &vertexBufferObject);
-    glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    Modules::init();
+
+    // add the scene nodes
+    Cube *cube = new Scene::Cube();
+    Terrain *terrain = new Scene::Terrain("resource/coastMountain64.raw", 64, 64, 10, 0.5f);
+
+    Modules::sceneManager().addNode(cube);
+    Modules::sceneManager().addNode(terrain);
+
 
     ShaderManager* sm = ShaderManager::instance();
     sm->use(ShaderManager::SD_NORMAL); 
@@ -294,17 +200,14 @@ static void init(void)
     int program = sd->program();
 
     glBindAttribLocation(program, 0, "position");
-    glBindAttribLocation(program, 1, "color");
 
-    offsetUniform = glGetUniformLocation(program, "offset");
     mvpUniform = glGetUniformLocation(program, "uModelViewProjMat");
 
-    glGenVertexArrays(1, &vao);
-    glBindVertexArray(vao);
-
-    glEnable(GL_CULL_FACE);
-    glCullFace(GL_BACK);
-    glFrontFace(GL_CCW);
+//     glEnable(GL_CULL_FACE);
+//     glCullFace(GL_BACK);
+//     glFrontFace(GL_CCW);
+    glDisable(GL_CULL_FACE);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 }
 
@@ -316,23 +219,12 @@ static void display(void)
     ShaderManager* sm = ShaderManager::instance();
     sm->use(ShaderManager::SD_NORMAL);
 
-    glUniform2f(offsetUniform, 0.0f, 0.0f);
-    size_t colorData = sizeof(vertexData) / 2;
-
     // calculate the mvp matrix and apply it to the shader
     glm::mat4 mvp = getModelViewProjMat();
     glUniformMatrix4fv(mvpUniform, 1, GL_FALSE, glm::value_ptr(mvp));
 
-    glBindBuffer(GL_ARRAY_BUFFER, vertexBufferObject);
-    glEnableVertexAttribArray(0);
-    glEnableVertexAttribArray(1);
-    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, 0);
-    glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, (void*)colorData);
-
-    glDrawArrays(GL_TRIANGLES, 0, 36);
-
-    glDisableVertexAttribArray(0);
-    glDisableVertexAttribArray(1);
+    // now render the scene
+    Modules::sceneManager().render();
 
     glutSwapBuffers();
     glutPostRedisplay();
@@ -380,54 +272,35 @@ static void idle(void)
 
 int main(int argc, char *argv[])
 {
-    Modules::init();
-    SceneNode* node1 = new SceneNode();
-    Modules::sceneManager().addNode(node1);
+    glutInit(&argc, argv);
+    glutInitWindowSize(800, 600);
+    glutInitWindowPosition(40, 40);
+    glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH | GLUT_MULTISAMPLE);
 
-    SceneNode* node2 = new SceneNode();
-    Modules::sceneManager().addNode(node2);
+    int window = glutCreateWindow("Stark 3D");
 
-    SceneNode* node3 = new SceneNode();
-    Modules::sceneManager().addNode(node1, node3);
+    glutReshapeFunc(resize);
+    glutDisplayFunc(display);
+    glutKeyboardFunc(keyboard);
+    glutSpecialFunc(special);
+    glutIdleFunc(idle);
 
-    SceneNode* node4 = new SceneNode();
-    Modules::sceneManager().addNode(node1, node4);
+    glutMouseFunc(MouseButton);
+    glutMotionFunc(MouseMotion);
+    glutMouseWheelFunc(MouseWheel);
 
-    SceneNode* node5 = new SceneNode();
-    Modules::sceneManager().addNode(node1, node5);
+    glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_CONTINUE_EXECUTION);
 
-    Modules::sceneManager().render();
-    
+    glload::LoadTest test = glload::LoadFunctions();
+    if (!test)
+    {
+        printf("err when glload init\n");
+        return 1;
+    }
 
-//     glutInit(&argc, argv);
-//     glutInitWindowSize(800, 600);
-//     glutInitWindowPosition(40, 40);
-//     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH | GLUT_MULTISAMPLE);
-// 
-//     int window = glutCreateWindow("Stark 3D");
-// 
-//     glutReshapeFunc(resize);
-//     glutDisplayFunc(display);
-//     glutKeyboardFunc(keyboard);
-//     glutSpecialFunc(special);
-//     glutIdleFunc(idle);
-// 
-//     glutMouseFunc(MouseButton);
-//     glutMotionFunc(MouseMotion);
-//     glutMouseWheelFunc(MouseWheel);
-// 
-//     glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_CONTINUE_EXECUTION);
-// 
-//     glload::LoadTest test = glload::LoadFunctions();
-//     if (!test)
-//     {
-//         printf("err when glload init\n");
-//         return 1;
-//     }
-// 
-//     init();
-// 
-//     glutMainLoop();
+    init();
+
+    glutMainLoop();
 
     return 0;
 }

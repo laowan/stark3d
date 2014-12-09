@@ -1,9 +1,9 @@
-#ifndef UTILS_SCENE_H
-#define UTILS_SCENE_H
+#ifndef _SCENE_H
+#define _SCENE_H
 
 #include <vector>
 
-namespace Util {
+namespace Scene {
 
 class SceneNode
 {
@@ -11,7 +11,7 @@ public:
     SceneNode();
     ~SceneNode();
 
-    void render();
+    virtual bool render();
 
 protected:
     std::vector<SceneNode*> _children;
@@ -29,7 +29,7 @@ public:
 
     int addNode(SceneNode* parent, SceneNode* node);
     int addNode(SceneNode* node);
-    void render(SceneNode* node = NULL);
+    bool render(SceneNode* node = NULL);
 
 private:
     std::vector<SceneNode*> _nodes;

@@ -1,10 +1,10 @@
 #include "scene.h"
 
-namespace Util {
+namespace Scene {
 
-// *********************************************************************************
+// ********************************************************************
 // Class SceneNode
-// *********************************************************************************
+// ********************************************************************
 
 SceneNode::SceneNode()
 {
@@ -16,14 +16,14 @@ SceneNode::~SceneNode()
     
 }
 
-void SceneNode::render()
+bool SceneNode::render()
 {
-    printf("%d\n", _handle);
+    return true;
 }
 
-// *********************************************************************************
+// ********************************************************************
 // Class SceneManager
-// *********************************************************************************
+// ********************************************************************
 
 SceneManager::SceneManager()
 {
@@ -57,7 +57,7 @@ int SceneManager::addNode(SceneNode* node)
     return (int)_nodes.size();
 }
 
-void SceneManager::render(SceneNode* node /*= NULL*/)
+bool SceneManager::render(SceneNode* node /*= NULL*/)
 {
     if (node == NULL)
         node = _nodes[0];
@@ -75,6 +75,8 @@ void SceneManager::render(SceneNode* node /*= NULL*/)
     {
         node->render();
     }
+
+    return true;
 }
 
 }

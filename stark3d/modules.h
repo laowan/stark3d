@@ -1,9 +1,8 @@
 #ifndef UTILS_MODULES_H
 #define UTILS_MODULES_H
 
-namespace Util {
-
-class SceneManager;
+#include "scene/scene.h"
+using Scene::SceneManager;
 
 class Modules
 {
@@ -17,6 +16,5 @@ private:
     static SceneManager* _sceneManager;
 };
 
-}
 
 #endif

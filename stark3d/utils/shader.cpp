@@ -93,7 +93,7 @@ void Shader::init(std::string filename)
     vector<GLuint> shaderList;
     for (unsigned int i = 0; i < types.size(); i++)
     {
-        string fullpath = "./shader/" + filename + types[i];
+        string fullpath = "./resource/shader/" + filename + types[i];
         std::ifstream shaderFile(fullpath.c_str());
         std::stringstream shaderData;
         shaderData << shaderFile.rdbuf();

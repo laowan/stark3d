@@ -1,7 +1,4 @@
 #include "modules.h"
-#include "scene.h"
-
-namespace Util {
 
 SceneManager* Modules::_sceneManager = NULL;
 
@@ -18,6 +15,4 @@ void Modules::exit()
         delete _sceneManager;
         _sceneManager = NULL;
     }
-}
-
 }

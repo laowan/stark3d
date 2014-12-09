@@ -19,6 +19,12 @@
     <Filter Include="Source Files\utils">
       <UniqueIdentifier>{b299a6fd-bbad-4446-87f2-5bb05a3d6102}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\scene">
+      <UniqueIdentifier>{87059dff-7f1f-49f2-a524-5af2af338b74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\scene">
+      <UniqueIdentifier>{3906485b-e17c-438b-9614-cf9dd92a91e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -36,11 +42,17 @@
     <ClCompile Include="utils\matrix.cpp">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
-    <ClCompile Include="utils\scene.cpp">
-      <Filter>Source Files\utils</Filter>
+    <ClCompile Include="scene\cube.cpp">
+      <Filter>Source Files\scene</Filter>
     </ClCompile>
-    <ClCompile Include="utils\modules.cpp">
-      <Filter>Source Files\utils</Filter>
+    <ClCompile Include="scene\terrain.cpp">
+      <Filter>Source Files\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="scene\scene.cpp">
+      <Filter>Source Files\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="modules.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -56,11 +68,17 @@
     <ClInclude Include="utils\matrix.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
-    <ClInclude Include="utils\scene.h">
-      <Filter>Header Files\utils</Filter>
+    <ClInclude Include="scene\cube.h">
+      <Filter>Header Files\scene</Filter>
     </ClInclude>
-    <ClInclude Include="utils\modules.h">
-      <Filter>Header Files\utils</Filter>
+    <ClInclude Include="scene\terrain.h">
+      <Filter>Header Files\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="scene\scene.h">
+      <Filter>Header Files\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="modules.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
