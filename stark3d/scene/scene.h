@@ -2,6 +2,7 @@
 #define _SCENE_H
 
 #include <vector>
+#include "BBox.h"
 
 namespace Scene {
 
@@ -12,10 +13,12 @@ public:
     ~SceneNode();
 
     virtual bool render();
+    virtual BBox boundingBox();
 
 protected:
     std::vector<SceneNode*> _children;
     int _handle;
+    BBox _boundingBox;
 
     friend class SceneManager;
 

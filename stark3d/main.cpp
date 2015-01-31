@@ -9,6 +9,7 @@
 #include "scene/scene.h"
 #include "scene/terrain.h"
 #include "scene/cube.h"
+#include "scene/line.h"
 
 #include <glm/gtc/type_ptr.hpp>
 
@@ -30,7 +31,15 @@ int gsTmpY;
 int gsMoveBtn;
 
 GLuint vertexBufferObject;
-GLuint mvpUniform;
+
+
+struct _shaderUniforms
+{
+    GLuint mvpUniform;
+    GLuint color;
+    GLuint lightPosition;
+    GLuint lightColor;
+} gsUniforms;
 
 glm::mat4 getProjMat()
 {
@@ -188,9 +197,11 @@ static void init(void)
     // add the scene nodes
     Cube *cube = new Scene::Cube();
     Terrain *terrain = new Scene::Terrain("resource/coastMountain64.raw", 64, 64, 10, 0.5f);
+    Line *line = new Scene::Line();
 
     Modules::sceneManager().addNode(cube);
-    Modules::sceneManager().addNode(terrain);
+    //Modules::sceneManager().addNode(line);
+    //Modules::sceneManager().addNode(terrain);
 
 
     ShaderManager* sm = ShaderManager::instance();
@@ -200,31 +211,54 @@ static void init(void)
     int program = sd->program();
 
     glBindAttribLocation(program, 0, "position");
+    glBindAttribLocation(program, 1, "normal");
 
-    mvpUniform = glGetUniformLocation(program, "uModelViewProjMat");
+    gsUniforms.mvpUniform = glGetUniformLocation(program, "uModelViewProjMat");
+    gsUniforms.color = glGetUniformLocation(program, "uColor");
+    gsUniforms.lightPosition = glGetUniformLocation(program, "uLightPosition");
+    gsUniforms.lightColor = glGetUniformLocation(program, "uLightColor");
 
-//     glEnable(GL_CULL_FACE);
-//     glCullFace(GL_BACK);
-//     glFrontFace(GL_CCW);
-    glDisable(GL_CULL_FACE);
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
+    glFrontFace(GL_CCW);
+//     glDisable(GL_CULL_FACE);
+//     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    glEnable(GL_DEPTH_TEST);
+    glDepthMask(GL_TRUE);
+    glDepthFunc(GL_LEQUAL);
+
+    glDisable(GL_BLEND);
 
 }
 
 static void display(void)
 {
-    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     ShaderManager* sm = ShaderManager::instance();
     sm->use(ShaderManager::SD_NORMAL);
 
     // calculate the mvp matrix and apply it to the shader
     glm::mat4 mvp = getModelViewProjMat();
-    glUniformMatrix4fv(mvpUniform, 1, GL_FALSE, glm::value_ptr(mvp));
+    glUniformMatrix4fv(gsUniforms.mvpUniform, 1, GL_FALSE, glm::value_ptr(mvp));
+
+    glm::vec4 c1(0.0, 1.0, 0.0, 1.0);
+    glUniform4fv(gsUniforms.color, 1, glm::value_ptr(c1));
+
+    glm::vec3 lightPos(200.0f, 200.0f, 200.0f);
+    glUniform3fv(gsUniforms.lightPosition, 1, glm::value_ptr(lightPos));
+
+    glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
+    glUniform3fv(gsUniforms.lightColor, 1, glm::value_ptr(lightColor));
 
     // now render the scene
     Modules::sceneManager().render();
+
+//     glm::vec4 c2(0.0, 0.0, 0.0, 1.0);
+//     glUniform4fv(color, 1, glm::value_ptr(c2));
+//     Line *line = new Scene::Line();
+//     line->render();
 
     glutSwapBuffers();
     glutPostRedisplay();

@@ -106,13 +106,18 @@ bool Terrain::computeVertices()
         for (int j = 0; j < _numVertsPerRow; j++)
         {
             int idx = i*_numVertsPerRow + j;
+            
+            float x = -_width/2 + _cellSpacing*j;
+            float y = _heightmap[idx];
+            float z = -_depth/2 + _cellSpacing*i;
+
             vts.push_back(TerrainVertex(
-                    -_width/2 + _cellSpacing*j,
-                    _heightmap[idx],
-                    -_depth/2 + _cellSpacing*i,
+                    x, y, z,
                     (float)j/_numCellsPerRow,
                     (float)i/_numCellsPerCol
                 ));
+
+            _boundingBox.add(x, y, z);
         }
     }
 

@@ -21,6 +21,11 @@ bool SceneNode::render()
     return true;
 }
 
+BBox SceneNode::boundingBox()
+{
+    return _boundingBox;
+}
+
 // ********************************************************************
 // Class SceneManager
 // ********************************************************************
