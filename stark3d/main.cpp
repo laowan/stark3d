@@ -41,33 +41,61 @@ struct _shaderUniforms
     GLuint lightColor;
 } gsUniforms;
 
-glm::mat4 getProjMat()
+glm::mat4 getPerspectiveProjMat()
 {
+    // http://www.songho.ca/opengl/gl_projectionmatrix.html
     glm::mat4 mat;
     double h_w = (double)gsPixHeight / gsPixWidth;
-    double wdth, hght;
+    double r, t;
 
     if (h_w > 1.0)
     {
-        wdth = gsExtent / 2.0;
-        hght = gsExtent * h_w / 2.0;
+        r = gsExtent / 2.0;
+        t = gsExtent * h_w / 2.0;
     }
     else
     {
-        wdth = gsExtent / h_w / 2.0;
-        hght = gsExtent / 2.0;
+        r = gsExtent / h_w / 2.0;
+        t = gsExtent / 2.0;
     }
 
-    float nearVal = 100.0, farVal = -100.0;
-    mat[0].x = 1.0/wdth; mat[1].x = 0.0;      mat[2].x = 0.0;                  mat[3].x = 0.0;
-    mat[0].y = 0.0;      mat[1].y = 1.0/hght; mat[2].y = 0.0;                  mat[3].y = 0.0;
-    mat[0].z = 0.0;      mat[1].z = 0.0;      mat[2].z = 2.0/(nearVal-farVal); mat[3].z = (farVal+nearVal)/(nearVal-farVal);
-    mat[0].w = 0.0;      mat[1].w = 0.0;      mat[2].w = 0.0;                  mat[3].w = 1.0;
+    float n = 100.0, f = -100.0;
+    mat[0].x = n / r; mat[1].x = 0.0;   mat[2].x = 0.0;         mat[3].x = 0.0;
+    mat[0].y = 0.0;   mat[1].y = n / t; mat[2].y = 0.0;         mat[3].y = 0.0;
+    mat[0].z = 0.0;   mat[1].z = 0.0;   mat[2].z = (f+n)/(n-f); mat[3].z = 2*f*n/(n-f);
+    mat[0].w = 0.0;   mat[1].w = 0.0;   mat[2].w = -1.0;        mat[3].w = 0.0;
+    return mat;
+}
+
+glm::mat4 getOrthographicProjMat()
+{
+    glm::mat4 mat;
+    double h_w = (double)gsPixHeight / gsPixWidth;
+    double r, t;
+
+    if (h_w > 1.0)
+    {
+        r = gsExtent / 2.0;
+        t = gsExtent * h_w / 2.0;
+    }
+    else
+    {
+        r = gsExtent / h_w / 2.0;
+        t = gsExtent / 2.0;
+    }
+
+    float n = 100.0, f = -100.0;
+    mat[0].x = 1.0/r; mat[1].x = 0.0;   mat[2].x = 0.0;       mat[3].x = 0.0;
+    mat[0].y = 0.0;   mat[1].y = 1.0/t; mat[2].y = 0.0;       mat[3].y = 0.0;
+    mat[0].z = 0.0;   mat[1].z = 0.0;   mat[2].z = 2.0/(n-f); mat[3].z = (f+n)/(n-f);
+    mat[0].w = 0.0;   mat[1].w = 0.0;   mat[2].w = 0.0;       mat[3].w = 1.0;
     return mat;
 }
 
 glm::mat4 getModelViewProjMat()
 {
+    // mat is the inverse matrix of gsViewMat
+    // from world coordinate to view coordinate
     Matrix mat;
     mat.xx = gsViewMat.xx; mat.yx = gsViewMat.xy; mat.zx = gsViewMat.xz;
     mat.xy = gsViewMat.yx; mat.yy = gsViewMat.yy; mat.zy = gsViewMat.yz;
@@ -78,7 +106,7 @@ glm::mat4 getModelViewProjMat()
     mat.zt = -gsViewMat.zx*gsViewMat.xt - gsViewMat.zy*gsViewMat.yt - gsViewMat.zz*gsViewMat.zt;
 
     glm::mat4 mvMat = mat.glMatrix();
-    glm::mat4 projMat = getProjMat();
+    glm::mat4 projMat = getOrthographicProjMat();
     glm::mat4 mvpMat = projMat * mvMat;
     
     return mvpMat;
