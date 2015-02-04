@@ -8,7 +8,7 @@ class BBox
 {
     struct Point
     {
-        Point(int x, int y, int z) : _x(x), _y(y), _z(z) {}
+        Point(float x, float y, float z) : _x(x), _y(y), _z(z) {}
         float _x, _y, _z;
     };
 

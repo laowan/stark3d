@@ -63,6 +63,9 @@
     <ClCompile Include="module.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="scene\color.cpp">
+      <Filter>Source Files\scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="utils\framework.h">
@@ -97,6 +100,9 @@
     </ClInclude>
     <ClInclude Include="module.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="scene\color.h">
+      <Filter>Header Files\scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

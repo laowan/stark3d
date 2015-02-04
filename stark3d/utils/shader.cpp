@@ -73,10 +73,10 @@ GLuint CreateProgram(const std::vector<GLuint> &shaderList)
 }
 
 
-Shader::Shader()
+Shader::Shader(std::string filename)
 {
     _program = 0;
-    init("normal");
+    init(filename);
 }
 
 Shader::~Shader()
@@ -112,11 +112,25 @@ void Shader::init(std::string filename)
 
     std::for_each(shaderList.begin(), shaderList.end(), glDeleteShader);
 
+    bind();
+
 }
 
 void Shader::use()
 {
     glUseProgram(_program);
+}
+
+void Shader::bind()
+{
+    glBindAttribLocation(_program, 0, "position");
+    glBindAttribLocation(_program, 1, "normal");
+
+    _uniforms.mvpUniform = glGetUniformLocation(_program, "uModelViewProjMat");
+    _uniforms.color = glGetUniformLocation(_program, "uColor");
+    _uniforms.lightPosition = glGetUniformLocation(_program, "uLightPosition");
+    _uniforms.lightColor = glGetUniformLocation(_program, "uLightColor");
+
 }
 
 }

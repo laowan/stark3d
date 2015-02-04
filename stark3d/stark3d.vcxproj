@@ -14,6 +14,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="module.cpp" />
     <ClCompile Include="scene\bbox.cpp" />
+    <ClCompile Include="scene\color.cpp" />
     <ClCompile Include="scene\cube.cpp" />
     <ClCompile Include="scene\line.cpp" />
     <ClCompile Include="scene\scene.cpp" />
@@ -27,6 +28,7 @@
   <ItemGroup>
     <ClInclude Include="module.h" />
     <ClInclude Include="scene\bbox.h" />
+    <ClInclude Include="scene\color.h" />
     <ClInclude Include="scene\cube.h" />
     <ClInclude Include="scene\line.h" />
     <ClInclude Include="scene\scene.h" />

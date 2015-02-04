@@ -10,6 +10,7 @@
 #include "scene/terrain.h"
 #include "scene/cube.h"
 #include "scene/line.h"
+#include "scene/color.h"
 
 #include <glm/gtc/type_ptr.hpp>
 
@@ -30,16 +31,6 @@ int gsTmpX;
 int gsTmpY;
 int gsMoveBtn;
 
-GLuint vertexBufferObject;
-
-
-struct _shaderUniforms
-{
-    GLuint mvpUniform;
-    GLuint color;
-    GLuint lightPosition;
-    GLuint lightColor;
-} gsUniforms;
 
 glm::mat4 getPerspectiveProjMat()
 {
@@ -223,28 +214,24 @@ static void init(void)
     Module::init();
 
     // add the scene nodes
-    Cube *cube = new Scene::Cube();
-    Terrain *terrain = new Scene::Terrain("resource/coastMountain64.raw", 64, 64, 10, 0.5f);
-    //Line *line = new Scene::Line();
+    Cube* cube = new Scene::Cube();
+    Terrain* terrain = new Scene::Terrain("resource/coastMountain64.raw", 64, 64, 10, 0.5f);
+    Line* axisX = new Scene::Line(glm::vec3(0.0, 0.0, 0.0), glm::vec3(500.0, 0.0, 0.0));
+    Line* axisY = new Scene::Line(glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 500.0, 0.0));
+    Line* axisZ = new Scene::Line(glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 500.0));
+
+    Color* colorRed = new Scene::Color(1.0, 0.0, 0.0, 1.0);
+    Color* colorGreen = new Scene::Color(0.0, 1.0, 0.0, 1.0);
+    Color* colorBlue = new Scene::Color(0.0, 0.0, 1.0, 1.0);
 
     Module::sceneMan().addNode(cube);
-    //Module::sceneMan().addNode(line);
+    Module::sceneMan().addNode(colorRed);
+    Module::sceneMan().addNode(axisX);
+    Module::sceneMan().addNode(colorGreen);
+    Module::sceneMan().addNode(axisY);
+    Module::sceneMan().addNode(colorBlue);
+    Module::sceneMan().addNode(axisZ);
     //Module::sceneMan().addNode(terrain);
-
-
-    ShaderManager* sm = ShaderManager::instance();
-    sm->use(ShaderManager::SD_NORMAL); 
-
-    Shader* sd = sm->getShader(ShaderManager::SD_NORMAL);
-    int program = sd->program();
-
-    glBindAttribLocation(program, 0, "position");
-    glBindAttribLocation(program, 1, "normal");
-
-    gsUniforms.mvpUniform = glGetUniformLocation(program, "uModelViewProjMat");
-    gsUniforms.color = glGetUniformLocation(program, "uColor");
-    gsUniforms.lightPosition = glGetUniformLocation(program, "uLightPosition");
-    gsUniforms.lightColor = glGetUniformLocation(program, "uLightColor");
 
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
@@ -264,29 +251,25 @@ static void display(void)
     glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    ShaderManager* sm = ShaderManager::instance();
-    sm->use(ShaderManager::SD_NORMAL);
+    Module::shaderMan().use(ShaderManager::SD_NORMAL);
+
+    ShaderUniforms& uniforms = Module::shaderMan().currentShader()->uniforms();
 
     // calculate the mvp matrix and apply it to the shader
     glm::mat4 mvp = getModelViewProjMat();
-    glUniformMatrix4fv(gsUniforms.mvpUniform, 1, GL_FALSE, glm::value_ptr(mvp));
+    glUniformMatrix4fv(uniforms.mvpUniform, 1, GL_FALSE, glm::value_ptr(mvp));
 
-    glm::vec4 c1(0.0, 1.0, 0.0, 1.0);
-    glUniform4fv(gsUniforms.color, 1, glm::value_ptr(c1));
+    glm::vec4 c1(1.0, 1.0, 0.0, 1.0);
+    glUniform4fv(uniforms.color, 1, glm::value_ptr(c1));
 
     glm::vec3 lightPos(200.0f, 200.0f, 200.0f);
-    glUniform3fv(gsUniforms.lightPosition, 1, glm::value_ptr(lightPos));
+    glUniform3fv(uniforms.lightPosition, 1, glm::value_ptr(lightPos));
 
     glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
-    glUniform3fv(gsUniforms.lightColor, 1, glm::value_ptr(lightColor));
+    glUniform3fv(uniforms.lightColor, 1, glm::value_ptr(lightColor));
 
     // now render the scene
     Module::sceneMan().render();
-
-//     glm::vec4 c2(0.0, 0.0, 0.0, 1.0);
-//     glUniform4fv(color, 1, glm::value_ptr(c2));
-//     Line *line = new Scene::Line();
-//     line->render();
 
     glutSwapBuffers();
     glutPostRedisplay();

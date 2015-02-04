@@ -2,6 +2,16 @@
 
 namespace Util {
 
+ShaderManager::ShaderManager() : _curShader(NULL)
+{
+
+}
+
+ShaderManager::~ShaderManager()
+{
+
+}
+
 void ShaderManager::use(ShaderType type)
 {
     std::map<ShaderType, Shader*>::iterator it = _shaderMap.find(type);
@@ -11,7 +21,7 @@ void ShaderManager::use(ShaderType type)
         switch (type)
         {
         case SD_NORMAL:
-            shader = new Shader();
+            shader = new Shader("normal");
             break;
         }
 
@@ -19,11 +29,13 @@ void ShaderManager::use(ShaderType type)
         {
             shader->use();
             _shaderMap[type] = shader;
+            _curShader = shader;
         }
     }
     else
     {
         _shaderMap[type]->use();
+        _curShader = _shaderMap[type];
     }
 }
 

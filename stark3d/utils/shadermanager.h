@@ -15,18 +15,16 @@ public:
     };
 
 public:
-    static ShaderManager* instance()
-    {
-        static ShaderManager manager;
-        return &manager;
-    }
+    ShaderManager();
+    ~ShaderManager();
 
-public:
     void use(ShaderType type);
     Shader* getShader(ShaderType type) { return _shaderMap[type];  }
+    Shader* currentShader() { return _curShader; }
 
 private:
     std::map<ShaderType, Shader*> _shaderMap;
+    Shader* _curShader;
 };
 
 }
