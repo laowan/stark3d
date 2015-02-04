@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 
-#include "scene.h"
+#include "node.h"
 
 namespace Scene {
 

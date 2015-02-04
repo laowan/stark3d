@@ -1,7 +1,7 @@
 #ifndef _CUBE_H
 #define _CUBE_H
 
-#include "scene.h"
+#include "node.h"
 
 namespace Scene {
 

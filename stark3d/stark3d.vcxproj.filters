@@ -48,9 +48,6 @@
     <ClCompile Include="scene\terrain.cpp">
       <Filter>Source Files\scene</Filter>
     </ClCompile>
-    <ClCompile Include="scene\scene.cpp">
-      <Filter>Source Files\scene</Filter>
-    </ClCompile>
     <ClCompile Include="utils\deviceinfo.cpp">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
@@ -65,6 +62,12 @@
     </ClCompile>
     <ClCompile Include="scene\color.cpp">
       <Filter>Source Files\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="scene\node.cpp">
+      <Filter>Source Files\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="scene.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -86,9 +89,6 @@
     <ClInclude Include="scene\terrain.h">
       <Filter>Header Files\scene</Filter>
     </ClInclude>
-    <ClInclude Include="scene\scene.h">
-      <Filter>Header Files\scene</Filter>
-    </ClInclude>
     <ClInclude Include="utils\deviceinfo.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
@@ -103,6 +103,12 @@
     </ClInclude>
     <ClInclude Include="scene\color.h">
       <Filter>Header Files\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="scene\node.h">
+      <Filter>Header Files\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="scene.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

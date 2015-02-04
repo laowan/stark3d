@@ -1,7 +1,7 @@
 #ifndef _LINE_H
 #define _LINE_H
 
-#include "scene.h"
+#include "node.h"
 #include <glm/glm.hpp>
 
 namespace Scene {

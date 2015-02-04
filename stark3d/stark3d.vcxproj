@@ -13,11 +13,12 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="module.cpp" />
+    <ClCompile Include="scene.cpp" />
     <ClCompile Include="scene\bbox.cpp" />
     <ClCompile Include="scene\color.cpp" />
     <ClCompile Include="scene\cube.cpp" />
     <ClCompile Include="scene\line.cpp" />
-    <ClCompile Include="scene\scene.cpp" />
+    <ClCompile Include="scene\node.cpp" />
     <ClCompile Include="scene\terrain.cpp" />
     <ClCompile Include="utils\deviceinfo.cpp" />
     <ClCompile Include="utils\framework.cpp" />
@@ -27,11 +28,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="module.h" />
+    <ClInclude Include="scene.h" />
     <ClInclude Include="scene\bbox.h" />
     <ClInclude Include="scene\color.h" />
     <ClInclude Include="scene\cube.h" />
     <ClInclude Include="scene\line.h" />
-    <ClInclude Include="scene\scene.h" />
+    <ClInclude Include="scene\node.h" />
     <ClInclude Include="scene\terrain.h" />
     <ClInclude Include="utils\deviceinfo.h" />
     <ClInclude Include="utils\framework.h" />

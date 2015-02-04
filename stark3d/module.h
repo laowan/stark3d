@@ -1,7 +1,8 @@
 #ifndef UTILS_MODULES_H
 #define UTILS_MODULES_H
 
-#include "scene/scene.h"
+#include "scene.h"
+#include "utils/matrix.h"
 #include "utils/shadermanager.h"
 using Scene::SceneManager;
 using Util::ShaderManager;

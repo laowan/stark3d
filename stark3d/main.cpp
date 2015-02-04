@@ -4,14 +4,6 @@
 
 #include <stdio.h>
 #include "module.h"
-#include "utils/matrix.h"
-#include "utils/shadermanager.h"
-#include "scene/scene.h"
-#include "scene/terrain.h"
-#include "scene/cube.h"
-#include "scene/line.h"
-#include "scene/color.h"
-
 #include <glm/gtc/type_ptr.hpp>
 
 using namespace Util;

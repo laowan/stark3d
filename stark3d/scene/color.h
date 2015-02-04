@@ -1,7 +1,7 @@
 #ifndef COLOR_H
 #define COLOR_H
 
-#include "scene.h"
+#include "node.h"
 
 namespace Scene
 {
