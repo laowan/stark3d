@@ -2,13 +2,14 @@
 #define _LINE_H
 
 #include "scene.h"
+#include <glm/glm.hpp>
 
 namespace Scene {
 
     class Line : public SceneNode
     {
     public:
-        Line();
+        Line(glm::vec3& point1, glm::vec3& point2);
         ~Line();
 
         bool render();

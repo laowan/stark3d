@@ -3,16 +3,15 @@
 
 namespace Scene {
 
-    Line::Line() : _vb(0)
+    Line::Line(glm::vec3& point1, glm::vec3& point2) : _vb(0)
     {
-        const float vertexData[] = {
-            150.0f, 150.0f, 150.0f,
-            -150.0f, -150.0f, -150.0f,
-        };
+        float data[6];
+        data[0] = point1.x; data[1] = point1.y; data[2] = point1.z;
+        data[3] = point2.x; data[4] = point2.y; data[5] = point2.z;
 
         glGenBuffers(1, (GLuint*)&_vb);
         glBindBuffer(GL_ARRAY_BUFFER, _vb);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(data), data, GL_STATIC_DRAW);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
     }
 

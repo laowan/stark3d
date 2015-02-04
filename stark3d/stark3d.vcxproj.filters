@@ -51,9 +51,6 @@
     <ClCompile Include="scene\scene.cpp">
       <Filter>Source Files\scene</Filter>
     </ClCompile>
-    <ClCompile Include="modules.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="utils\deviceinfo.cpp">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
@@ -62,6 +59,9 @@
     </ClCompile>
     <ClCompile Include="scene\line.cpp">
       <Filter>Source Files\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="module.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -86,9 +86,6 @@
     <ClInclude Include="scene\scene.h">
       <Filter>Header Files\scene</Filter>
     </ClInclude>
-    <ClInclude Include="modules.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="utils\deviceinfo.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
@@ -97,6 +94,9 @@
     </ClInclude>
     <ClInclude Include="scene\line.h">
       <Filter>Header Files\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="module.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

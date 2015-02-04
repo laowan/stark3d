@@ -3,7 +3,7 @@
 #include <GL/freeglut.h>
 
 #include <stdio.h>
-#include "modules.h"
+#include "module.h"
 #include "utils/matrix.h"
 #include "utils/shadermanager.h"
 #include "scene/scene.h"
@@ -220,16 +220,16 @@ static void resize(int width, int height)
 
 static void init(void)
 {
-    Modules::init();
+    Module::init();
 
     // add the scene nodes
     Cube *cube = new Scene::Cube();
     Terrain *terrain = new Scene::Terrain("resource/coastMountain64.raw", 64, 64, 10, 0.5f);
-    Line *line = new Scene::Line();
+    //Line *line = new Scene::Line();
 
-    Modules::sceneManager().addNode(cube);
-    //Modules::sceneManager().addNode(line);
-    //Modules::sceneManager().addNode(terrain);
+    Module::sceneMan().addNode(cube);
+    //Module::sceneMan().addNode(line);
+    //Module::sceneMan().addNode(terrain);
 
 
     ShaderManager* sm = ShaderManager::instance();
@@ -281,7 +281,7 @@ static void display(void)
     glUniform3fv(gsUniforms.lightColor, 1, glm::value_ptr(lightColor));
 
     // now render the scene
-    Modules::sceneManager().render();
+    Module::sceneMan().render();
 
 //     glm::vec4 c2(0.0, 0.0, 0.0, 1.0);
 //     glUniform4fv(color, 1, glm::value_ptr(c2));

@@ -12,7 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="modules.cpp" />
+    <ClCompile Include="module.cpp" />
     <ClCompile Include="scene\bbox.cpp" />
     <ClCompile Include="scene\cube.cpp" />
     <ClCompile Include="scene\line.cpp" />
@@ -25,7 +25,7 @@
     <ClCompile Include="utils\shadermanager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="modules.h" />
+    <ClInclude Include="module.h" />
     <ClInclude Include="scene\bbox.h" />
     <ClInclude Include="scene\cube.h" />
     <ClInclude Include="scene\line.h" />

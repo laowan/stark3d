@@ -1,14 +1,15 @@
-#include "modules.h"
+#include "module.h"
 
-SceneManager* Modules::_sceneManager = NULL;
+SceneManager* Module::_sceneManager = NULL;
+ShaderManager* Module::_shaderManager = NULL;
 
-bool Modules::init()
+bool Module::init()
 {
     if (_sceneManager == NULL) _sceneManager = new SceneManager();
     return true;
 }
 
-void Modules::exit()
+void Module::exit()
 {
     if (_sceneManager)
     {
