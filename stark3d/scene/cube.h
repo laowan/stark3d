@@ -9,12 +9,13 @@ class Cube : public SceneNode
 {
 public:
     Cube();
+    Cube(double edgeLength);
     ~Cube();
 
     bool render();
 
 private:
-    int _vb;
+    uint32 _vb;
 };
 
 }

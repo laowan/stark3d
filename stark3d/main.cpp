@@ -206,7 +206,7 @@ static void init(void)
     Module::init();
 
     // add the scene nodes
-    Cube* cube = new Scene::Cube();
+    Cube* cube = new Scene::Cube(100.0);
     Terrain* terrain = new Scene::Terrain("resource/coastMountain64.raw", 64, 64, 10, 0.5f);
     Line* axisX = new Scene::Line(glm::vec3(0.0, 0.0, 0.0), glm::vec3(500.0, 0.0, 0.0));
     Line* axisY = new Scene::Line(glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 500.0, 0.0));

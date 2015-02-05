@@ -23,10 +23,12 @@
     <ClCompile Include="utils\deviceinfo.cpp" />
     <ClCompile Include="utils\framework.cpp" />
     <ClCompile Include="utils\matrix.cpp" />
+    <ClCompile Include="utils\renderdevice.cpp" />
     <ClCompile Include="utils\shader.cpp" />
     <ClCompile Include="utils\shadermanager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="global.h" />
     <ClInclude Include="module.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="scene\bbox.h" />
@@ -38,6 +40,7 @@
     <ClInclude Include="utils\deviceinfo.h" />
     <ClInclude Include="utils\framework.h" />
     <ClInclude Include="utils\matrix.h" />
+    <ClInclude Include="utils\renderdevice.h" />
     <ClInclude Include="utils\shader.h" />
     <ClInclude Include="utils\shadermanager.h" />
   </ItemGroup>
@@ -83,7 +86,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\lib\freeglut-2.8.1\include;$(SolutionDir)..\lib\glload\include;$(SolutionDir)..\lib\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\lib\freeglut-2.8.1\include;$(SolutionDir)..\lib\glload\include;$(SolutionDir)..\lib\glm;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

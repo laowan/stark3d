@@ -1,87 +1,94 @@
 #include "cube.h"
+#include "module.h"
 #include <glload/gl_3_3.h>
 
 namespace Scene {
 
-Cube::Cube() : _vb(0)
+Cube::Cube()
 {
-    const float vertexData[] = {
-        //  position             normal
-        -50.0f,  50.0f,  50.0f,  0.0f,  0.0f,  1.0f,
-         50.0f, -50.0f,  50.0f,  0.0f,  0.0f,  1.0f,
-         50.0f,  50.0f,  50.0f,  0.0f,  0.0f,  1.0f,
-                                               
-        -50.0f,  50.0f,  50.0f,  0.0f,  0.0f,  1.0f,
-        -50.0f, -50.0f,  50.0f,  0.0f,  0.0f,  1.0f,
-         50.0f, -50.0f,  50.0f,  0.0f,  0.0f,  1.0f,
-                                        
-         50.0f, -50.0f, -50.0f,  0.0f,  0.0f, -1.0f,
-        -50.0f,  50.0f, -50.0f,  0.0f,  0.0f, -1.0f,
-         50.0f,  50.0f, -50.0f,  0.0f,  0.0f, -1.0f,
-                                        
-        -50.0f, -50.0f, -50.0f,  0.0f,  0.0f, -1.0f,
-        -50.0f,  50.0f, -50.0f,  0.0f,  0.0f, -1.0f,
-         50.0f, -50.0f, -50.0f,  0.0f,  0.0f, -1.0f,
+    Cube(1.0);
+}
 
-        -50.0f, -50.0f, -50.0f, -1.0f,  0.0f,  0.0f,
-        -50.0f, -50.0f,  50.0f, -1.0f,  0.0f,  0.0f,
-        -50.0f,  50.0f,  50.0f, -1.0f,  0.0f,  0.0f,
-                                               
-        -50.0f,  50.0f, -50.0f, -1.0f,  0.0f,  0.0f,
-        -50.0f, -50.0f, -50.0f, -1.0f,  0.0f,  0.0f,
-        -50.0f,  50.0f,  50.0f, -1.0f,  0.0f,  0.0f,
-                                               
-         50.0f, -50.0f,  50.0f,  1.0f,  0.0f,  0.0f,
-         50.0f, -50.0f, -50.0f,  1.0f,  0.0f,  0.0f,
-         50.0f,  50.0f,  50.0f,  1.0f,  0.0f,  0.0f,
-                                               
-         50.0f, -50.0f, -50.0f,  1.0f,  0.0f,  0.0f,
-         50.0f,  50.0f, -50.0f,  1.0f,  0.0f,  0.0f,
-         50.0f,  50.0f,  50.0f,  1.0f,  0.0f,  0.0f,
-                                               
-        -50.0f,  50.0f,  50.0f,  0.0f,  1.0f,  0.0f,
-         50.0f,  50.0f,  50.0f,  0.0f,  1.0f,  0.0f,
-         50.0f,  50.0f, -50.0f,  0.0f,  1.0f,  0.0f,
-                                               
-        -50.0f,  50.0f, -50.0f,  0.0f,  1.0f,  0.0f,
-        -50.0f,  50.0f,  50.0f,  0.0f,  1.0f,  0.0f,
-         50.0f,  50.0f, -50.0f,  0.0f,  1.0f,  0.0f,
-                                               
-         50.0f, -50.0f,  50.0f,  0.0f, -1.0f,  0.0f,
-        -50.0f, -50.0f,  50.0f,  0.0f, -1.0f,  0.0f,
-         50.0f, -50.0f, -50.0f,  0.0f, -1.0f,  0.0f,
-                                               
-        -50.0f, -50.0f,  50.0f,  0.0f, -1.0f,  0.0f,
-        -50.0f, -50.0f, -50.0f,  0.0f, -1.0f,  0.0f,
-         50.0f, -50.0f, -50.0f,  0.0f, -1.0f,  0.0f,
+Cube::Cube(double edgeLength)
+{
+    float vertexData[] = {
+        //  position             normal
+        -1.0f,  1.0f,  1.0f,  0.0f,  0.0f,  1.0f,
+         1.0f, -1.0f,  1.0f,  0.0f,  0.0f,  1.0f,
+         1.0f,  1.0f,  1.0f,  0.0f,  0.0f,  1.0f,
+         
+        -1.0f,  1.0f,  1.0f,  0.0f,  0.0f,  1.0f,
+        -1.0f, -1.0f,  1.0f,  0.0f,  0.0f,  1.0f,
+         1.0f, -1.0f,  1.0f,  0.0f,  0.0f,  1.0f,
+         
+         1.0f, -1.0f, -1.0f,  0.0f,  0.0f, -1.0f,
+        -1.0f,  1.0f, -1.0f,  0.0f,  0.0f, -1.0f,
+         1.0f,  1.0f, -1.0f,  0.0f,  0.0f, -1.0f,
+         
+        -1.0f, -1.0f, -1.0f,  0.0f,  0.0f, -1.0f,
+        -1.0f,  1.0f, -1.0f,  0.0f,  0.0f, -1.0f,
+         1.0f, -1.0f, -1.0f,  0.0f,  0.0f, -1.0f,
+         
+        -1.0f, -1.0f, -1.0f, -1.0f,  0.0f,  0.0f,
+        -1.0f, -1.0f,  1.0f, -1.0f,  0.0f,  0.0f,
+        -1.0f,  1.0f,  1.0f, -1.0f,  0.0f,  0.0f,
+         
+        -1.0f,  1.0f, -1.0f, -1.0f,  0.0f,  0.0f,
+        -1.0f, -1.0f, -1.0f, -1.0f,  0.0f,  0.0f,
+        -1.0f,  1.0f,  1.0f, -1.0f,  0.0f,  0.0f,
+         
+         1.0f, -1.0f,  1.0f,  1.0f,  0.0f,  0.0f,
+         1.0f, -1.0f, -1.0f,  1.0f,  0.0f,  0.0f,
+         1.0f,  1.0f,  1.0f,  1.0f,  0.0f,  0.0f,
+         
+         1.0f, -1.0f, -1.0f,  1.0f,  0.0f,  0.0f,
+         1.0f,  1.0f, -1.0f,  1.0f,  0.0f,  0.0f,
+         1.0f,  1.0f,  1.0f,  1.0f,  0.0f,  0.0f,
+         
+        -1.0f,  1.0f,  1.0f,  0.0f,  1.0f,  0.0f,
+         1.0f,  1.0f,  1.0f,  0.0f,  1.0f,  0.0f,
+         1.0f,  1.0f, -1.0f,  0.0f,  1.0f,  0.0f,
+         
+        -1.0f,  1.0f, -1.0f,  0.0f,  1.0f,  0.0f,
+        -1.0f,  1.0f,  1.0f,  0.0f,  1.0f,  0.0f,
+         1.0f,  1.0f, -1.0f,  0.0f,  1.0f,  0.0f,
+         
+         1.0f, -1.0f,  1.0f,  0.0f, -1.0f,  0.0f,
+        -1.0f, -1.0f,  1.0f,  0.0f, -1.0f,  0.0f,
+         1.0f, -1.0f, -1.0f,  0.0f, -1.0f,  0.0f,
+                           
+        -1.0f, -1.0f,  1.0f,  0.0f, -1.0f,  0.0f,
+        -1.0f, -1.0f, -1.0f,  0.0f, -1.0f,  0.0f,
+         1.0f, -1.0f, -1.0f,  0.0f, -1.0f,  0.0f,
     };
-    
-    glGenBuffers(1, (GLuint*)&_vb);
-    glBindBuffer(GL_ARRAY_BUFFER, _vb);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+    for (size_t i = 0; i < 36; i++)
+    {
+        vertexData[i*6] *= float(edgeLength / 2.0);
+        vertexData[i*6+1] *= float(edgeLength / 2.0);
+        vertexData[i*6+2] *= float(edgeLength / 2.0);
+    }
+
+    _vb = Module::renderDev().createVertexBuffer(sizeof(vertexData), vertexData); 
 }
 
 Cube::~Cube()
 {
-    if (_vb) { glDeleteBuffers(1, (GLuint*)&_vb); _vb = 0; }
+    if (_vb)
+    {
+        Module::renderDev().destroyBuffer(_vb);
+        _vb = 0;
+    }
 }
 
 bool Cube::render()
 {
-    glBindBuffer(GL_ARRAY_BUFFER, _vb);
-
-    glEnableVertexAttribArray(0);
-    glEnableVertexAttribArray(1);
-
-    int stride(sizeof(float)*3 + sizeof(float)*3);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, stride, 0);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, stride, (const GLvoid*)(3*sizeof(float)));
-
-    glDrawArrays(GL_TRIANGLES, 0, 36);
-
-    glDisableVertexAttribArray(0);
-    glDisableVertexAttribArray(1);
+    Module::renderDev().setVertexBuffer(_vb);
+    
+    uint32 stride(sizeof(float)*3 + sizeof(float)*3);
+    Module::renderDev().setVertexLayout(0, stride, 0);
+    Module::renderDev().setVertexLayout(1, stride, (const void*)(3*sizeof(float)));
+    Module::renderDev().draw(Util::PRIM_TRIANGLES, 0, 36);
 
     return true;
 }

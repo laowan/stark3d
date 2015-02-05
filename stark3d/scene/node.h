@@ -1,6 +1,7 @@
 #ifndef _NODE_H
 #define _NODE_H
 
+#include "global.h"
 #include <vector>
 #include "BBox.h"
 
