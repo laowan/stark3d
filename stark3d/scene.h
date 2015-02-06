@@ -18,7 +18,9 @@ public:
 
     int addNode(SceneNode* parent, SceneNode* node);
     int addNode(SceneNode* node);
+    SceneNode* resolve(int idx);
     bool render(SceneNode* node = NULL);
+    void print(SceneNode* node = NULL);
 
 private:
     std::vector<SceneNode*> _nodes;

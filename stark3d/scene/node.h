@@ -2,19 +2,21 @@
 #define _NODE_H
 
 #include "global.h"
-#include <vector>
 #include "BBox.h"
+#include <vector>
+#include <string>
 
 namespace Scene {
 
 class SceneNode
 {
 public:
-    SceneNode();
-    ~SceneNode();
+    SceneNode() : _handle(-1) {}
+    ~SceneNode() {}
 
-    virtual bool render();
-    virtual BBox boundingBox();
+    virtual bool render() { return true; }
+    virtual BBox boundingBox() { return _boundingBox; }
+    void print(std::string prefix = "");
 
 protected:
     std::vector<SceneNode*> _children;
@@ -24,7 +26,6 @@ protected:
     friend class SceneManager;
 
 };
-
 
 }
 

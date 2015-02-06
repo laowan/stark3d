@@ -40,6 +40,13 @@ int SceneManager::addNode(SceneNode* node)
     return (int)_nodes.size();
 }
 
+SceneNode* SceneManager::resolve(int idx)
+{
+    if (idx < 1 || idx > _nodes.size())
+        return NULL;
+    return _nodes.at(idx-1);
+}
+
 bool SceneManager::render(SceneNode* node /*= NULL*/)
 {
     if (node == NULL)
@@ -62,5 +69,11 @@ bool SceneManager::render(SceneNode* node /*= NULL*/)
     return true;
 }
 
+void SceneManager::print(SceneNode* node)
+{
+    if (node == NULL)
+        node = _nodes[0];
+    node->print();
+}
 
 }

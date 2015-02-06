@@ -217,13 +217,16 @@ static void init(void)
     Color* colorBlue = new Scene::Color(0.0, 0.0, 1.0, 1.0);
 
     Module::sceneMan().addNode(cube);
+    //Module::sceneMan().addNode(terrain);
+
     Module::sceneMan().addNode(colorRed);
     Module::sceneMan().addNode(axisX);
     Module::sceneMan().addNode(colorGreen);
     Module::sceneMan().addNode(axisY);
     Module::sceneMan().addNode(colorBlue);
     Module::sceneMan().addNode(axisZ);
-    //Module::sceneMan().addNode(terrain);
+
+    Module::sceneMan().print();
 
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
