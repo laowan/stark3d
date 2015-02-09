@@ -1,10 +1,10 @@
 #ifndef UTILS_MATRIX_H
 #define UTILS_MATRIX_H
 
+#include "global.h"
 #include <glm/glm.hpp>
 
-namespace Util
-{
+SK_BEGIN_NAMESPACE
 
 class Matrix
 {
@@ -23,6 +23,6 @@ public:
     double xz, yz, zz, zt;
 };
 
-}
+SK_END_NAMESPACE
 
 #endif

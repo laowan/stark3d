@@ -8,8 +8,7 @@
 #include "scene/line.h"
 #include "scene/terrain.h"
 
-namespace Scene
-{
+SK_BEGIN_NAMESPACE
 class SceneManager
 {
 public:
@@ -24,7 +23,6 @@ public:
 
 private:
     std::vector<SceneNode*> _nodes;
-
 };
-}
+SK_END_NAMESPACE
 #endif

@@ -1,7 +1,9 @@
 #ifndef UTILS_DEVICEINFO_H
 #define UTILS_DEVICEINFO_H
 
-namespace Util{
+#include "global.h"
+
+SK_BEGIN_NAMESPACE
 
 class DeviceInfo
 {
@@ -10,6 +12,6 @@ public:
     ~DeviceInfo();
 };
 
-}
+SK_END_NAMESPACE
 
 #endif

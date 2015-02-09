@@ -3,7 +3,7 @@
 
 #include "node.h"
 
-namespace Scene {
+SK_BEGIN_NAMESPACE
 
 class Cube : public SceneNode
 {
@@ -18,6 +18,6 @@ private:
     uint32 _vb;
 };
 
-}
+SK_END_NAMESPACE
 
 #endif

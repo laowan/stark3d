@@ -6,8 +6,7 @@
 #include "module.h"
 #include <glm/gtc/type_ptr.hpp>
 
-using namespace Util;
-using namespace Scene;
+using namespace SK;
 
 double gsExtent = 200.0;
 int gsPixWidth;
@@ -206,23 +205,25 @@ static void init(void)
     Module::init();
 
     // add the scene nodes
-    Cube* cube = new Scene::Cube(100.0);
-    Terrain* terrain = new Scene::Terrain("resource/coastMountain64.raw", 64, 64, 10, 0.5f);
-    Line* axisX = new Scene::Line(glm::vec3(0.0, 0.0, 0.0), glm::vec3(500.0, 0.0, 0.0));
-    Line* axisY = new Scene::Line(glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 500.0, 0.0));
-    Line* axisZ = new Scene::Line(glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 500.0));
+    Cube* cube = new Cube(100.0);
+    Terrain* terrain = new Terrain("resource/coastMountain64.raw", 64, 64, 10, 0.5f);
+    Line* axisX = new Line(glm::vec3(0.0, 0.0, 0.0), glm::vec3(500.0, 0.0, 0.0));
+    Line* axisY = new Line(glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 500.0, 0.0));
+    Line* axisZ = new Line(glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 500.0));
 
-    Color* colorRed = new Scene::Color(1.0, 0.0, 0.0, 1.0);
-    Color* colorGreen = new Scene::Color(0.0, 1.0, 0.0, 1.0);
-    Color* colorBlue = new Scene::Color(0.0, 0.0, 1.0, 1.0);
+    Color* colorRed = new Color(1.0, 0.0, 0.0, 1.0);
+    Color* colorGreen = new Color(0.0, 1.0, 0.0, 1.0);
+    Color* colorBlue = new Color(0.0, 0.0, 1.0, 1.0);
 
     Module::sceneMan().addNode(cube);
     //Module::sceneMan().addNode(terrain);
 
     Module::sceneMan().addNode(colorRed);
     Module::sceneMan().addNode(axisX);
+    
     Module::sceneMan().addNode(colorGreen);
     Module::sceneMan().addNode(axisY);
+
     Module::sceneMan().addNode(colorBlue);
     Module::sceneMan().addNode(axisZ);
 

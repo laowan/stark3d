@@ -1,8 +1,9 @@
 #include "scene.h"
 
-namespace Scene
-{
+#include <stack>
+using namespace std;
 
+SK_BEGIN_NAMESPACE
 
 // ********************************************************************
 // Class SceneManager
@@ -52,18 +53,45 @@ bool SceneManager::render(SceneNode* node /*= NULL*/)
     if (node == NULL)
         node = _nodes[0];
 
-
-    if (node->_children.size() > 0)
+    stack<int> nodeStack;
+    nodeStack.push(node->_handle);
+    node->renderEnter();
+    while (node->_children.size() > 0)
     {
-        for (SceneNode* child : node->_children)
-        {
-            render(child);
-        }
-        node->render();
+        node->_current = 0;
+        node = node->_children[0];
+        nodeStack.push(node->_handle);
+        node->renderEnter();
     }
-    else
+
+    while (!nodeStack.empty())
     {
-        node->render();
+        int topIdx = nodeStack.top();
+        node = _nodes[nodeStack.top()-1];
+        size_t childCount = node->_children.size();
+        if (childCount > 0)
+        {
+            if (node->_current + 1 < childCount)
+            {
+                SceneNode* newNode = node->_children[node->_current+1];
+                newNode->_current = -1;
+                nodeStack.push(newNode->_handle);
+                newNode->renderEnter();
+                node->_current++;
+            }
+            else
+            {
+                node->render();
+                node->renderLeave();
+                nodeStack.pop();
+            }
+        }
+        else
+        {
+            node->render();
+            node->renderLeave();
+            nodeStack.pop();
+        }
     }
 
     return true;
@@ -76,4 +104,4 @@ void SceneManager::print(SceneNode* node)
     node->print();
 }
 
-}
+SK_END_NAMESPACE

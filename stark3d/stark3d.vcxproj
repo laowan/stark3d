@@ -30,6 +30,7 @@
   <ItemGroup>
     <ClInclude Include="global.h" />
     <ClInclude Include="module.h" />
+    <ClInclude Include="renderaction.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="scene\bbox.h" />
     <ClInclude Include="scene\color.h" />

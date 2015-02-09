@@ -2,7 +2,7 @@
 #include <glload/gl_3_3.h>
 #include <fstream>
 
-namespace Scene {
+SK_BEGIN_NAMESPACE
 
 Terrain::Terrain(std::string heightmapFileName,
                  int numVertsPerRow,
@@ -157,4 +157,4 @@ bool Terrain::computeIndices()
     return true;
 }
 
-} // end namespace
+SK_END_NAMESPACE

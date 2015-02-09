@@ -1,13 +1,13 @@
 #ifndef UTILS_MODULES_H
 #define UTILS_MODULES_H
 
+#include "global.h"
 #include "scene.h"
 #include "utils/matrix.h"
 #include "utils/shadermanager.h"
 #include "utils/renderdevice.h"
-using Scene::SceneManager;
-using Util::ShaderManager;
-using Util::RenderDevice;
+
+SK_BEGIN_NAMESPACE
 
 class Module
 {
@@ -25,5 +25,6 @@ private:
     static RenderDevice* _renderDevice;
 };
 
+SK_END_NAMESPACE
 
 #endif

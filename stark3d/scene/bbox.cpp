@@ -4,8 +4,8 @@ using std::vector;
 
 #define BBOX_LIMIT 1.0e+12
 
-namespace Scene
-{
+SK_BEGIN_NAMESPACE
+
 BBox::BBox() : _dirty(true)
 {
     _xmin = _ymin = _zmin = (float)BBOX_LIMIT;
@@ -71,4 +71,4 @@ bool BBox::render()
     return true;
 }
 
-}
+SK_END_NAMESPACE

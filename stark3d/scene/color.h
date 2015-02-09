@@ -3,8 +3,7 @@
 
 #include "node.h"
 
-namespace Scene
-{
+SK_BEGIN_NAMESPACE
 
 class Color : public SceneNode
 {
@@ -22,6 +21,6 @@ private:
     float _a;
 };
 
-}
+SK_END_NAMESPACE
 
 #endif

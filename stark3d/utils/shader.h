@@ -1,9 +1,10 @@
 #ifndef UTIL_SHADER_H
 #define UTIL_SHADER_H
 
+#include "global.h"
 #include <string>
 
-namespace Util {
+SK_BEGIN_NAMESPACE
 
 class ShaderUniforms
 {
@@ -33,6 +34,6 @@ private:
     ShaderUniforms _uniforms;
 };
 
-}
+SK_END_NAMESPACE
 
 #endif

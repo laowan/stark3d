@@ -1,10 +1,11 @@
 #ifndef UTILS_SHADERMANAGER_H
 #define UTILS_SHADERMANAGER_H
 
+#include "global.h"
 #include "shader.h"
 #include <map>
 
-namespace Util {
+SK_BEGIN_NAMESPACE
 
 class ShaderManager
 {
@@ -27,6 +28,6 @@ private:
     Shader* _curShader;
 };
 
-}
+SK_END_NAMESPACE
 
 #endif

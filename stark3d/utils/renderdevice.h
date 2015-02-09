@@ -4,8 +4,8 @@
 #include "global.h"
 #include <glload/gl_3_3.h>
 
-namespace Util
-{
+SK_BEGIN_NAMESPACE
+
 enum PrimType
 {
     PRIM_TRIANGLES = GL_TRIANGLES,
@@ -28,6 +28,6 @@ public:
     void draw(PrimType type, uint32 first, uint32 count);
 };
 
-}
+SK_END_NAMESPACE
 
 #endif

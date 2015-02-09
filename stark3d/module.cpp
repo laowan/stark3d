@@ -1,5 +1,7 @@
 #include "module.h"
 
+SK_BEGIN_NAMESPACE
+
 SceneManager* Module::_sceneManager = NULL;
 ShaderManager* Module::_shaderManager = NULL;
 RenderDevice* Module::_renderDevice = NULL;
@@ -18,3 +20,5 @@ void Module::exit()
     if (_shaderManager) { delete _shaderManager; _shaderManager = NULL; }
     if (_renderDevice) { delete _renderDevice; _renderDevice = NULL; }
 }
+
+SK_END_NAMESPACE

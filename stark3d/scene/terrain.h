@@ -6,7 +6,7 @@
 
 #include "node.h"
 
-namespace Scene {
+SK_BEGIN_NAMESPACE
 
 class Terrain : public SceneNode
 {
@@ -61,6 +61,6 @@ private:
 
     
 };
-}
+SK_END_NAMESPACE
 
 #endif

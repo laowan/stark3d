@@ -1,7 +1,7 @@
 #include "renderdevice.h"
 
-namespace Util
-{
+SK_BEGIN_NAMESPACE
+
 RenderDevice::RenderDevice()
 {}
 
@@ -57,5 +57,4 @@ void RenderDevice::draw(PrimType type, uint32 first, uint32 count)
     glDisableVertexAttribArray(1);
 }
 
-
-}
+SK_END_NAMESPACE

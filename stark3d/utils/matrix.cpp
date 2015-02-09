@@ -1,7 +1,6 @@
 #include "matrix.h"
 
-namespace Util
-{
+SK_BEGIN_NAMESPACE
 
 Matrix::Matrix()
 {
@@ -79,4 +78,4 @@ glm::mat4 Matrix::glMatrix()
     return mat;
 }
 
-}
+SK_END_NAMESPACE

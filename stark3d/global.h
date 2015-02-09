@@ -7,4 +7,8 @@ typedef unsigned int uint32;
 typedef long long int64;
 typedef unsigned long long uint64;
 
+#define SK_BEGIN_NAMESPACE namespace SK {
+#define SK_END_NAMESPACE }
+#define SK_USE_NAMESPACE using namespace SK;
+
 #endif

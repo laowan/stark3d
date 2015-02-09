@@ -1,8 +1,7 @@
 #include "node.h"
-#include <iostream>
 
-namespace Scene
-{
+SK_BEGIN_NAMESPACE
+
 // http://stackoverflow.com/questions/1649027/how-do-i-print-out-a-tree-structure
 void SceneNode::print(std::string prefix)
 {
@@ -16,4 +15,4 @@ void SceneNode::print(std::string prefix)
     }
 }
 
-}
+SK_END_NAMESPACE

@@ -2,8 +2,7 @@
 #include "../module.h"
 #include <glload/gl_3_3.h>
 
-namespace Scene
-{
+SK_BEGIN_NAMESPACE
 
 Color::Color(double r, double g, double b, double a)
 {
@@ -31,7 +30,7 @@ Color::Color(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
 
 bool Color::render()
 {
-    Util::ShaderUniforms& uniforms = Module::shaderMan().currentShader()->uniforms();
+    ShaderUniforms& uniforms = Module::shaderMan().currentShader()->uniforms();
 
     float data[4];
     data[0] = _r;
@@ -44,4 +43,4 @@ bool Color::render()
     return true;
 }
 
-}
+SK_END_NAMESPACE

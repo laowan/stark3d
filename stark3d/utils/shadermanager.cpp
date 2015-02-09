@@ -1,6 +1,6 @@
 #include "shadermanager.h"
 
-namespace Util {
+SK_BEGIN_NAMESPACE
 
 ShaderManager::ShaderManager() : _curShader(NULL)
 {
@@ -39,4 +39,4 @@ void ShaderManager::use(ShaderType type)
     }
 }
 
-}
+SK_END_NAMESPACE

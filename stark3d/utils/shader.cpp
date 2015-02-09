@@ -9,7 +9,7 @@
 
 using namespace std;
 
-namespace Util {
+SK_BEGIN_NAMESPACE
 
 GLuint CreateShader(GLenum eShaderType, const std::string &strShaderFile)
 {
@@ -99,8 +99,6 @@ void Shader::init(std::string filename)
         shaderData << shaderFile.rdbuf();
         shaderFile.close();
 
-        cout << shaderData.str() << endl;
-
         GLenum shaderType = 0;
         if (types[i] == ".vert") shaderType = GL_VERTEX_SHADER;
         else if (types[i] == ".frag") shaderType = GL_FRAGMENT_SHADER;
@@ -133,4 +131,4 @@ void Shader::bind()
 
 }
 
-}
+SK_END_NAMESPACE

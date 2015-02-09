@@ -1,8 +1,8 @@
 #ifndef _BBOX_H
 #define _BBOX_H
 
-namespace Scene
-{
+#include "global.h"
+SK_BEGIN_NAMESPACE
 
 class BBox
 {
@@ -25,6 +25,6 @@ private:
     bool _dirty;
 };
 
-}
+SK_END_NAMESPACE
 
 #endif

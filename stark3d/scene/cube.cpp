@@ -2,7 +2,7 @@
 #include "module.h"
 #include <glload/gl_3_3.h>
 
-namespace Scene {
+SK_BEGIN_NAMESPACE
 
 Cube::Cube()
 {
@@ -88,9 +88,9 @@ bool Cube::render()
     uint32 stride(sizeof(float)*3 + sizeof(float)*3);
     Module::renderDev().setVertexLayout(0, stride, 0);
     Module::renderDev().setVertexLayout(1, stride, (const void*)(3*sizeof(float)));
-    Module::renderDev().draw(Util::PRIM_TRIANGLES, 0, 36);
+    Module::renderDev().draw(SK::PRIM_TRIANGLES, 0, 36);
 
     return true;
 }
 
-} // end namespace
+SK_END_NAMESPACE
