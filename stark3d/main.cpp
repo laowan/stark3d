@@ -204,9 +204,29 @@ static void init(void)
 {
     Module::init();
 
-    // add the scene nodes
-    Cube* cube = new Cube(100.0);
-    Terrain* terrain = new Terrain("resource/coastMountain64.raw", 64, 64, 10, 0.5f);
+    // add objects
+    //Terrain* terrain = new Terrain("resource/coastMountain64.raw", 64, 64, 10, 0.5f);
+    //Module::sceneMan().addNode(terrain);
+    Module::sceneMan().addNode(new Color(1.0, 1.0, 0.0, 1.0));
+    Module::sceneMan().addNode(new Cube(50.0));
+
+//     Transform* transform1 = new Transform();
+//     Matrix& mat = transform1->matrix();
+//     mat.pan(50.0, 0.0, 0.0);
+//     Module::sceneMan().addNode(transform1);
+// 
+//     Module::sceneMan().addNode(new Color(0.0, 1.0, 0.0, 1.0));
+//     Module::sceneMan().addNode(new Cube(50.0));
+// 
+//     Transform* transform2 = new Transform();
+//     mat = transform2->matrix();
+//     mat.pan(50.0, 0.0, 0.0);
+//     Module::sceneMan().addNode(transform2);
+// 
+//     Module::sceneMan().addNode(new Color(0.0, 0.0, 1.0, 1.0));
+//     Module::sceneMan().addNode(new Cube(50.0));
+
+    // add three coordinate axes
     Line* axisX = new Line(glm::vec3(0.0, 0.0, 0.0), glm::vec3(500.0, 0.0, 0.0));
     Line* axisY = new Line(glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 500.0, 0.0));
     Line* axisZ = new Line(glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 500.0));
@@ -215,28 +235,24 @@ static void init(void)
     Color* colorGreen = new Color(0.0, 1.0, 0.0, 1.0);
     Color* colorBlue = new Color(0.0, 0.0, 1.0, 1.0);
 
-    Module::sceneMan().addNode(cube);
-    //Module::sceneMan().addNode(terrain);
-
     Module::sceneMan().addNode(colorRed);
     Module::sceneMan().addNode(axisX);
-    
     Module::sceneMan().addNode(colorGreen);
     Module::sceneMan().addNode(axisY);
-
     Module::sceneMan().addNode(colorBlue);
-    Module::sceneMan().addNode(axisZ);
+    Module::sceneMan().addNode(axisZ);Module::sceneMan().print();
 
-    Module::sceneMan().print();
-
-    glEnable(GL_CULL_FACE);
-    glCullFace(GL_BACK);
+    //glEnable(GL_CULL_FACE);
+    //glCullFace(GL_BACK);
     glFrontFace(GL_CCW);
+ //   glFrontFace(GL_CW);
 //     glDisable(GL_CULL_FACE);
-//     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
     glEnable(GL_DEPTH_TEST);
     glDepthMask(GL_TRUE);
     glDepthFunc(GL_LEQUAL);
+    glDepthRange(0.0f, 1.0f);
 
     glDisable(GL_BLEND);
 
@@ -244,7 +260,11 @@ static void init(void)
 
 static void display(void)
 {
+    GLboolean ret=0;
+    glGetBooleanv(GL_DEPTH_TEST, &ret);
+
     glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+    glClearDepth(1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     Module::shaderMan().use(ShaderManager::SD_NORMAL);
@@ -252,17 +272,12 @@ static void display(void)
     ShaderUniforms& uniforms = Module::shaderMan().currentShader()->uniforms();
 
     // calculate the mvp matrix and apply it to the shader
-    glm::mat4 mvp = getModelViewProjMat();
-    glUniformMatrix4fv(uniforms.mvpUniform, 1, GL_FALSE, glm::value_ptr(mvp));
+    uniforms.mvp = getModelViewProjMat();
+    uniforms.color = glm::vec4(1.0, 1.0, 0.0, 1.0);
+    uniforms.lightPosition = glm::vec3(200.0f, 700.0f, 300.0f);
+    uniforms.lightColor = glm::vec3(1.0f, 1.0f, 1.0f);
 
-    glm::vec4 c1(1.0, 1.0, 0.0, 1.0);
-    glUniform4fv(uniforms.color, 1, glm::value_ptr(c1));
-
-    glm::vec3 lightPos(200.0f, 200.0f, 200.0f);
-    glUniform3fv(uniforms.lightPosition, 1, glm::value_ptr(lightPos));
-
-    glm::vec3 lightColor(1.0f, 1.0f, 1.0f);
-    glUniform3fv(uniforms.lightColor, 1, glm::value_ptr(lightColor));
+    Module::shaderMan().currentShader()->commitUniforms();
 
     // now render the scene
     Module::sceneMan().render();

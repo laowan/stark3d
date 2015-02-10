@@ -1,4 +1,5 @@
 #include "line.h"
+#include "module.h"
 #include <glload/gl_3_3.h>
 
 SK_BEGIN_NAMESPACE
@@ -25,9 +26,14 @@ Line::~Line()
     if (_vb) { glDeleteBuffers(1, (GLuint*)&_vb); _vb = 0; }
 }
 
-bool Line::render()
+bool Line::render(RenderAction* act)
 {
-    std::cout << _handle << std::endl;
+    Shader* shader = Module::shaderMan().currentShader();
+    ShaderUniforms& uniforms = shader->uniforms();
+    uniforms.mvp *= act->_modelMat.glMatrix();
+    uniforms.color = act->_color;
+    shader->commitUniforms();
+
     glBindBuffer(GL_ARRAY_BUFFER, _vb);
 
     glEnableVertexAttribArray(0);

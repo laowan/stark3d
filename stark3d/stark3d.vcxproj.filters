@@ -72,6 +72,12 @@
     <ClCompile Include="scene\node.cpp">
       <Filter>Source Files\scene</Filter>
     </ClCompile>
+    <ClCompile Include="scene\transform.cpp">
+      <Filter>Source Files\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="renderaction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="utils\framework.h">
@@ -121,6 +127,9 @@
     </ClInclude>
     <ClInclude Include="renderaction.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="scene\transform.h">
+      <Filter>Header Files\scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

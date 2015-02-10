@@ -25,7 +25,7 @@ void BBox::add(float x, float y, float z)
     _dirty = true;
 }
 
-bool BBox::render()
+bool BBox::render(RenderAction* act)
 {
     if (_dirty)
     {

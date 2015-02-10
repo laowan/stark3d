@@ -13,7 +13,7 @@ public:
     Line(glm::vec3& point1, glm::vec3& point2);
     ~Line();
 
-    bool render();
+    bool render(RenderAction* act);
 
 private:
     int _vb;

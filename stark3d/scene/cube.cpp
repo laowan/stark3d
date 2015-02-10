@@ -1,6 +1,5 @@
 #include "cube.h"
 #include "module.h"
-#include <glload/gl_3_3.h>
 
 SK_BEGIN_NAMESPACE
 
@@ -21,48 +20,49 @@ Cube::Cube(double edgeLength)
         -1.0f, -1.0f,  1.0f,  0.0f,  0.0f,  1.0f,
          1.0f, -1.0f,  1.0f,  0.0f,  0.0f,  1.0f,
          
-         1.0f, -1.0f, -1.0f,  0.0f,  0.0f, -1.0f,
-        -1.0f,  1.0f, -1.0f,  0.0f,  0.0f, -1.0f,
-         1.0f,  1.0f, -1.0f,  0.0f,  0.0f, -1.0f,
-         
-        -1.0f, -1.0f, -1.0f,  0.0f,  0.0f, -1.0f,
-        -1.0f,  1.0f, -1.0f,  0.0f,  0.0f, -1.0f,
-         1.0f, -1.0f, -1.0f,  0.0f,  0.0f, -1.0f,
-         
-        -1.0f, -1.0f, -1.0f, -1.0f,  0.0f,  0.0f,
-        -1.0f, -1.0f,  1.0f, -1.0f,  0.0f,  0.0f,
-        -1.0f,  1.0f,  1.0f, -1.0f,  0.0f,  0.0f,
-         
-        -1.0f,  1.0f, -1.0f, -1.0f,  0.0f,  0.0f,
-        -1.0f, -1.0f, -1.0f, -1.0f,  0.0f,  0.0f,
-        -1.0f,  1.0f,  1.0f, -1.0f,  0.0f,  0.0f,
-         
-         1.0f, -1.0f,  1.0f,  1.0f,  0.0f,  0.0f,
-         1.0f, -1.0f, -1.0f,  1.0f,  0.0f,  0.0f,
-         1.0f,  1.0f,  1.0f,  1.0f,  0.0f,  0.0f,
-         
-         1.0f, -1.0f, -1.0f,  1.0f,  0.0f,  0.0f,
-         1.0f,  1.0f, -1.0f,  1.0f,  0.0f,  0.0f,
-         1.0f,  1.0f,  1.0f,  1.0f,  0.0f,  0.0f,
-         
-        -1.0f,  1.0f,  1.0f,  0.0f,  1.0f,  0.0f,
-         1.0f,  1.0f,  1.0f,  0.0f,  1.0f,  0.0f,
-         1.0f,  1.0f, -1.0f,  0.0f,  1.0f,  0.0f,
-         
-        -1.0f,  1.0f, -1.0f,  0.0f,  1.0f,  0.0f,
-        -1.0f,  1.0f,  1.0f,  0.0f,  1.0f,  0.0f,
-         1.0f,  1.0f, -1.0f,  0.0f,  1.0f,  0.0f,
-         
-         1.0f, -1.0f,  1.0f,  0.0f, -1.0f,  0.0f,
-        -1.0f, -1.0f,  1.0f,  0.0f, -1.0f,  0.0f,
-         1.0f, -1.0f, -1.0f,  0.0f, -1.0f,  0.0f,
-                           
-        -1.0f, -1.0f,  1.0f,  0.0f, -1.0f,  0.0f,
-        -1.0f, -1.0f, -1.0f,  0.0f, -1.0f,  0.0f,
-         1.0f, -1.0f, -1.0f,  0.0f, -1.0f,  0.0f,
+//          1.0f, -1.0f, -1.0f,  0.0f,  0.0f, -1.0f,
+//         -1.0f,  1.0f, -1.0f,  0.0f,  0.0f, -1.0f,
+//          1.0f,  1.0f, -1.0f,  0.0f,  0.0f, -1.0f,
+//          
+//         -1.0f, -1.0f, -1.0f,  0.0f,  0.0f, -1.0f,
+//         -1.0f,  1.0f, -1.0f,  0.0f,  0.0f, -1.0f,
+//          1.0f, -1.0f, -1.0f,  0.0f,  0.0f, -1.0f,
+//          
+//         -1.0f, -1.0f, -1.0f, -1.0f,  0.0f,  0.0f,
+//         -1.0f, -1.0f,  1.0f, -1.0f,  0.0f,  0.0f,
+//         -1.0f,  1.0f,  1.0f, -1.0f,  0.0f,  0.0f,
+//          
+//         -1.0f,  1.0f, -1.0f, -1.0f,  0.0f,  0.0f,
+//         -1.0f, -1.0f, -1.0f, -1.0f,  0.0f,  0.0f,
+//         -1.0f,  1.0f,  1.0f, -1.0f,  0.0f,  0.0f,
+//          
+//          1.0f, -1.0f,  1.0f,  1.0f,  0.0f,  0.0f,
+//          1.0f, -1.0f, -1.0f,  1.0f,  0.0f,  0.0f,
+//          1.0f,  1.0f,  1.0f,  1.0f,  0.0f,  0.0f,
+//          
+//          1.0f, -1.0f, -1.0f,  1.0f,  0.0f,  0.0f,
+//          1.0f,  1.0f, -1.0f,  1.0f,  0.0f,  0.0f,
+//          1.0f,  1.0f,  1.0f,  1.0f,  0.0f,  0.0f,
+//          
+//         -1.0f,  1.0f,  1.0f,  0.0f,  1.0f,  0.0f,
+//          1.0f,  1.0f,  1.0f,  0.0f,  1.0f,  0.0f,
+//          1.0f,  1.0f, -1.0f,  0.0f,  1.0f,  0.0f,
+//          
+//         -1.0f,  1.0f, -1.0f,  0.0f,  1.0f,  0.0f,
+//         -1.0f,  1.0f,  1.0f,  0.0f,  1.0f,  0.0f,
+//          1.0f,  1.0f, -1.0f,  0.0f,  1.0f,  0.0f,
+//          
+//          1.0f, -1.0f,  1.0f,  0.0f, -1.0f,  0.0f,
+//         -1.0f, -1.0f,  1.0f,  0.0f, -1.0f,  0.0f,
+//          1.0f, -1.0f, -1.0f,  0.0f, -1.0f,  0.0f,
+//                            
+//         -1.0f, -1.0f,  1.0f,  0.0f, -1.0f,  0.0f,
+//         -1.0f, -1.0f, -1.0f,  0.0f, -1.0f,  0.0f,
+//          1.0f, -1.0f, -1.0f,  0.0f, -1.0f,  0.0f,
     };
 
-    for (size_t i = 0; i < 36; i++)
+    _triCount = sizeof(vertexData)/(6*3*sizeof(float));
+    for (size_t i = 0; i < _triCount*3; i++)
     {
         vertexData[i*6] *= float(edgeLength / 2.0);
         vertexData[i*6+1] *= float(edgeLength / 2.0);
@@ -81,14 +81,20 @@ Cube::~Cube()
     }
 }
 
-bool Cube::render()
+bool Cube::render(RenderAction* act)
 {
+    Shader* shader = Module::shaderMan().currentShader();
+    ShaderUniforms& uniforms = shader->uniforms();
+    uniforms.mvp *= act->_modelMat.glMatrix();
+    uniforms.color = act->_color;
+    shader->commitUniforms();
+
     Module::renderDev().setVertexBuffer(_vb);
     
     uint32 stride(sizeof(float)*3 + sizeof(float)*3);
     Module::renderDev().setVertexLayout(0, stride, 0);
     Module::renderDev().setVertexLayout(1, stride, (const void*)(3*sizeof(float)));
-    Module::renderDev().draw(SK::PRIM_TRIANGLES, 0, 36);
+    Module::renderDev().draw(SK::PRIM_TRIANGLES, 0, _triCount*3);
 
     return true;
 }

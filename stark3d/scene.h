@@ -7,8 +7,14 @@
 #include "scene/cube.h"
 #include "scene/line.h"
 #include "scene/terrain.h"
+#include "scene/transform.h"
+#include "renderaction.h"
 
 SK_BEGIN_NAMESPACE
+
+/*!
+    we use this class to 1) construct the scene graph, 2) render the scene.
+*/
 class SceneManager
 {
 public:
@@ -23,6 +29,7 @@ public:
 
 private:
     std::vector<SceneNode*> _nodes;
+    RenderAction* _renderAct;
 };
 SK_END_NAMESPACE
 #endif

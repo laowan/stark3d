@@ -35,7 +35,7 @@ public:
 
     float getHeight(float x, float z);
 
-    bool render();
+    bool render(RenderAction* act);
 
 private:
     bool readRawFile(std::string fileName);

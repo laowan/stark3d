@@ -14,6 +14,13 @@ Matrix::~Matrix()
 
 }
 
+void Matrix::pan(double x, double y, double z)
+{
+    xt += x;
+    yt += y;
+    zt += z;
+}
+
 void Matrix::rot(double kx, double ky, double kz, double theta)
 {
     double sint, cost, verst;
@@ -45,6 +52,7 @@ void Matrix::rot(double kx, double ky, double kz, double theta)
     *this = retMat;
 }
 
+//! the matrix's data is not changed.
 Matrix Matrix::mul(Matrix& mat)
 {
     Matrix retMat;

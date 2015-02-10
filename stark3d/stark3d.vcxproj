@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="module.cpp" />
+    <ClCompile Include="renderaction.cpp" />
     <ClCompile Include="scene.cpp" />
     <ClCompile Include="scene\bbox.cpp" />
     <ClCompile Include="scene\color.cpp" />
@@ -20,6 +21,7 @@
     <ClCompile Include="scene\line.cpp" />
     <ClCompile Include="scene\node.cpp" />
     <ClCompile Include="scene\terrain.cpp" />
+    <ClCompile Include="scene\transform.cpp" />
     <ClCompile Include="utils\deviceinfo.cpp" />
     <ClCompile Include="utils\framework.cpp" />
     <ClCompile Include="utils\matrix.cpp" />
@@ -38,6 +40,7 @@
     <ClInclude Include="scene\line.h" />
     <ClInclude Include="scene\node.h" />
     <ClInclude Include="scene\terrain.h" />
+    <ClInclude Include="scene\transform.h" />
     <ClInclude Include="utils\deviceinfo.h" />
     <ClInclude Include="utils\framework.h" />
     <ClInclude Include="utils\matrix.h" />

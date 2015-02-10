@@ -9,10 +9,18 @@ SK_BEGIN_NAMESPACE
 class ShaderUniforms
 {
 public:
-    unsigned int mvpUniform;
-    unsigned int color;
-    unsigned int lightPosition;
-    unsigned int lightColor;
+    glm::mat4 mvp;
+    glm::vec4 color;
+    glm::vec3 lightPosition;
+    glm::vec3 lightColor;
+
+private:
+    unsigned int mvpLoc;
+    unsigned int colorLoc;
+    unsigned int lightPositionLoc;
+    unsigned int lightColorLoc;
+
+friend class Shader;
 };
 
 class Shader
@@ -25,6 +33,7 @@ public:
     void use();
     int program() { return _program; }
     ShaderUniforms& uniforms() { return _uniforms; }
+    void commitUniforms();
 
 private:
     void bind();

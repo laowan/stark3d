@@ -12,10 +12,11 @@ public:
     Cube(double edgeLength);
     ~Cube();
 
-    bool render();
+    bool render(RenderAction* act);
 
 private:
     uint32 _vb;
+    uint32 _triCount;
 };
 
 SK_END_NAMESPACE

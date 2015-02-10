@@ -11,6 +11,8 @@ SK_BEGIN_NAMESPACE
 
 SceneManager::SceneManager()
 {
+    _renderAct = new RenderAction();
+
     SceneNode* root = new SceneNode();
     _nodes.push_back(root);
 
@@ -21,6 +23,9 @@ SceneManager::~SceneManager()
 {
     for (SceneNode* node : _nodes)
         delete node;
+
+    if (_renderAct)
+        delete _renderAct;
 }
 
 int SceneManager::addNode(SceneNode* parent, SceneNode* node)
@@ -43,7 +48,7 @@ int SceneManager::addNode(SceneNode* node)
 
 SceneNode* SceneManager::resolve(int idx)
 {
-    if (idx < 1 || idx > _nodes.size())
+    if (idx < 1 || idx > (int)_nodes.size())
         return NULL;
     return _nodes.at(idx-1);
 }
@@ -52,6 +57,9 @@ bool SceneManager::render(SceneNode* node /*= NULL*/)
 {
     if (node == NULL)
         node = _nodes[0];
+
+    // reset the states
+    _renderAct->reset();
 
     stack<int> nodeStack;
     nodeStack.push(node->_handle);
@@ -81,14 +89,14 @@ bool SceneManager::render(SceneNode* node /*= NULL*/)
             }
             else
             {
-                node->render();
+                node->render(_renderAct);
                 node->renderLeave();
                 nodeStack.pop();
             }
         }
         else
         {
-            node->render();
+            node->render(_renderAct);
             node->renderLeave();
             nodeStack.pop();
         }

@@ -12,7 +12,7 @@ public:
     Color(float r, float g, float b, float a);
     Color(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
 
-    bool render();
+    bool render(RenderAction* act);
 
 private:
     float _r;

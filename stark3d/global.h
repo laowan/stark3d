@@ -11,4 +11,6 @@ typedef unsigned long long uint64;
 #define SK_END_NAMESPACE }
 #define SK_USE_NAMESPACE using namespace SK;
 
+#include <glm/gtc/type_ptr.hpp>
+
 #endif

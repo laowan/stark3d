@@ -1,6 +1,4 @@
 #include "color.h"
-#include "../module.h"
-#include <glload/gl_3_3.h>
 
 SK_BEGIN_NAMESPACE
 
@@ -28,18 +26,9 @@ Color::Color(unsigned char r, unsigned char g, unsigned char b, unsigned char a)
     _a = (float)(a / 255.0);
 }
 
-bool Color::render()
+bool Color::render(RenderAction* act)
 {
-    ShaderUniforms& uniforms = Module::shaderMan().currentShader()->uniforms();
-
-    float data[4];
-    data[0] = _r;
-    data[1] = _g;
-    data[2] = _b;
-    data[3] = _a;
-
-    glUniform4fv(uniforms.color, 1, data);
-    
+    act->_color = glm::vec4(_r, _g, _b, _a);
     return true;
 }
 

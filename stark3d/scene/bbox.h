@@ -2,6 +2,8 @@
 #define _BBOX_H
 
 #include "global.h"
+#include "renderaction.h"
+
 SK_BEGIN_NAMESPACE
 
 class BBox
@@ -15,7 +17,7 @@ class BBox
 public:
     BBox();
     void add(float x, float y, float z);
-    bool render();
+    bool render(RenderAction* act);
 
 private:
     float _xmin, _xmax;

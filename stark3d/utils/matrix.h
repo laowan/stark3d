@@ -14,6 +14,7 @@ public:
 
     glm::mat4 glMatrix();
 
+    void pan(double x, double y, double z);
     void rot(double kx, double ky, double kz, double theta);
     Matrix mul(Matrix& mat);
 

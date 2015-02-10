@@ -7,6 +7,8 @@
 #include <string>
 #include <iostream>
 
+#include "renderaction.h"
+
 SK_BEGIN_NAMESPACE
 
 class SceneNode
@@ -17,13 +19,13 @@ public:
 
     virtual bool renderEnter()
                 {
-                std::cout << _handle << " enter" << std::endl;
+                //std::cout << _handle << " enter" << std::endl;
                 return true;
                 }
-    virtual bool render() { return true; }
+    virtual bool render(RenderAction* action) { return true; }
     virtual bool renderLeave()
                 {
-                std::cout << _handle << " leave" << std::endl;
+                //std::cout << _handle << " leave" << std::endl;
                 return true;
                 }
 

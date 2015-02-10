@@ -59,7 +59,7 @@ float Terrain::getHeight(float x, float z)
     return 1.0;
 }
 
-bool Terrain::render()
+bool Terrain::render(RenderAction* act)
 {
     glBindBuffer(GL_ARRAY_BUFFER, _vb);
 
