@@ -8,130 +8,53 @@
 
 using namespace SK;
 
-double gsExtent = 200.0;
-int gsPixWidth;
-int gsPixHeight;
-double gsHpixScale; // 投影空间中一个单位对应屏幕上多少个像素
-double gsVpixScale;
-Matrix gsModelMat;
-Matrix gsViewMat;  // view to world
-glm::mat4 gsProjMat;
-
 Matrix gsTmpMat;
 int gsTmpX;
 int gsTmpY;
 int gsMoveBtn;
 
-
-glm::mat4 getPerspectiveProjMat()
-{
-    // http://www.songho.ca/opengl/gl_projectionmatrix.html
-    glm::mat4 mat;
-    double h_w = (double)gsPixHeight / gsPixWidth;
-    double r, t;
-
-    if (h_w > 1.0)
-    {
-        r = gsExtent / 2.0;
-        t = gsExtent * h_w / 2.0;
-    }
-    else
-    {
-        r = gsExtent / h_w / 2.0;
-        t = gsExtent / 2.0;
-    }
-
-    float n = 100.0, f = -100.0;
-    mat[0].x = n / r; mat[1].x = 0.0;   mat[2].x = 0.0;         mat[3].x = 0.0;
-    mat[0].y = 0.0;   mat[1].y = n / t; mat[2].y = 0.0;         mat[3].y = 0.0;
-    mat[0].z = 0.0;   mat[1].z = 0.0;   mat[2].z = (f+n)/(n-f); mat[3].z = 2*f*n/(n-f);
-    mat[0].w = 0.0;   mat[1].w = 0.0;   mat[2].w = -1.0;        mat[3].w = 0.0;
-    return mat;
-}
-
-glm::mat4 getOrthographicProjMat()
-{
-    glm::mat4 mat;
-    double h_w = (double)gsPixHeight / gsPixWidth;
-    double r, t;
-
-    if (h_w > 1.0)
-    {
-        r = gsExtent / 2.0;
-        t = gsExtent * h_w / 2.0;
-    }
-    else
-    {
-        r = gsExtent / h_w / 2.0;
-        t = gsExtent / 2.0;
-    }
-
-    float n = 100.0, f = -100.0;
-    mat[0].x = 1.0/r; mat[1].x = 0.0;   mat[2].x = 0.0;       mat[3].x = 0.0;
-    mat[0].y = 0.0;   mat[1].y = 1.0/t; mat[2].y = 0.0;       mat[3].y = 0.0;
-    mat[0].z = 0.0;   mat[1].z = 0.0;   mat[2].z = 2.0/(n-f); mat[3].z = (f+n)/(n-f);
-    mat[0].w = 0.0;   mat[1].w = 0.0;   mat[2].w = 0.0;       mat[3].w = 1.0;
-    return mat;
-}
-
-glm::mat4 getModelViewProjMat()
-{
-    // mat is the inverse matrix of gsViewMat
-    // from world coordinate to view coordinate
-    Matrix mat;
-    mat.xx = gsViewMat.xx; mat.yx = gsViewMat.xy; mat.zx = gsViewMat.xz;
-    mat.xy = gsViewMat.yx; mat.yy = gsViewMat.yy; mat.zy = gsViewMat.yz;
-    mat.xz = gsViewMat.zx; mat.yz = gsViewMat.zy; mat.zz = gsViewMat.zz;
-
-    mat.xt = -gsViewMat.xx*gsViewMat.xt - gsViewMat.xy*gsViewMat.yt - gsViewMat.xz*gsViewMat.zt;
-    mat.yt = -gsViewMat.yx*gsViewMat.xt - gsViewMat.yy*gsViewMat.yt - gsViewMat.yz*gsViewMat.zt;
-    mat.zt = -gsViewMat.zx*gsViewMat.xt - gsViewMat.zy*gsViewMat.yt - gsViewMat.zz*gsViewMat.zt;
-
-    glm::mat4 mvMat = mat.glMatrix();
-    glm::mat4 projMat = getOrthographicProjMat();
-    glm::mat4 mvpMat = projMat * mvMat;
-    
-    return mvpMat;
-}
+Camera* gsCam = NULL;
 
 void MouseMotion(int x, int y)
 {
     printf("mouse motion (%d, %d)\n", x, y);
 
+    Viewport& vp = gsCam->getViewport();
+    Matrix& viewMat = gsCam->getViewMat();
     if (gsMoveBtn == 1) // middle button, pan
     {
-        gsViewMat = gsTmpMat;
+        viewMat = gsTmpMat;
         double dx, dy, dz;
-        dx = (gsTmpX - x) / gsHpixScale;
-        dy = (y - gsTmpY) / gsVpixScale;
+        dx = (gsTmpX - x) / vp._hpixScale;
+        dy = (y - gsTmpY) / vp._vpixScale;
         dz = 0;
 
         // transfer (dx, dy, dz) to world space
         double tmpX, tmpY, tmpZ;
-        tmpX = gsViewMat.xx * dx + gsViewMat.yx * dy + gsViewMat.zx * dz + gsViewMat.xt;
-        tmpY = gsViewMat.xy * dx + gsViewMat.yy * dy + gsViewMat.zy * dz + gsViewMat.yt;
-        tmpZ = gsViewMat.xz * dx + gsViewMat.yz * dy + gsViewMat.zz * dz + gsViewMat.zt;
+        tmpX = viewMat.xx * dx + viewMat.yx * dy + viewMat.zx * dz + viewMat.xt;
+        tmpY = viewMat.xy * dx + viewMat.yy * dy + viewMat.zy * dz + viewMat.yt;
+        tmpZ = viewMat.xz * dx + viewMat.yz * dy + viewMat.zz * dz + viewMat.zt;
 
         dx = tmpX;
         dy = tmpY;
         dz = tmpZ;
 
-        gsViewMat.xt = dx;
-        gsViewMat.yt = dy;
-        gsViewMat.zt = dz;
+        viewMat.xt = dx;
+        viewMat.yt = dy;
+        viewMat.zt = dz;
     }
 
     if (gsMoveBtn == 2) // right mouse button, rot
     {
-        gsViewMat = gsTmpMat;
+        viewMat = gsTmpMat;
 
-        double factor = 4.0 * (1.57079632679489661923 / gsExtent);
-        double ang_y = factor * (gsTmpX - x) / gsHpixScale;
-        double ang_x = factor * (gsTmpY - y) / gsVpixScale;
+        double factor = 4.0 * (1.57079632679489661923 / vp._extent);
+        double ang_y = factor * (gsTmpX - x) / vp._hpixScale;
+        double ang_x = factor * (gsTmpY - y) / vp._vpixScale;
 
-        Matrix& mat = gsViewMat;
-        gsViewMat.rot(mat.yx, mat.yy, mat.yz, ang_y);
-        gsViewMat.rot(mat.xx, mat.xy, mat.xz, ang_x);
+        Matrix& mat = viewMat;
+        viewMat.rot(mat.yx, mat.yy, mat.yz, ang_y);
+        viewMat.rot(mat.xx, mat.xy, mat.xz, ang_x);
     }
 
     glutPostRedisplay();
@@ -144,7 +67,7 @@ void MouseButton(int button, int state, int x, int y)
         gsMoveBtn = button;
         gsTmpX = x;
         gsTmpY = y;
-        gsTmpMat = gsViewMat;
+        gsTmpMat = gsCam->getViewMat();
     }
     else
     {
@@ -159,23 +82,24 @@ void MouseWheel(int wheel, int direction, int x, int y)
 {
     printf("mouse wheel %d, %d, (%d, %d)\n", wheel, direction, x, y);
 
+    Viewport& vp = gsCam->getViewport();
     double zoomFactor;
-    zoomFactor = 1.0 + (160.0/(gsExtent*gsHpixScale)) * fabs((double)direction);
+    zoomFactor = 1.0 + (160.0/(vp._extent*vp._vpixScale)) * fabs((double)direction);
 
     if (direction > 0)
-        gsExtent = gsExtent/zoomFactor;
+        vp._extent = vp._extent/zoomFactor;
     else
-        gsExtent = gsExtent*zoomFactor;
+        vp._extent = vp._extent*zoomFactor;
 
-    if (gsPixHeight > gsPixWidth)
+    if (vp._pixHeight > vp._pixWidth)
     {
-        gsHpixScale = gsPixWidth / gsExtent;
-        gsVpixScale = gsHpixScale;
+        vp._hpixScale = vp._pixWidth / vp._extent;
+        vp._vpixScale = vp._hpixScale;
     }
     else
     {
-        gsVpixScale = gsPixHeight / gsExtent;
-        gsHpixScale = gsVpixScale;
+        vp._vpixScale = vp._pixHeight / vp._extent;
+        vp._hpixScale = vp._vpixScale;
     }
 
     glutPostRedisplay();
@@ -183,26 +107,15 @@ void MouseWheel(int wheel, int direction, int x, int y)
 
 static void resize(int width, int height)
 {
-    gsPixWidth = width;
-    gsPixHeight = height;
-
-    if (gsPixHeight > gsPixWidth)
-    {
-        gsHpixScale = gsPixWidth / gsExtent;
-        gsVpixScale = gsHpixScale;
-    }
-    else
-    {
-        gsVpixScale = gsPixHeight / gsExtent;
-        gsHpixScale = gsVpixScale;
-    }
-
-    glViewport(0, 0, width, height);
+    gsCam->getViewport().resize(width, height);
 }
 
 static void init(void)
 {
     Module::init();
+
+    gsCam = new Camera();
+    Module::sceneMan().addNode(gsCam);
 
     // add objects
     //Terrain* terrain = new Terrain("resource/coastMountain64.raw", 64, 64, 10, 0.5f);
@@ -242,11 +155,9 @@ static void init(void)
     Module::sceneMan().addNode(colorBlue);
     Module::sceneMan().addNode(axisZ);Module::sceneMan().print();
 
-    //glEnable(GL_CULL_FACE);
-    //glCullFace(GL_BACK);
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
     glFrontFace(GL_CCW);
- //   glFrontFace(GL_CW);
-//     glDisable(GL_CULL_FACE);
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
     glEnable(GL_DEPTH_TEST);
@@ -272,9 +183,9 @@ static void display(void)
     ShaderUniforms& uniforms = Module::shaderMan().currentShader()->uniforms();
 
     // calculate the mvp matrix and apply it to the shader
-    uniforms.mvp = getModelViewProjMat();
+    uniforms.mvp = gsCam->getViewProjMat();
     uniforms.color = glm::vec4(1.0, 1.0, 0.0, 1.0);
-    uniforms.lightPosition = glm::vec3(200.0f, 700.0f, 300.0f);
+    uniforms.lightPosition = glm::vec3(300.0f, 300.0f, 300.0f);
     uniforms.lightColor = glm::vec3(1.0f, 1.0f, 1.0f);
 
     Module::shaderMan().currentShader()->commitUniforms();
@@ -295,7 +206,7 @@ static void keyboard(unsigned char key, int x, int y)
     case 'q': glutLeaveMainLoop();      break;
     case 's':
         {
-        gsViewMat = Matrix();
+        gsCam->reset();
         break;
         }
     default:

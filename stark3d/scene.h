@@ -8,6 +8,7 @@
 #include "scene/line.h"
 #include "scene/terrain.h"
 #include "scene/transform.h"
+#include "scene/camera.h"
 #include "renderaction.h"
 
 SK_BEGIN_NAMESPACE

@@ -16,6 +16,7 @@
     <ClCompile Include="renderaction.cpp" />
     <ClCompile Include="scene.cpp" />
     <ClCompile Include="scene\bbox.cpp" />
+    <ClCompile Include="scene\camera.cpp" />
     <ClCompile Include="scene\color.cpp" />
     <ClCompile Include="scene\cube.cpp" />
     <ClCompile Include="scene\line.cpp" />
@@ -35,6 +36,7 @@
     <ClInclude Include="renderaction.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="scene\bbox.h" />
+    <ClInclude Include="scene\camera.h" />
     <ClInclude Include="scene\color.h" />
     <ClInclude Include="scene\cube.h" />
     <ClInclude Include="scene\line.h" />
