@@ -13,12 +13,14 @@ public:
     glm::vec4 color;
     glm::vec3 lightPosition;
     glm::vec3 lightColor;
+    uint32 activeTexture;
 
 private:
-    unsigned int mvpLoc;
-    unsigned int colorLoc;
-    unsigned int lightPositionLoc;
-    unsigned int lightColorLoc;
+    uint32 mvpLoc;
+    uint32 colorLoc;
+    uint32 lightPositionLoc;
+    uint32 lightColorLoc;
+    uint32 colorMapLoc;
 
 friend class Shader;
 };

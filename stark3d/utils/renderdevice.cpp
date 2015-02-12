@@ -55,6 +55,7 @@ void RenderDevice::draw(PrimType type, uint32 first, uint32 count)
     glDrawArrays(type, first, count);
     glDisableVertexAttribArray(0);
     glDisableVertexAttribArray(1);
+    glDisableVertexAttribArray(2);
 }
 
 SK_END_NAMESPACE

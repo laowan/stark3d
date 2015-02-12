@@ -1,4 +1,5 @@
 #include "node.h"
+#include <iostream>
 
 SK_BEGIN_NAMESPACE
 

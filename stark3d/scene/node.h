@@ -5,7 +5,7 @@
 #include "BBox.h"
 #include <vector>
 #include <string>
-#include <iostream>
+#include <glload/gl_all.h>
 
 #include "renderaction.h"
 
@@ -17,17 +17,9 @@ public:
     SceneNode() : _handle(-1), _current(-1) {}
     ~SceneNode() {}
 
-    virtual bool renderEnter(RenderAction* action)
-                {
-                //std::cout << _handle << " enter" << std::endl;
-                return true;
-                }
-    virtual bool render(RenderAction* action) { return true; }
-    virtual bool renderLeave(RenderAction* action)
-                {
-                //std::cout << _handle << " leave" << std::endl;
-                return true;
-                }
+    virtual bool renderEnter(RenderAction* act) { return true; }
+    virtual bool render(RenderAction* act) { return true; }
+    virtual bool renderLeave(RenderAction* act) { return true; }
 
     virtual BBox boundingBox() { return _boundingBox; }
     void print(std::string prefix = "");

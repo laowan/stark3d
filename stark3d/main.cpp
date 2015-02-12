@@ -138,25 +138,26 @@ static void init(void)
 //     Terrain* terrain = new Terrain("resource/coastMountain64.raw", 64, 64, 10, 0.5f);
 //     Module::sceneMan().addNode(terrain);
     Module::sceneMan().addNode(new Color(1.0, 1.0, 0.0, 1.0));
+    Module::sceneMan().addNode(new Texture());
     Module::sceneMan().addNode(new Cube(50.0));
 
-    Transform* transform1 = new Transform();
-    Matrix& mat = transform1->matrix();
-    mat.pan(50.0, 0.0, 0.0);
-    Module::sceneMan().addNode(transform1);
-
-    Module::sceneMan().addNode(new Color(0.0, 1.0, 0.0, 1.0));
-    Module::sceneMan().addNode(new Cube(50.0));
-
-    Transform* transform2 = new Transform();
-    mat = transform2->matrix();
-    mat.pan(50.0, 0.0, 0.0);
-    Module::sceneMan().addNode(transform2);
-
-    Module::sceneMan().addNode(new Color(0.0, 0.0, 1.0, 1.0));
-    Module::sceneMan().addNode(new Cube(50.0));
-
-    Module::sceneMan().print();
+//     Transform* transform1 = new Transform();
+//     Matrix& mat = transform1->matrix();
+//     mat.pan(50.0, 0.0, 0.0);
+//     Module::sceneMan().addNode(transform1);
+// 
+//     Module::sceneMan().addNode(new Color(0.0, 1.0, 0.0, 1.0));
+//     Module::sceneMan().addNode(new Cube(50.0));
+// 
+//     Transform* transform2 = new Transform();
+//     mat = transform2->matrix();
+//     mat.pan(50.0, 0.0, 0.0);
+//     Module::sceneMan().addNode(transform2);
+// 
+//     Module::sceneMan().addNode(new Color(0.0, 0.0, 1.0, 1.0));
+//     Module::sceneMan().addNode(new Cube(50.0));
+// 
+//     Module::sceneMan().print();
 
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
@@ -190,6 +191,7 @@ static void display(void)
     uniforms.color = glm::vec4(1.0, 1.0, 0.0, 1.0);
     uniforms.lightPosition = glm::vec3(300.0f, 300.0f, 300.0f);
     uniforms.lightColor = glm::vec3(1.0f, 1.0f, 1.0f);
+    uniforms.activeTexture = 0;
 
     Module::shaderMan().currentShader()->commitUniforms();
 

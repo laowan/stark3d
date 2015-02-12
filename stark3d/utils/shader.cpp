@@ -121,14 +121,15 @@ void Shader::use()
 
 void Shader::bind()
 {
-    glBindAttribLocation(_program, 0, "position");
-    glBindAttribLocation(_program, 1, "normal");
+    glBindAttribLocation(_program, 0, "aPosition");
+    glBindAttribLocation(_program, 1, "aNormal");
+    glBindAttribLocation(_program, 2, "aTexCoord");
 
     _uniforms.mvpLoc = glGetUniformLocation(_program, "uModelViewProjMat");
     _uniforms.colorLoc = glGetUniformLocation(_program, "uColor");
     _uniforms.lightPositionLoc = glGetUniformLocation(_program, "uLightPosition");
     _uniforms.lightColorLoc = glGetUniformLocation(_program, "uLightColor");
-
+    _uniforms.colorMapLoc = glGetUniformLocation(_program, "uColorMap");
 }
 
 //! commit the values to the shader
@@ -138,6 +139,7 @@ void Shader::commitUniforms()
     glUniform4fv(_uniforms.colorLoc, 1, glm::value_ptr(_uniforms.color));
     glUniform3fv(_uniforms.lightPositionLoc, 1, glm::value_ptr(_uniforms.lightPosition));
     glUniform3fv(_uniforms.lightColorLoc, 1, glm::value_ptr(_uniforms.lightColor));
+    glUniform1i(_uniforms.colorMapLoc, _uniforms.activeTexture);
 }
 
 SK_END_NAMESPACE

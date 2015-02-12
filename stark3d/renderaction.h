@@ -21,6 +21,7 @@ public:
     std::stack<Matrix> _modelMatStack;
     Matrix _modelMat;
     glm::vec4 _color;
+    uint32 _activeTexture;
 };
 
 SK_END_NAMESPACE

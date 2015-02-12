@@ -81,6 +81,12 @@
     <ClCompile Include="scene\camera.cpp">
       <Filter>Source Files\scene</Filter>
     </ClCompile>
+    <ClCompile Include="utils\bitmap.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="scene\texture.cpp">
+      <Filter>Source Files\scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="utils\framework.h">
@@ -135,6 +141,12 @@
       <Filter>Header Files\scene</Filter>
     </ClInclude>
     <ClInclude Include="scene\camera.h">
+      <Filter>Header Files\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\bitmap.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="scene\texture.h">
       <Filter>Header Files\scene</Filter>
     </ClInclude>
   </ItemGroup>
