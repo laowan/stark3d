@@ -63,13 +63,13 @@ bool SceneManager::render(SceneNode* node /*= NULL*/)
 
     stack<int> nodeStack;
     nodeStack.push(node->_handle);
-    node->renderEnter();
+    node->renderEnter(_renderAct);
     while (node->_children.size() > 0)
     {
         node->_current = 0;
         node = node->_children[0];
         nodeStack.push(node->_handle);
-        node->renderEnter();
+        node->renderEnter(_renderAct);
     }
 
     while (!nodeStack.empty())
@@ -84,20 +84,20 @@ bool SceneManager::render(SceneNode* node /*= NULL*/)
                 SceneNode* newNode = node->_children[node->_current+1];
                 newNode->_current = -1;
                 nodeStack.push(newNode->_handle);
-                newNode->renderEnter();
+                newNode->renderEnter(_renderAct);
                 node->_current++;
             }
             else
             {
                 node->render(_renderAct);
-                node->renderLeave();
+                node->renderLeave(_renderAct);
                 nodeStack.pop();
             }
         }
         else
         {
             node->render(_renderAct);
-            node->renderLeave();
+            node->renderLeave(_renderAct);
             nodeStack.pop();
         }
     }

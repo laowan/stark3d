@@ -17,13 +17,13 @@ public:
     SceneNode() : _handle(-1), _current(-1) {}
     ~SceneNode() {}
 
-    virtual bool renderEnter()
+    virtual bool renderEnter(RenderAction* action)
                 {
                 //std::cout << _handle << " enter" << std::endl;
                 return true;
                 }
     virtual bool render(RenderAction* action) { return true; }
-    virtual bool renderLeave()
+    virtual bool renderLeave(RenderAction* action)
                 {
                 //std::cout << _handle << " leave" << std::endl;
                 return true;

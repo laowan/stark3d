@@ -4,6 +4,8 @@
 #include "utils/matrix.h"
 #include <glm/gtc/type_ptr.hpp>
 
+#include <stack>
+
 SK_BEGIN_NAMESPACE
 
 /*!
@@ -16,6 +18,7 @@ public:
     void reset();
 
 public:
+    std::stack<Matrix> _modelMatStack;
     Matrix _modelMat;
     glm::vec4 _color;
 };

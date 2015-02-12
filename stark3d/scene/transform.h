@@ -12,7 +12,9 @@ public:
     Transform();
     ~Transform();
 
+    bool renderEnter(RenderAction* act);
     bool render(RenderAction* act);
+    bool renderLeave(RenderAction* act);
 
     Matrix& matrix() { return *_matrix; }
 private:
