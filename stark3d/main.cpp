@@ -6,6 +6,9 @@
 #include "module.h"
 #include <glm/gtc/type_ptr.hpp>
 
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include <stb_image_write.h>
+
 using namespace SK;
 
 Matrix gsTmpMat;
@@ -244,6 +247,19 @@ static void idle(void)
 
 int main(int argc, char *argv[])
 {
+	int w = 100, h = 100;
+	char* pdata = (char*)malloc(sizeof(char)* 3 * w*h);
+	memset(pdata, 0, sizeof(char)* 3 * w*h);
+	for (int i = 0; i < w*h; i++)
+	{
+		pdata[i*3] = 255;
+		pdata[i*3+1] = 0;
+		pdata[i*3+2] = 0;
+	}
+
+	stbi_write_bmp("123.bmp", w, h, 3, pdata);
+	free(pdata);
+
     glutInit(&argc, argv);
     glutInitWindowSize(800, 600);
     glutInitWindowPosition(40, 40);
