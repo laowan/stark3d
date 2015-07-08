@@ -205,20 +205,38 @@ static void display(void)
     glutPostRedisplay();
 }
 
+void test_framebuffer()
+{
+	int width = gsCam->getViewport()._pixWidth;
+	int height = gsCam->getViewport()._pixHeight;
+	
+	GLuint depthbuffer;
+	glGenRenderbuffers(1, &depthbuffer);
+	glBindRenderbuffer(GL_RENDERBUFFER, depthbuffer);
+	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, width, height);
+
+	GLuint colorbuffer;
+	glGenRenderbuffers(1, &colorbuffer);
+	glBindRenderbuffer(GL_RENDERBUFFER, colorbuffer);
+	glRenderbufferStorage(GL_RENDERBUFFER, GL_RGBA, width, height);
+
+	GLuint fbo;
+	glGenFramebuffers(1, &fbo);
+	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+	glFramebufferRenderbuffer(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, colorbuffer);
+	glFramebufferRenderbuffer(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthbuffer);
+
+}
+
 static void keyboard(unsigned char key, int x, int y)
 {
     switch (key)
     {
     case 27:
-    case 'Q':
-    case 'q': glutLeaveMainLoop();      break;
-    case 's':
-        {
-        gsCam->reset();
-        break;
-        }
-    default:
-        break;
+    case 'q': glutLeaveMainLoop(); break;
+    case 's': gsCam->reset(); break;
+	case '1': test_framebuffer(); break;
+    default: break;
     }
 
     glutPostRedisplay();
