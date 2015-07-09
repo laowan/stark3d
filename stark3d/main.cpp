@@ -178,9 +178,6 @@ static void init(void)
 
 static void display(void)
 {
-    GLboolean ret=0;
-    glGetBooleanv(GL_DEPTH_TEST, &ret);
-
     glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
     glClearDepth(1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -210,22 +207,77 @@ void test_framebuffer()
 	int width = gsCam->getViewport()._pixWidth;
 	int height = gsCam->getViewport()._pixHeight;
 	
-	GLuint depthbuffer;
-	glGenRenderbuffers(1, &depthbuffer);
-	glBindRenderbuffer(GL_RENDERBUFFER, depthbuffer);
-	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT24, width, height);
-
-	GLuint colorbuffer;
-	glGenRenderbuffers(1, &colorbuffer);
-	glBindRenderbuffer(GL_RENDERBUFFER, colorbuffer);
-	glRenderbufferStorage(GL_RENDERBUFFER, GL_RGBA, width, height);
-
 	GLuint fbo;
 	glGenFramebuffers(1, &fbo);
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
-	glFramebufferRenderbuffer(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, colorbuffer);
-	glFramebufferRenderbuffer(GL_DRAW_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthbuffer);
+	
+    GLuint colortexture;
+    glGenTextures(1, &colortexture);
+    glBindTexture(GL_TEXTURE_2D, colortexture);
 
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    
+    //glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGB8, width, height);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+    //glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, colortexture, 0);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, colortexture, 0);
+
+    GLuint depthtexture;
+    glGenTextures(1, &depthtexture);
+    glBindTexture(GL_TEXTURE_2D, depthtexture);
+    //glTexStorage2D(GL_TEXTURE_2D, 1, GL_DEPTH_COMPONENT32F, width, height);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT24, width, height, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE, NULL);
+	//glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, depthtexture, 0);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthtexture, 0);
+
+
+    static const GLenum draw_buffer[] = { GL_COLOR_ATTACHMENT0 };
+    glDrawBuffers(1, draw_buffer);
+
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    /* 
+        draw something
+    */
+    glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+
+    //gsCam->getViewport().resize(width, height);
+    glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+    glClearDepth(1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    Module::shaderMan().use(ShaderManager::SD_NORMAL);
+
+    ShaderUniforms& uniforms = Module::shaderMan().currentShader()->uniforms();
+
+    // calculate the mvp matrix and apply it to the shader
+    uniforms.mvp = gsCam->getViewProjMat();
+    uniforms.color = glm::vec4(1.0, 1.0, 0.0, 1.0);
+    uniforms.lightPosition = glm::vec3(300.0f, 300.0f, 300.0f);
+    uniforms.lightColor = glm::vec3(1.0f, 1.0f, 1.0f);
+    uniforms.activeTexture = 0;
+
+    Module::shaderMan().currentShader()->commitUniforms();
+
+    // now render the scene
+    Module::sceneMan().render();
+
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+    /*
+        generate the image
+    */
+    glBindTexture(GL_TEXTURE_2D, colortexture);
+    unsigned char* pdata = (unsigned char*)malloc(sizeof(unsigned char)* 4 * width * height);
+    memset(pdata, 0, sizeof(char)* 3 * width * height);
+    glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE, (GLvoid*)pdata);
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    stbi_write_bmp("123.bmp", width, height, 4, pdata);
+    free(pdata);
+ 
 }
 
 static void keyboard(unsigned char key, int x, int y)
@@ -265,19 +317,6 @@ static void idle(void)
 
 int main(int argc, char *argv[])
 {
-	int w = 100, h = 100;
-	char* pdata = (char*)malloc(sizeof(char)* 3 * w*h);
-	memset(pdata, 0, sizeof(char)* 3 * w*h);
-	for (int i = 0; i < w*h; i++)
-	{
-		pdata[i*3] = 255;
-		pdata[i*3+1] = 0;
-		pdata[i*3+2] = 0;
-	}
-
-	stbi_write_bmp("123.bmp", w, h, 3, pdata);
-	free(pdata);
-
     glutInit(&argc, argv);
     glutInitWindowSize(800, 600);
     glutInitWindowPosition(40, 40);
