@@ -17,6 +17,10 @@ SceneManager::SceneManager()
     _nodes.push_back(root);
 
     root->_handle = 1;
+
+	_cam = new Camera();
+	addNode(_cam);
+
 }
 
 SceneManager::~SceneManager()
@@ -110,6 +114,11 @@ void SceneManager::print(SceneNode* node)
     if (node == NULL)
         node = _nodes[0];
     node->print();
+}
+
+Camera* SceneManager::getCamera()
+{
+	return _cam;
 }
 
 SK_END_NAMESPACE

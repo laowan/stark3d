@@ -31,6 +31,7 @@
     <ClCompile Include="utils\renderdevice.cpp" />
     <ClCompile Include="utils\shader.cpp" />
     <ClCompile Include="utils\shadermanager.cpp" />
+    <ClCompile Include="utils\utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="global.h" />
@@ -53,6 +54,7 @@
     <ClInclude Include="utils\renderdevice.h" />
     <ClInclude Include="utils\shader.h" />
     <ClInclude Include="utils\shadermanager.h" />
+    <ClInclude Include="utils\utils.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{2CD99B00-2EBD-4724-9B0A-E24440F1F0B3}</ProjectGuid>

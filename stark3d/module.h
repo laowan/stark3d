@@ -3,6 +3,7 @@
 
 #include "global.h"
 #include "scene.h"
+#include "utils/utils.h"
 #include "utils/matrix.h"
 #include "utils/shadermanager.h"
 #include "utils/renderdevice.h"

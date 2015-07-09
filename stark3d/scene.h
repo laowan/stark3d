@@ -29,10 +29,12 @@ public:
     SceneNode* resolve(int idx);
     bool render(SceneNode* node = NULL);
     void print(SceneNode* node = NULL);
+	Camera* getCamera();
 
 private:
     std::vector<SceneNode*> _nodes;
     RenderAction* _renderAct;
+	Camera* _cam;
 };
 SK_END_NAMESPACE
 #endif
