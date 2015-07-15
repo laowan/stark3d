@@ -10,6 +10,7 @@
 #include "scene/transform.h"
 #include "scene/camera.h"
 #include "scene/texture.h"
+#include "scene/bsp.h"
 
 #include "renderaction.h"
 

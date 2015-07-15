@@ -102,12 +102,16 @@ void skCreateScene()
 	Module::sceneMan().addNode(axisZ);
 
 
+    BSP* bsp = new BSP();
+    bsp->load("resource/bsp/test1.bsp");
+    Module::sceneMan().addNode(bsp);
+
 	// add objects
 	//     Terrain* terrain = new Terrain("resource/coastMountain64.raw", 64, 64, 10, 0.5f);
 	//     Module::sceneMan().addNode(terrain);
-	Module::sceneMan().addNode(new Color(1.0, 1.0, 0.0, 1.0));
-	Module::sceneMan().addNode(new Texture());
-	Module::sceneMan().addNode(new Cube(50.0));
+// 	Module::sceneMan().addNode(new Color(1.0, 1.0, 0.0, 1.0));
+// 	Module::sceneMan().addNode(new Texture());
+// 	Module::sceneMan().addNode(new Cube(50.0));
 
 	//     Transform* transform1 = new Transform();
 	//     Matrix& mat = transform1->matrix();
