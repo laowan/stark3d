@@ -34,18 +34,18 @@ glm::mat4 Camera::getPerspectiveProjMat()
 {
     // http://www.songho.ca/opengl/gl_projectionmatrix.html
     glm::mat4 mat;
-    double h_w = (double)_viewport._pixHeight /_viewport._pixWidth;
+    double h_w = (double)_viewport.pixHeight /_viewport.pixWidth;
     double r, t;
 
     if (h_w > 1.0)
     {
-        r = _viewport._extent / 2.0;
-        t = _viewport._extent * h_w / 2.0;
+        r = _viewport.extent / 2.0;
+        t = _viewport.extent * h_w / 2.0;
     }
     else
     {
-        r = _viewport._extent / h_w / 2.0;
-        t = _viewport._extent / 2.0;
+        r = _viewport.extent / h_w / 2.0;
+        t = _viewport.extent / 2.0;
     }
 
     float n = 100.0, f = -100.0;
@@ -63,18 +63,18 @@ glm::mat4 Camera::getOrthographicProjMat()
         f is the distance form view origin to back clip plane.
     */
     glm::mat4 mat;
-    double h_w = (double)_viewport._pixHeight /_viewport._pixWidth;
+    double h_w = (double)_viewport.pixHeight /_viewport.pixWidth;
     double r, t;
 
     if (h_w > 1.0)
     {
-        r = _viewport._extent / 2.0;
-        t = _viewport._extent * h_w / 2.0;
+        r = _viewport.extent / 2.0;
+        t = _viewport.extent * h_w / 2.0;
     }
     else
     {
-        r = _viewport._extent / h_w / 2.0;
-        t = _viewport._extent / 2.0;
+        r = _viewport.extent / h_w / 2.0;
+        t = _viewport.extent / 2.0;
     }
 
     float n = 1.0, f = 200.0;
@@ -88,6 +88,44 @@ glm::mat4 Camera::getOrthographicProjMat()
 void Camera::reset()
 {
     _viewMat = Matrix();
+}
+
+void Camera::zoomAll(const BBox& bbox)
+{
+	glm::mat4 vMat = getViewMat().glMatrix();
+	glm::vec4 maxVec(-BBOX_LIMIT, -BBOX_LIMIT, -BBOX_LIMIT, 1.0);
+	glm::vec4 minVec( BBOX_LIMIT,  BBOX_LIMIT,  BBOX_LIMIT, 1.0);
+
+	std::vector<Point> points = bbox.points();
+	for (int i = 0; i < (int)points.size(); i++)
+	{
+		glm::vec4 vec(points[i].x, points[i].y, points[i].z, 1.0);
+		glm::vec4 retVec = vMat * vec;
+
+		if (maxVec.x < retVec.x) maxVec.x = retVec.x;
+		if (maxVec.y < retVec.y) maxVec.y = retVec.y;
+		if (maxVec.z < retVec.z) maxVec.z = retVec.z;
+
+		if (minVec.x > retVec.x) minVec.x = retVec.x;
+		if (minVec.y > retVec.y) minVec.y = retVec.y;
+		if (minVec.z > retVec.z) minVec.z = retVec.z;
+	}
+
+	double dx = fabs(maxVec.x - minVec.x);
+	double dy = fabs(maxVec.y - minVec.y);
+
+	if (_viewport.pixHeight / _viewport.pixWidth < dy / dx)
+	{
+		_viewport.extent = dy;
+		_viewport.pixScale = _viewport.pixHeight / _viewport.extent;
+	}
+	else
+	{
+		_viewport.extent = dx * _viewport.pixHeight / _viewport.pixWidth;
+		_viewport.pixScale = _viewport.pixHeight / _viewport.extent;
+	}
+
+	return;
 }
 
 SK_END_NAMESPACE

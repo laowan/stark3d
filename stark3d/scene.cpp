@@ -150,8 +150,8 @@ int SceneManager::addBox(int32 x, int32 y, int32 z, uint8 r, uint8 g, uint8 b)
     Box *lastBox = _boxList;
     if (!lastBox) 
     {
-        lastBox = box;
-        lastBox->next = NULL;
+        _boxList = box;
+        _boxList->next = NULL;
     }
     else
     {
@@ -166,13 +166,27 @@ int SceneManager::addBox(int32 x, int32 y, int32 z, uint8 r, uint8 g, uint8 b)
     addNode(transform);
     addNode(new Color(r/255.0, g/255.0, b/255.0, 1.0));
     addNode(new Texture());
-    addNode(new Cube(20.0));
+    addNode(new Cube(1.0));
     return 1;
 }
 
 bool SceneManager::renderBox(Box* box)
 {
     return true;
+}
+
+BBox SceneManager::boundingBox()
+{
+	BBox bbox;
+	Box *curBox = _boxList;
+	while (curBox)
+	{
+		bbox.add(curBox->x + 1, curBox->y + 1, curBox->z + 1);
+		bbox.add(curBox->x - 1, curBox->y - 1, curBox->z - 1);
+		curBox = curBox->next;
+	}
+
+	return bbox;
 }
 
 SK_END_NAMESPACE

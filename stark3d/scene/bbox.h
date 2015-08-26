@@ -3,21 +3,26 @@
 
 #include "global.h"
 #include "renderaction.h"
+#include <vector>
+
+#define BBOX_LIMIT 1.0e+12
 
 SK_BEGIN_NAMESPACE
+struct Point
+{
+	Point(float x, float y, float z) { this->x = x; this->y = y; this->z = z; }
+	float x, y, z;
+};
 
 class BBox
 {
-    struct Point
-    {
-        Point(float x, float y, float z) : _x(x), _y(y), _z(z) {}
-        float _x, _y, _z;
-    };
-
 public:
     BBox();
     void add(float x, float y, float z);
     bool render(RenderAction* act);
+	Point maxPoint() const;
+	Point minPoint() const;
+	std::vector<Point> points() const;
 
 private:
     float _xmin, _xmax;

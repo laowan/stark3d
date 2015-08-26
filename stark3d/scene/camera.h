@@ -10,34 +10,24 @@ SK_BEGIN_NAMESPACE
 class Viewport
 {
 public:
-    Viewport() : _extent(200.0f) {}
+    Viewport() : extent(10.0f) {}
     ~Viewport() {}
 
     void resize(int width, int height)
     {
-        _pixWidth = width;
-        _pixHeight = height;
+        pixWidth = width;
+        pixHeight = height;
 
-        if (_pixHeight > _pixWidth)
-        {
-            _hpixScale = _pixWidth / _extent;
-            _vpixScale = _hpixScale;
-        }
-        else
-        {
-            _vpixScale = _pixHeight / _extent;
-            _hpixScale = _vpixScale;
-        }
+		pixScale = pixHeight / extent;
 
         glViewport(0, 0, width, height);
     }
 
 public:
-    double _extent;
-    int _pixWidth;
-    int _pixHeight;
-    double _hpixScale; // screen pixel per unit in clip space
-    double _vpixScale;
+    double extent;
+    int pixWidth;
+    int pixHeight;
+    double pixScale; // screen pixel per unit in clip space
 };
 
 class Camera : public SceneNode
@@ -51,6 +41,7 @@ public:
     glm::mat4 getViewProjMat();
 
     void reset();
+	void zoomAll(const BBox& bbox);
 
 private:
     glm::mat4 getPerspectiveProjMat();

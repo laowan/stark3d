@@ -2,8 +2,6 @@
 #include <vector>
 using std::vector;
 
-#define BBOX_LIMIT 1.0e+12
-
 SK_BEGIN_NAMESPACE
 
 BBox::BBox() : _dirty(true)
@@ -29,46 +27,62 @@ bool BBox::render(RenderAction* act)
 {
     if (_dirty)
     {
-        vector<Point> pts;
-        pts.push_back(Point(_xmax, _ymax, _zmax));
-        pts.push_back(Point(_xmax, _ymax, _zmin));
-
-        pts.push_back(Point(_xmax, _ymax, _zmin));
-        pts.push_back(Point(_xmax, _ymin, _zmin));
-
-        pts.push_back(Point(_xmax, _ymin, _zmin));
-        pts.push_back(Point(_xmax, _ymin, _zmax));
-
-        pts.push_back(Point(_xmax, _ymin, _zmax));
-        pts.push_back(Point(_xmax, _ymax, _zmax));
-
-        pts.push_back(Point(_xmin, _ymax, _zmax));
-        pts.push_back(Point(_xmin, _ymax, _zmin));
-
-        pts.push_back(Point(_xmin, _ymax, _zmin));
-        pts.push_back(Point(_xmin, _ymin, _zmin));
-
-        pts.push_back(Point(_xmin, _ymin, _zmin));
-        pts.push_back(Point(_xmin, _ymin, _zmax));
-
-        pts.push_back(Point(_xmin, _ymin, _zmax));
-        pts.push_back(Point(_xmin, _ymax, _zmax));
-
-        pts.push_back(Point(_xmax, _ymax, _zmax));
-        pts.push_back(Point(_xmin, _ymax, _zmax));
-
-        pts.push_back(Point(_xmax, _ymax, _zmin));
-        pts.push_back(Point(_xmin, _ymax, _zmin));
-
-        pts.push_back(Point(_xmax, _ymin, _zmax));
-        pts.push_back(Point(_xmin, _ymin, _zmax));
-
-        pts.push_back(Point(_xmax, _ymin, _zmin));
-        pts.push_back(Point(_xmin, _ymin, _zmin));
-
-        _dirty = false;
+		_dirty = false;
     }
     return true;
+}
+
+Point BBox::maxPoint() const
+{
+	return Point(_xmax, _ymax, _zmax);
+}
+
+Point BBox::minPoint() const
+{
+	return Point(_xmin, _ymin, _zmin);
+}
+
+std::vector<Point> BBox::points() const
+{
+	std::vector<Point> pts;
+
+	pts.push_back(Point(_xmax, _ymax, _zmax));
+	pts.push_back(Point(_xmax, _ymax, _zmin));
+
+	pts.push_back(Point(_xmax, _ymax, _zmin));
+	pts.push_back(Point(_xmax, _ymin, _zmin));
+
+	pts.push_back(Point(_xmax, _ymin, _zmin));
+	pts.push_back(Point(_xmax, _ymin, _zmax));
+
+	pts.push_back(Point(_xmax, _ymin, _zmax));
+	pts.push_back(Point(_xmax, _ymax, _zmax));
+
+	pts.push_back(Point(_xmin, _ymax, _zmax));
+	pts.push_back(Point(_xmin, _ymax, _zmin));
+
+	pts.push_back(Point(_xmin, _ymax, _zmin));
+	pts.push_back(Point(_xmin, _ymin, _zmin));
+
+	pts.push_back(Point(_xmin, _ymin, _zmin));
+	pts.push_back(Point(_xmin, _ymin, _zmax));
+
+	pts.push_back(Point(_xmin, _ymin, _zmax));
+	pts.push_back(Point(_xmin, _ymax, _zmax));
+
+	pts.push_back(Point(_xmax, _ymax, _zmax));
+	pts.push_back(Point(_xmin, _ymax, _zmax));
+
+	pts.push_back(Point(_xmax, _ymax, _zmin));
+	pts.push_back(Point(_xmin, _ymax, _zmin));
+
+	pts.push_back(Point(_xmax, _ymin, _zmax));
+	pts.push_back(Point(_xmin, _ymin, _zmax));
+
+	pts.push_back(Point(_xmax, _ymin, _zmin));
+	pts.push_back(Point(_xmin, _ymin, _zmin));
+
+	return pts;
 }
 
 SK_END_NAMESPACE

@@ -8,8 +8,8 @@ using namespace SK;
 
 void skScreenshot(const char* file)
 {
-	int width = Module::sceneMan().getCamera()->getViewport()._pixWidth;
-	int height = Module::sceneMan().getCamera()->getViewport()._pixHeight;
+	int width = Module::sceneMan().getCamera()->getViewport().pixWidth;
+	int height = Module::sceneMan().getCamera()->getViewport().pixHeight;
 
 	GLuint fbo;
 	glGenFramebuffers(1, &fbo);

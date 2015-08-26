@@ -46,7 +46,7 @@ public:
     
     int addBox(int32 x, int32 y, int32 z, uint8 r, uint8 g, uint8 b);
     bool renderBox(Box* box);
-
+	BBox boundingBox();
 
 private:
     std::vector<SceneNode*> _nodes;

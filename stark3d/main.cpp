@@ -23,8 +23,8 @@ void MouseMotion(int x, int y)
     {
         viewMat = gsTmpMat;
         double dx, dy, dz;
-        dx = (gsTmpX - x) / vp._hpixScale;
-        dy = (y - gsTmpY) / vp._vpixScale;
+        dx = (gsTmpX - x) / vp.pixScale;
+        dy = (y - gsTmpY) / vp.pixScale;
         dz = 0;
 
         // transfer (dx, dy, dz) to world space
@@ -46,9 +46,9 @@ void MouseMotion(int x, int y)
     {
         viewMat = gsTmpMat;
 
-        double factor = 4.0 * (1.57079632679489661923 / vp._extent);
-        double ang_y = factor * (gsTmpX - x) / vp._hpixScale;
-        double ang_x = factor * (gsTmpY - y) / vp._vpixScale;
+        double factor = 4.0 * (1.57079632679489661923 / vp.extent);
+        double ang_y = factor * (gsTmpX - x) / vp.pixScale;
+        double ang_x = factor * (gsTmpY - y) / vp.pixScale;
 
         Matrix& mat = viewMat;
         viewMat.rot(mat.yx, mat.yy, mat.yz, ang_y);
@@ -82,23 +82,14 @@ void MouseWheel(int wheel, int direction, int x, int y)
 
 	Viewport& vp = Module::sceneMan().getCamera()->getViewport();
     double zoomFactor;
-    zoomFactor = 1.0 + (160.0/(vp._extent*vp._vpixScale)) * fabs((double)direction);
+    zoomFactor = 1.0 + (160.0/(vp.extent*vp.pixScale)) * fabs((double)direction);
 
     if (direction > 0)
-        vp._extent = vp._extent/zoomFactor;
+        vp.extent = vp.extent/zoomFactor;
     else
-        vp._extent = vp._extent*zoomFactor;
+        vp.extent = vp.extent*zoomFactor;
 
-    if (vp._pixHeight > vp._pixWidth)
-    {
-        vp._hpixScale = vp._pixWidth / vp._extent;
-        vp._vpixScale = vp._hpixScale;
-    }
-    else
-    {
-        vp._vpixScale = vp._pixHeight / vp._extent;
-        vp._hpixScale = vp._vpixScale;
-    }
+    vp.pixScale = vp.pixHeight / vp.extent;
 
     glutPostRedisplay();
 }
@@ -160,7 +151,8 @@ static void keyboard(unsigned char key, int x, int y)
     {
     case 27:
     case 'q': glutLeaveMainLoop(); break;
-	case 's': Module::sceneMan().getCamera()->reset(); break;
+	case 'r': Module::sceneMan().getCamera()->reset(); break;
+	case 'z': Module::sceneMan().getCamera()->zoomAll(Module::sceneMan().boundingBox()); break;
 	case '1': skScreenshot("123.bmp"); break;
     default: break;
     }
