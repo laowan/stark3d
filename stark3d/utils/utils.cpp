@@ -101,33 +101,16 @@ void skCreateScene()
 	Module::sceneMan().addNode(colorBlue);
 	Module::sceneMan().addNode(axisZ);
 
+    Module::sceneMan().addBox(0, 0, 0, 255, 0, 0);
 
-    BSP* bsp = new BSP();
-    bsp->load("resource/bsp/test1.bsp");
-    Module::sceneMan().addNode(bsp);
+
+//     BSP* bsp = new BSP();
+//     bsp->load("resource/bsp/test1.bsp");
+//     Module::sceneMan().addNode(bsp);
 
 	// add objects
 	//     Terrain* terrain = new Terrain("resource/coastMountain64.raw", 64, 64, 10, 0.5f);
 	//     Module::sceneMan().addNode(terrain);
-// 	Module::sceneMan().addNode(new Color(1.0, 1.0, 0.0, 1.0));
-// 	Module::sceneMan().addNode(new Texture());
-// 	Module::sceneMan().addNode(new Cube(50.0));
 
-	//     Transform* transform1 = new Transform();
-	//     Matrix& mat = transform1->matrix();
-	//     mat.pan(50.0, 0.0, 0.0);
-	//     Module::sceneMan().addNode(transform1);
-	// 
-	//     Module::sceneMan().addNode(new Color(0.0, 1.0, 0.0, 1.0));
-	//     Module::sceneMan().addNode(new Cube(50.0));
-	// 
-	//     Transform* transform2 = new Transform();
-	//     mat = transform2->matrix();
-	//     mat.pan(50.0, 0.0, 0.0);
-	//     Module::sceneMan().addNode(transform2);
-	// 
-	//     Module::sceneMan().addNode(new Color(0.0, 0.0, 1.0, 1.0));
-	//     Module::sceneMan().addNode(new Cube(50.0));
-	// 
 	//     Module::sceneMan().print();
 }

@@ -13,7 +13,7 @@ BSP::BSP() : _numVertices(0), _vertices(NULL),
 
 BSP::~BSP()
 {
-
+    if (_faceDirectory) delete[] _faceDirectory;
 }
 
 bool BSP::load(const char* filename)
@@ -94,10 +94,7 @@ bool BSP::loadVertices(FILE* file)
         data.push_back(_vertices[i].position.z);
     }
 
-    glGenBuffers(1, (GLuint*)&_vb);
-    glBindBuffer(GL_ARRAY_BUFFER, _vb);
-    glBufferData(GL_ARRAY_BUFFER, data.size()*sizeof(float), (void*)&data[0], GL_STATIC_DRAW);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    _vb = Module::renderDev().createVertexBuffer(data.size()*sizeof(float), (void*)&data[0]);
 
     return true;
 }
@@ -192,6 +189,8 @@ bool BSP::render(RenderAction* act)
     uniforms.mvp *= act->_modelMat.glMatrix();
     uniforms.color = act->_color;
     shader->commitUniforms();
+    glDisableVertexAttribArray(1);
+    glDisableVertexAttribArray(2);
 
     glBindBuffer(GL_ARRAY_BUFFER, _vb);
 
@@ -200,7 +199,13 @@ bool BSP::render(RenderAction* act)
     int stride(sizeof(float)* 3);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, stride, 0);
 
-    glDrawArrays(GL_LINES, 0, _numVertices);
+    //glDrawArrays(GL_LINES, 0, _numVertices);
+
+    for (int i = 0; i < _numPolygonFaces; i++)
+    {
+        glDrawArrays(GL_TRIANGLE_FAN, _polygonFaces[i].firstVertexIndex,
+            _polygonFaces[i].numVertices);
+    }
 
     glDisableVertexAttribArray(0);
 

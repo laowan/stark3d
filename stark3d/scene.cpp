@@ -21,6 +21,7 @@ SceneManager::SceneManager()
 	_cam = new Camera();
 	addNode(_cam);
 
+    _boxList = NULL;
 }
 
 SceneManager::~SceneManager()
@@ -30,6 +31,24 @@ SceneManager::~SceneManager()
 
     if (_renderAct)
         delete _renderAct;
+
+    Box *curBox = _boxList;
+    while(curBox)
+    {
+        if (curBox->next)
+        {
+            _boxList = curBox->next;
+            delete curBox;
+            curBox = _boxList;
+        }
+        else
+        {
+            delete curBox;
+            curBox = NULL;
+        }
+    }
+
+    _boxList = NULL;
 }
 
 int SceneManager::addNode(SceneNode* parent, SceneNode* node)
@@ -119,6 +138,41 @@ void SceneManager::print(SceneNode* node)
 Camera* SceneManager::getCamera()
 {
 	return _cam;
+}
+
+int SceneManager::addBox(int32 x, int32 y, int32 z, uint8 r, uint8 g, uint8 b)
+{
+    Box *box = new Box;
+    box->x = x; box->y = y; box->z = z;
+    box->r = r; box->g = g; box->b = b;
+    box->next = NULL;
+
+    Box *lastBox = _boxList;
+    if (!lastBox) 
+    {
+        lastBox = box;
+        lastBox->next = NULL;
+    }
+    else
+    {
+        while(lastBox->next != NULL)
+            lastBox = lastBox->next;
+        lastBox->next = box;
+    }
+
+    Transform* transform = new Transform();
+    Matrix& mat = transform->matrix();
+    mat.pan(x, y, z);
+    addNode(transform);
+    addNode(new Color(r/255.0, g/255.0, b/255.0, 1.0));
+    addNode(new Texture());
+    addNode(new Cube(20.0));
+    return 1;
+}
+
+bool SceneManager::renderBox(Box* box)
+{
+    return true;
 }
 
 SK_END_NAMESPACE

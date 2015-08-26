@@ -281,7 +281,7 @@ private:
     bool loadBSPData(FILE* file);
 
 private:
-    int _vb;
+    uint32 _vb;
 
     // header
     BSP_HEADER _header;
