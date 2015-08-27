@@ -11,6 +11,7 @@ public:
     Cube();
     Cube(double edgeLength);
     ~Cube();
+    std::string type() { return "Cube"; }
 
     bool render(RenderAction* act);
 

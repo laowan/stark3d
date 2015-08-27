@@ -13,12 +13,16 @@ in vec2 fragTexCoord;
 
 void main()
 {
-    vec4 color = texture(uColorMap, fragTexCoord); //uColor;
+    vec4 color = uColor; //texture(uColorMap, fragTexCoord);
     if (!gl_FrontFacing)
         color = vec4(1.0, 0.0, 0.0, 1.0);
 
     vec3 normal = normalize(fragNormal);
-    vec3 surfaceToLight = normalize(uLightPosition - fragPosition);
+    vec3 surfaceToLight = vec3(0.0, 0.0, 1.0);
+	
+	float NdotE = dot(normal, vec3(0.0, 0.0, 1.0));
+	if (NdotE < 0.0)
+		{ discard; }
 
     //float brightness = dot(fragNormal, surfaceToLight) / (length(surfaceToLight) * length(fragNormal));
     //brightness = clamp(brightness, 0, 1);

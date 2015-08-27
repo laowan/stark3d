@@ -21,6 +21,8 @@ bool Transform::renderEnter(RenderAction* act)
     Matrix mat = act->_modelMat.mul(*_matrix);
     act->_modelMatStack.push(mat);
 
+    // modify the model matrix
+    act->_modelMat = act->_modelMatStack.top();
     return true;
 }
 
@@ -28,7 +30,7 @@ bool Transform::render(RenderAction* act)
 {
     // modify the model matrix
     //act->_modelMat = act->_modelMat.mul(*_matrix);
-    act->_modelMat = act->_modelMatStack.top();
+    //act->_modelMat = act->_modelMatStack.top();
     return true;
 }
 

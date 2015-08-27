@@ -101,8 +101,7 @@ void skCreateScene()
 	Module::sceneMan().addNode(colorBlue);
 	Module::sceneMan().addNode(axisZ);
 
-    Module::sceneMan().addBox(0, 0, 0, 255, 0, 0);
-
+    Module::sceneMan().open("./resource/scene.txt");
 
 //     BSP* bsp = new BSP();
 //     bsp->load("resource/bsp/test1.bsp");
@@ -112,5 +111,5 @@ void skCreateScene()
 	//     Terrain* terrain = new Terrain("resource/coastMountain64.raw", 64, 64, 10, 0.5f);
 	//     Module::sceneMan().addNode(terrain);
 
-	//     Module::sceneMan().print();
+	Module::sceneMan().print();
 }

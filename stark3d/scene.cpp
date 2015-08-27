@@ -1,5 +1,7 @@
 #include "scene.h"
-
+#include <sstream>
+#include <iostream>
+#include <fstream>
 #include <stack>
 using namespace std;
 
@@ -160,13 +162,15 @@ int SceneManager::addBox(int32 x, int32 y, int32 z, uint8 r, uint8 g, uint8 b)
         lastBox->next = box;
     }
 
+    addNode(new Color(r/255.0, g/255.0, b/255.0, 1.0));
+
     Transform* transform = new Transform();
     Matrix& mat = transform->matrix();
     mat.pan(x, y, z);
-    addNode(transform);
-    addNode(new Color(r/255.0, g/255.0, b/255.0, 1.0));
-    addNode(new Texture());
-    addNode(new Cube(1.0));
+    int idx = addNode(transform);
+    
+    //addNode(new Texture());
+    addNode(resolve(idx), new Cube(1.0));
     return 1;
 }
 
@@ -187,6 +191,29 @@ BBox SceneManager::boundingBox()
 	}
 
 	return bbox;
+}
+
+bool SceneManager::open(const std::string& path)
+{
+    ifstream file(path);
+    if (!file) return false;
+
+    std::string line;
+    int32 x, y, z;
+    int32 r, g, b;
+    std::stringstream stream;
+    while (getline(file, line))
+    {
+        sscanf_s(line.c_str(), "%d,%d,%d,%d,%d,%d", &x, &y, &z, &r, &g, &b);
+        cout << x << y << z << r << g << b << endl;
+        addBox(x, y, z, (uint8)r, (uint8)g, (uint8)b);
+    }
+    return true;
+}
+
+bool SceneManager::save(const std::string& path)
+{
+    return true;
 }
 
 SK_END_NAMESPACE

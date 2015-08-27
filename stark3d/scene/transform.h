@@ -11,6 +11,7 @@ class Transform : public SceneNode
 public:
     Transform();
     ~Transform();
+    std::string type() { return "Transform"; }
 
     bool renderEnter(RenderAction* act);
     bool render(RenderAction* act);

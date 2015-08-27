@@ -9,6 +9,7 @@ SK_BEGIN_NAMESPACE
 class ShaderUniforms
 {
 public:
+    glm::mat4 mv;
     glm::mat4 mvp;
     glm::vec4 color;
     glm::vec3 lightPosition;
@@ -16,6 +17,7 @@ public:
     uint32 activeTexture;
 
 private:
+    uint32 mvLoc;
     uint32 mvpLoc;
     uint32 colorLoc;
     uint32 lightPositionLoc;

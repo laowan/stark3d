@@ -48,6 +48,9 @@ public:
     bool renderBox(Box* box);
 	BBox boundingBox();
 
+    bool open(const std::string& path);
+    bool save(const std::string& path);
+
 private:
     std::vector<SceneNode*> _nodes;
     RenderAction* _renderAct;

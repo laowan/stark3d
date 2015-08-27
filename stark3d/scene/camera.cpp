@@ -8,7 +8,7 @@ Camera::Camera()
 Camera::~Camera()
 {}
 
-glm::mat4 Camera::getViewProjMat()
+glm::mat4 Camera::getViewMat()
 {
     // mat is the inverse matrix of _viewMat
     // from world coordinate to view coordinate
@@ -23,7 +23,12 @@ glm::mat4 Camera::getViewProjMat()
 
     mat.zt -= 100.0f;
 
-    glm::mat4 mvMat = mat.glMatrix();
+    return mat.glMatrix();
+}
+
+glm::mat4 Camera::getViewProjMat()
+{
+    glm::mat4 mvMat = getViewMat();
     glm::mat4 projMat = getOrthographicProjMat();
     glm::mat4 mvpMat = projMat * mvMat;
 
@@ -92,7 +97,7 @@ void Camera::reset()
 
 void Camera::zoomAll(const BBox& bbox)
 {
-	glm::mat4 vMat = getViewMat().glMatrix();
+	glm::mat4 vMat = getViewMat();
 	glm::vec4 maxVec(-BBOX_LIMIT, -BBOX_LIMIT, -BBOX_LIMIT, 1.0);
 	glm::vec4 minVec( BBOX_LIMIT,  BBOX_LIMIT,  BBOX_LIMIT, 1.0);
 

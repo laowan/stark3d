@@ -89,9 +89,14 @@ Cube::~Cube()
 
 bool Cube::render(RenderAction* act)
 {
+
     Shader* shader = Module::shaderMan().currentShader();
     ShaderUniforms& uniforms = shader->uniforms();
-    uniforms.mvp *= act->_modelMat.glMatrix();
+    glm::mat4 saveMvpMat = uniforms.mvp;
+    glm::mat4 saveMvMat = uniforms.mv;
+
+    uniforms.mv *= act->_modelMat.glMatrix();
+    uniforms.mvp *= act->_modelMat.glMatrix(); 
     uniforms.color = act->_color;
     uniforms.activeTexture = act->_activeTexture;
     shader->commitUniforms();
@@ -104,6 +109,8 @@ bool Cube::render(RenderAction* act)
     Module::renderDev().setVertexLayout(2, stride, (const void*)(6*sizeof(float)));
     Module::renderDev().draw(SK::PRIM_TRIANGLES, 0, _triCount*3);
 
+    uniforms.mvp = saveMvpMat;
+    uniforms.mv = saveMvMat;
     return true;
 }
 

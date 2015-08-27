@@ -125,6 +125,7 @@ void Shader::bind()
     glBindAttribLocation(_program, 1, "aNormal");
     glBindAttribLocation(_program, 2, "aTexCoord");
 
+    _uniforms.mvLoc = glGetUniformLocation(_program, "uModelViewMat");
     _uniforms.mvpLoc = glGetUniformLocation(_program, "uModelViewProjMat");
     _uniforms.colorLoc = glGetUniformLocation(_program, "uColor");
     _uniforms.lightPositionLoc = glGetUniformLocation(_program, "uLightPosition");
@@ -135,6 +136,7 @@ void Shader::bind()
 //! commit the values to the shader
 void Shader::commitUniforms()
 {
+    glUniformMatrix4fv(_uniforms.mvLoc, 1, GL_FALSE, glm::value_ptr(_uniforms.mv));
     glUniformMatrix4fv(_uniforms.mvpLoc, 1, GL_FALSE, glm::value_ptr(_uniforms.mvp));
     glUniform4fv(_uniforms.colorLoc, 1, glm::value_ptr(_uniforms.color));
     glUniform3fv(_uniforms.lightPositionLoc, 1, glm::value_ptr(_uniforms.lightPosition));

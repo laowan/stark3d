@@ -12,6 +12,7 @@ public:
     Line();
     Line(glm::vec3& point1, glm::vec3& point2);
     ~Line();
+    std::string type() { return "Line"; }
 
     bool render(RenderAction* act);
 

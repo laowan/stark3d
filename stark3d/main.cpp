@@ -18,7 +18,7 @@ void MouseMotion(int x, int y)
     printf("mouse motion (%d, %d)\n", x, y);
 
     Viewport& vp = Module::sceneMan().getCamera()->getViewport();
-    Matrix& viewMat = Module::sceneMan().getCamera()->getViewMat();
+    Matrix& viewMat = Module::sceneMan().getCamera()->getViewMatrix();
     if (gsMoveBtn == 1) // middle button, pan
     {
         viewMat = gsTmpMat;
@@ -65,7 +65,7 @@ void MouseButton(int button, int state, int x, int y)
         gsMoveBtn = button;
         gsTmpX = x;
         gsTmpY = y;
-        gsTmpMat = Module::sceneMan().getCamera()->getViewMat();
+        gsTmpMat = Module::sceneMan().getCamera()->getViewMatrix();
     }
     else
     {
@@ -130,6 +130,7 @@ static void display(void)
     ShaderUniforms& uniforms = Module::shaderMan().currentShader()->uniforms();
 
     // calculate the mvp matrix and apply it to the shader
+    uniforms.mv = Module::sceneMan().getCamera()->getViewMat();
 	uniforms.mvp = Module::sceneMan().getCamera()->getViewProjMat();
     uniforms.color = glm::vec4(1.0, 1.0, 0.0, 1.0);
     uniforms.lightPosition = glm::vec3(300.0f, 300.0f, 300.0f);
@@ -154,6 +155,16 @@ static void keyboard(unsigned char key, int x, int y)
 	case 'r': Module::sceneMan().getCamera()->reset(); break;
 	case 'z': Module::sceneMan().getCamera()->zoomAll(Module::sceneMan().boundingBox()); break;
 	case '1': skScreenshot("123.bmp"); break;
+    case 'p':
+        {
+            glm::mat4 vmat = Module::sceneMan().getCamera()->getViewMat();
+            printf("%6.2f, %6.2f, %6.2f, %6.2f\n", vmat[0].x, vmat[1].x, vmat[2].x, vmat[3].x);
+            printf("%6.2f, %6.2f, %6.2f, %6.2f\n", vmat[0].y, vmat[1].y, vmat[2].y, vmat[3].y);
+            printf("%6.2f, %6.2f, %6.2f, %6.2f\n", vmat[0].z, vmat[1].z, vmat[2].z, vmat[3].z);
+            printf("%6.2f, %6.2f, %6.2f, %6.2f\n", vmat[0].w, vmat[1].w, vmat[2].w, vmat[3].w);
+
+            break;
+        }
     default: break;
     }
 

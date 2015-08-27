@@ -22,6 +22,7 @@ public:
     virtual bool renderLeave(RenderAction* act) { return true; }
 
     virtual BBox boundingBox() { return _boundingBox; }
+    virtual std::string type() { return "SceneNode"; }
     void print(std::string prefix = "");
 
 protected:
