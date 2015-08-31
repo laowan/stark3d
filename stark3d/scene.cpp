@@ -24,6 +24,7 @@ SceneManager::SceneManager()
 	addNode(_cam);
 
     _boxList = NULL;
+	_pickedBox = NULL;
 }
 
 SceneManager::~SceneManager()
@@ -176,6 +177,7 @@ int SceneManager::addBox(int32 x, int32 y, int32 z, uint8 r, uint8 g, uint8 b)
 
 bool SceneManager::renderBox(Box* box)
 {
+
     return true;
 }
 
@@ -185,8 +187,8 @@ BBox SceneManager::boundingBox()
 	Box *curBox = _boxList;
 	while (curBox)
 	{
-		bbox.add(curBox->x + 1, curBox->y + 1, curBox->z + 1);
-		bbox.add(curBox->x - 1, curBox->y - 1, curBox->z - 1);
+		bbox.add(curBox->x + 0.5, curBox->y + 0.5, curBox->z + 0.5);
+		bbox.add(curBox->x - 0.5, curBox->y - 0.5, curBox->z - 0.5);
 		curBox = curBox->next;
 	}
 
@@ -215,5 +217,64 @@ bool SceneManager::save(const std::string& path)
 {
     return true;
 }
+
+bool SceneManager::pick(int x, int y)
+{
+	Viewport& vport = _cam->getViewport();
+	Point2 vpnt;
+	vpnt.x = ( x - vport.pixWidth / 2.0 ) / vport.pixScale;
+	vpnt.y = ( vport.pixHeight / 2.0 - y) / vport.pixScale;
+
+	glm::vec4 vec(vpnt.x, vpnt.y, 0.0, 1.0);
+	glm::vec4 linePnt = _cam->getViewMatrix().glMatrix() * vec;
+
+	glm::vec4 vec1(0.0, 0.0, 0.0, 1.0);
+	glm::vec4 dirPnt1 = _cam->getViewMatrix().glMatrix() * vec1;
+
+	glm::vec4 vec2(0.0, 0.0, -1.0, 1.0);
+	glm::vec4 dirPnt2 = _cam->getViewMatrix().glMatrix() * vec2;
+
+	glm::vec4 dir = dirPnt2 - dirPnt1;
+
+	if (_pickedBox) { delete _pickedBox; _pickedBox = NULL; }
+
+	Box *curBox = _boxList;
+	while (curBox)
+	{
+		BBox bbox;
+		bbox.add(curBox->x + 1, curBox->y + 1, curBox->z + 1);
+		bbox.add(curBox->x - 1, curBox->y - 1, curBox->z - 1);
+
+		if (isPicked(Point3(vpnt.x, vpnt.y, 0.0), Point3(dir.x, dir.y, dir.z), bbox))
+		{
+			_pickedBox = new Box;
+			_pickedBox->x = curBox->x;
+			_pickedBox->y = curBox->y;
+			_pickedBox->z = curBox->z;
+			_pickedBox->r = 255;
+			_pickedBox->g = 255;
+			_pickedBox->b = 255;
+			
+			printf("pick\n");
+			break;
+		}
+		curBox = curBox->next;
+	}
+
+	return true;
+}
+
+bool SceneManager::isPicked(Point3 linePnt, Point3 lineDir, BBox& bbox)
+{
+	Point maxPnt = bbox.maxPoint();
+	Point minPnt = bbox.minPoint();
+
+	if (linePnt.x < maxPnt.x && linePnt.x > minPnt.x &&
+		linePnt.y < maxPnt.y && linePnt.y > minPnt.y &&
+		linePnt.z < maxPnt.z && linePnt.z > minPnt.z)
+		return true;
+	return false;
+}
+
 
 SK_END_NAMESPACE

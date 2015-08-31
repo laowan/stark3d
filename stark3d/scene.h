@@ -51,11 +51,15 @@ public:
     bool open(const std::string& path);
     bool save(const std::string& path);
 
+	bool pick(int x, int y);
+	bool isPicked(Point3 linePnt, Point3 lineDir, BBox& bbox);
+
 private:
     std::vector<SceneNode*> _nodes;
     RenderAction* _renderAct;
 	Camera* _cam;
     Box *_boxList;
+	Box *_pickedBox;
 };
 SK_END_NAMESPACE
 #endif

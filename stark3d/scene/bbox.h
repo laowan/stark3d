@@ -8,6 +8,20 @@
 #define BBOX_LIMIT 1.0e+12
 
 SK_BEGIN_NAMESPACE
+
+struct Point2
+{
+	Point2() : x(0.0), y(0.0) {}
+	Point2(float x, float y) { this->x = x; this->y = y; }
+	float x, y;
+};
+
+struct Point3
+{
+	Point3(float x, float y, float z) { this->x = x; this->y = y; this->z = z; }
+	float x, y, z;
+};
+
 struct Point
 {
 	Point(float x, float y, float z) { this->x = x; this->y = y; this->z = z; }

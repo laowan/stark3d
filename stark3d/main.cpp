@@ -72,6 +72,11 @@ void MouseButton(int button, int state, int x, int y)
         gsMoveBtn = -1;
     }
 
+	if (button == 0 && state == 1)
+	{
+		Module::sceneMan().pick(x, y);
+	}
+
     printf("mouse button %d, %d, (%d, %d)\n", button, state, x, y);
     glutPostRedisplay();
 }
@@ -141,6 +146,7 @@ static void display(void)
 
     // now render the scene
     Module::sceneMan().render();
+	Module::sceneMan().renderBox(NULL);
 
     glutSwapBuffers();
     glutPostRedisplay();
