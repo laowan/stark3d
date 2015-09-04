@@ -18,6 +18,7 @@ struct Point2
 
 struct Point3
 {
+	Point3() : x(0.0), y(0.0), z(0.0) {}
 	Point3(float x, float y, float z) { this->x = x; this->y = y; this->z = z; }
 	float x, y, z;
 };
@@ -34,9 +35,10 @@ public:
     BBox();
     void add(float x, float y, float z);
     bool render(RenderAction* act);
-	Point maxPoint() const;
-	Point minPoint() const;
+	Point3 maxPoint() const;
+	Point3 minPoint() const;
 	std::vector<Point> points() const;
+	void getSixPlanes(Point3 *pnts, Point3 *normals);
 
 private:
     float _xmin, _xmax;

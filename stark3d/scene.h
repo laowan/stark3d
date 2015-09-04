@@ -40,7 +40,8 @@ public:
     int addNode(SceneNode* node);
 
     SceneNode* resolve(int idx);
-    bool render(SceneNode* node = NULL);
+    bool render();
+	bool renderNode(SceneNode* node = NULL);
     void print(SceneNode* node = NULL);
 	Camera* getCamera();
     

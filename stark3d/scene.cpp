@@ -79,7 +79,27 @@ SceneNode* SceneManager::resolve(int idx)
     return _nodes.at(idx-1);
 }
 
-bool SceneManager::render(SceneNode* node /*= NULL*/)
+bool SceneManager::render()
+{
+	renderNode(NULL);
+
+	// render the picked box
+	if (_pickedBox)
+	{
+		Cube cube(1.0);
+		_renderAct->_color = glm::vec4(_pickedBox->r/255.0, _pickedBox->g/255.0, _pickedBox->b/255.0, 1.0);
+		Transform transform = Transform();
+		Matrix& mat = transform.matrix();
+		mat.pan(_pickedBox->x, _pickedBox->y, _pickedBox->z);
+		transform.renderEnter(_renderAct);
+		Cube(1.0).render(_renderAct);
+		transform.renderLeave(_renderAct);
+	}
+
+	return true;
+}
+
+bool SceneManager::renderNode(SceneNode* node /*= NULL*/)
 {
     if (node == NULL)
         node = _nodes[0];
@@ -228,6 +248,7 @@ bool SceneManager::pick(int x, int y)
 	glm::vec4 vec(vpnt.x, vpnt.y, 0.0, 1.0);
 	glm::vec4 linePnt = _cam->getViewMatrix().glMatrix() * vec;
 
+	printf("%f, %f, %f\n", linePnt.x, linePnt.y, linePnt.z);
 	glm::vec4 vec1(0.0, 0.0, 0.0, 1.0);
 	glm::vec4 dirPnt1 = _cam->getViewMatrix().glMatrix() * vec1;
 
@@ -242,8 +263,8 @@ bool SceneManager::pick(int x, int y)
 	while (curBox)
 	{
 		BBox bbox;
-		bbox.add(curBox->x + 1, curBox->y + 1, curBox->z + 1);
-		bbox.add(curBox->x - 1, curBox->y - 1, curBox->z - 1);
+		bbox.add(curBox->x + 0.5, curBox->y + 0.5, curBox->z + 0.5);
+		bbox.add(curBox->x - 0.5, curBox->y - 0.5, curBox->z - 0.5);
 
 		if (isPicked(Point3(vpnt.x, vpnt.y, 0.0), Point3(dir.x, dir.y, dir.z), bbox))
 		{
@@ -255,7 +276,6 @@ bool SceneManager::pick(int x, int y)
 			_pickedBox->g = 255;
 			_pickedBox->b = 255;
 			
-			printf("pick\n");
 			break;
 		}
 		curBox = curBox->next;
@@ -266,15 +286,41 @@ bool SceneManager::pick(int x, int y)
 
 bool SceneManager::isPicked(Point3 linePnt, Point3 lineDir, BBox& bbox)
 {
-	Point maxPnt = bbox.maxPoint();
-	Point minPnt = bbox.minPoint();
+	Point3 maxPnt = bbox.maxPoint();
+	Point3 minPnt = bbox.minPoint();
 
-	if (linePnt.x < maxPnt.x && linePnt.x > minPnt.x &&
-		linePnt.y < maxPnt.y && linePnt.y > minPnt.y &&
-		linePnt.z < maxPnt.z && linePnt.z > minPnt.z)
-		return true;
+	Point3 planePnts[6];
+	Point3 planeNormal[6];
+	bbox.getSixPlanes(planePnts, planeNormal);
+	
+	Point3 crossPnt;
+	for (int i = 0; i < 6; i++)
+	{
+		float tmp = lineDir.x * planeNormal[i].x +
+			lineDir.y * planeNormal[i].y +
+			lineDir.z * planeNormal[i].z;
+		if (tmp < -0.0001 || tmp > 0.0001) // not zero
+		{
+			float t = (planePnts[i].x - linePnt.x) * planeNormal[i].x +
+				(planePnts[i].y - linePnt.y) * planeNormal[i].y +
+				(planePnts[i].z - linePnt.z) * planeNormal[i].z;
+			t /= tmp;
+
+			crossPnt.x = linePnt.x + lineDir.x * t;
+			crossPnt.y = linePnt.y + lineDir.y * t;
+			crossPnt.z = linePnt.z + lineDir.z * t;
+
+			if (crossPnt.x < maxPnt.x + 0.0001 && crossPnt.x > minPnt.x - 0.0001 &&
+				crossPnt.y < maxPnt.y + 0.0001 && crossPnt.y > minPnt.y - 0.0001 &&
+				crossPnt.z < maxPnt.z + 0.0001 && crossPnt.z > minPnt.z - 0.0001)
+			{
+				printf("cross point : %f, %f, %f\n", crossPnt.x, crossPnt.y, crossPnt.z);
+				return true;
+			}
+		}
+	}
+
 	return false;
 }
-
 
 SK_END_NAMESPACE

@@ -32,20 +32,21 @@ bool BBox::render(RenderAction* act)
     return true;
 }
 
-Point BBox::maxPoint() const
+Point3 BBox::maxPoint() const
 {
-	return Point(_xmax, _ymax, _zmax);
+	return Point3(_xmax, _ymax, _zmax);
 }
 
-Point BBox::minPoint() const
+Point3 BBox::minPoint() const
 {
-	return Point(_xmin, _ymin, _zmin);
+	return Point3(_xmin, _ymin, _zmin);
 }
 
 std::vector<Point> BBox::points() const
 {
 	std::vector<Point> pts;
 
+	// 12 edges
 	pts.push_back(Point(_xmax, _ymax, _zmax));
 	pts.push_back(Point(_xmax, _ymax, _zmin));
 
@@ -83,6 +84,27 @@ std::vector<Point> BBox::points() const
 	pts.push_back(Point(_xmin, _ymin, _zmin));
 
 	return pts;
+}
+
+void BBox::getSixPlanes(Point3 *pnts, Point3 *normals)
+{
+	pnts[0] = maxPoint();
+	normals[0] = Point3(1.0, 0.0, 0.0);
+
+	pnts[1] = maxPoint();
+	normals[1] = Point3(0.0, 1.0, 0.0);
+
+	pnts[2] = maxPoint();
+	normals[2] = Point3(0.0, 0.0, 1.0);
+
+	pnts[3] = minPoint();
+	normals[3] = Point3(-1.0, 0.0, 0.0);
+
+	pnts[4] = minPoint();
+	normals[4] = Point3(0.0, -1.0, 0.0);
+
+	pnts[5] = minPoint();
+	normals[5] = Point3(0.0, 0.0, -1.0);
 }
 
 SK_END_NAMESPACE
