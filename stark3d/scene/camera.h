@@ -18,7 +18,7 @@ public:
         pixWidth = width;
         pixHeight = height;
 
-		pixScale = pixHeight / extent;
+        pixScale = pixHeight / extent;
 
         glViewport(0, 0, width, height);
     }
@@ -42,7 +42,7 @@ public:
     glm::mat4 getViewProjMat();
 
     void reset();
-	void zoomAll(const BBox& bbox);
+    void zoomAll(const BBox& bbox);
 
 private:
     glm::mat4 getPerspectiveProjMat();

@@ -41,26 +41,26 @@ public:
 
     SceneNode* resolve(int idx);
     bool render();
-	bool renderNode(SceneNode* node = NULL);
+    bool renderNode(SceneNode* node = NULL);
     void print(SceneNode* node = NULL);
-	Camera* getCamera();
+    Camera* getCamera();
     
     int addBox(int32 x, int32 y, int32 z, uint8 r, uint8 g, uint8 b);
     bool renderBox(Box* box);
-	BBox boundingBox();
+    BBox boundingBox();
 
     bool open(const std::string& path);
     bool save(const std::string& path);
 
-	bool pick(int x, int y);
-	bool isPicked(Point3 linePnt, Point3 lineDir, BBox& bbox);
+    bool pick(int x, int y);
+    bool isPicked(Point3 linePnt, Point3 lineDir, BBox& bbox);
 
 private:
     std::vector<SceneNode*> _nodes;
     RenderAction* _renderAct;
-	Camera* _cam;
+    Camera* _cam;
     Box *_boxList;
-	Box *_pickedBox;
+    Box *_pickedBox;
 };
 SK_END_NAMESPACE
 #endif

@@ -72,10 +72,10 @@ void MouseButton(int button, int state, int x, int y)
         gsMoveBtn = -1;
     }
 
-	if (button == 0 && state == 1)
-	{
-		Module::sceneMan().pick(x, y);
-	}
+    if (button == 0 && state == 1)
+    {
+        Module::sceneMan().pick(x, y);
+    }
 
     printf("mouse button %d, %d, (%d, %d)\n", button, state, x, y);
     glutPostRedisplay();
@@ -85,7 +85,7 @@ void MouseWheel(int wheel, int direction, int x, int y)
 {
     printf("mouse wheel %d, %d, (%d, %d)\n", wheel, direction, x, y);
 
-	Viewport& vp = Module::sceneMan().getCamera()->getViewport();
+    Viewport& vp = Module::sceneMan().getCamera()->getViewport();
     double zoomFactor;
     zoomFactor = 1.0 + (160.0/(vp.extent*vp.pixScale)) * fabs((double)direction);
 
@@ -101,14 +101,14 @@ void MouseWheel(int wheel, int direction, int x, int y)
 
 static void resize(int width, int height)
 {
-	Module::sceneMan().getCamera()->getViewport().resize(width, height);
+    Module::sceneMan().getCamera()->getViewport().resize(width, height);
 }
 
 static void init(void)
 {
     Module::init();
 
-	skCreateScene();
+    skCreateScene();
 
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
@@ -136,7 +136,7 @@ static void display(void)
 
     // calculate the mvp matrix and apply it to the shader
     uniforms.mv = Module::sceneMan().getCamera()->getViewMat();
-	uniforms.mvp = Module::sceneMan().getCamera()->getViewProjMat();
+    uniforms.mvp = Module::sceneMan().getCamera()->getViewProjMat();
     uniforms.color = glm::vec4(1.0, 1.0, 0.0, 1.0);
     uniforms.lightPosition = glm::vec3(300.0f, 300.0f, 300.0f);
     uniforms.lightColor = glm::vec3(1.0f, 1.0f, 1.0f);
@@ -146,7 +146,7 @@ static void display(void)
 
     // now render the scene
     Module::sceneMan().render();
-	Module::sceneMan().renderBox(NULL);
+    Module::sceneMan().renderBox(NULL);
 
     glutSwapBuffers();
     glutPostRedisplay();
@@ -158,9 +158,9 @@ static void keyboard(unsigned char key, int x, int y)
     {
     case 27:
     case 'q': glutLeaveMainLoop(); break;
-	case 'r': Module::sceneMan().getCamera()->reset(); break;
-	case 'z': Module::sceneMan().getCamera()->zoomAll(Module::sceneMan().boundingBox()); break;
-	case '1': skScreenshot("123.bmp"); break;
+    case 'r': Module::sceneMan().getCamera()->reset(); break;
+    case 'z': Module::sceneMan().getCamera()->zoomAll(Module::sceneMan().boundingBox()); break;
+    case '1': skScreenshot("123.bmp"); break;
     case 'p':
         {
             glm::mat4 vmat = Module::sceneMan().getCamera()->getViewMat();

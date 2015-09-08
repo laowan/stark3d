@@ -93,6 +93,9 @@
     <ClCompile Include="scene\bsp.cpp">
       <Filter>Source Files\scene</Filter>
     </ClCompile>
+    <ClCompile Include="geom.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="utils\framework.h">
@@ -160,6 +163,9 @@
     </ClInclude>
     <ClInclude Include="scene\bsp.h">
       <Filter>Header Files\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="geom.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

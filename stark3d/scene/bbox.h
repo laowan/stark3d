@@ -2,6 +2,7 @@
 #define _BBOX_H
 
 #include "global.h"
+#include "geom.h"
 #include "renderaction.h"
 #include <vector>
 
@@ -9,36 +10,16 @@
 
 SK_BEGIN_NAMESPACE
 
-struct Point2
-{
-	Point2() : x(0.0), y(0.0) {}
-	Point2(float x, float y) { this->x = x; this->y = y; }
-	float x, y;
-};
-
-struct Point3
-{
-	Point3() : x(0.0), y(0.0), z(0.0) {}
-	Point3(float x, float y, float z) { this->x = x; this->y = y; this->z = z; }
-	float x, y, z;
-};
-
-struct Point
-{
-	Point(float x, float y, float z) { this->x = x; this->y = y; this->z = z; }
-	float x, y, z;
-};
-
 class BBox
 {
 public:
     BBox();
     void add(float x, float y, float z);
     bool render(RenderAction* act);
-	Point3 maxPoint() const;
-	Point3 minPoint() const;
-	std::vector<Point> points() const;
-	void getSixPlanes(Point3 *pnts, Point3 *normals);
+    Point3 maxPoint() const;
+    Point3 minPoint() const;
+    std::vector<Point3> points() const;
+    void getSixPlanes(Point3 *pnts, Point3 *normals);
 
 private:
     float _xmin, _xmax;

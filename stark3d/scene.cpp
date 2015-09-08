@@ -20,11 +20,11 @@ SceneManager::SceneManager()
 
     root->_handle = 1;
 
-	_cam = new Camera();
-	addNode(_cam);
+    _cam = new Camera();
+    addNode(_cam);
 
     _boxList = NULL;
-	_pickedBox = NULL;
+    _pickedBox = NULL;
 }
 
 SceneManager::~SceneManager()
@@ -81,22 +81,22 @@ SceneNode* SceneManager::resolve(int idx)
 
 bool SceneManager::render()
 {
-	renderNode(NULL);
+    renderNode(NULL);
 
-	// render the picked box
-	if (_pickedBox)
-	{
-		Cube cube(1.0);
-		_renderAct->_color = glm::vec4(_pickedBox->r/255.0, _pickedBox->g/255.0, _pickedBox->b/255.0, 1.0);
-		Transform transform = Transform();
-		Matrix& mat = transform.matrix();
-		mat.pan(_pickedBox->x, _pickedBox->y, _pickedBox->z);
-		transform.renderEnter(_renderAct);
-		Cube(1.0).render(_renderAct);
-		transform.renderLeave(_renderAct);
-	}
+    // render the picked box
+    if (_pickedBox)
+    {
+        Cube cube(1.0);
+        _renderAct->_color = glm::vec4(_pickedBox->r/255.0, _pickedBox->g/255.0, _pickedBox->b/255.0, 1.0);
+        Transform transform = Transform();
+        Matrix& mat = transform.matrix();
+        mat.pan(_pickedBox->x, _pickedBox->y, _pickedBox->z);
+        transform.renderEnter(_renderAct);
+        Cube(1.0).render(_renderAct);
+        transform.renderLeave(_renderAct);
+    }
 
-	return true;
+    return true;
 }
 
 bool SceneManager::renderNode(SceneNode* node /*= NULL*/)
@@ -160,7 +160,7 @@ void SceneManager::print(SceneNode* node)
 
 Camera* SceneManager::getCamera()
 {
-	return _cam;
+    return _cam;
 }
 
 int SceneManager::addBox(int32 x, int32 y, int32 z, uint8 r, uint8 g, uint8 b)
@@ -203,16 +203,16 @@ bool SceneManager::renderBox(Box* box)
 
 BBox SceneManager::boundingBox()
 {
-	BBox bbox;
-	Box *curBox = _boxList;
-	while (curBox)
-	{
-		bbox.add(curBox->x + 0.5, curBox->y + 0.5, curBox->z + 0.5);
-		bbox.add(curBox->x - 0.5, curBox->y - 0.5, curBox->z - 0.5);
-		curBox = curBox->next;
-	}
+    BBox bbox;
+    Box *curBox = _boxList;
+    while (curBox)
+    {
+        bbox.add(curBox->x + 0.5, curBox->y + 0.5, curBox->z + 0.5);
+        bbox.add(curBox->x - 0.5, curBox->y - 0.5, curBox->z - 0.5);
+        curBox = curBox->next;
+    }
 
-	return bbox;
+    return bbox;
 }
 
 bool SceneManager::open(const std::string& path)
@@ -240,87 +240,87 @@ bool SceneManager::save(const std::string& path)
 
 bool SceneManager::pick(int x, int y)
 {
-	Viewport& vport = _cam->getViewport();
-	Point2 vpnt;
-	vpnt.x = ( x - vport.pixWidth / 2.0 ) / vport.pixScale;
-	vpnt.y = ( vport.pixHeight / 2.0 - y) / vport.pixScale;
+    Viewport& vport = _cam->getViewport();
+    Point2 vpnt;
+    vpnt.x = ( x - vport.pixWidth / 2.0 ) / vport.pixScale;
+    vpnt.y = ( vport.pixHeight / 2.0 - y) / vport.pixScale;
 
-	glm::vec4 vec(vpnt.x, vpnt.y, 0.0, 1.0);
-	glm::vec4 linePnt = _cam->getViewMatrix().glMatrix() * vec;
+    glm::vec4 vec(vpnt.x, vpnt.y, 0.0, 1.0);
+    glm::vec4 linePnt = _cam->getViewMatrix().glMatrix() * vec;
 
-	printf("%f, %f, %f\n", linePnt.x, linePnt.y, linePnt.z);
-	glm::vec4 vec1(0.0, 0.0, 0.0, 1.0);
-	glm::vec4 dirPnt1 = _cam->getViewMatrix().glMatrix() * vec1;
+    printf("%f, %f, %f\n", linePnt.x, linePnt.y, linePnt.z);
+    glm::vec4 vec1(0.0, 0.0, 0.0, 1.0);
+    glm::vec4 dirPnt1 = _cam->getViewMatrix().glMatrix() * vec1;
 
-	glm::vec4 vec2(0.0, 0.0, -1.0, 1.0);
-	glm::vec4 dirPnt2 = _cam->getViewMatrix().glMatrix() * vec2;
+    glm::vec4 vec2(0.0, 0.0, -1.0, 1.0);
+    glm::vec4 dirPnt2 = _cam->getViewMatrix().glMatrix() * vec2;
 
-	glm::vec4 dir = dirPnt2 - dirPnt1;
+    glm::vec4 dir = dirPnt2 - dirPnt1;
 
-	if (_pickedBox) { delete _pickedBox; _pickedBox = NULL; }
+    if (_pickedBox) { delete _pickedBox; _pickedBox = NULL; }
 
-	Box *curBox = _boxList;
-	while (curBox)
-	{
-		BBox bbox;
-		bbox.add(curBox->x + 0.5, curBox->y + 0.5, curBox->z + 0.5);
-		bbox.add(curBox->x - 0.5, curBox->y - 0.5, curBox->z - 0.5);
+    Box *curBox = _boxList;
+    while (curBox)
+    {
+        BBox bbox;
+        bbox.add(curBox->x + 0.5, curBox->y + 0.5, curBox->z + 0.5);
+        bbox.add(curBox->x - 0.5, curBox->y - 0.5, curBox->z - 0.5);
 
-		if (isPicked(Point3(vpnt.x, vpnt.y, 0.0), Point3(dir.x, dir.y, dir.z), bbox))
-		{
-			_pickedBox = new Box;
-			_pickedBox->x = curBox->x;
-			_pickedBox->y = curBox->y;
-			_pickedBox->z = curBox->z;
-			_pickedBox->r = 255;
-			_pickedBox->g = 255;
-			_pickedBox->b = 255;
-			
-			break;
-		}
-		curBox = curBox->next;
-	}
+        if (isPicked(Point3(vpnt.x, vpnt.y, 0.0), Point3(dir.x, dir.y, dir.z), bbox))
+        {
+            _pickedBox = new Box;
+            _pickedBox->x = curBox->x;
+            _pickedBox->y = curBox->y;
+            _pickedBox->z = curBox->z;
+            _pickedBox->r = 255;
+            _pickedBox->g = 255;
+            _pickedBox->b = 255;
+            
+            break;
+        }
+        curBox = curBox->next;
+    }
 
-	return true;
+    return true;
 }
 
 bool SceneManager::isPicked(Point3 linePnt, Point3 lineDir, BBox& bbox)
 {
-	Point3 maxPnt = bbox.maxPoint();
-	Point3 minPnt = bbox.minPoint();
+    Point3 maxPnt = bbox.maxPoint();
+    Point3 minPnt = bbox.minPoint();
 
-	Point3 planePnts[6];
-	Point3 planeNormal[6];
-	bbox.getSixPlanes(planePnts, planeNormal);
-	
-	Point3 crossPnt;
-	for (int i = 0; i < 6; i++)
-	{
-		float tmp = lineDir.x * planeNormal[i].x +
-			lineDir.y * planeNormal[i].y +
-			lineDir.z * planeNormal[i].z;
-		if (tmp < -0.0001 || tmp > 0.0001) // not zero
-		{
-			float t = (planePnts[i].x - linePnt.x) * planeNormal[i].x +
-				(planePnts[i].y - linePnt.y) * planeNormal[i].y +
-				(planePnts[i].z - linePnt.z) * planeNormal[i].z;
-			t /= tmp;
+    Point3 planePnts[6];
+    Point3 planeNormal[6];
+    bbox.getSixPlanes(planePnts, planeNormal);
+    
+    Point3 crossPnt;
+    for (int i = 0; i < 6; i++)
+    {
+        float tmp = lineDir.x * planeNormal[i].x +
+            lineDir.y * planeNormal[i].y +
+            lineDir.z * planeNormal[i].z;
+        if (tmp < -0.0001 || tmp > 0.0001) // not zero
+        {
+            float t = (planePnts[i].x - linePnt.x) * planeNormal[i].x +
+                (planePnts[i].y - linePnt.y) * planeNormal[i].y +
+                (planePnts[i].z - linePnt.z) * planeNormal[i].z;
+            t /= tmp;
 
-			crossPnt.x = linePnt.x + lineDir.x * t;
-			crossPnt.y = linePnt.y + lineDir.y * t;
-			crossPnt.z = linePnt.z + lineDir.z * t;
+            crossPnt.x = linePnt.x + lineDir.x * t;
+            crossPnt.y = linePnt.y + lineDir.y * t;
+            crossPnt.z = linePnt.z + lineDir.z * t;
 
-			if (crossPnt.x < maxPnt.x + 0.0001 && crossPnt.x > minPnt.x - 0.0001 &&
-				crossPnt.y < maxPnt.y + 0.0001 && crossPnt.y > minPnt.y - 0.0001 &&
-				crossPnt.z < maxPnt.z + 0.0001 && crossPnt.z > minPnt.z - 0.0001)
-			{
-				printf("cross point : %f, %f, %f\n", crossPnt.x, crossPnt.y, crossPnt.z);
-				return true;
-			}
-		}
-	}
+            if (crossPnt.x < maxPnt.x + 0.0001 && crossPnt.x > minPnt.x - 0.0001 &&
+                crossPnt.y < maxPnt.y + 0.0001 && crossPnt.y > minPnt.y - 0.0001 &&
+                crossPnt.z < maxPnt.z + 0.0001 && crossPnt.z > minPnt.z - 0.0001)
+            {
+                printf("cross point : %f, %f, %f\n", crossPnt.x, crossPnt.y, crossPnt.z);
+                return true;
+            }
+        }
+    }
 
-	return false;
+    return false;
 }
 
 SK_END_NAMESPACE

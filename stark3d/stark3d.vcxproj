@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="geom.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="module.cpp" />
     <ClCompile Include="renderaction.cpp" />
@@ -35,6 +36,7 @@
     <ClCompile Include="utils\utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="geom.h" />
     <ClInclude Include="global.h" />
     <ClInclude Include="module.h" />
     <ClInclude Include="renderaction.h" />
