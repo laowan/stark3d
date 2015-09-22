@@ -260,23 +260,34 @@ bool SceneManager::pick(int x, int y)
     if (_pickedBox) { delete _pickedBox; _pickedBox = NULL; }
 
     Box *curBox = _boxList;
+    Point3 crossPnt;
+    double depth = -BBOX_LIMIT;
     while (curBox)
     {
         BBox bbox;
         bbox.add(curBox->x + 0.5, curBox->y + 0.5, curBox->z + 0.5);
         bbox.add(curBox->x - 0.5, curBox->y - 0.5, curBox->z - 0.5);
 
-        if (isPicked(Point3(vpnt.x, vpnt.y, 0.0), Point3(dir.x, dir.y, dir.z), bbox))
+        if (isPicked(Point3(vpnt.x, vpnt.y, 0.0), Point3(dir.x, dir.y, dir.z), &bbox, &crossPnt))
         {
-            _pickedBox = new Box;
-            _pickedBox->x = curBox->x;
-            _pickedBox->y = curBox->y;
-            _pickedBox->z = curBox->z;
-            _pickedBox->r = 255;
-            _pickedBox->g = 255;
-            _pickedBox->b = 255;
-            
-            break;
+            glm::vec4 tmpPnt(crossPnt.x, crossPnt.y, crossPnt.z, 1.0);
+            glm::vec4 viewPnt = _cam->getViewMat() * tmpPnt;
+
+            if (viewPnt.z > depth)
+            {
+                if (!_pickedBox)
+                {
+                    _pickedBox = new Box;
+                    _pickedBox->r = 255;
+                    _pickedBox->g = 255;
+                    _pickedBox->b = 255;
+                }                    
+                _pickedBox->x = curBox->x;
+                _pickedBox->y = curBox->y;
+                _pickedBox->z = curBox->z;
+
+                depth = viewPnt.z;
+            }
         }
         curBox = curBox->next;
     }
@@ -284,14 +295,26 @@ bool SceneManager::pick(int x, int y)
     return true;
 }
 
-bool SceneManager::isPicked(Point3 linePnt, Point3 lineDir, BBox& bbox)
+/*!
+    line:
+        x = lpx + dirx * t,
+        y = lpy + diry * t,  (1)
+        z = lpz + dirz * t,
+    plane:
+        nx * (x - px) + ny * (y - py) + nz * (z - pz) = 0;  (2)
+
+    from (1)(2), get the value of t,
+    then form (1), get the cross point.
+
+*/
+bool SceneManager::isPicked(Point3 linePnt, Point3 lineDir, BBox* bbox, Point3* crsPnt)
 {
-    Point3 maxPnt = bbox.maxPoint();
-    Point3 minPnt = bbox.minPoint();
+    Point3 maxPnt = bbox->maxPoint();
+    Point3 minPnt = bbox->minPoint();
 
     Point3 planePnts[6];
     Point3 planeNormal[6];
-    bbox.getSixPlanes(planePnts, planeNormal);
+    bbox->getSixPlanes(planePnts, planeNormal);
     
     Point3 crossPnt;
     for (int i = 0; i < 6; i++)
@@ -314,7 +337,9 @@ bool SceneManager::isPicked(Point3 linePnt, Point3 lineDir, BBox& bbox)
                 crossPnt.y < maxPnt.y + 0.0001 && crossPnt.y > minPnt.y - 0.0001 &&
                 crossPnt.z < maxPnt.z + 0.0001 && crossPnt.z > minPnt.z - 0.0001)
             {
-                printf("cross point : %f, %f, %f\n", crossPnt.x, crossPnt.y, crossPnt.z);
+                crsPnt->x = crossPnt.x;
+                crsPnt->y = crossPnt.y;
+                crsPnt->z = crossPnt.z;
                 return true;
             }
         }

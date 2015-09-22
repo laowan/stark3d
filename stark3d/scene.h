@@ -53,7 +53,7 @@ public:
     bool save(const std::string& path);
 
     bool pick(int x, int y);
-    bool isPicked(Point3 linePnt, Point3 lineDir, BBox& bbox);
+    bool isPicked(Point3 linePnt, Point3 lineDir, BBox* bbox, Point3* crsPnt);
 
 private:
     std::vector<SceneNode*> _nodes;
