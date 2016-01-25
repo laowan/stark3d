@@ -9,10 +9,11 @@ SK_BEGIN_NAMESPACE
 class Line : public SceneNode
 {
 public:
-    Line();
-    Line(glm::vec3& point1, glm::vec3& point2);
+    Line(glm::vec3& point1 = glm::vec3(0.0,0.0,0.0), glm::vec3& point2 = glm::vec3(0.0,0.0,0.0));
     ~Line();
     std::string type() { return "Line"; }
+
+    void reset(glm::vec3& point1, glm::vec3& point2);
 
     bool render(RenderAction* act);
 

@@ -59,8 +59,9 @@ private:
     std::vector<SceneNode*> _nodes;
     RenderAction* _renderAct;
     Camera* _cam;
-    Box *_boxList;
-    Box *_pickedBox;
+    Box* _boxList;
+    Box* _pickedBox;
+    Line* _pickLine;
 };
 SK_END_NAMESPACE
 #endif

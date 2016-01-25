@@ -23,8 +23,10 @@ SceneManager::SceneManager()
     _cam = new Camera();
     addNode(_cam);
 
+    _pickLine = new Line;
     _boxList = NULL;
     _pickedBox = NULL;
+    
 }
 
 SceneManager::~SceneManager()
@@ -95,6 +97,9 @@ bool SceneManager::render()
         Cube(1.0).render(_renderAct);
         transform.renderLeave(_renderAct);
     }
+
+    _renderAct->_color = glm::vec4(0.0, 0.0, 0.0, 1.0);
+    _pickLine->render(_renderAct);
 
     return true;
 }
@@ -245,7 +250,7 @@ bool SceneManager::pick(int x, int y)
     vpnt.x = ( x - vport.pixWidth / 2.0 ) / vport.pixScale;
     vpnt.y = ( vport.pixHeight / 2.0 - y) / vport.pixScale;
 
-    glm::vec4 vec(vpnt.x, vpnt.y, 0.0, 1.0);
+    glm::vec4 vec(vpnt.x, vpnt.y, 100.0, 1.0);
     glm::vec4 linePnt = _cam->getViewMatrix().glMatrix() * vec;
 
     printf("%f, %f, %f\n", linePnt.x, linePnt.y, linePnt.z);
@@ -256,6 +261,11 @@ bool SceneManager::pick(int x, int y)
     glm::vec4 dirPnt2 = _cam->getViewMatrix().glMatrix() * vec2;
 
     glm::vec4 dir = dirPnt2 - dirPnt1;
+
+    // reset pick line and render it later for debug purpose
+    glm::vec3 linePnt1 = glm::vec3(linePnt.x, linePnt.y, linePnt.z);
+    glm::vec4 linePnt2 = linePnt + 1000 * dir;
+    _pickLine->reset(linePnt1, glm::vec3(linePnt2.x, linePnt2.y, linePnt2.z));
 
     if (_pickedBox) { delete _pickedBox; _pickedBox = NULL; }
 
