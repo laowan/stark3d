@@ -40,6 +40,8 @@ bool Line::render(RenderAction* act)
 
     glDisableVertexAttribArray(0);
 
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+
     return true;
 }
 

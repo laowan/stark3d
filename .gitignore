@@ -45,6 +45,7 @@ Temporary Items
 
 stark3d/stark3d.vcxproj.user
 stark3d/Debug/
+stark3d/Library/
 stark3d/stark3d.opensdf
 stark3d/stark3d.sdf
 lib/freeglut-2.8.1/lib/x86/freeglut.exp
