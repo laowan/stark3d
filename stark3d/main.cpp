@@ -14,6 +14,7 @@ int gsTmpX;
 int gsTmpY;
 int gsMoveBtn;
 static GLuint gsFontTexture = 0;
+static bool gsMousePressed[3] = { false, false, false };
 
 void ImGuiRenderDrawLists(ImDrawData* draw_data)
 {
@@ -91,6 +92,12 @@ void ImGuiRenderDrawLists(ImDrawData* draw_data)
     glViewport(last_viewport[0], last_viewport[1], (GLsizei)last_viewport[2], (GLsizei)last_viewport[3]);
 }
 
+void PassiveMotion(int x, int y)
+{
+    ImGuiIO& io = ImGui::GetIO();
+    io.MousePos = ImVec2((float)x, (float)y);
+}
+
 void MouseMotion(int x, int y)
 {
     printf("mouse motion (%d, %d)\n", x, y);
@@ -133,6 +140,9 @@ void MouseMotion(int x, int y)
         viewMat.rot(mat.xx, mat.xy, mat.xz, ang_x);
     }
 
+    ImGuiIO& io = ImGui::GetIO();
+    io.MousePos = ImVec2((float)x, (float)y);
+
     glutPostRedisplay();
 }
 
@@ -154,6 +164,8 @@ void MouseButton(int button, int state, int x, int y)
     {
         Module::sceneMan().pick(x, y);
     }
+
+    gsMousePressed[button] = true;
 
     printf("mouse button %d, %d, (%d, %d)\n", button, state, x, y);
     glutPostRedisplay();
@@ -257,6 +269,14 @@ static void display(void)
         glBindTexture(GL_TEXTURE_2D, last_texture);
     }
 
+    ImGuiIO& io = ImGui::GetIO();
+
+    for (int i = 0; i < 3; i++)
+    {
+        io.MouseDown[i] = gsMousePressed[i] || gsMoveBtn == i;
+        gsMousePressed[i] = 0;
+    }
+
     ImGui::NewFrame();
     
     ImGui::Text("hello world");
@@ -333,6 +353,7 @@ int main(int argc, char *argv[])
 
     glutMouseFunc(MouseButton);
     glutMotionFunc(MouseMotion);
+    glutPassiveMotionFunc(PassiveMotion);
     glutMouseWheelFunc(MouseWheel);
 
     glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_CONTINUE_EXECUTION);
