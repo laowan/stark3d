@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include "module.h"
+#include "effect.h"
 #include <glm/gtc/type_ptr.hpp>
 #include "imgui/imgui.h"
 
@@ -15,6 +16,9 @@ int gsTmpY;
 int gsMoveBtn;
 static GLuint gsFontTexture = 0;
 static bool gsMousePressed[3] = { false, false, false };
+static int gsScreenshotButton = 0;
+
+static Effect* gsEffect = NULL; 
 
 void ImGuiRenderDrawLists(ImDrawData* draw_data)
 {
@@ -208,6 +212,9 @@ static void init(void)
 
     skCreateScene();
 
+    //gsEffect = new EffectNormal;
+    gsEffect = new EffectTextureMap;
+
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
     glFrontFace(GL_CCW);
@@ -228,24 +235,9 @@ static void display(void)
     glClearDepth(1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    Module::shaderMan().use(ShaderManager::SD_NORMAL);
+    gsEffect->render();
 
-    ShaderUniforms& uniforms = Module::shaderMan().currentShader()->uniforms();
-
-    // calculate the mvp matrix and apply it to the shader
-    uniforms.mv = Module::sceneMan().getCamera()->getViewMat();
-    uniforms.mvp = Module::sceneMan().getCamera()->getViewProjMat();
-    uniforms.color = glm::vec4(1.0, 1.0, 0.0, 1.0);
-    uniforms.lightPosition = glm::vec3(300.0f, 300.0f, 300.0f);
-    uniforms.lightColor = glm::vec3(1.0f, 1.0f, 1.0f);
-    uniforms.activeTexture = 0;
-
-    Module::shaderMan().currentShader()->commitUniforms();
-
-    // now render the scene
-    Module::sceneMan().render();
-    Module::sceneMan().renderBox(NULL);
-
+    /*
     if (!gsFontTexture)
     {
         ImGuiIO& io = ImGui::GetIO();
@@ -279,13 +271,16 @@ static void display(void)
 
     ImGui::NewFrame();
     
-    ImGui::Text("hello world");
-    static float f = 0.0f;
-    ImGui::SliderFloat("float", &f, 0.0f, 1.0f);
-    ImGui::Button("Test Window");
+    if (ImGui::Button("Screenshot")) gsScreenshotButton ^= 1;
+
+    if (gsScreenshotButton)
+    {
+        skScreenshot("123.bmp");
+        gsScreenshotButton ^= 1;
+    }
 
     ImGui::Render();
-
+    */
     glutSwapBuffers();
     glutPostRedisplay();
 }

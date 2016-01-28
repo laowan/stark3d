@@ -52,7 +52,7 @@ void skScreenshot(const char* file)
     glClearDepth(1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    Module::shaderMan().use(ShaderManager::SD_NORMAL);
+    Module::shaderMan().use("normal");
 
     ShaderUniforms& uniforms = Module::shaderMan().currentShader()->uniforms();
 
@@ -95,13 +95,15 @@ void skCreateScene()
     Color* colorBlue = new Color(0.0, 0.0, 1.0, 1.0);
 
     Module::sceneMan().addNode(colorRed);
-    Module::sceneMan().addNode(axisX);
-    Module::sceneMan().addNode(colorGreen);
-    Module::sceneMan().addNode(axisY);
-    Module::sceneMan().addNode(colorBlue);
-    Module::sceneMan().addNode(axisZ);
+    Module::sceneMan().addNode(new Texture());
+    Module::sceneMan().addNode(new Cube(2.0));
+    //Module::sceneMan().addNode(axisX);
+    //Module::sceneMan().addNode(colorGreen);
+    //Module::sceneMan().addNode(axisY);
+    //Module::sceneMan().addNode(colorBlue);
+    //Module::sceneMan().addNode(axisZ);
 
-    Module::sceneMan().open("./resource/scene.txt");
+    //Module::sceneMan().open("./resource/scene.txt");
 
 //     BSP* bsp = new BSP();
 //     bsp->load("resource/bsp/test1.bsp");
@@ -110,6 +112,7 @@ void skCreateScene()
     // add objects
     //     Terrain* terrain = new Terrain("resource/coastMountain64.raw", 64, 64, 10, 0.5f);
     //     Module::sceneMan().addNode(terrain);
+
 
     Module::sceneMan().print();
 }

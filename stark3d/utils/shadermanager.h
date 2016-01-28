@@ -10,21 +10,15 @@ SK_BEGIN_NAMESPACE
 class ShaderManager
 {
 public:
-    enum ShaderType
-    {
-        SD_NORMAL
-    };
-
-public:
     ShaderManager();
     ~ShaderManager();
 
-    void use(ShaderType type);
-    Shader* getShader(ShaderType type) { return _shaderMap[type];  }
+    void use(std::string name);
+    Shader* getShader(std::string name) { return _shaderMap[name]; }
     Shader* currentShader() { return _curShader; }
 
 private:
-    std::map<ShaderType, Shader*> _shaderMap;
+    std::map<std::string, Shader*> _shaderMap;
     Shader* _curShader;
 };
 

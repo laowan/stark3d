@@ -12,30 +12,23 @@ ShaderManager::~ShaderManager()
 
 }
 
-void ShaderManager::use(ShaderType type)
+void ShaderManager::use(std::string name)
 {
-    std::map<ShaderType, Shader*>::iterator it = _shaderMap.find(type);
+    std::map<std::string, Shader*>::iterator it = _shaderMap.find(name);
     if (it == _shaderMap.end())
     {
-        Shader* shader = NULL;
-        switch (type)
-        {
-        case SD_NORMAL:
-            shader = new Shader("normal");
-            break;
-        }
-
+        Shader* shader = new Shader(name);
         if (shader)
         {
             shader->use();
-            _shaderMap[type] = shader;
+            _shaderMap[name] = shader;
             _curShader = shader;
         }
     }
     else
     {
-        _shaderMap[type]->use();
-        _curShader = _shaderMap[type];
+        _shaderMap[name]->use();
+        _curShader = _shaderMap[name];
     }
 }
 

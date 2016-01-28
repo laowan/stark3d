@@ -31,6 +31,9 @@
     <Filter Include="Source Files\imgui">
       <UniqueIdentifier>{f41a6c22-23cc-4d70-8f5e-0063737b21d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\effect">
+      <UniqueIdentifier>{eca45b96-a2b2-453b-a43d-dcfb3b8433ef}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -110,6 +113,12 @@
     </ClCompile>
     <ClCompile Include="imgui\imgui_draw.cpp">
       <Filter>Source Files\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="effect\normal.cpp">
+      <Filter>Source Files\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="effect\screen_texture_map.cpp">
+      <Filter>Source Files\effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -199,6 +208,9 @@
     </ClInclude>
     <ClInclude Include="imgui\stb_truetype.h">
       <Filter>Header Files\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="effect.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
