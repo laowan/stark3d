@@ -7,6 +7,7 @@
 #include "utils/matrix.h"
 #include "utils/shadermanager.h"
 #include "utils/renderdevice.h"
+#include "utils/loader.h"
 
 SK_BEGIN_NAMESPACE
 

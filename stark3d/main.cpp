@@ -3,6 +3,8 @@
 #include <GL/freeglut.h>
 
 #include <stdio.h>
+#include <memory>
+
 #include "module.h"
 #include "effect.h"
 #include <glm/gtc/type_ptr.hpp>
@@ -18,7 +20,9 @@ static GLuint gsFontTexture = 0;
 static bool gsMousePressed[3] = { false, false, false };
 static int gsScreenshotButton = 0;
 
-static Effect* gsEffect = NULL; 
+static std::unique_ptr<Effect> gsEffect;
+static bool gsEffectNormal = false;
+static bool gsEffectScreenTextureMap = false;
 
 void ImGuiRenderDrawLists(ImDrawData* draw_data)
 {
@@ -212,8 +216,11 @@ static void init(void)
 
     skCreateScene();
 
-    //gsEffect = new EffectNormal;
-    gsEffect = new EffectTextureMap;
+    FileLoader3DS loader;
+    loader.load("./resource/Teapot.3ds");
+
+    std::unique_ptr<Effect> tmp(new EffectNormal);
+    gsEffect = std::move(tmp);
 
     glEnable(GL_CULL_FACE);
     glCullFace(GL_BACK);
@@ -237,7 +244,6 @@ static void display(void)
 
     gsEffect->render();
 
-    /*
     if (!gsFontTexture)
     {
         ImGuiIO& io = ImGui::GetIO();
@@ -270,8 +276,45 @@ static void display(void)
     }
 
     ImGui::NewFrame();
+
+    // deal with the event
+    if (gsEffectNormal)
+    {
+        std::unique_ptr<Effect> tmp(new EffectNormal);
+        gsEffect = std::move(tmp);
+        gsEffectNormal = false;
+    }
+
+    if (gsEffectScreenTextureMap)
+    {
+        std::unique_ptr<Effect> tmp(new EffectTextureMap);
+        gsEffect = std::move(tmp);
+        gsEffectScreenTextureMap = false;
+    }
+
+    ImGuiWindowFlags window_flags = 0;
+    window_flags |= ImGuiWindowFlags_MenuBar;
+    bool opened = true;
+    if (ImGui::Begin("X", &opened, window_flags))
+    {
+        if (ImGui::BeginMenuBar())
+        {
+            if (ImGui::BeginMenu("Effects"))
+            {
+                ImGui::MenuItem("Normal", NULL, &gsEffectNormal);
+                ImGui::MenuItem("Screen Texture Map", NULL, &gsEffectScreenTextureMap);
+                ImGui::EndMenu();
+            }
+            if (ImGui::BeginMenu("Tools"))
+            {
+                ImGui::EndMenu();
+            }
+            ImGui::EndMenuBar();
+        }
     
-    if (ImGui::Button("Screenshot")) gsScreenshotButton ^= 1;
+        if (ImGui::Button("Screenshot")) gsScreenshotButton ^= 1;
+        ImGui::End();
+    }
 
     if (gsScreenshotButton)
     {
@@ -280,7 +323,7 @@ static void display(void)
     }
 
     ImGui::Render();
-    */
+
     glutSwapBuffers();
     glutPostRedisplay();
 }
