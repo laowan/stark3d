@@ -117,13 +117,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\lib\freeglut-2.8.1\include;$(SolutionDir)..\lib\glload\include;$(SolutionDir)..\lib\glm;$(SolutionDir)..\lib\stb;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\lib\lib3ds-2.0.0\include;$(SolutionDir)..\lib\freeglut-2.8.1\include;$(SolutionDir)..\lib\glload\include;$(SolutionDir)..\lib\glm;$(SolutionDir)..\lib\stb;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\lib\freeglut-2.8.1\lib\x86;$(SolutionDir)..\lib\glload\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glloadD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\lib\freeglut-2.8.1\lib\x86;$(SolutionDir)..\lib\glload\lib\x86;$(SolutionDir)..\lib\lib3ds-2.0.0\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glloadD.lib;lib3ds.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
