@@ -3,10 +3,28 @@
 
 #include "global.h"
 #include <string>
+class Lib3dsFile;
 
 SK_BEGIN_NAMESPACE
 
-struct Vertex3DS
+typedef struct Facets
+{
+    uint8   type;  // 0-triangles, 1-triangle strips, 2-triangle fans
+    uint32  num;
+    uint32* index;
+} Facets;
+
+typedef struct Mesh
+{
+    uint32  numVertices;
+    float*  vertices;
+    float*  normals;
+    float*  texcos;
+    uint32  numFaces;
+    Facets* faces;
+} Mesh;
+
+typedef struct Vertex3DS
 {
     union
     {
@@ -18,9 +36,9 @@ struct Vertex3DS
             float z;
         };
     };
-};
+} Vertex3DS;
 
-struct Index3DS
+typedef struct Index3DS
 {
     union
     {
@@ -32,7 +50,7 @@ struct Index3DS
             unsigned short p3;
         };
     };
-};
+} Index3DS;
 
 class FileLoader
 {
@@ -42,11 +60,9 @@ class FileLoader3DS : public FileLoader
 {
 public:
     void load(const std::string& file);
+    bool getMeshData(uint32* num, Mesh** meshes);
 private:
-    Vertex3DS* _vertexBuf;
-    Index3DS* _indexBuf;
-    unsigned short _vertexNum;
-    unsigned short _polygonNum;
+    Lib3dsFile* _model;
 };
 
 SK_END_NAMESPACE
