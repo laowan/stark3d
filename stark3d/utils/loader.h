@@ -14,7 +14,7 @@ typedef struct Facets
     uint32* index;
 } Facets;
 
-typedef struct Mesh
+typedef struct MeshData
 {
     uint32  numVertices;
     float*  vertices;
@@ -22,7 +22,7 @@ typedef struct Mesh
     float*  texcos;
     uint32  numFaces;
     Facets* faces;
-} Mesh;
+} MeshData;
 
 typedef struct Vertex3DS
 {
@@ -59,8 +59,10 @@ class FileLoader
 class FileLoader3DS : public FileLoader
 {
 public:
+    FileLoader3DS();
+    ~FileLoader3DS();
     void load(const std::string& file);
-    bool getMeshData(uint32* num, Mesh** meshes);
+    bool getMeshData(uint32* num, MeshData** meshes);
 private:
     Lib3dsFile* _model;
 };

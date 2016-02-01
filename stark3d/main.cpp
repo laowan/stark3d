@@ -216,13 +216,6 @@ static void init(void)
 
     skCreateScene();
 
-    FileLoader3DS loader;
-    loader.load("./resource/Teapot.3ds");
-
-    uint32 num;
-    Mesh* meshes = NULL;
-    loader.getMeshData(&num, &meshes);
-
     std::unique_ptr<Effect> tmp(new EffectNormal);
     gsEffect = std::move(tmp);
 

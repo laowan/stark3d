@@ -97,6 +97,9 @@ void skCreateScene()
     Module::sceneMan().addNode(colorRed);
     Module::sceneMan().addNode(new Texture());
     Module::sceneMan().addNode(new Cube(2.0));
+
+    Module::sceneMan().addNode(new Mesh("./resource/Teapot.3ds"));
+
     //Module::sceneMan().addNode(axisX);
     //Module::sceneMan().addNode(colorGreen);
     //Module::sceneMan().addNode(axisY);

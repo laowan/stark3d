@@ -26,6 +26,7 @@ public:
     void setIndexBuffer(uint32 buf);
     void setVertexLayout(uint32 index, uint32 stride, const void* pointer);
     void draw(PrimType type, uint32 first, uint32 count);
+    void draw(PrimType type, uint32 count);
 };
 
 SK_END_NAMESPACE

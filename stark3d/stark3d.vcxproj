@@ -27,6 +27,7 @@
     <ClCompile Include="scene\color.cpp" />
     <ClCompile Include="scene\cube.cpp" />
     <ClCompile Include="scene\line.cpp" />
+    <ClCompile Include="scene\mesh.cpp" />
     <ClCompile Include="scene\node.cpp" />
     <ClCompile Include="scene\terrain.cpp" />
     <ClCompile Include="scene\texture.cpp" />
@@ -60,6 +61,7 @@
     <ClInclude Include="scene\color.h" />
     <ClInclude Include="scene\cube.h" />
     <ClInclude Include="scene\line.h" />
+    <ClInclude Include="scene\mesh.h" />
     <ClInclude Include="scene\node.h" />
     <ClInclude Include="scene\terrain.h" />
     <ClInclude Include="scene\texture.h" />

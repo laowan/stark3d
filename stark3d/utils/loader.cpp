@@ -6,6 +6,16 @@ using namespace std;
 
 SK_BEGIN_NAMESPACE
 
+FileLoader3DS::FileLoader3DS() : _model(NULL)
+{
+}
+
+FileLoader3DS::~FileLoader3DS()
+{
+    if (_model)
+        lib3ds_file_free(_model);
+}
+
 void FileLoader3DS::load(const std::string& file)
 {
     _model = lib3ds_file_open(file.c_str());
@@ -13,15 +23,15 @@ void FileLoader3DS::load(const std::string& file)
         return;
 }
 
-bool FileLoader3DS::getMeshData(uint32* num, Mesh** meshes)
+bool FileLoader3DS::getMeshData(uint32* num, MeshData** meshes)
 {
     *num = _model->nmeshes;
-    *meshes = (Mesh*)malloc(_model->nmeshes * sizeof(Mesh));
+    *meshes = (MeshData*)malloc(_model->nmeshes * sizeof(MeshData));
 
     for (int i = 0; i < _model->nmeshes; i++)
     {
         Lib3dsMesh* lib3dsmesh = _model->meshes[i];
-        Mesh& mesh = (*meshes)[i];
+        MeshData& mesh = (*meshes)[i];
 
         uint32 byte_size = lib3dsmesh->nvertices * 3 * sizeof(float);
         mesh.numVertices = lib3dsmesh->nvertices;

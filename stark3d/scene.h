@@ -11,6 +11,7 @@
 #include "scene/camera.h"
 #include "scene/texture.h"
 #include "scene/bsp.h"
+#include "scene/mesh.h"
 
 #include "renderaction.h"
 
