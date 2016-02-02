@@ -22,23 +22,34 @@ Mesh::Mesh(const std::string& file)
 
         uint32 numVertex = meshes[i].numVertices;
         data.reserve(8 * numVertex);
-        for (uint32 j = 0; j < num; j++)
+        for (uint32 j = 0; j < numVertex; j++)
         {
-            data[8*j+0] = meshes[i].vertices[3*j];
-            data[8*j+1] = meshes[i].vertices[3*j+1];
-            data[8*j+2] = meshes[i].vertices[3*j+2];
+            data.push_back(meshes[i].vertices[3*j]);
+            data.push_back(meshes[i].vertices[3*j+1]);
+            data.push_back(meshes[i].vertices[3*j+2]);
 
             if (meshes[i].normals)
             {
-                data[8*j+3] = meshes[i].normals[3*j];
-                data[8*j+4] = meshes[i].normals[3*j+1];
-                data[8*j+5] = meshes[i].normals[3*j+2];
+                data.push_back(meshes[i].normals[3*j]);
+                data.push_back(meshes[i].normals[3*j+1]);
+                data.push_back(meshes[i].normals[3*j+2]);
+            }
+            else
+            {
+                data.push_back(1.0);
+                data.push_back(1.0);
+                data.push_back(1.0);
             }
             
             if (meshes[i].texcos)
             {
-                data[8*j+6] = meshes[i].texcos[2*j];
-                data[8*j+7] = meshes[i].texcos[2*j+1];
+                data.push_back(meshes[i].texcos[2*j]);
+                data.push_back(meshes[i].texcos[2*j+1]);
+            }
+            else
+            {
+                data.push_back(1.0);
+                data.push_back(1.0);
             }
         }
 

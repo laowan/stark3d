@@ -37,8 +37,33 @@ bool FileLoader3DS::getMeshData(uint32* num, MeshData** meshes)
         mesh.numVertices = lib3dsmesh->nvertices;
         mesh.vertices = (float*)malloc(byte_size);
         memcpy((void*)mesh.vertices, (void*)lib3dsmesh->vertices, byte_size);
-        mesh.normals = NULL;
-        mesh.texcos = NULL;
+
+        // normal
+        mesh.normals = (float*)malloc(byte_size);
+        float* face_normals = (float*)malloc(lib3dsmesh->nfaces * 3 * 3 * sizeof(float));
+        lib3ds_mesh_calculate_vertex_normals(lib3dsmesh, (float(*)[3])face_normals);
+        
+        for (unsigned short j = 0; j < lib3dsmesh->nfaces; j++)
+        {
+            for (int k = 0; k < 3; k++)
+            {
+                unsigned short idx = lib3dsmesh->faces[j].index[k];
+                mesh.normals[3*idx+0] = face_normals[9*j+3*k+0];
+                mesh.normals[3*idx+1] = face_normals[9*j+3*k+1];
+                mesh.normals[3*idx+2] = face_normals[9*j+3*k+2];
+            }
+        }
+
+        free(face_normals);
+
+        // texture coordinate
+        mesh.texcos = (float*)malloc(lib3dsmesh->nvertices * 2 * sizeof(float));
+        for (unsigned short j = 0; j < lib3dsmesh->nvertices; j++)
+        {
+            mesh.texcos[2*j+0] = lib3dsmesh->texcos[j][0] / 2.0;
+            mesh.texcos[2*j+1] = lib3dsmesh->texcos[j][1] / 2.0;
+        }
+        
         mesh.numFaces = 1;
         mesh.faces = (Facets*)malloc(sizeof(Facets));
         mesh.faces->type = 0;
