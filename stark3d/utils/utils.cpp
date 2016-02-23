@@ -1,8 +1,8 @@
 #include "utils.h"
 #include "../module.h"
 
-#define STB_IMAGE_WRITE_IMPLEMENTATION
-#include <stb_image_write.h>
+// #define STB_IMAGE_WRITE_IMPLEMENTATION
+// #include <stb_image_write.h>
 
 using namespace SK;
 
@@ -79,7 +79,7 @@ void skScreenshot(const char* file)
     glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE, (GLvoid*)pdata);
     glBindTexture(GL_TEXTURE_2D, 0);
 
-    stbi_write_bmp(file, width, height, 4, pdata);
+    //stbi_write_bmp(file, width, height, 4, pdata);
     free(pdata);
 }
 
