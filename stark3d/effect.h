@@ -25,6 +25,7 @@ public:
     void render();
 private:
     uint32 _vb;
+    uint32 _rb;
 };
 
 SK_END_NAMESPACE

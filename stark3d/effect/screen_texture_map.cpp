@@ -6,10 +6,7 @@
 
 SK_BEGIN_NAMESPACE
 
-Texture* txt = NULL; 
-uint32 rb = 0;
-
-EffectTextureMap::EffectTextureMap() : _vb(0)
+EffectTextureMap::EffectTextureMap() : _vb(0), _rb(0)
 {
     float vertexData[] = {
         -1.0, -1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0,
@@ -21,7 +18,6 @@ EffectTextureMap::EffectTextureMap() : _vb(0)
         -1.0, -1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, };
 
     _vb = Module::renderDev().createVertexBuffer(sizeof(vertexData), vertexData);
-    txt = new Texture;
 }
 
 EffectTextureMap::~EffectTextureMap()
@@ -32,7 +28,10 @@ EffectTextureMap::~EffectTextureMap()
         _vb = 0;
     }
 
-    if (rb) Module::renderDev().destroyRenderBuffer(rb);
+    if (_rb)
+    {
+        Module::renderDev().destroyRenderBuffer(_rb);
+    }
 }
 
 /*!
@@ -44,15 +43,15 @@ void EffectTextureMap::render()
     int width = Module::sceneMan().getCamera()->getViewport().pixWidth;
     int height = Module::sceneMan().getCamera()->getViewport().pixHeight;
 
-    if (!rb)
+    if (!_rb)
     {
-        rb = Module::renderDev().createRenderBuffer((uint32)width, (uint32)height);
+        _rb = Module::renderDev().createRenderBuffer((uint32)width, (uint32)height);
     }
 
     /*
     draw something
     */
-    Module::renderDev().setRenderBuffer(rb);
+    Module::renderDev().setRenderBuffer(_rb);
 
     //gsCam->getViewport().resize(width, height);
     glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
@@ -89,13 +88,6 @@ void EffectTextureMap::render()
 //         free(pdata);
 //     }
     
-
-//     glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
-//     glClearDepth(1.0f);
-//     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-    //txt->render(NULL);
-    
     Module::shaderMan().use("screen_effects/texture_map");
     ShaderUniforms& u = Module::shaderMan().currentShader()->uniforms();
     u.activeTexture = 0;
@@ -104,7 +96,7 @@ void EffectTextureMap::render()
     Module::renderDev().setVertexBuffer(_vb);
 
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, Module::renderDev().getRenderBufferTexture(rb));
+    glBindTexture(GL_TEXTURE_2D, Module::renderDev().getRenderBufferTexture(_rb));
 
     uint32 stride(sizeof(float)* 3 + sizeof(float)* 3 + sizeof(float)* 2);
     Module::renderDev().setVertexLayout(0, stride, 0);
@@ -113,7 +105,6 @@ void EffectTextureMap::render()
     Module::renderDev().draw(SK::PRIM_TRIANGLES, 0, 6);
 
     Module::renderDev().setVertexBuffer(0);
-
 }
 
 SK_END_NAMESPACE

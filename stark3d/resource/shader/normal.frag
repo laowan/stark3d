@@ -13,7 +13,7 @@ in vec2 fragTexCoord;
 
 void main()
 {
-    vec4 color = uColor; //texture(uColorMap, fragTexCoord);
+    vec4 color = texture(uColorMap, fragTexCoord);
     if (!gl_FrontFacing)
         color = vec4(1.0, 0.0, 0.0, 1.0);
 
