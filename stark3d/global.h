@@ -56,4 +56,11 @@ private:
 
 #include <glm/gtc/type_ptr.hpp>
 
+#ifdef _DEBUG
+    #include <assert.h>
+    #define ASSERT(exp) assert(exp)
+#else
+    #define ASSERT(exp)
+#endif
+
 #endif

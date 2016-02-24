@@ -67,4 +67,69 @@ void RenderDevice::draw(PrimType type, uint32 count)
 
 }
 
+uint32 RenderDevice::createRenderBuffer(uint32 width, uint32 height)
+{
+    RenderBuffer rb;
+
+    glGenFramebuffers(1, &rb.fbo);
+    glGenTextures(1, &rb.colorTexture);
+    glGenTextures(1, &rb.depthTexture);
+
+    glBindFramebuffer(GL_FRAMEBUFFER, rb.fbo);
+
+    glBindTexture(GL_TEXTURE_2D, rb.colorTexture);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+    //glTexStorage2D(GL_TEXTURE_2D, 1, GL_RGB8, width, height);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+    //glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, colortexture, 0);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, rb.colorTexture, 0);
+
+    glBindTexture(GL_TEXTURE_2D, rb.depthTexture);
+    //glTexStorage2D(GL_TEXTURE_2D, 1, GL_DEPTH_COMPONENT32F, width, height);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT24, width, height, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE, NULL);
+    //glFramebufferTexture(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, depthtexture, 0);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, rb.depthTexture, 0);
+
+
+    static const GLenum draw_buffer[] = { GL_COLOR_ATTACHMENT0 };
+    glDrawBuffers(1, draw_buffer);
+
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    return _renderBuffers.add(rb);
+}
+
+void RenderDevice::destroyRenderBuffer(uint32 obj)
+{
+    RenderBuffer& rb = _renderBuffers.getRef(obj);
+    glDeleteFramebuffers(1, &rb.fbo);
+    glDeleteTextures(1, &rb.colorTexture);
+    glDeleteTextures(1, &rb.depthTexture);
+
+    _renderBuffers.remove(obj);
+}
+
+void RenderDevice::setRenderBuffer(uint32 obj)
+{
+    if (obj == 0)
+    {
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    }
+    else
+    {
+        RenderBuffer& rb = _renderBuffers.getRef(obj);
+        glBindFramebuffer(GL_FRAMEBUFFER, rb.fbo);
+    }
+}
+
+uint32 RenderDevice::getRenderBufferTexture(uint32 obj)
+{
+    RenderBuffer& rb = _renderBuffers.getRef(obj);
+    return rb.colorTexture;
+}
+
 SK_END_NAMESPACE
