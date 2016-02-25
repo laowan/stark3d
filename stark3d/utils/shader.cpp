@@ -131,17 +131,32 @@ void Shader::bind()
     _uniforms.lightPositionLoc = glGetUniformLocation(_program, "uLightPosition");
     _uniforms.lightColorLoc = glGetUniformLocation(_program, "uLightColor");
     _uniforms.colorMapLoc = glGetUniformLocation(_program, "uColorMap");
+    _uniforms.filterLoc = glGetUniformLocation(_program, "uFilterMat");
+    _uniforms.viewportWidthLoc = glGetUniformLocation(_program, "uViewportWidth");
+    _uniforms.viewportHeightLoc = glGetUniformLocation(_program, "uViewportHeight");
 }
 
 //! commit the values to the shader
 void Shader::commitUniforms()
 {
-    glUniformMatrix4fv(_uniforms.mvLoc, 1, GL_FALSE, glm::value_ptr(_uniforms.mv));
-    glUniformMatrix4fv(_uniforms.mvpLoc, 1, GL_FALSE, glm::value_ptr(_uniforms.mvp));
-    glUniform4fv(_uniforms.colorLoc, 1, glm::value_ptr(_uniforms.color));
-    glUniform3fv(_uniforms.lightPositionLoc, 1, glm::value_ptr(_uniforms.lightPosition));
-    glUniform3fv(_uniforms.lightColorLoc, 1, glm::value_ptr(_uniforms.lightColor));
-    glUniform1i(_uniforms.colorMapLoc, _uniforms.activeTexture);
+    if (_uniforms.mvLoc > 0)
+        glUniformMatrix4fv(_uniforms.mvLoc, 1, GL_FALSE, glm::value_ptr(_uniforms.mv));
+    if (_uniforms.mvpLoc > 0)
+        glUniformMatrix4fv(_uniforms.mvpLoc, 1, GL_FALSE, glm::value_ptr(_uniforms.mvp));
+    if (_uniforms.colorLoc > 0)
+        glUniform4fv(_uniforms.colorLoc, 1, glm::value_ptr(_uniforms.color));
+    if (_uniforms.lightPositionLoc > 0)
+        glUniform3fv(_uniforms.lightPositionLoc, 1, glm::value_ptr(_uniforms.lightPosition));
+    if (_uniforms.lightColorLoc > 0)
+        glUniform3fv(_uniforms.lightColorLoc, 1, glm::value_ptr(_uniforms.lightColor));
+    if (_uniforms.colorMapLoc > 0)
+        glUniform1i(_uniforms.colorMapLoc, _uniforms.activeTexture);
+    if (_uniforms.filterLoc > 0)
+        glUniformMatrix4fv(_uniforms.filterLoc, 1, GL_FALSE, glm::value_ptr(_uniforms.filter));
+    if (_uniforms.viewportWidthLoc > 0)
+        glUniform1f(_uniforms.viewportWidthLoc, _uniforms.viewportWidth);
+    if (_uniforms.viewportHeightLoc > 0)
+        glUniform1f(_uniforms.viewportHeightLoc, _uniforms.viewportHeight);
 }
 
 SK_END_NAMESPACE

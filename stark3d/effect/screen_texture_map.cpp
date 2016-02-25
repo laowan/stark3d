@@ -91,6 +91,12 @@ void EffectTextureMap::render()
     Module::shaderMan().use("screen_effects/texture_map");
     ShaderUniforms& u = Module::shaderMan().currentShader()->uniforms();
     u.activeTexture = 0;
+    u.filter[0].x = 0.299; u.filter[1].x = 0.587; u.filter[2].x = 0.184; u.filter[3].x = 0.0;
+    u.filter[0].y = 0.299; u.filter[1].y = 0.587; u.filter[2].y = 0.184; u.filter[3].y = 0.0;
+    u.filter[0].z = 0.299; u.filter[1].z = 0.587; u.filter[2].z = 0.184; u.filter[3].z = 0.0;
+    u.filter[0].w = 0.0;   u.filter[1].w = 0.0;   u.filter[2].w = 0.0;   u.filter[3].w = 1.0;
+    u.viewportWidth = width;
+    u.viewportHeight = height;
     Module::shaderMan().currentShader()->commitUniforms();
 
     Module::renderDev().setVertexBuffer(_vb);
