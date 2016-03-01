@@ -23,6 +23,7 @@ static int gsScreenshotButton = 0;
 static std::unique_ptr<Effect> gsEffect;
 static bool gsEffectNormal = false;
 static bool gsEffectScreenTextureMap = false;
+static bool gsEffectMotionBlur = false;
 
 void ImGuiRenderDrawLists(ImDrawData* draw_data)
 {
@@ -289,6 +290,13 @@ static void display(void)
         gsEffectScreenTextureMap = false;
     }
 
+    if (gsEffectMotionBlur)
+    {
+        std::unique_ptr<Effect> tmp(new EffectMotionBlur);
+        gsEffect = std::move(tmp);
+        gsEffectMotionBlur = false;
+    }
+
     ImGuiWindowFlags window_flags = 0;
     window_flags |= ImGuiWindowFlags_MenuBar;
     bool opened = true;
@@ -300,6 +308,7 @@ static void display(void)
             {
                 ImGui::MenuItem("Normal", NULL, &gsEffectNormal);
                 ImGui::MenuItem("Screen Texture Map", NULL, &gsEffectScreenTextureMap);
+                ImGui::MenuItem("Motion Blur", NULL, &gsEffectMotionBlur);
                 ImGui::EndMenu();
             }
             if (ImGui::BeginMenu("Tools"))

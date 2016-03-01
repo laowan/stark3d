@@ -15,6 +15,7 @@ public:
     glm::vec3 lightPosition;
     glm::vec3 lightColor;
     uint32 activeTexture;
+    uint32 activeTexture2;
     glm::mat4 filter;
     float viewportWidth;
     float viewportHeight;
@@ -26,6 +27,7 @@ private:
     uint32 lightPositionLoc;
     uint32 lightColorLoc;
     uint32 colorMapLoc;
+    uint32 colorMapLoc2;
     uint32 filterLoc;
     uint32 viewportWidthLoc;
     uint32 viewportHeightLoc;

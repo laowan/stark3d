@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="effect\motion_blur.cpp" />
     <ClCompile Include="effect\normal.cpp" />
     <ClCompile Include="effect\screen_texture_map.cpp" />
     <ClCompile Include="geom.cpp" />

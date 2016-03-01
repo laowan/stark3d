@@ -28,6 +28,17 @@ private:
     uint32 _rb;
 };
 
+class EffectMotionBlur : public Effect
+{
+public:
+    EffectMotionBlur();
+    ~EffectMotionBlur();
+    void render();
+private:
+    uint32 _vb;
+    uint32 _rb1, _rb2;
+};
+
 SK_END_NAMESPACE
 
 #endif

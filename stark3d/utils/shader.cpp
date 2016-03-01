@@ -131,6 +131,7 @@ void Shader::bind()
     _uniforms.lightPositionLoc = glGetUniformLocation(_program, "uLightPosition");
     _uniforms.lightColorLoc = glGetUniformLocation(_program, "uLightColor");
     _uniforms.colorMapLoc = glGetUniformLocation(_program, "uColorMap");
+    _uniforms.colorMapLoc2 = glGetUniformLocation(_program, "uColorMap2");
     _uniforms.filterLoc = glGetUniformLocation(_program, "uFilterMat");
     _uniforms.viewportWidthLoc = glGetUniformLocation(_program, "uViewportWidth");
     _uniforms.viewportHeightLoc = glGetUniformLocation(_program, "uViewportHeight");
@@ -151,6 +152,8 @@ void Shader::commitUniforms()
         glUniform3fv(_uniforms.lightColorLoc, 1, glm::value_ptr(_uniforms.lightColor));
     if (_uniforms.colorMapLoc > 0)
         glUniform1i(_uniforms.colorMapLoc, _uniforms.activeTexture);
+    if (_uniforms.colorMapLoc2 > 0)
+        glUniform1i(_uniforms.colorMapLoc2, _uniforms.activeTexture2);
     if (_uniforms.filterLoc > 0)
         glUniformMatrix4fv(_uniforms.filterLoc, 1, GL_FALSE, glm::value_ptr(_uniforms.filter));
     if (_uniforms.viewportWidthLoc > 0)

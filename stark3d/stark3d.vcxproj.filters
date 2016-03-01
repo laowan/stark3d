@@ -126,6 +126,9 @@
     <ClCompile Include="scene\mesh.cpp">
       <Filter>Source Files\scene</Filter>
     </ClCompile>
+    <ClCompile Include="effect\motion_blur.cpp">
+      <Filter>Source Files\effect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="utils\framework.h">
