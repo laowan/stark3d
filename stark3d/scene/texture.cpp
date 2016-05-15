@@ -16,7 +16,22 @@ static GLenum TextureFormatForBitmapFormat(Bitmap::Format format)
 
 Texture::Texture(int minMagFiler, int wrapMode)
 {
-    Bitmap bitmap = Bitmap::bitmapFromFile("./resource/wooden-crate.jpg");
+    init("./resource/wooden-crate.jpg", minMagFiler, wrapMode);
+}
+
+Texture::Texture(std::string file, int minMagFiler, int wrapMode)
+{
+    init(file, minMagFiler, wrapMode);
+}
+
+Texture::~Texture()
+{
+    glDeleteTextures(1, &_object);
+}
+
+void Texture::init(std::string file, int minMagFiler, int wrapMode)
+{
+    Bitmap bitmap = Bitmap::bitmapFromFile(file);
 
     glGenTextures(1, &_object);
     glBindTexture(GL_TEXTURE_2D, _object);
@@ -34,11 +49,6 @@ Texture::Texture(int minMagFiler, int wrapMode)
         GL_UNSIGNED_BYTE,
         bitmap.pixelBuffer());
     glBindTexture(GL_TEXTURE_2D, 0);
-}
-
-Texture::~Texture()
-{
-    glDeleteTextures(1, &_object);
 }
 
 bool Texture::render(RenderAction* act)

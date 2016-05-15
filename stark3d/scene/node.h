@@ -15,7 +15,7 @@ class SceneNode
 {
 public:
     SceneNode() : _handle(-1), _current(-1) {}
-    ~SceneNode() {}
+    virtual ~SceneNode() {}
 
     virtual bool renderEnter(RenderAction* act) { return true; }
     virtual bool render(RenderAction* act) { return true; }

@@ -24,6 +24,8 @@ static std::unique_ptr<Effect> gsEffect;
 static bool gsEffectNormal = false;
 static bool gsEffectScreenTextureMap = false;
 static bool gsEffectMotionBlur = false;
+static bool gsScene1 = false;
+static bool gsScene2 = false;
 
 void ImGuiRenderDrawLists(ImDrawData* draw_data)
 {
@@ -215,7 +217,7 @@ static void init(void)
 
     Module::init();
 
-    skCreateScene();
+    skCreateScene1();
 
     std::unique_ptr<Effect> tmp(new EffectNormal);
     gsEffect = std::move(tmp);
@@ -297,6 +299,18 @@ static void display(void)
         gsEffectMotionBlur = false;
     }
 
+    if (gsScene1)
+    {
+        skCreateScene1();
+        gsScene1 = false;
+    }
+
+    if (gsScene2)
+    {
+        skCreateScene2();
+        gsScene2 = false;
+    }
+
     ImGuiWindowFlags window_flags = 0;
     window_flags |= ImGuiWindowFlags_MenuBar;
     bool opened = true;
@@ -311,8 +325,10 @@ static void display(void)
                 ImGui::MenuItem("Motion Blur", NULL, &gsEffectMotionBlur);
                 ImGui::EndMenu();
             }
-            if (ImGui::BeginMenu("Tools"))
+            if (ImGui::BeginMenu("Scene"))
             {
+                ImGui::MenuItem("Scene1", NULL, &gsScene1);
+                ImGui::MenuItem("Scene2", NULL, &gsScene2);
                 ImGui::EndMenu();
             }
             ImGui::EndMenuBar();

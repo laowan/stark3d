@@ -83,21 +83,11 @@ void skScreenshot(const char* file)
     free(pdata);
 }
 
-void skCreateScene()
+void skCreateScene1()
 {
-    // add three coordinate axes
-    Line* axisX = new Line(glm::vec3(0.0, 0.0, 0.0), glm::vec3(500.0, 0.0, 0.0));
-    Line* axisY = new Line(glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 500.0, 0.0));
-    Line* axisZ = new Line(glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 500.0));
+    Module::sceneMan().clear();
 
-    Color* colorRed = new Color(1.0, 0.0, 0.0, 1.0);
-    Color* colorGreen = new Color(0.0, 1.0, 0.0, 1.0);
-    Color* colorBlue = new Color(0.0, 0.0, 1.0, 1.0);
-
-    Module::sceneMan().addNode(colorRed);
     Module::sceneMan().addNode(new Texture());
-    Module::sceneMan().addNode(new Cube(2.0));
-
     Module::sceneMan().addNode(new Mesh("./resource/Teapot.3ds"));
 
     //Module::sceneMan().addNode(axisX);
@@ -116,6 +106,26 @@ void skCreateScene()
     //     Terrain* terrain = new Terrain("resource/coastMountain64.raw", 64, 64, 10, 0.5f);
     //     Module::sceneMan().addNode(terrain);
 
+
+    Module::sceneMan().print();
+}
+
+void skCreateScene2()
+{
+    Module::sceneMan().clear();
+
+    // add three coordinate axes
+    Line* axisX = new Line(glm::vec3(0.0, 0.0, 0.0), glm::vec3(500.0, 0.0, 0.0));
+    Line* axisY = new Line(glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 500.0, 0.0));
+    Line* axisZ = new Line(glm::vec3(0.0, 0.0, 0.0), glm::vec3(0.0, 0.0, 500.0));
+
+    Color* colorRed = new Color(1.0, 0.0, 0.0, 1.0);
+    Color* colorGreen = new Color(0.0, 1.0, 0.0, 1.0);
+    Color* colorBlue = new Color(0.0, 0.0, 1.0, 1.0);
+
+    Module::sceneMan().addNode(colorRed);
+    Module::sceneMan().addNode(new Texture("./resource/earth.jpg"));
+    Module::sceneMan().addNode(new Mesh("./resource/Sphere.3ds"));
 
     Module::sceneMan().print();
 }

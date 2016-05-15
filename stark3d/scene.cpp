@@ -21,7 +21,7 @@ SceneManager::SceneManager()
     root->_handle = 1;
 
     _cam = new Camera();
-    addNode(_cam);
+    //addNode(_cam);
 
     _pickLine = new Line;
     _boxList = NULL;
@@ -33,6 +33,9 @@ SceneManager::~SceneManager()
 {
     for (SceneNode* node : _nodes)
         delete node;
+
+    if (_cam)
+        delete _cam;
 
     if (_renderAct)
         delete _renderAct;
@@ -72,6 +75,20 @@ int SceneManager::addNode(SceneNode* node)
 
     node->_handle = (int)_nodes.size();
     return (int)_nodes.size();
+}
+
+void SceneManager::clear()
+{
+    size_t sz = _nodes.size();
+    for (size_t i = 0; i < sz; i++)
+        delete _nodes[i];
+
+    _nodes.clear();
+
+    SceneNode* root = new SceneNode();
+    _nodes.push_back(root);
+
+    root->_handle = 1;
 }
 
 SceneNode* SceneManager::resolve(int idx)

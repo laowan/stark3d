@@ -40,6 +40,8 @@ public:
     int addNode(SceneNode* parent, SceneNode* node);
     int addNode(SceneNode* node);
 
+    void clear();
+
     SceneNode* resolve(int idx);
     bool render();
     bool renderNode(SceneNode* node = NULL);
