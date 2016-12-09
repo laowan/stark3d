@@ -63,7 +63,7 @@ public:
     uint32 depthTexture, colorTexture;
 };
 
-class RenderDevice
+class STARK_API RenderDevice
 {
 public:
     RenderDevice();

@@ -54,3 +54,5 @@ lib/freeglut-2.8.1/lib/x86/freeglut.exp
 *.suo
 *.pdb
 *.gz
+Build/
+breakout/Library

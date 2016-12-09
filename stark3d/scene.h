@@ -31,7 +31,7 @@ typedef struct _Box
 /*!
     we use this class to 1) construct the scene graph, 2) render the scene.
 */
-class SceneManager
+class STARK_API SceneManager
 {
 public:
     SceneManager();

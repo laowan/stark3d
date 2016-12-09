@@ -11,7 +11,7 @@
 
 SK_BEGIN_NAMESPACE
 
-class Module
+class STARK_API Module
 {
 public:
     static bool init();

@@ -18,105 +18,37 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="effect\motion_blur.cpp" />
-    <ClCompile Include="effect\normal.cpp" />
-    <ClCompile Include="effect\screen_texture_map.cpp" />
-    <ClCompile Include="geom.cpp" />
-    <ClCompile Include="imgui\imgui.cpp" />
-    <ClCompile Include="imgui\imgui_demo.cpp" />
-    <ClCompile Include="imgui\imgui_draw.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="module.cpp" />
-    <ClCompile Include="renderaction.cpp" />
-    <ClCompile Include="scene.cpp" />
-    <ClCompile Include="scene\bbox.cpp" />
-    <ClCompile Include="scene\bsp.cpp" />
-    <ClCompile Include="scene\camera.cpp" />
-    <ClCompile Include="scene\color.cpp" />
-    <ClCompile Include="scene\cube.cpp" />
-    <ClCompile Include="scene\line.cpp" />
-    <ClCompile Include="scene\mesh.cpp" />
-    <ClCompile Include="scene\node.cpp" />
-    <ClCompile Include="scene\terrain.cpp" />
-    <ClCompile Include="scene\texture.cpp" />
-    <ClCompile Include="scene\transform.cpp" />
-    <ClCompile Include="utils\bitmap.cpp" />
-    <ClCompile Include="utils\deviceinfo.cpp" />
-    <ClCompile Include="utils\framework.cpp" />
-    <ClCompile Include="utils\loader.cpp" />
-    <ClCompile Include="utils\matrix.cpp" />
-    <ClCompile Include="utils\renderdevice.cpp" />
-    <ClCompile Include="utils\shader.cpp" />
-    <ClCompile Include="utils\shadermanager.cpp" />
-    <ClCompile Include="utils\utils.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="effect.h" />
-    <ClInclude Include="geom.h" />
-    <ClInclude Include="global.h" />
-    <ClInclude Include="imgui\imconfig.h" />
-    <ClInclude Include="imgui\imgui.h" />
-    <ClInclude Include="imgui\imgui_internal.h" />
-    <ClInclude Include="imgui\stb_rect_pack.h" />
-    <ClInclude Include="imgui\stb_textedit.h" />
-    <ClInclude Include="imgui\stb_truetype.h" />
-    <ClInclude Include="module.h" />
-    <ClInclude Include="renderaction.h" />
-    <ClInclude Include="scene.h" />
-    <ClInclude Include="scene\bbox.h" />
-    <ClInclude Include="scene\bsp.h" />
-    <ClInclude Include="scene\camera.h" />
-    <ClInclude Include="scene\color.h" />
-    <ClInclude Include="scene\cube.h" />
-    <ClInclude Include="scene\line.h" />
-    <ClInclude Include="scene\mesh.h" />
-    <ClInclude Include="scene\node.h" />
-    <ClInclude Include="scene\terrain.h" />
-    <ClInclude Include="scene\texture.h" />
-    <ClInclude Include="scene\transform.h" />
-    <ClInclude Include="stark3d.h" />
-    <ClInclude Include="utils\bitmap.h" />
-    <ClInclude Include="utils\deviceinfo.h" />
-    <ClInclude Include="utils\framework.h" />
-    <ClInclude Include="utils\loader.h" />
-    <ClInclude Include="utils\matrix.h" />
-    <ClInclude Include="utils\renderdevice.h" />
-    <ClInclude Include="utils\shader.h" />
-    <ClInclude Include="utils\shadermanager.h" />
-    <ClInclude Include="utils\utils.h" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{2CD99B00-2EBD-4724-9B0A-E24440F1F0B3}</ProjectGuid>
+    <ProjectGuid>{9A69C308-464D-4B6E-A7B3-A91B8C0ADBFA}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>stark3d</RootNamespace>
+    <RootNamespace>breakout</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -136,8 +68,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IntDir>Library\$(Configuration)\</IntDir>
-    <OutDir>$(SolutionDir)\..\Build\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)\Build\$(Configuration)$(Platform)\</OutDir>
+    <IntDir>Library\$(Configuration)$(Platform)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -156,14 +88,14 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\lib\lib3ds-2.0.0\include;$(SolutionDir)..\lib\freeglut-2.8.1\include;$(SolutionDir)..\lib\glload\include;$(SolutionDir)..\lib\glm;$(SolutionDir)..\lib\stb;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\lib\freeglut-2.8.1\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\lib\freeglut-2.8.1\lib\x86;$(SolutionDir)..\lib\glload\lib\x86;$(SolutionDir)..\lib\lib3ds-2.0.0\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glloadD.lib;lib3ds.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\lib\freeglut-2.8.1\lib\x86</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -172,14 +104,14 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_DEBUG;STARK_BUILD;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\lib\lib3ds-2.0.0\include;$(SolutionDir)..\lib\freeglut-2.8.1\include;$(SolutionDir)..\lib\glload\include;$(SolutionDir)..\lib\glm;$(SolutionDir)..\lib\stb;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(SolutionDir);$(SolutionDir)..\lib\freeglut-2.8.1\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\lib\freeglut-2.8.1\lib\x64;$(SolutionDir)..\lib\glload\lib\x64;$(SolutionDir)..\lib\lib3ds-2.0.0\lib\x64;$(SolutionDir)..\lib\glm;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glloadD.lib;lib3ds.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\lib\glm;$(SolutionDir)..\lib\freeglut-2.8.1\lib\x64</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -190,7 +122,8 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -207,7 +140,8 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -216,6 +150,13 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="game.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="game.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

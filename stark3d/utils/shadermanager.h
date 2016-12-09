@@ -7,7 +7,7 @@
 
 SK_BEGIN_NAMESPACE
 
-class ShaderManager
+class STARK_API ShaderManager
 {
 public:
     ShaderManager();

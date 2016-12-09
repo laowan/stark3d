@@ -1,5 +1,6 @@
 #include "shader.h"
 #include <glload/gl_3_3.h>
+#include <glm/gtc/type_ptr.hpp>
 
 #include <algorithm>
 #include <vector>

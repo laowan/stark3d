@@ -1,6 +1,14 @@
 #ifndef _GLOBAL_H
 #define _GLOBAL_H
 
+#ifndef STARK_API
+    #ifdef STARK_BUILD
+        #define STARK_API __declspec(dllexport)
+    #else
+        #define STARK_API __declspec(dllimport)
+    #endif
+#endif
+
 typedef signed char int8;
 typedef unsigned char uint8;
 typedef unsigned short uint16;
@@ -54,7 +62,7 @@ private:
 #define SK_C(C) const C##Impl* d = static_cast<const C##Impl*>(__impl__(this)); d
 #define SK_Q(C) C* q = __self__; q
 
-#include <glm/gtc/type_ptr.hpp>
+#include <glm/glm.hpp>
 
 #ifdef _DEBUG
     #include <assert.h>
