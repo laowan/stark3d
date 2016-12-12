@@ -9,10 +9,14 @@ static void keyboard(unsigned char key, int x, int y);
 static void special(int key, int x, int y);
 static void idle(void);
 
+static const int GameWith = 600;
+static const int GameHeight = 800;
+static Game game;
+
 int main(int argc, char *argv[])
 {
     glutInit(&argc, argv);
-    glutInitWindowSize(800, 600);
+    glutInitWindowSize(GameWith, GameHeight);
     glutInitWindowPosition(40, 40);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH | GLUT_MULTISAMPLE);
 
@@ -28,6 +32,11 @@ int main(int argc, char *argv[])
 
     SK::Module::init();
 
+    SK::Module::sceneMan().clear();
+    SK::Module::sceneMan().addBox(0, 0, 0, 255, 0, 0);
+
+    game.init(GameWith, GameHeight);
+
     glutMainLoop();
 
     return 0;
@@ -36,20 +45,23 @@ int main(int argc, char *argv[])
 
 static void resize(int width, int height)
 {
-
+    SK::Module::sceneMan().getCamera()->getViewport().resize(width, height);
 }
 
 static void display(void)
 {
+    SK::Module::render();
 
     glutSwapBuffers();
+    glutPostRedisplay();
 }
 
 static void keyboard(unsigned char key, int x, int y)
 {
     switch (key)
     {
-    case 27:
+    case 'r': SK::Module::sceneMan().getCamera()->reset(); break;
+    case 'z': SK::Module::sceneMan().getCamera()->zoomAll(SK::Module::sceneMan().boundingBox()); break;
     case 'q': glutLeaveMainLoop(); break;
     default: break;
     }

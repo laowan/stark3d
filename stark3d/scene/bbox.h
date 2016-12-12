@@ -10,7 +10,7 @@
 
 SK_BEGIN_NAMESPACE
 
-class BBox
+class STARK_API BBox
 {
 public:
     BBox();

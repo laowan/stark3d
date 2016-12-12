@@ -5,7 +5,7 @@
 
 SK_BEGIN_NAMESPACE
 
-class Color : public SceneNode
+class STARK_API Color : public SceneNode
 {
 public:
     Color(double r, double g, double b, double a);

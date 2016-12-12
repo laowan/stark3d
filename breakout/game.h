@@ -1,6 +1,8 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include "gamelevel.h"
+
 // Represents the current state of the game
 enum GameState {
     GAME_ACTIVE,
@@ -14,22 +16,24 @@ enum GameState {
 class Game
 {
 public:
-    // Game state
-    GameState         state;
-    bool              keys[1024];
-    unsigned int      width, height;
-
     // Constructor/Destructor
-    Game(unsigned int w, unsigned int h);
+    Game(unsigned int w = 0, unsigned int h = 0);
     ~Game();
     
     // Initialize game state (load all shaders/textures/levels)
-    void init();
+    void init(int w, int h);
     
     // GameLoop
     void processInput(float dt);
     void update(float dt);
     void render();
+
+public:
+    // Game state
+    GameState         state;
+    bool              keys[1024];
+    unsigned int      width, height;
+    std::vector<GameLevel> levels;
 };
 
 #endif

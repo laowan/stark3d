@@ -13,9 +13,14 @@ Game::~Game()
 
 }
 
-void Game::init()
+void Game::init(int w, int h)
 {
+    width = w;
+    height = h;
 
+    GameLevel level;
+    level.load("./resource/level.txt", width, height);
+    levels.push_back(level);
 }
 
 void Game::update(float dt)

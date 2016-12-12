@@ -5,6 +5,10 @@ SK_BEGIN_NAMESPACE
 
 void EffectNormal::render()
 {
+    glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+    glClearDepth(1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
     Module::shaderMan().use("normal");
 
     ShaderUniforms& uniforms = Module::shaderMan().currentShader()->uniforms();

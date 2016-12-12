@@ -152,10 +152,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="base.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="gamelevel.h" />
+    <ClInclude Include="gameobject.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="gamelevel.cpp" />
+    <ClCompile Include="gameobject.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

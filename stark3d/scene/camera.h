@@ -7,7 +7,7 @@
 
 SK_BEGIN_NAMESPACE
 
-class Viewport
+class STARK_API Viewport
 {
 public:
     Viewport() : extent(10.0f) {}
@@ -30,7 +30,7 @@ public:
     double pixScale; // screen pixel per unit in clip space
 };
 
-class Camera : public SceneNode
+class STARK_API Camera : public SceneNode
 {
 public:
     Camera();

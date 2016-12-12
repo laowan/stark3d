@@ -18,6 +18,7 @@ class STARK_API Module
 public:
     static bool init();
     static void exit();
+    static void render();
 
     static SceneManager& sceneMan() { return *_sceneManager; }
     static ShaderManager& shaderMan() { return *_shaderManager; }

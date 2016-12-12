@@ -5,7 +5,7 @@
 
 SK_BEGIN_NAMESPACE
 
-class Cube : public SceneNode
+class STARK_API Cube : public SceneNode
 {
 public:
     Cube();

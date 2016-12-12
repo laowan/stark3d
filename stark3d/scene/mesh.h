@@ -5,7 +5,7 @@
 
 SK_BEGIN_NAMESPACE
 
-class Mesh : public SceneNode
+class STARK_API Mesh : public SceneNode
 {
 public:
     Mesh(const std::string& file);

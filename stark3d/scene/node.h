@@ -10,7 +10,7 @@
 
 SK_BEGIN_NAMESPACE
 
-class SceneNode
+class STARK_API SceneNode
 {
 public:
     SceneNode() : _handle(-1), _current(-1) {}

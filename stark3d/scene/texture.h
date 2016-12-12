@@ -6,7 +6,7 @@
 
 SK_BEGIN_NAMESPACE
 
-class Texture : public SceneNode
+class STARK_API Texture : public SceneNode
 {
 public:
     Texture(int minMagFiler = GL_LINEAR, int wrapMode = GL_CLAMP_TO_EDGE);
