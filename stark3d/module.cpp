@@ -8,6 +8,13 @@ RenderDevice* Module::_renderDevice = NULL;
 
 bool Module::init()
 {
+    int test = ogl_LoadFunctions();
+    if (test == ogl_LOAD_FAILED)
+    {
+        printf("err when glload init\n");
+        return 1;
+    }
+
     if (_sceneManager == NULL) _sceneManager = new SceneManager();
     if (_shaderManager == NULL) _shaderManager = new ShaderManager();
     if (_renderDevice == NULL) _renderDevice = new RenderDevice();

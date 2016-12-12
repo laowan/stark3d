@@ -2,7 +2,7 @@
 #define _RENDERDEVICE_H
 
 #include "global.h"
-#include <glload/gl_3_3.h>
+#include <glload/gl_3_3_comp.h>
 
 #include <vector>
 

@@ -3,7 +3,7 @@
 
 #include "node.h"
 #include "utils/matrix.h"
-#include <glload/gl_3_3.h>
+#include <glload/gl_3_3_comp.h>
 
 SK_BEGIN_NAMESPACE
 

@@ -4,6 +4,7 @@
 #include "global.h"
 #include "renderaction.h"
 #include "node.h"
+#include "glload/gl_3_3_comp.h"
 
 SK_BEGIN_NAMESPACE
 

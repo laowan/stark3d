@@ -1,6 +1,5 @@
 #include "line.h"
 #include "module.h"
-#include <glload/gl_3_3.h>
 
 SK_BEGIN_NAMESPACE
 

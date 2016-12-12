@@ -5,7 +5,6 @@
 #include "BBox.h"
 #include <vector>
 #include <string>
-#include <glload/gl_all.h>
 
 #include "renderaction.h"
 

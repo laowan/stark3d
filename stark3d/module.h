@@ -1,6 +1,8 @@
 #ifndef UTILS_MODULES_H
 #define UTILS_MODULES_H
 
+#include <glload/gl_3_3_comp.h>
+#include <glload/gl_load.h>
 #include "global.h"
 #include "scene.h"
 #include "utils/utils.h"

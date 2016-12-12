@@ -1,6 +1,5 @@
-#include <glload/gl_3_3.h>
-#include <glload/gl_load.hpp>
-#include <GL/freeglut.h>
+#include <glload/gl_3_3_comp.h>
+#include <glload/gl_load.h>
 
 #include <stdio.h>
 #include <memory>
@@ -9,6 +8,8 @@
 #include "effect.h"
 #include <glm/gtc/type_ptr.hpp>
 #include "imgui/imgui.h"
+
+#include <GL/freeglut.h>
 
 using namespace SK;
 
@@ -418,8 +419,8 @@ int main(int argc, char *argv[])
 
     glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_CONTINUE_EXECUTION);
 
-    glload::LoadTest test = glload::LoadFunctions();
-    if (!test)
+    int test = ogl_LoadFunctions();
+    if (test == ogl_LOAD_FAILED)
     {
         printf("err when glload init\n");
         return 1;

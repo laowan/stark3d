@@ -2,6 +2,7 @@
 #define _TEXTURE_H
 
 #include "node.h"
+#include <glload/gl_3_3_comp.h>
 
 SK_BEGIN_NAMESPACE
 
