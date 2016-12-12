@@ -23,7 +23,7 @@ typedef unsigned long long uint64;
 
 // typical pimpl idiom
 template <typename SELF>
-class Impl
+class STARK_API Impl
 {
 public:
     inline virtual ~Impl() {}
@@ -31,7 +31,7 @@ public:
 };
 
 template <typename SELF, typename IMPL>
-class pImpl
+class STARK_API pImpl
 {
 public:
     inline pImpl(void) : __impl__(new IMPL) {}
@@ -51,18 +51,18 @@ protected:
     IMPL* __impl__;
 private:
     pImpl(const pImpl&);
-    pImpl& operator==(const pImpl&);
+    pImpl& operator=(const pImpl&);
     bool operator==(const pImpl& t);
     bool operator!=(const pImpl& t);
 };
+
+#define SK_DECLARE_IMPL(C) friend class C##Impl; pImpl<C, C##Impl> __impl__
 
 #define SK_I(C) C##Impl* d = static_cast<C##Impl*>(__impl__(this)); d
 #define SK_E(C) C##Impl* d = static_cast<C##Impl*>(__impl__.get()); d
 #define SK_D(C) C##Impl* d = static_cast<C##Impl*>(__impl__.get()); d
 #define SK_C(C) const C##Impl* d = static_cast<const C##Impl*>(__impl__(this)); d
 #define SK_Q(C) C* q = __self__; q
-
-#include <glm/glm.hpp>
 
 #ifdef _DEBUG
     #include <assert.h>

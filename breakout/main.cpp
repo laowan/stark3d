@@ -1,5 +1,5 @@
-#include <GL/freeglut.h>
 #include "stark3d.h"
+#include <GL/freeglut.h>
 
 int main(int argc, char *argv[])
 {
@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 //     }
 // 
 //     init();
-
+    SK::Module::init();
     SK::Module::sceneMan().print();
 
     glutMainLoop();

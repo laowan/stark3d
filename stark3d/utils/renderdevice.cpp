@@ -2,6 +2,12 @@
 
 SK_BEGIN_NAMESPACE
 
+class RenderDeviceImpl : public Impl<RenderDevice>
+{
+public:
+    ObjectPool<RenderBuffer> _renderBuffers;
+};
+
 RenderDevice::RenderDevice()
 {}
 
@@ -69,6 +75,7 @@ void RenderDevice::draw(PrimType type, uint32 count)
 
 uint32 RenderDevice::createRenderBuffer(uint32 width, uint32 height)
 {
+    SK_D(RenderDevice);
     RenderBuffer rb;
 
     glGenFramebuffers(1, &rb.fbo);
@@ -100,35 +107,38 @@ uint32 RenderDevice::createRenderBuffer(uint32 width, uint32 height)
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glBindTexture(GL_TEXTURE_2D, 0);
 
-    return _renderBuffers.add(rb);
+    return d->_renderBuffers.add(rb);
 }
 
 void RenderDevice::destroyRenderBuffer(uint32 obj)
 {
-    RenderBuffer& rb = _renderBuffers.getRef(obj);
+    SK_D(RenderDevice);
+    RenderBuffer& rb = d->_renderBuffers.getRef(obj);
     glDeleteFramebuffers(1, &rb.fbo);
     glDeleteTextures(1, &rb.colorTexture);
     glDeleteTextures(1, &rb.depthTexture);
 
-    _renderBuffers.remove(obj);
+    d->_renderBuffers.remove(obj);
 }
 
 void RenderDevice::setRenderBuffer(uint32 obj)
 {
+    SK_D(RenderDevice);
     if (obj == 0)
     {
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
     }
     else
     {
-        RenderBuffer& rb = _renderBuffers.getRef(obj);
+        RenderBuffer& rb = d->_renderBuffers.getRef(obj);
         glBindFramebuffer(GL_FRAMEBUFFER, rb.fbo);
     }
 }
 
 uint32 RenderDevice::getRenderBufferTexture(uint32 obj)
 {
-    RenderBuffer& rb = _renderBuffers.getRef(obj);
+    SK_D(RenderDevice);
+    RenderBuffer& rb = d->_renderBuffers.getRef(obj);
     return rb.colorTexture;
 }
 

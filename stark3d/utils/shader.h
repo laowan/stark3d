@@ -3,6 +3,7 @@
 
 #include "global.h"
 #include <string>
+#include "glm/glm.hpp"
 
 SK_BEGIN_NAMESPACE
 

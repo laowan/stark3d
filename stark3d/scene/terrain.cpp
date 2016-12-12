@@ -31,7 +31,7 @@ Terrain::Terrain(std::string heightmapFileName,
         return;
 
     for (size_t i = 0; i < _heightmap.size(); i++)
-        _heightmap[i] *= heightScale;
+        _heightmap[i] = (int)(_heightmap[i] * heightScale);
 
     if (!computeVertices())
         return;
@@ -107,9 +107,9 @@ bool Terrain::computeVertices()
         {
             int idx = i*_numVertsPerRow + j;
             
-            float x = -_width/2 + _cellSpacing*j;
-            float y = _heightmap[idx];
-            float z = -_depth/2 + _cellSpacing*i;
+            float x = (float)(-_width/2 + _cellSpacing*j);
+            float y = (float)(_heightmap[idx]);
+            float z = (float)(-_depth/2 + _cellSpacing*i);
 
             vts.push_back(TerrainVertex(
                     x, y, z,

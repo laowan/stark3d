@@ -11,25 +11,37 @@ SK_BEGIN_NAMESPACE
 // Class SceneManager
 // ********************************************************************
 
-SceneManager::SceneManager()
+class SceneManagerImpl : public Impl<SceneManager>
+{
+public:
+    void init();
+    void exit();
+
+    std::vector<SceneNode*> _nodes;
+    RenderAction* _renderAct;
+    Camera* _cam;
+    Box* _boxList;
+    Box* _pickedBox;
+    Line* _pickLine;
+};
+
+void SceneManagerImpl::init()
 {
     _renderAct = new RenderAction();
 
     SceneNode* root = new SceneNode();
     _nodes.push_back(root);
 
-    root->_handle = 1;
+    //root->_handle = 1;
 
     _cam = new Camera();
-    //addNode(_cam);
 
     _pickLine = new Line;
     _boxList = NULL;
     _pickedBox = NULL;
-    
 }
 
-SceneManager::~SceneManager()
+void SceneManagerImpl::exit()
 {
     for (SceneNode* node : _nodes)
         delete node;
@@ -41,7 +53,7 @@ SceneManager::~SceneManager()
         delete _renderAct;
 
     Box *curBox = _boxList;
-    while(curBox)
+    while (curBox)
     {
         if (curBox->next)
         {
@@ -59,91 +71,111 @@ SceneManager::~SceneManager()
     _boxList = NULL;
 }
 
+SceneManager::SceneManager()
+{
+    SK_I(SceneManager);
+
+    d->init();
+    d->_nodes[0]->_handle = 1;
+}
+
+SceneManager::~SceneManager()
+{
+    SK_E(SceneManager);
+    d->exit();
+}
+
 int SceneManager::addNode(SceneNode* parent, SceneNode* node)
 {
+    SK_D(SceneManager);
     parent->_children.push_back(node);
-    _nodes.push_back(node);
+    d->_nodes.push_back(node);
 
-    node->_handle = (int)_nodes.size();
-    return (int)_nodes.size();
+    node->_handle = (int)d->_nodes.size();
+    return (int)d->_nodes.size();
 }
 
 int SceneManager::addNode(SceneNode* node)
 {
-    _nodes[0]->_children.push_back(node);
-    _nodes.push_back(node);
+    SK_D(SceneManager);
+    d->_nodes[0]->_children.push_back(node);
+    d->_nodes.push_back(node);
 
-    node->_handle = (int)_nodes.size();
-    return (int)_nodes.size();
+    node->_handle = (int)d->_nodes.size();
+    return (int)d->_nodes.size();
 }
 
 void SceneManager::clear()
 {
-    size_t sz = _nodes.size();
+    SK_D(SceneManager);
+    size_t sz = d->_nodes.size();
     for (size_t i = 0; i < sz; i++)
-        delete _nodes[i];
+        delete d->_nodes[i];
 
-    _nodes.clear();
+    d->_nodes.clear();
 
     SceneNode* root = new SceneNode();
-    _nodes.push_back(root);
+    d->_nodes.push_back(root);
 
     root->_handle = 1;
 }
 
 SceneNode* SceneManager::resolve(int idx)
 {
-    if (idx < 1 || idx > (int)_nodes.size())
+    SK_D(SceneManager);
+    if (idx < 1 || idx > (int)d->_nodes.size())
         return NULL;
-    return _nodes.at(idx-1);
+    return d->_nodes.at(idx-1);
 }
 
 bool SceneManager::render()
 {
+    SK_D(SceneManager);
     renderNode(NULL);
 
     // render the picked box
-    if (_pickedBox)
+    if (d->_pickedBox)
     {
         Cube cube(1.0);
-        _renderAct->_color = glm::vec4(_pickedBox->r/255.0, _pickedBox->g/255.0, _pickedBox->b/255.0, 1.0);
+        d->_renderAct->_color = glm::vec4(d->_pickedBox->r/255.0, d->_pickedBox->g/255.0, d->_pickedBox->b/255.0, 1.0);
         Transform transform = Transform();
         Matrix& mat = transform.matrix();
-        mat.pan(_pickedBox->x, _pickedBox->y, _pickedBox->z);
-        transform.renderEnter(_renderAct);
-        Cube(1.0).render(_renderAct);
-        transform.renderLeave(_renderAct);
+        mat.pan(d->_pickedBox->x, d->_pickedBox->y, d->_pickedBox->z);
+        transform.renderEnter(d->_renderAct);
+        Cube(1.0).render(d->_renderAct);
+        transform.renderLeave(d->_renderAct);
     }
 
-    _renderAct->_color = glm::vec4(0.0, 0.0, 0.0, 1.0);
-    _pickLine->render(_renderAct);
+    d->_renderAct->_color = glm::vec4(0.0, 0.0, 0.0, 1.0);
+    d->_pickLine->render(d->_renderAct);
 
     return true;
 }
 
 bool SceneManager::renderNode(SceneNode* node /*= NULL*/)
 {
+    SK_D(SceneManager);
     if (node == NULL)
-        node = _nodes[0];
+        node = d->_nodes[0];
 
     // reset the states
-    _renderAct->reset();
+    d->_renderAct->reset();
 
     stack<int> nodeStack;
     nodeStack.push(node->_handle);
-    node->renderEnter(_renderAct);
+    node->renderEnter(d->_renderAct);
     while (node->_children.size() > 0)
     {
         node->_current = 0;
         node = node->_children[0];
         nodeStack.push(node->_handle);
-        node->renderEnter(_renderAct);
+        node->renderEnter(d->_renderAct);
     }
 
     while (!nodeStack.empty())
     {
         int topIdx = nodeStack.top();
-        node = _nodes[nodeStack.top()-1];
+        node = d->_nodes[nodeStack.top()-1];
         size_t childCount = node->_children.size();
         if (childCount > 0)
         {
@@ -152,20 +184,20 @@ bool SceneManager::renderNode(SceneNode* node /*= NULL*/)
                 SceneNode* newNode = node->_children[node->_current+1];
                 newNode->_current = -1;
                 nodeStack.push(newNode->_handle);
-                newNode->renderEnter(_renderAct);
+                newNode->renderEnter(d->_renderAct);
                 node->_current++;
             }
             else
             {
-                node->render(_renderAct);
-                node->renderLeave(_renderAct);
+                node->render(d->_renderAct);
+                node->renderLeave(d->_renderAct);
                 nodeStack.pop();
             }
         }
         else
         {
-            node->render(_renderAct);
-            node->renderLeave(_renderAct);
+            node->render(d->_renderAct);
+            node->renderLeave(d->_renderAct);
             nodeStack.pop();
         }
     }
@@ -175,28 +207,31 @@ bool SceneManager::renderNode(SceneNode* node /*= NULL*/)
 
 void SceneManager::print(SceneNode* node)
 {
+    SK_D(SceneManager);
     if (node == NULL)
-        node = _nodes[0];
+        node = d->_nodes[0];
     node->print();
 }
 
 Camera* SceneManager::getCamera()
 {
-    return _cam;
+    SK_D(SceneManager);
+    return d->_cam;
 }
 
 int SceneManager::addBox(int32 x, int32 y, int32 z, uint8 r, uint8 g, uint8 b)
 {
+    SK_D(SceneManager);
     Box *box = new Box;
     box->x = x; box->y = y; box->z = z;
     box->r = r; box->g = g; box->b = b;
     box->next = NULL;
 
-    Box *lastBox = _boxList;
+    Box *lastBox = d->_boxList;
     if (!lastBox) 
     {
-        _boxList = box;
-        _boxList->next = NULL;
+        d->_boxList = box;
+        d->_boxList->next = NULL;
     }
     else
     {
@@ -225,12 +260,13 @@ bool SceneManager::renderBox(Box* box)
 
 BBox SceneManager::boundingBox()
 {
+    SK_D(SceneManager);
     BBox bbox;
-    Box *curBox = _boxList;
+    Box *curBox = d->_boxList;
     while (curBox)
     {
-        bbox.add(curBox->x + 0.5, curBox->y + 0.5, curBox->z + 0.5);
-        bbox.add(curBox->x - 0.5, curBox->y - 0.5, curBox->z - 0.5);
+        bbox.add((float)(curBox->x + 0.5), (float)(curBox->y + 0.5), (float)(curBox->z + 0.5));
+        bbox.add((float)(curBox->x - 0.5), (float)(curBox->y - 0.5), (float)(curBox->z - 0.5));
         curBox = curBox->next;
     }
 
@@ -262,56 +298,57 @@ bool SceneManager::save(const std::string& path)
 
 bool SceneManager::pick(int x, int y)
 {
-    Viewport& vport = _cam->getViewport();
+    SK_D(SceneManager);
+    Viewport& vport = d->_cam->getViewport();
     Point2 vpnt;
-    vpnt.x = ( x - vport.pixWidth / 2.0 ) / vport.pixScale;
-    vpnt.y = ( vport.pixHeight / 2.0 - y) / vport.pixScale;
+    vpnt.x = (float)(( x - vport.pixWidth / 2.0 ) / vport.pixScale);
+    vpnt.y = (float)(( vport.pixHeight / 2.0 - y) / vport.pixScale);
 
     glm::vec4 vec(vpnt.x, vpnt.y, 100.0, 1.0);
-    glm::vec4 linePnt = _cam->getViewMatrix().glMatrix() * vec;
+    glm::vec4 linePnt = d->_cam->getViewMatrix().glMatrix() * vec;
 
     printf("%f, %f, %f\n", linePnt.x, linePnt.y, linePnt.z);
     glm::vec4 vec1(0.0, 0.0, 0.0, 1.0);
-    glm::vec4 dirPnt1 = _cam->getViewMatrix().glMatrix() * vec1;
+    glm::vec4 dirPnt1 = d->_cam->getViewMatrix().glMatrix() * vec1;
 
     glm::vec4 vec2(0.0, 0.0, -1.0, 1.0);
-    glm::vec4 dirPnt2 = _cam->getViewMatrix().glMatrix() * vec2;
+    glm::vec4 dirPnt2 = d->_cam->getViewMatrix().glMatrix() * vec2;
 
     glm::vec4 dir = dirPnt2 - dirPnt1;
 
     // reset pick line and render it later for debug purpose
     glm::vec3 linePnt1 = glm::vec3(linePnt.x, linePnt.y, linePnt.z);
     glm::vec4 linePnt2 = linePnt + 1000 * dir;
-    _pickLine->reset(linePnt1, glm::vec3(linePnt2.x, linePnt2.y, linePnt2.z));
+    d->_pickLine->reset(linePnt1, glm::vec3(linePnt2.x, linePnt2.y, linePnt2.z));
 
-    if (_pickedBox) { delete _pickedBox; _pickedBox = NULL; }
+    if (d->_pickedBox) { delete d->_pickedBox; d->_pickedBox = NULL; }
 
-    Box *curBox = _boxList;
+    Box *curBox = d->_boxList;
     Point3 crossPnt;
     double depth = -BBOX_LIMIT;
     while (curBox)
     {
         BBox bbox;
-        bbox.add(curBox->x + 0.5, curBox->y + 0.5, curBox->z + 0.5);
-        bbox.add(curBox->x - 0.5, curBox->y - 0.5, curBox->z - 0.5);
+        bbox.add((float)(curBox->x + 0.5), (float)(curBox->y + 0.5), (float)(curBox->z + 0.5));
+        bbox.add((float)(curBox->x - 0.5), (float)(curBox->y - 0.5), (float)(curBox->z - 0.5));
 
         if (isPicked(Point3(vpnt.x, vpnt.y, 0.0), Point3(dir.x, dir.y, dir.z), &bbox, &crossPnt))
         {
             glm::vec4 tmpPnt(crossPnt.x, crossPnt.y, crossPnt.z, 1.0);
-            glm::vec4 viewPnt = _cam->getViewMat() * tmpPnt;
+            glm::vec4 viewPnt = d->_cam->getViewMat() * tmpPnt;
 
             if (viewPnt.z > depth)
             {
-                if (!_pickedBox)
+                if (!d->_pickedBox)
                 {
-                    _pickedBox = new Box;
-                    _pickedBox->r = 255;
-                    _pickedBox->g = 255;
-                    _pickedBox->b = 255;
+                    d->_pickedBox = new Box;
+                    d->_pickedBox->r = 255;
+                    d->_pickedBox->g = 255;
+                    d->_pickedBox->b = 255;
                 }                    
-                _pickedBox->x = curBox->x;
-                _pickedBox->y = curBox->y;
-                _pickedBox->z = curBox->z;
+                d->_pickedBox->x = curBox->x;
+                d->_pickedBox->y = curBox->y;
+                d->_pickedBox->z = curBox->z;
 
                 depth = viewPnt.z;
             }

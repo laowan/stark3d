@@ -59,12 +59,7 @@ public:
     bool isPicked(Point3 linePnt, Point3 lineDir, BBox* bbox, Point3* crsPnt);
 
 private:
-    std::vector<SceneNode*> _nodes;
-    RenderAction* _renderAct;
-    Camera* _cam;
-    Box* _boxList;
-    Box* _pickedBox;
-    Line* _pickLine;
+    SK_DECLARE_IMPL(SceneManager);
 };
 SK_END_NAMESPACE
 #endif

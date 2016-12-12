@@ -60,8 +60,8 @@ bool FileLoader3DS::getMeshData(uint32* num, MeshData** meshes)
         mesh.texcos = (float*)malloc(lib3dsmesh->nvertices * 2 * sizeof(float));
         for (unsigned short j = 0; j < lib3dsmesh->nvertices; j++)
         {
-            mesh.texcos[2*j+0] = lib3dsmesh->texcos[j][0] / 2.0;
-            mesh.texcos[2*j+1] = lib3dsmesh->texcos[j][1] / 2.0;
+            mesh.texcos[2*j+0] = lib3dsmesh->texcos[j][0] / (float)2.0;
+            mesh.texcos[2*j+1] = lib3dsmesh->texcos[j][1] / (float)2.0;
         }
         
         mesh.numFaces = 1;

@@ -85,7 +85,7 @@ public:
     uint32 getRenderBufferTexture(uint32 obj);
 
 private:
-    ObjectPool<RenderBuffer> _renderBuffers;
+    SK_DECLARE_IMPL(RenderDevice);
 };
 
 SK_END_NAMESPACE
