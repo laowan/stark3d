@@ -73,10 +73,31 @@ GLuint CreateProgram(const std::vector<GLuint> &shaderList)
    return program;
 }
 
+ShaderUniforms::ShaderUniforms() :
+        mvLoc(0),
+        mvpLoc(0),
+        colorLoc(0),
+        lightPositionLoc(0),
+        lightColorLoc(0),
+        colorMapLoc(0),
+        colorMapLoc2(0),
+        filterLoc(0),
+        viewportWidthLoc(0),
+        viewportHeightLoc(0)
+{}
+
+class ShaderImpl : public Impl<Shader>
+{
+public:
+    int _program;
+    ShaderUniforms _uniforms;
+};
+
 
 Shader::Shader(std::string filename)
 {
-    _program = 0;
+    SK_I(Shader);
+    d->_program = 0;
     init(filename);
 }
 
@@ -87,6 +108,7 @@ Shader::~Shader()
 
 void Shader::init(std::string filename)
 {
+    SK_D(Shader);
     vector<string> types;
     types.push_back(".vert");
     types.push_back(".frag");
@@ -107,7 +129,7 @@ void Shader::init(std::string filename)
         shaderList.push_back(CreateShader(shaderType, shaderData.str()));
     }
 
-    _program = CreateProgram(shaderList);
+    d->_program = CreateProgram(shaderList);
 
     std::for_each(shaderList.begin(), shaderList.end(), glDeleteShader);
 
@@ -117,50 +139,65 @@ void Shader::init(std::string filename)
 
 void Shader::use()
 {
-    glUseProgram(_program);
+    SK_D(Shader);
+    glUseProgram(d->_program);
+}
+
+int Shader::program()
+{
+    SK_D(Shader);
+    return d->_program; 
+}
+
+ShaderUniforms& Shader::uniforms()
+{
+    SK_D(Shader);
+    return d->_uniforms; 
 }
 
 void Shader::bind()
 {
-    glBindAttribLocation(_program, 0, "aPosition");
-    glBindAttribLocation(_program, 1, "aNormal");
-    glBindAttribLocation(_program, 2, "aTexCoord");
+    SK_D(Shader);
+    glBindAttribLocation(d->_program, 0, "aPosition");
+    glBindAttribLocation(d->_program, 1, "aNormal");
+    glBindAttribLocation(d->_program, 2, "aTexCoord");
 
-    _uniforms.mvLoc = glGetUniformLocation(_program, "uModelViewMat");
-    _uniforms.mvpLoc = glGetUniformLocation(_program, "uModelViewProjMat");
-    _uniforms.colorLoc = glGetUniformLocation(_program, "uColor");
-    _uniforms.lightPositionLoc = glGetUniformLocation(_program, "uLightPosition");
-    _uniforms.lightColorLoc = glGetUniformLocation(_program, "uLightColor");
-    _uniforms.colorMapLoc = glGetUniformLocation(_program, "uColorMap");
-    _uniforms.colorMapLoc2 = glGetUniformLocation(_program, "uColorMap2");
-    _uniforms.filterLoc = glGetUniformLocation(_program, "uFilterMat");
-    _uniforms.viewportWidthLoc = glGetUniformLocation(_program, "uViewportWidth");
-    _uniforms.viewportHeightLoc = glGetUniformLocation(_program, "uViewportHeight");
+    d->_uniforms.mvLoc = glGetUniformLocation(d->_program, "uModelViewMat");
+    d->_uniforms.mvpLoc = glGetUniformLocation(d->_program, "uModelViewProjMat");
+    d->_uniforms.colorLoc = glGetUniformLocation(d->_program, "uColor");
+    d->_uniforms.lightPositionLoc = glGetUniformLocation(d->_program, "uLightPosition");
+    d->_uniforms.lightColorLoc = glGetUniformLocation(d->_program, "uLightColor");
+    d->_uniforms.colorMapLoc = glGetUniformLocation(d->_program, "uColorMap");
+    d->_uniforms.colorMapLoc2 = glGetUniformLocation(d->_program, "uColorMap2");
+    d->_uniforms.filterLoc = glGetUniformLocation(d->_program, "uFilterMat");
+    d->_uniforms.viewportWidthLoc = glGetUniformLocation(d->_program, "uViewportWidth");
+    d->_uniforms.viewportHeightLoc = glGetUniformLocation(d->_program, "uViewportHeight");
 }
 
 //! commit the values to the shader
 void Shader::commitUniforms()
 {
-    if (_uniforms.mvLoc > 0)
-        glUniformMatrix4fv(_uniforms.mvLoc, 1, GL_FALSE, glm::value_ptr(_uniforms.mv));
-    if (_uniforms.mvpLoc > 0)
-        glUniformMatrix4fv(_uniforms.mvpLoc, 1, GL_FALSE, glm::value_ptr(_uniforms.mvp));
-    if (_uniforms.colorLoc > 0)
-        glUniform4fv(_uniforms.colorLoc, 1, glm::value_ptr(_uniforms.color));
-    if (_uniforms.lightPositionLoc > 0)
-        glUniform3fv(_uniforms.lightPositionLoc, 1, glm::value_ptr(_uniforms.lightPosition));
-    if (_uniforms.lightColorLoc > 0)
-        glUniform3fv(_uniforms.lightColorLoc, 1, glm::value_ptr(_uniforms.lightColor));
-    if (_uniforms.colorMapLoc > 0)
-        glUniform1i(_uniforms.colorMapLoc, _uniforms.activeTexture);
-    if (_uniforms.colorMapLoc2 > 0)
-        glUniform1i(_uniforms.colorMapLoc2, _uniforms.activeTexture2);
-    if (_uniforms.filterLoc > 0)
-        glUniformMatrix4fv(_uniforms.filterLoc, 1, GL_FALSE, glm::value_ptr(_uniforms.filter));
-    if (_uniforms.viewportWidthLoc > 0)
-        glUniform1f(_uniforms.viewportWidthLoc, _uniforms.viewportWidth);
-    if (_uniforms.viewportHeightLoc > 0)
-        glUniform1f(_uniforms.viewportHeightLoc, _uniforms.viewportHeight);
+    SK_D(Shader);
+    if (d->_uniforms.mvLoc > 0)
+        glUniformMatrix4fv(d->_uniforms.mvLoc, 1, GL_FALSE, glm::value_ptr(d->_uniforms.mv));
+    if (d->_uniforms.mvpLoc > 0)
+        glUniformMatrix4fv(d->_uniforms.mvpLoc, 1, GL_FALSE, glm::value_ptr(d->_uniforms.mvp));
+    if (d->_uniforms.colorLoc > 0)
+        glUniform4fv(d->_uniforms.colorLoc, 1, glm::value_ptr(d->_uniforms.color));
+    if (d->_uniforms.lightPositionLoc > 0)
+        glUniform3fv(d->_uniforms.lightPositionLoc, 1, glm::value_ptr(d->_uniforms.lightPosition));
+    if (d->_uniforms.lightColorLoc > 0)
+        glUniform3fv(d->_uniforms.lightColorLoc, 1, glm::value_ptr(d->_uniforms.lightColor));
+    if (d->_uniforms.colorMapLoc > 0)
+        glUniform1i(d->_uniforms.colorMapLoc, d->_uniforms.activeTexture);
+    if (d->_uniforms.colorMapLoc2 > 0)
+        glUniform1i(d->_uniforms.colorMapLoc2, d->_uniforms.activeTexture2);
+    if (d->_uniforms.filterLoc > 0)
+        glUniformMatrix4fv(d->_uniforms.filterLoc, 1, GL_FALSE, glm::value_ptr(d->_uniforms.filter));
+    if (d->_uniforms.viewportWidthLoc > 0)
+        glUniform1f(d->_uniforms.viewportWidthLoc, d->_uniforms.viewportWidth);
+    if (d->_uniforms.viewportHeightLoc > 0)
+        glUniform1f(d->_uniforms.viewportHeightLoc, d->_uniforms.viewportHeight);
 }
 
 SK_END_NAMESPACE

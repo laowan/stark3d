@@ -12,6 +12,7 @@
 #include "scene/texture.h"
 #include "scene/bsp.h"
 #include "scene/mesh.h"
+#include "scene/sprite.h"
 
 #include "renderaction.h"
 

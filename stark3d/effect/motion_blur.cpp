@@ -67,9 +67,9 @@ void EffectMotionBlur::render()
     glClearDepth(1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    Module::shaderMan().use("normal");
+    Module::resMan().useShader("normal");
 
-    ShaderUniforms& uniforms = Module::shaderMan().currentShader()->uniforms();
+    ShaderUniforms& uniforms = Module::resMan().currentShader()->uniforms();
 
     // calculate the mvp matrix and apply it to the shader
     uniforms.mvp = Module::sceneMan().getCamera()->getViewProjMat();
@@ -78,7 +78,7 @@ void EffectMotionBlur::render()
     uniforms.lightColor = glm::vec3(1.0f, 1.0f, 1.0f);
     uniforms.activeTexture = 0;
 
-    Module::shaderMan().currentShader()->commitUniforms();
+    Module::resMan().currentShader()->commitUniforms();
 
     // now render the scene
     Module::sceneMan().render();
@@ -100,11 +100,11 @@ void EffectMotionBlur::render()
         texture2 = tmp;
     }
 
-    Module::shaderMan().use("screen_effects/motion_blur");
-    ShaderUniforms& u = Module::shaderMan().currentShader()->uniforms();
+    Module::resMan().useShader("screen_effects/motion_blur");
+    ShaderUniforms& u = Module::resMan().currentShader()->uniforms();
     u.activeTexture = 0;
     u.activeTexture2 = 1;
-    Module::shaderMan().currentShader()->commitUniforms();
+    Module::resMan().currentShader()->commitUniforms();
 
     Module::renderDev().setVertexBuffer(_vb);
 

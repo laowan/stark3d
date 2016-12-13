@@ -10,6 +10,8 @@ SK_BEGIN_NAMESPACE
 class ShaderUniforms
 {
 public:
+    ShaderUniforms();
+public:
     glm::mat4 mv;
     glm::mat4 mvp;
     glm::vec4 color;
@@ -36,7 +38,7 @@ private:
 friend class Shader;
 };
 
-class Shader
+class STARK_API Shader
 {
 public:
     Shader(std::string filename);
@@ -44,16 +46,15 @@ public:
 
     void init(std::string filename);
     void use();
-    int program() { return _program; }
-    ShaderUniforms& uniforms() { return _uniforms; }
+    int program();
+    ShaderUniforms& uniforms();
     void commitUniforms();
 
 private:
     void bind();
 
 private:
-    int _program;
-    ShaderUniforms _uniforms;
+    SK_DECLARE_IMPL(Shader);
 };
 
 SK_END_NAMESPACE

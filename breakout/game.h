@@ -34,6 +34,8 @@ public:
     bool              keys[1024];
     unsigned int      width, height;
     std::vector<GameLevel> levels;
+    int currentLevel;
+    SK::Sprite* sprite;
 };
 
 #endif

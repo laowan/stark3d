@@ -90,7 +90,7 @@ Cube::~Cube()
 bool Cube::render(RenderAction* act)
 {
 
-    Shader* shader = Module::shaderMan().currentShader();
+    Shader* shader = Module::resMan().currentShader();
     ShaderUniforms& uniforms = shader->uniforms();
     glm::mat4 saveMvpMat = uniforms.mvp;
     glm::mat4 saveMvMat = uniforms.mv;

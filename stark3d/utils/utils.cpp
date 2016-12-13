@@ -52,9 +52,9 @@ void skScreenshot(const char* file)
     glClearDepth(1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    Module::shaderMan().use("normal");
+    Module::resMan().useShader("normal");
 
-    ShaderUniforms& uniforms = Module::shaderMan().currentShader()->uniforms();
+    ShaderUniforms& uniforms = Module::resMan().currentShader()->uniforms();
 
     // calculate the mvp matrix and apply it to the shader
     uniforms.mvp = Module::sceneMan().getCamera()->getViewProjMat();
@@ -63,7 +63,7 @@ void skScreenshot(const char* file)
     uniforms.lightColor = glm::vec3(1.0f, 1.0f, 1.0f);
     uniforms.activeTexture = 0;
 
-    Module::shaderMan().currentShader()->commitUniforms();
+    Module::resMan().currentShader()->commitUniforms();
 
     // now render the scene
     Module::sceneMan().render();

@@ -184,7 +184,7 @@ bool BSP::loadBSPData(FILE* file)
 
 bool BSP::render(RenderAction* act)
 {
-    Shader* shader = Module::shaderMan().currentShader();
+    Shader* shader = Module::resMan().currentShader();
     ShaderUniforms& uniforms = shader->uniforms();
     uniforms.mvp *= act->_modelMat.glMatrix();
     uniforms.color = act->_color;

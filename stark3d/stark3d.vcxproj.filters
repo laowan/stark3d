@@ -129,6 +129,12 @@
     <ClCompile Include="effect\motion_blur.cpp">
       <Filter>Source Files\effect</Filter>
     </ClCompile>
+    <ClCompile Include="scene\sprite.cpp">
+      <Filter>Source Files\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\resourcemanager.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="utils\framework.h">
@@ -229,6 +235,12 @@
     </ClInclude>
     <ClInclude Include="stark3d.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="scene\sprite.h">
+      <Filter>Header Files\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\resourcemanager.h">
+      <Filter>Header Files\utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

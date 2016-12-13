@@ -4,8 +4,8 @@
 SK_BEGIN_NAMESPACE
 
 SceneManager* Module::_sceneManager = NULL;
-ShaderManager* Module::_shaderManager = NULL;
 RenderDevice* Module::_renderDevice = NULL;
+ResourceManager* Module::_resourceManager = NULL;
 
 static EffectNormal *gs_effect = NULL;
 
@@ -19,8 +19,8 @@ bool Module::init()
     }
 
     if (_sceneManager == NULL) _sceneManager = new SceneManager();
-    if (_shaderManager == NULL) _shaderManager = new ShaderManager();
     if (_renderDevice == NULL) _renderDevice = new RenderDevice();
+    if (_resourceManager == NULL) _resourceManager = new ResourceManager();
 
     gs_effect = new EffectNormal;
 
@@ -30,8 +30,8 @@ bool Module::init()
 void Module::exit()
 {
     if (_sceneManager) { delete _sceneManager; _sceneManager = NULL; }
-    if (_shaderManager) { delete _shaderManager; _shaderManager = NULL; }
     if (_renderDevice) { delete _renderDevice; _renderDevice = NULL; }
+    if (_resourceManager) { delete _resourceManager; _resourceManager = NULL; }
 
     if (gs_effect) { delete gs_effect; gs_effect = NULL; }
 }

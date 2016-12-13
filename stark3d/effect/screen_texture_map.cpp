@@ -58,9 +58,9 @@ void EffectTextureMap::render()
     glClearDepth(1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    Module::shaderMan().use("normal");
+    Module::resMan().useShader("normal");
 
-    ShaderUniforms& uniforms = Module::shaderMan().currentShader()->uniforms();
+    ShaderUniforms& uniforms = Module::resMan().currentShader()->uniforms();
 
     // calculate the mvp matrix and apply it to the shader
     uniforms.mvp = Module::sceneMan().getCamera()->getViewProjMat();
@@ -69,7 +69,7 @@ void EffectTextureMap::render()
     uniforms.lightColor = glm::vec3(1.0f, 1.0f, 1.0f);
     uniforms.activeTexture = 0;
 
-    Module::shaderMan().currentShader()->commitUniforms();
+    Module::resMan().currentShader()->commitUniforms();
 
     // now render the scene
     Module::sceneMan().render();
@@ -88,8 +88,8 @@ void EffectTextureMap::render()
 //         free(pdata);
 //     }
     
-    Module::shaderMan().use("screen_effects/texture_map");
-    ShaderUniforms& u = Module::shaderMan().currentShader()->uniforms();
+    Module::resMan().useShader("screen_effects/texture_map");
+    ShaderUniforms& u = Module::resMan().currentShader()->uniforms();
     u.activeTexture = 0;
     u.filter[0].x = 0.299; u.filter[1].x = 0.587; u.filter[2].x = 0.184; u.filter[3].x = 0.0;
     u.filter[0].y = 0.299; u.filter[1].y = 0.587; u.filter[2].y = 0.184; u.filter[3].y = 0.0;
@@ -97,7 +97,7 @@ void EffectTextureMap::render()
     u.filter[0].w = 0.0;   u.filter[1].w = 0.0;   u.filter[2].w = 0.0;   u.filter[3].w = 1.0;
     u.viewportWidth = width;
     u.viewportHeight = height;
-    Module::shaderMan().currentShader()->commitUniforms();
+    Module::resMan().currentShader()->commitUniforms();
 
     Module::renderDev().setVertexBuffer(_vb);
 

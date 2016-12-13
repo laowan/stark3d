@@ -9,9 +9,13 @@ void EffectNormal::render()
     glClearDepth(1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    Module::shaderMan().use("normal");
+    glDisable(GL_CULL_FACE);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    glDisable(GL_BLEND);
 
-    ShaderUniforms& uniforms = Module::shaderMan().currentShader()->uniforms();
+    Module::resMan().useShader("normal");
+
+    ShaderUniforms& uniforms = Module::resMan().currentShader()->uniforms();
 
     // calculate the mvp matrix and apply it to the shader
     uniforms.mv = Module::sceneMan().getCamera()->getViewMat();
@@ -21,7 +25,7 @@ void EffectNormal::render()
     uniforms.lightColor = glm::vec3(1.0f, 1.0f, 1.0f);
     uniforms.activeTexture = 0;
 
-    Module::shaderMan().currentShader()->commitUniforms();
+    Module::resMan().currentShader()->commitUniforms();
 
     // now render the scene
     Module::sceneMan().render();

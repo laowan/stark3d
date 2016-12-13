@@ -13,6 +13,7 @@ public:
     Texture(std::string file, int minMagFiler = GL_LINEAR, int wrapMode = GL_CLAMP_TO_EDGE);
     ~Texture();
 
+    void bind();
     bool render(RenderAction* act);
 
 private:

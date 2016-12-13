@@ -247,7 +247,7 @@ int SceneManager::addBox(int32 x, int32 y, int32 z, uint8 r, uint8 g, uint8 b)
     mat.pan(x, y, z);
     int idx = addNode(transform);
     
-    //addNode(new Texture());
+    addNode(new Texture());
     addNode(resolve(idx), new Cube(1.0));
     return 1;
 }

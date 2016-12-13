@@ -38,6 +38,7 @@
     <ClCompile Include="scene\line.cpp" />
     <ClCompile Include="scene\mesh.cpp" />
     <ClCompile Include="scene\node.cpp" />
+    <ClCompile Include="scene\sprite.cpp" />
     <ClCompile Include="scene\terrain.cpp" />
     <ClCompile Include="scene\texture.cpp" />
     <ClCompile Include="scene\transform.cpp" />
@@ -47,6 +48,7 @@
     <ClCompile Include="utils\loader.cpp" />
     <ClCompile Include="utils\matrix.cpp" />
     <ClCompile Include="utils\renderdevice.cpp" />
+    <ClCompile Include="utils\resourcemanager.cpp" />
     <ClCompile Include="utils\shader.cpp" />
     <ClCompile Include="utils\shadermanager.cpp" />
     <ClCompile Include="utils\utils.cpp" />
@@ -72,6 +74,7 @@
     <ClInclude Include="scene\line.h" />
     <ClInclude Include="scene\mesh.h" />
     <ClInclude Include="scene\node.h" />
+    <ClInclude Include="scene\sprite.h" />
     <ClInclude Include="scene\terrain.h" />
     <ClInclude Include="scene\texture.h" />
     <ClInclude Include="scene\transform.h" />
@@ -82,6 +85,7 @@
     <ClInclude Include="utils\loader.h" />
     <ClInclude Include="utils\matrix.h" />
     <ClInclude Include="utils\renderdevice.h" />
+    <ClInclude Include="utils\resourcemanager.h" />
     <ClInclude Include="utils\shader.h" />
     <ClInclude Include="utils\shadermanager.h" />
     <ClInclude Include="utils\utils.h" />

@@ -7,8 +7,8 @@
 #include "scene.h"
 #include "utils/utils.h"
 #include "utils/matrix.h"
-#include "utils/shadermanager.h"
 #include "utils/renderdevice.h"
+#include "utils/resourcemanager.h"
 #include "utils/loader.h"
 
 SK_BEGIN_NAMESPACE
@@ -21,13 +21,13 @@ public:
     static void render();
 
     static SceneManager& sceneMan() { return *_sceneManager; }
-    static ShaderManager& shaderMan() { return *_shaderManager; }
     static RenderDevice& renderDev() { return *_renderDevice; }
+    static ResourceManager& resMan() { return *_resourceManager; }
 
 private:
     static SceneManager* _sceneManager;
-    static ShaderManager* _shaderManager;
     static RenderDevice* _renderDevice;
+    static ResourceManager* _resourceManager;
 };
 
 SK_END_NAMESPACE

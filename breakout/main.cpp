@@ -1,7 +1,6 @@
-#include "stark3d.h"
+#include "game.h"
 #include <GL/freeglut.h>
 #include <stdio.h>
-#include "game.h"
 
 static void resize(int width, int height);
 static void display(void);
@@ -9,15 +8,15 @@ static void keyboard(unsigned char key, int x, int y);
 static void special(int key, int x, int y);
 static void idle(void);
 
-static const int GameWith = 600;
-static const int GameHeight = 800;
+static const int GameWith = 280;
+static const int GameHeight = 400;
 static Game game;
 
 int main(int argc, char *argv[])
 {
     glutInit(&argc, argv);
     glutInitWindowSize(GameWith, GameHeight);
-    glutInitWindowPosition(40, 40);
+    glutInitWindowPosition(200, 200);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH | GLUT_MULTISAMPLE);
 
     int window = glutCreateWindow("Breakout");
@@ -51,6 +50,7 @@ static void resize(int width, int height)
 static void display(void)
 {
     SK::Module::render();
+    game.render();
 
     glutSwapBuffers();
     glutPostRedisplay();

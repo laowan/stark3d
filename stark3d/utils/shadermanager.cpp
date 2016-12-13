@@ -24,7 +24,7 @@ ShaderManager::~ShaderManager()
 void ShaderManager::use(std::string name)
 {
     SK_D(ShaderManager);
-    std::map<std::string, Shader*>::iterator it = d->_shaderMap.find(name);
+    auto it = d->_shaderMap.find(name);
     if (it == d->_shaderMap.end())
     {
         Shader* shader = new Shader(name);
@@ -45,6 +45,12 @@ void ShaderManager::use(std::string name)
 Shader* ShaderManager::getShader(std::string name)
 {
     SK_D(ShaderManager);
+    auto it = d->_shaderMap.find(name);
+    if (it == d->_shaderMap.end())
+    {
+        Shader* shader = new Shader(name);
+        d->_shaderMap[name] = shader;
+    }
     return d->_shaderMap[name]; 
 }
 

@@ -51,12 +51,17 @@ void Texture::init(std::string file, int minMagFiler, int wrapMode)
     glBindTexture(GL_TEXTURE_2D, 0);
 }
 
+void Texture::bind()
+{
+    glBindTexture(GL_TEXTURE_2D, _object);
+}
+
 bool Texture::render(RenderAction* act)
 {
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, _object);
     
-    act->_activeTexture = 0;
+    //act->_activeTexture = 0;
     return true;
 }
 
