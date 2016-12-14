@@ -13,6 +13,7 @@ public:
     ~Cube();
     std::string type() { return "Cube"; }
 
+    bool render();
     bool render(RenderAction* act);
 
 private:

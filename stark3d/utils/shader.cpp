@@ -74,16 +74,16 @@ GLuint CreateProgram(const std::vector<GLuint> &shaderList)
 }
 
 ShaderUniforms::ShaderUniforms() :
-        mvLoc(0),
-        mvpLoc(0),
-        colorLoc(0),
-        lightPositionLoc(0),
-        lightColorLoc(0),
-        colorMapLoc(0),
-        colorMapLoc2(0),
-        filterLoc(0),
-        viewportWidthLoc(0),
-        viewportHeightLoc(0)
+        mvLoc(-1),
+        mvpLoc(-1),
+        colorLoc(-1),
+        lightPositionLoc(-1),
+        lightColorLoc(-1),
+        colorMapLoc(-1),
+        colorMapLoc2(-1),
+        filterLoc(-1),
+        viewportWidthLoc(-1),
+        viewportHeightLoc(-1)
 {}
 
 class ShaderImpl : public Impl<Shader>

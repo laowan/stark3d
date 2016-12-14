@@ -3,11 +3,11 @@
 
 #include "global.h"
 #include <string>
+#include "shader.h"
+#include "scene/texture.h"
 
 SK_BEGIN_NAMESPACE
 
-class Shader;
-class Texture;
 class STARK_API ResourceManager
 {
 public:

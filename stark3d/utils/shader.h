@@ -24,16 +24,16 @@ public:
     float viewportHeight;
 
 private:
-    uint32 mvLoc;
-    uint32 mvpLoc;
-    uint32 colorLoc;
-    uint32 lightPositionLoc;
-    uint32 lightColorLoc;
-    uint32 colorMapLoc;
-    uint32 colorMapLoc2;
-    uint32 filterLoc;
-    uint32 viewportWidthLoc;
-    uint32 viewportHeightLoc;
+    int32 mvLoc;
+    int32 mvpLoc;
+    int32 colorLoc;
+    int32 lightPositionLoc;
+    int32 lightColorLoc;
+    int32 colorMapLoc;
+    int32 colorMapLoc2;
+    int32 filterLoc;
+    int32 viewportWidthLoc;
+    int32 viewportHeightLoc;
 
 friend class Shader;
 };

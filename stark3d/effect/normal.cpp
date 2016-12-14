@@ -13,11 +13,10 @@ void EffectNormal::render()
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     glDisable(GL_BLEND);
 
-    Module::resMan().useShader("normal");
+    /*
+    Module::resMan().useShader("normal1");
 
     ShaderUniforms& uniforms = Module::resMan().currentShader()->uniforms();
-
-    // calculate the mvp matrix and apply it to the shader
     uniforms.mv = Module::sceneMan().getCamera()->getViewMat();
     uniforms.mvp = Module::sceneMan().getCamera()->getViewProjMat();
     uniforms.color = glm::vec4(1.0, 1.0, 0.0, 1.0);
@@ -26,7 +25,7 @@ void EffectNormal::render()
     uniforms.activeTexture = 0;
 
     Module::resMan().currentShader()->commitUniforms();
-
+    */
     // now render the scene
     Module::sceneMan().render();
 }

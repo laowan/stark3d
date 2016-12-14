@@ -1,7 +1,5 @@
 #include "resourcemanager.h"
 #include "shadermanager.h"
-#include "shader.h"
-#include "scene/texture.h"
 #include <map>
 
 SK_BEGIN_NAMESPACE

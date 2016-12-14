@@ -3,9 +3,9 @@
 
 #ifndef STARK_API
     #ifdef STARK_BUILD
-        #define STARK_API __declspec(dllexport)
+        #define STARK_API /*__declspec(dllexport)*/
     #else
-        #define STARK_API __declspec(dllimport)
+        #define STARK_API /*__declspec(dllimport)*/
     #endif
 #endif
 

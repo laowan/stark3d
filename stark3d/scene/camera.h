@@ -18,6 +18,7 @@ public:
         pixWidth = width;
         pixHeight = height;
 
+        extent = pixWidth;
         pixScale = pixHeight / extent;
 
         glViewport(0, 0, width, height);

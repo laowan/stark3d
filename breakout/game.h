@@ -24,7 +24,7 @@ public:
     void init(int w, int h);
     
     // GameLoop
-    void processInput(float dt);
+    void processInput(unsigned char key, float dt);
     void update(float dt);
     void render();
 
@@ -35,7 +35,8 @@ public:
     unsigned int      width, height;
     std::vector<GameLevel> levels;
     int currentLevel;
-    SK::Sprite* sprite;
+    GameObject *player;
+    SK::Sprite *sprite;
 };
 
 #endif

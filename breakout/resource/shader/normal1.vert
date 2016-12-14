@@ -13,7 +13,9 @@ out vec2 fragTexCoord;
 void main()
 {
 	fragPosition = aPosition;
+
 	fragNormal = aNormal;
+	
     fragTexCoord = aTexCoord;
 
     gl_Position = uModelViewProjMat * vec4(aPosition, 1.0);

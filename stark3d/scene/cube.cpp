@@ -87,6 +87,19 @@ Cube::~Cube()
     }
 }
 
+bool Cube::render()
+{
+    Module::renderDev().setVertexBuffer(_vb);
+
+    uint32 stride(sizeof(float)* 3 + sizeof(float)* 3 + sizeof(float)* 2);
+    Module::renderDev().setVertexLayout(0, stride, 0);
+    Module::renderDev().setVertexLayout(1, stride, (const void*)(3 * sizeof(float)));
+    Module::renderDev().setVertexLayout(2, stride, (const void*)(6 * sizeof(float)));
+    Module::renderDev().draw(SK::PRIM_TRIANGLES, 0, _triCount * 3);
+
+    return true;
+}
+
 bool Cube::render(RenderAction* act)
 {
 

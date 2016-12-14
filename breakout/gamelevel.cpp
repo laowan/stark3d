@@ -33,11 +33,10 @@ void GameLevel::load(std::string file, int width, int height)
 
 void GameLevel::draw(SK::Sprite *sprite)
 {
-    //for (size_t i = 0; i < bricks.size(); ++i)
-    //{
-    //    bricks[i].draw(sprite);
-    //}
-    bricks[0].draw(sprite);
+    for (size_t i = 0; i < bricks.size(); ++i)
+    {
+        bricks[i].draw(sprite);
+    }
 }
 
 void GameLevel::init(std::vector<std::vector<int>> tileData, int width, int height)

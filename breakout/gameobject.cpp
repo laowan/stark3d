@@ -17,7 +17,18 @@ GameObject::GameObject(glm::vec2 pos, glm::vec2 sz,
 {
 }
 
+void GameObject::setShader(SK::Shader *shader)
+{
+    this->shader = shader;
+}
+
+void GameObject::setTexture(SK::Texture *texture)
+{
+    this->texture = texture;
+}
+
 void GameObject::draw(SK::Sprite *sprite)
 {
+    if (!shader || !texture) return;
     sprite->draw(shader, texture, position, size, 0.0, color);
 }

@@ -31,9 +31,6 @@ int main(int argc, char *argv[])
 
     SK::Module::init();
 
-    SK::Module::sceneMan().clear();
-    SK::Module::sceneMan().addBox(0, 0, 0, 255, 0, 0);
-
     game.init(GameWith, GameHeight);
 
     glutMainLoop();
@@ -58,6 +55,7 @@ static void display(void)
 
 static void keyboard(unsigned char key, int x, int y)
 {
+    game.processInput(key, 0);
     switch (key)
     {
     case 'r': SK::Module::sceneMan().getCamera()->reset(); break;
