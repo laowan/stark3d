@@ -1,6 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include "ball.h"
 #include "gamelevel.h"
 
 // Represents the current state of the game
@@ -28,6 +29,11 @@ public:
     void update(float dt);
     void render();
 
+    void doCollisionTest();
+
+private:
+    bool checkCollision(GameObject *objOne, GameObject *objTwo);
+
 public:
     // Game state
     GameState         state;
@@ -37,6 +43,7 @@ public:
     int currentLevel;
     GameObject *player;
     SK::Sprite *sprite;
+    Ball *ball;
 };
 
 #endif

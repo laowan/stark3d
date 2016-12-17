@@ -35,7 +35,8 @@ void GameLevel::draw(SK::Sprite *sprite)
 {
     for (size_t i = 0; i < bricks.size(); ++i)
     {
-        bricks[i].draw(sprite);
+        if (!bricks[i].destoryed)
+            bricks[i].draw(sprite);
     }
 }
 

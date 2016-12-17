@@ -1,6 +1,7 @@
 #include "game.h"
 #include <GL/freeglut.h>
 #include <stdio.h>
+#include <time.h>
 
 static void resize(int width, int height);
 static void display(void);
@@ -46,6 +47,13 @@ static void resize(int width, int height)
 
 static void display(void)
 {
+    static float lastTime = clock() / CLOCKS_PER_SEC;
+    float t = (float)clock() / CLOCKS_PER_SEC;
+    float deltaTime = t - lastTime;
+    lastTime = t;
+
+    game.update(deltaTime);
+
     SK::Module::render();
     game.render();
 

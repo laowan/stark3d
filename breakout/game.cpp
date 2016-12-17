@@ -5,12 +5,14 @@ Game::Game(unsigned int w, unsigned int h)
     : state(GAME_ACTIVE), keys(), width(w), height(h), currentLevel(0)
 {
     sprite = NULL;
+    ball = NULL;
 }
 
 Game::~Game()
 {
     if (sprite) delete sprite;
     if (player) delete player;
+    if (ball) delete ball;
 }
 
 void Game::init(int w, int h)
@@ -37,11 +39,17 @@ void Game::init(int w, int h)
     player = new GameObject(playerPos, playerSize, glm::vec3(1.0f), glm::vec2(0.0f),
         SK::Module::resMan().getTexture("paddle"), SK::Module::resMan().getShader("sprite"));
 
+    float ballRadius = 10.0f;
+    glm::vec2 ballPos = playerPos + glm::vec2(playerSize.x/2 - ballRadius, -ballRadius*2);
+    ball = new Ball(ballPos, ballRadius, glm::vec2(100.0f, -100.0f),
+        SK::Module::resMan().getTexture("awesomeface"), SK::Module::resMan().getShader("sprite"));
+
 }
 
 void Game::update(float dt)
 {
-
+    ball->move(dt, width);
+    doCollisionTest();
 }
 
 void Game::processInput(unsigned char key, float dt)
@@ -63,6 +71,10 @@ void Game::processInput(unsigned char key, float dt)
             else
                 player->position.x = width - player->size.x;
         }
+        else if (key == ' ')
+        {
+            ball->setStuck(false);
+        }
     }
 }
 
@@ -70,4 +82,32 @@ void Game::render()
 {
     levels[currentLevel].draw(sprite);
     player->draw(sprite);
+    ball->draw(sprite);
+}
+
+void Game::doCollisionTest()
+{
+    for (GameObject &brick : levels[currentLevel].bricks)
+    {
+        if (!brick.destoryed)
+        {
+            if (checkCollision(ball, &brick))
+            {
+                if (!brick.isSolid)
+                    brick.destoryed = true;
+            }
+        }
+    }
+}
+
+bool Game::checkCollision(GameObject *objOne, GameObject *objTwo)
+{
+
+    bool collisionX = objOne->position.x + objOne->size.x >= objTwo->position.x &&
+        objTwo->position.x + objTwo->size.x >= objOne->position.x;
+
+    bool collisionY = objOne->position.y + objOne->size.y >= objTwo->position.y &&
+        objTwo->position.y + objTwo->size.y >= objOne->position.y;
+
+    return collisionX && collisionY;
 }

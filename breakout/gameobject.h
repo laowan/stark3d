@@ -15,6 +15,8 @@ public:
 
     void setShader(SK::Shader *shader);
     void setTexture(SK::Texture *texture);
+    void setVelocity(glm::vec2 vel);
+
     virtual void draw(SK::Sprite *sprite);
 
 public:
