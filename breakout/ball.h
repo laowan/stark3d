@@ -13,11 +13,13 @@ public:
 
     glm::vec2 move(float dt, unsigned int winWidth);
     void reset(glm::vec2 position, glm::vec2 velocity);
-    void setStuck(bool stuck) { this->stuck = stuck; }
+    bool isStuck() { return _stuck; }
+    void setStuck(bool stuck) { _stuck = stuck; }
+    float radius() { return _radius; }
 
 private:
-    float radius;
-    bool stuck;
+    float _radius;
+    bool _stuck;
 };
 
 #endif

@@ -28,6 +28,7 @@ public:
     void processInput(unsigned char key, float dt);
     void update(float dt);
     void render();
+    void reset();
 
     void doCollisionTest();
 

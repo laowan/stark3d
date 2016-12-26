@@ -40,6 +40,15 @@ void GameLevel::draw(SK::Sprite *sprite)
     }
 }
 
+void GameLevel::reset()
+{
+    for (size_t i = 0; i < bricks.size(); ++i)
+    {
+        if (bricks[i].destoryed)
+            bricks[i].destoryed = false;
+    }
+}
+
 void GameLevel::init(std::vector<std::vector<int>> tileData, int width, int height)
 {
     size_t heightCnt = tileData.size();

@@ -9,6 +9,7 @@ public:
     GameLevel();
     void load(std::string file, int width, int height);
     void draw(SK::Sprite* sprite);
+    void reset();
 private:
     void init(std::vector<std::vector<int>> tileData, int width, int height);
 

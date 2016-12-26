@@ -1,6 +1,10 @@
 
 #include "game.h"
 
+const float sBallRadius = 10.0f;
+const glm::vec2 sBallInitVelocity(100.0f, -100.0f);
+const glm::vec2 sPlayerSize(50.0f, 10.0f);
+
 Game::Game(unsigned int w, unsigned int h)
     : state(GAME_ACTIVE), keys(), width(w), height(h), currentLevel(0)
 {
@@ -32,16 +36,15 @@ void Game::init(int w, int h)
 
     sprite = new SK::Sprite;
 
-    glm::vec2 playerSize(50.0f, 10.0f);
-    glm::vec2 playerPos = glm::vec2(
-        (float)w / 2 - playerSize.x / 2, (float)h - playerSize.y);
+    glm::vec2 playerSize(sPlayerSize);
+    glm::vec2 playerPos = glm::vec2((float)w / 2 - playerSize.x / 2, (float)h - playerSize.y);
 
     player = new GameObject(playerPos, playerSize, glm::vec3(1.0f), glm::vec2(0.0f),
         SK::Module::resMan().getTexture("paddle"), SK::Module::resMan().getShader("sprite"));
 
-    float ballRadius = 10.0f;
+    float ballRadius = sBallRadius;
     glm::vec2 ballPos = playerPos + glm::vec2(playerSize.x/2 - ballRadius, -ballRadius*2);
-    ball = new Ball(ballPos, ballRadius, glm::vec2(100.0f, -100.0f),
+    ball = new Ball(ballPos, ballRadius, sBallInitVelocity,
         SK::Module::resMan().getTexture("awesomeface"), SK::Module::resMan().getShader("sprite"));
 
 }
@@ -49,6 +52,10 @@ void Game::init(int w, int h)
 void Game::update(float dt)
 {
     ball->move(dt, width);
+    if (ball->position.y > height)
+    {
+        reset();
+    }
     doCollisionTest();
 }
 
@@ -85,8 +92,16 @@ void Game::render()
     ball->draw(sprite);
 }
 
+void Game::reset()
+{
+    levels[currentLevel].reset();
+    player->position = glm::vec2(width / 2.0f - sPlayerSize.x / 2, (float)height - sPlayerSize.y);
+    ball->position = player->position + glm::vec2(sPlayerSize.x/2 - sBallRadius, -sBallRadius*2);
+}
+
 void Game::doCollisionTest()
 {
+    // check the ball and the bricks
     for (GameObject &brick : levels[currentLevel].bricks)
     {
         if (!brick.destoryed)
@@ -97,6 +112,20 @@ void Game::doCollisionTest()
                     brick.destoryed = true;
             }
         }
+    }
+
+    // check the ball and the player
+    if (!ball->isStuck() && checkCollision(ball, player))
+    {
+        float center = player->position.x + player->size.x / 2;
+        float distance = ball->position.x + ball->radius() - center;
+        float percentage = distance / (player->size.x / 2);
+        float strength = 2.0f;
+
+        glm::vec2 oldVelocity = ball->velocity;
+        ball->velocity.x = sBallInitVelocity.x * percentage * strength;
+        ball->velocity.y = -1*abs(ball->velocity.y);
+        ball->velocity = glm::normalize(ball->velocity) * glm::length(oldVelocity);
     }
 }
 

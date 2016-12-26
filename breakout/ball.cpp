@@ -2,21 +2,21 @@
 
 Ball::Ball() : GameObject()
 {
-    this->radius = 10.0f;
-    this->stuck = true;
+    _radius = 10.0f;
+    _stuck = true;
 }
 
 Ball::Ball(glm::vec2 pos, float radius, glm::vec2 velocity, 
     SK::Texture* text, SK::Shader* shdr)
     : GameObject(pos, glm::vec2(radius*2, radius*2), glm::vec3(1.0), velocity, text, shdr)
 {
-    this->radius = radius;
-    this->stuck = true;
+    _radius = radius;
+    _stuck = true;
 }
 
 glm::vec2 Ball::move(float dt, unsigned int winWidth)
 {
-    if (stuck == false)
+    if (_stuck == false)
     {
         position += velocity * dt;
         if (position.x <= 0.0f)
