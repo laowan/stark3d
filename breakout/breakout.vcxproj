@@ -114,6 +114,9 @@
       <AdditionalLibraryDirectories>$(SolutionDir)\..\Build\$(Configuration)$(Platform)\;$(SolutionDir)..\lib\freeglut-2.8.1\lib\x64;$(SolutionDir)..\lib\glload\lib\x64</AdditionalLibraryDirectories>
       <AdditionalDependencies>stark3d.lib;glloadD.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>post.cmd $(OutDir) $(Platform)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
