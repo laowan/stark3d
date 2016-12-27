@@ -135,6 +135,9 @@
     <ClCompile Include="utils\resourcemanager.cpp">
       <Filter>Source Files\utils</Filter>
     </ClCompile>
+    <ClCompile Include="scene\particle.cpp">
+      <Filter>Source Files\scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="utils\framework.h">
@@ -241,6 +244,9 @@
     </ClInclude>
     <ClInclude Include="utils\resourcemanager.h">
       <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="scene\particle.h">
+      <Filter>Header Files\scene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

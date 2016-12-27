@@ -17,8 +17,6 @@ public:
             glm::vec2 size = glm::vec2(10, 10), 
             float rotate = 0.0f, 
             glm::vec3 color = glm::vec3(1.0f));
-private:
-    void init();
 
 private:
     SK_DECLARE_IMPL(Sprite);

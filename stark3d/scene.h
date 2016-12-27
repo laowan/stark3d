@@ -13,6 +13,7 @@
 #include "scene/bsp.h"
 #include "scene/mesh.h"
 #include "scene/sprite.h"
+#include "scene/particle.h"
 
 #include "renderaction.h"
 

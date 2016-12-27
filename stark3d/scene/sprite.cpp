@@ -13,13 +13,10 @@ public:
 
     uint32 quadVAO;
     uint32 quadVBO;
-    SK::Cube *cube;
 };
 
 void SpriteImpl::init()
 {
-    cube = new SK::Cube;
-
     // Configure VAO/VBO
     GLfloat vertices[] = {
         // Pos             // Normal         // Tex
@@ -52,8 +49,6 @@ void SpriteImpl::init()
 void SpriteImpl::exit()
 {
     glDeleteVertexArrays(1, &quadVAO);
-
-    delete cube;
 }
 
 Sprite::Sprite()
@@ -108,7 +103,6 @@ void Sprite::draw(Shader* shader, Texture* texture, glm::vec2 position, glm::vec
     uniforms.mvp = mvp;
     shader->commitUniforms();
 
-    //d->cube->render();
     uint32 stride(sizeof(float)*3 + sizeof(float)*3 + sizeof(float)*2);
 
     glBindBuffer(GL_ARRAY_BUFFER, d->quadVBO);
@@ -130,11 +124,6 @@ void Sprite::draw(Shader* shader, Texture* texture, glm::vec2 position, glm::vec
     //glBindVertexArray(d->quadVAO);
     //glDrawArrays(GL_TRIANGLES, 0, 6);
     //glBindVertexArray(0);
-}
-
-void Sprite::init()
-{
-   
 }
 
 SK_END_NAMESPACE

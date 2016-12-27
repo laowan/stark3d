@@ -3,6 +3,7 @@
 
 #include "ball.h"
 #include "gamelevel.h"
+#include "particles.h"
 
 // Represents the current state of the game
 enum GameState {
@@ -44,6 +45,7 @@ public:
     int currentLevel;
     GameObject *player;
     SK::Sprite *sprite;
+    ParticleGenerator *particles;
     Ball *ball;
 };
 

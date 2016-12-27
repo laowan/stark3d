@@ -38,6 +38,7 @@
     <ClCompile Include="scene\line.cpp" />
     <ClCompile Include="scene\mesh.cpp" />
     <ClCompile Include="scene\node.cpp" />
+    <ClCompile Include="scene\particle.cpp" />
     <ClCompile Include="scene\sprite.cpp" />
     <ClCompile Include="scene\terrain.cpp" />
     <ClCompile Include="scene\texture.cpp" />
@@ -74,6 +75,7 @@
     <ClInclude Include="scene\line.h" />
     <ClInclude Include="scene\mesh.h" />
     <ClInclude Include="scene\node.h" />
+    <ClInclude Include="scene\particle.h" />
     <ClInclude Include="scene\sprite.h" />
     <ClInclude Include="scene\terrain.h" />
     <ClInclude Include="scene\texture.h" />

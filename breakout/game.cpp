@@ -10,6 +10,7 @@ Game::Game(unsigned int w, unsigned int h)
 {
     sprite = NULL;
     ball = NULL;
+    particles = NULL;
 }
 
 Game::~Game()
@@ -17,6 +18,7 @@ Game::~Game()
     if (sprite) delete sprite;
     if (player) delete player;
     if (ball) delete ball;
+    if (particles) delete particles;
 }
 
 void Game::init(int w, int h)
@@ -29,23 +31,31 @@ void Game::init(int w, int h)
     levels.push_back(level);
 
     SK::Module::resMan().loadShader("sprite");
+    SK::Module::resMan().loadShader("particle");
     SK::Module::resMan().loadTexture("block");
     SK::Module::resMan().loadTexture("block_solid");
     SK::Module::resMan().loadTexture("awesomeface");
     SK::Module::resMan().loadTexture("paddle");
+    SK::Module::resMan().loadTexture("particle");
 
     sprite = new SK::Sprite;
 
+    // player
     glm::vec2 playerSize(sPlayerSize);
     glm::vec2 playerPos = glm::vec2((float)w / 2 - playerSize.x / 2, (float)h - playerSize.y);
 
     player = new GameObject(playerPos, playerSize, glm::vec3(1.0f), glm::vec2(0.0f),
         SK::Module::resMan().getTexture("paddle"), SK::Module::resMan().getShader("sprite"));
 
+    // ball
     float ballRadius = sBallRadius;
     glm::vec2 ballPos = playerPos + glm::vec2(playerSize.x/2 - ballRadius, -ballRadius*2);
     ball = new Ball(ballPos, ballRadius, sBallInitVelocity,
         SK::Module::resMan().getTexture("awesomeface"), SK::Module::resMan().getShader("sprite"));
+
+    // particle
+    particles = new ParticleGenerator(SK::Module::resMan().getShader("particle"),
+        SK::Module::resMan().getTexture("particle"), 500);
 
 }
 
@@ -57,6 +67,11 @@ void Game::update(float dt)
         reset();
     }
     doCollisionTest();
+
+    if (!ball->isStuck())
+    {
+        particles->update(dt, ball, 2, glm::vec2(ball->radius()/2));
+    }
 }
 
 void Game::processInput(unsigned char key, float dt)
@@ -89,6 +104,7 @@ void Game::render()
 {
     levels[currentLevel].draw(sprite);
     player->draw(sprite);
+    particles->draw();
     ball->draw(sprite);
 }
 
