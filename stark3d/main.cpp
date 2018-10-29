@@ -8,6 +8,7 @@
 #include "effect.h"
 #include <glm/gtc/type_ptr.hpp>
 #include "imgui/imgui.h"
+#include "bgfx/bgfx.h"
 
 #include <GL/freeglut.h>
 
@@ -235,6 +236,13 @@ static void init(void)
 
     glDisable(GL_BLEND);
 
+    bgfx::Init init;
+    init.type = bgfx::RendererType::OpenGL;
+    init.vendorId = BGFX_PCI_ID_NONE;
+    init.resolution.width = 0;
+    init.resolution.height = 0;
+    init.resolution.reset = 0;
+    bgfx::init(init);
 }
 
 static void display(void)

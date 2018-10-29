@@ -161,16 +161,17 @@
     <ClCompile>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\lib\lib3ds-2.0.0\include;$(SolutionDir)..\lib\freeglut-2.8.1\include;$(SolutionDir)..\lib\glload\include;$(SolutionDir)..\lib\glm;$(SolutionDir)..\lib\stb;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;_HAS_ITERATOR_DEBUGGING=0;_ITERATOR_DEBUG_LEVEL=0;BX_PLATFORM_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\lib\lib3ds-2.0.0\include;$(SolutionDir)..\lib\freeglut-2.8.1\include;$(SolutionDir)..\lib\glload\include;$(SolutionDir)..\lib\glm;$(SolutionDir)..\lib\stb;$(SolutionDir)..\lib\bgfx\include;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\lib\freeglut-2.8.1\lib\x86;$(SolutionDir)..\lib\glload\lib\x86;$(SolutionDir)..\lib\lib3ds-2.0.0\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glloadD.lib;lib3ds.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\lib\freeglut-2.8.1\lib\x86;$(SolutionDir)..\lib\glload\lib\x86;$(SolutionDir)..\lib\lib3ds-2.0.0\lib\x86;$(SolutionDir)..\lib\bgfx\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glloadD.lib;lib3ds.lib;bgfxDebug.lib;bxDebug.lib;bimgDebug.lib;bimg_decodeDebug.lib;psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

@@ -126,9 +126,6 @@
     <ClCompile Include="scene\mesh.cpp">
       <Filter>Source Files\scene</Filter>
     </ClCompile>
-    <ClCompile Include="effect\motion_blur.cpp">
-      <Filter>Source Files\effect</Filter>
-    </ClCompile>
     <ClCompile Include="scene\sprite.cpp">
       <Filter>Source Files\scene</Filter>
     </ClCompile>
@@ -137,6 +134,9 @@
     </ClCompile>
     <ClCompile Include="scene\particle.cpp">
       <Filter>Source Files\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="effect\motion_blur.cpp">
+      <Filter>Source Files\effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
