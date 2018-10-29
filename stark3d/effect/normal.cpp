@@ -13,8 +13,7 @@ void EffectNormal::render()
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     glDisable(GL_BLEND);
 
-    /*
-    Module::resMan().useShader("normal1");
+    Module::resMan().useShader("normal");
 
     ShaderUniforms& uniforms = Module::resMan().currentShader()->uniforms();
     uniforms.mv = Module::sceneMan().getCamera()->getViewMat();
@@ -25,7 +24,7 @@ void EffectNormal::render()
     uniforms.activeTexture = 0;
 
     Module::resMan().currentShader()->commitUniforms();
-    */
+
     // now render the scene
     Module::sceneMan().render();
 }

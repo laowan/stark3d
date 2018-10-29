@@ -56,3 +56,4 @@ lib/freeglut-2.8.1/lib/x86/freeglut.exp
 *.gz
 Build/
 breakout/Library
+stark3d/.vs/stark3d/v15
