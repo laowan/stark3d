@@ -8,7 +8,9 @@
 #include "effect.h"
 #include <glm/gtc/type_ptr.hpp>
 #include "imgui/imgui.h"
+
 #include "bgfx/bgfx.h"
+#include "bgfx/platform.h"
 
 #include <GL/freeglut.h>
 
@@ -28,6 +30,9 @@ static bool gsEffectScreenTextureMap = false;
 static bool gsEffectMotionBlur = false;
 static bool gsScene1 = false;
 static bool gsScene2 = false;
+
+const int gsWinWidth = 800;
+const int gsWinHeight = 600;
 
 void ImGuiRenderDrawLists(ImDrawData* draw_data)
 {
@@ -236,124 +241,157 @@ static void init(void)
 
     glDisable(GL_BLEND);
 
+    bgfx::renderFrame();
+
     bgfx::Init init;
     init.type = bgfx::RendererType::OpenGL;
     init.vendorId = BGFX_PCI_ID_NONE;
-    init.resolution.width = 0;
-    init.resolution.height = 0;
-    init.resolution.reset = 0;
+    init.resolution.width = gsWinWidth;
+    init.resolution.height = gsWinHeight;
+    init.resolution.reset = BGFX_RESET_VSYNC;
     bgfx::init(init);
+
+    bgfx::setDebug(BGFX_DEBUG_TEXT);
+    bgfx::setViewClear(0
+        , BGFX_CLEAR_COLOR | BGFX_CLEAR_DEPTH
+        , 0x303030ff
+        , 1.0f
+        , 0
+    );
 }
 
 static void display(void)
 {
-    glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
-    glClearDepth(1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+//     glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+//     glClearDepth(1.0f);
+//     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+// 
+//     gsEffect->render();
+// 
+//     if (!gsFontTexture)
+//     {
+//         ImGuiIO& io = ImGui::GetIO();
+//         unsigned char* pixels;
+//         int width, height;
+//         io.Fonts->GetTexDataAsAlpha8(&pixels, &width, &height);
+// 
+//         // Upload texture to graphics system
+//         GLint last_texture;
+//         glGetIntegerv(GL_TEXTURE_BINDING_2D, &last_texture);
+//         glGenTextures(1, &gsFontTexture);
+//         glBindTexture(GL_TEXTURE_2D, gsFontTexture);
+//         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+//         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+//         glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, width, height, 0, GL_ALPHA, GL_UNSIGNED_BYTE, pixels);
+// 
+//         // Store our identifier
+//         io.Fonts->TexID = (void *)(intptr_t)gsFontTexture;
+// 
+//         // Restore state
+//         glBindTexture(GL_TEXTURE_2D, last_texture);
+//     }
+// 
+//     ImGuiIO& io = ImGui::GetIO();
+// 
+//     for (int i = 0; i < 3; i++)
+//     {
+//         io.MouseDown[i] = gsMousePressed[i] || gsMoveBtn == i;
+//         gsMousePressed[i] = 0;
+//     }
+// 
+//     ImGui::NewFrame();
+// 
+//     // deal with the event
+//     if (gsEffectNormal)
+//     {
+//         std::unique_ptr<Effect> tmp(new EffectNormal);
+//         gsEffect = std::move(tmp);
+//         gsEffectNormal = false;
+//     }
+// 
+//     if (gsEffectScreenTextureMap)
+//     {
+//         std::unique_ptr<Effect> tmp(new EffectTextureMap);
+//         gsEffect = std::move(tmp);
+//         gsEffectScreenTextureMap = false;
+//     }
+// 
+//     if (gsEffectMotionBlur)
+//     {
+//         std::unique_ptr<Effect> tmp(new EffectMotionBlur);
+//         gsEffect = std::move(tmp);
+//         gsEffectMotionBlur = false;
+//     }
+// 
+//     if (gsScene1)
+//     {
+//         skCreateScene1();
+//         gsScene1 = false;
+//     }
+// 
+//     if (gsScene2)
+//     {
+//         skCreateScene2();
+//         gsScene2 = false;
+//     }
+// 
+//     ImGuiWindowFlags window_flags = 0;
+//     window_flags |= ImGuiWindowFlags_MenuBar;
+//     bool opened = true;
+//     if (ImGui::Begin("X", &opened, window_flags))
+//     {
+//         if (ImGui::BeginMenuBar())
+//         {
+//             if (ImGui::BeginMenu("Effects"))
+//             {
+//                 ImGui::MenuItem("Normal", NULL, &gsEffectNormal);
+//                 ImGui::MenuItem("Screen Texture Map", NULL, &gsEffectScreenTextureMap);
+//                 ImGui::MenuItem("Motion Blur", NULL, &gsEffectMotionBlur);
+//                 ImGui::EndMenu();
+//             }
+//             if (ImGui::BeginMenu("Scene"))
+//             {
+//                 ImGui::MenuItem("Scene1", NULL, &gsScene1);
+//                 ImGui::MenuItem("Scene2", NULL, &gsScene2);
+//                 ImGui::EndMenu();
+//             }
+//             ImGui::EndMenuBar();
+//         }
+//     
+//         if (ImGui::Button("Screenshot")) gsScreenshotButton ^= 1;
+//         ImGui::End();
+//     }
+// 
+//     if (gsScreenshotButton)
+//     {
+//         skScreenshot("123.bmp");
+//         gsScreenshotButton ^= 1;
+//     }
+// 
+//     ImGui::Render();
 
-    gsEffect->render();
+    // Set view 0 default viewport.
+    bgfx::setViewRect(0, 0, 0, uint16_t(gsWinWidth), uint16_t(gsWinHeight));
 
-    if (!gsFontTexture)
-    {
-        ImGuiIO& io = ImGui::GetIO();
-        unsigned char* pixels;
-        int width, height;
-        io.Fonts->GetTexDataAsAlpha8(&pixels, &width, &height);
+    // This dummy draw call is here to make sure that view 0 is cleared
+    // if no other draw calls are submitted to view 0.
+    bgfx::touch(0);
 
-        // Upload texture to graphics system
-        GLint last_texture;
-        glGetIntegerv(GL_TEXTURE_BINDING_2D, &last_texture);
-        glGenTextures(1, &gsFontTexture);
-        glBindTexture(GL_TEXTURE_2D, gsFontTexture);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, width, height, 0, GL_ALPHA, GL_UNSIGNED_BYTE, pixels);
+    bgfx::dbgTextClear();
 
-        // Store our identifier
-        io.Fonts->TexID = (void *)(intptr_t)gsFontTexture;
+    bgfx::dbgTextPrintf(0, 1, 0x0f, "Color can be changed with ANSI \x1b[9;me\x1b[10;ms\x1b[11;mc\x1b[12;ma\x1b[13;mp\x1b[14;me\x1b[0m code too.");
+    bgfx::dbgTextPrintf(80, 1, 0x0f, "\x1b[;0m    \x1b[;1m    \x1b[; 2m    \x1b[; 3m    \x1b[; 4m    \x1b[; 5m    \x1b[; 6m    \x1b[; 7m    \x1b[0m");
+    bgfx::dbgTextPrintf(80, 2, 0x0f, "\x1b[;8m    \x1b[;9m    \x1b[;10m    \x1b[;11m    \x1b[;12m    \x1b[;13m    \x1b[;14m    \x1b[;15m    \x1b[0m");
 
-        // Restore state
-        glBindTexture(GL_TEXTURE_2D, last_texture);
-    }
+    const bgfx::Stats* stats = bgfx::getStats();
+    bgfx::dbgTextPrintf(0, 2, 0x0f, "Backbuffer %dW x %dH in pixels, debug text %dW x %dH in characters."
+        , stats->width
+        , stats->height
+        , stats->textWidth
+        , stats->textHeight
+    );
 
-    ImGuiIO& io = ImGui::GetIO();
-
-    for (int i = 0; i < 3; i++)
-    {
-        io.MouseDown[i] = gsMousePressed[i] || gsMoveBtn == i;
-        gsMousePressed[i] = 0;
-    }
-
-    ImGui::NewFrame();
-
-    // deal with the event
-    if (gsEffectNormal)
-    {
-        std::unique_ptr<Effect> tmp(new EffectNormal);
-        gsEffect = std::move(tmp);
-        gsEffectNormal = false;
-    }
-
-    if (gsEffectScreenTextureMap)
-    {
-        std::unique_ptr<Effect> tmp(new EffectTextureMap);
-        gsEffect = std::move(tmp);
-        gsEffectScreenTextureMap = false;
-    }
-
-    if (gsEffectMotionBlur)
-    {
-        std::unique_ptr<Effect> tmp(new EffectMotionBlur);
-        gsEffect = std::move(tmp);
-        gsEffectMotionBlur = false;
-    }
-
-    if (gsScene1)
-    {
-        skCreateScene1();
-        gsScene1 = false;
-    }
-
-    if (gsScene2)
-    {
-        skCreateScene2();
-        gsScene2 = false;
-    }
-
-    ImGuiWindowFlags window_flags = 0;
-    window_flags |= ImGuiWindowFlags_MenuBar;
-    bool opened = true;
-    if (ImGui::Begin("X", &opened, window_flags))
-    {
-        if (ImGui::BeginMenuBar())
-        {
-            if (ImGui::BeginMenu("Effects"))
-            {
-                ImGui::MenuItem("Normal", NULL, &gsEffectNormal);
-                ImGui::MenuItem("Screen Texture Map", NULL, &gsEffectScreenTextureMap);
-                ImGui::MenuItem("Motion Blur", NULL, &gsEffectMotionBlur);
-                ImGui::EndMenu();
-            }
-            if (ImGui::BeginMenu("Scene"))
-            {
-                ImGui::MenuItem("Scene1", NULL, &gsScene1);
-                ImGui::MenuItem("Scene2", NULL, &gsScene2);
-                ImGui::EndMenu();
-            }
-            ImGui::EndMenuBar();
-        }
-    
-        if (ImGui::Button("Screenshot")) gsScreenshotButton ^= 1;
-        ImGui::End();
-    }
-
-    if (gsScreenshotButton)
-    {
-        skScreenshot("123.bmp");
-        gsScreenshotButton ^= 1;
-    }
-
-    ImGui::Render();
+    bgfx::frame();
 
     glutSwapBuffers();
     glutPostRedisplay();
@@ -408,7 +446,7 @@ static void idle(void)
 int main(int argc, char *argv[])
 {
     glutInit(&argc, argv);
-    glutInitWindowSize(800, 600);
+    glutInitWindowSize(gsWinWidth, gsWinHeight);
     glutInitWindowPosition(40, 40);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH | GLUT_MULTISAMPLE);
 
