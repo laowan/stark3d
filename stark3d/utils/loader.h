@@ -64,7 +64,7 @@ public:
     void load(const std::string& file);
     bool getMeshData(uint32* num, MeshData** meshes);
 private:
-    Lib3dsFile* _model;
+    //Lib3dsFile* _model;
 };
 
 SK_END_NAMESPACE

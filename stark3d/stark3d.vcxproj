@@ -19,78 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="effect\motion_blur.cpp" />
-    <ClCompile Include="effect\normal.cpp" />
-    <ClCompile Include="effect\screen_texture_map.cpp" />
-    <ClCompile Include="geom.cpp" />
-    <ClCompile Include="imgui\imgui.cpp" />
-    <ClCompile Include="imgui\imgui_demo.cpp" />
-    <ClCompile Include="imgui\imgui_draw.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="module.cpp" />
-    <ClCompile Include="renderaction.cpp" />
-    <ClCompile Include="scene.cpp" />
-    <ClCompile Include="scene\bbox.cpp" />
-    <ClCompile Include="scene\bsp.cpp" />
-    <ClCompile Include="scene\camera.cpp" />
-    <ClCompile Include="scene\color.cpp" />
-    <ClCompile Include="scene\cube.cpp" />
-    <ClCompile Include="scene\line.cpp" />
-    <ClCompile Include="scene\mesh.cpp" />
-    <ClCompile Include="scene\node.cpp" />
-    <ClCompile Include="scene\particle.cpp" />
-    <ClCompile Include="scene\sprite.cpp" />
-    <ClCompile Include="scene\terrain.cpp" />
-    <ClCompile Include="scene\texture.cpp" />
-    <ClCompile Include="scene\transform.cpp" />
-    <ClCompile Include="utils\bitmap.cpp" />
-    <ClCompile Include="utils\deviceinfo.cpp" />
-    <ClCompile Include="utils\framework.cpp" />
-    <ClCompile Include="utils\loader.cpp" />
-    <ClCompile Include="utils\matrix.cpp" />
-    <ClCompile Include="utils\renderdevice.cpp" />
-    <ClCompile Include="utils\resourcemanager.cpp" />
-    <ClCompile Include="utils\shader.cpp" />
-    <ClCompile Include="utils\shadermanager.cpp" />
-    <ClCompile Include="utils\utils.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="effect.h" />
-    <ClInclude Include="geom.h" />
-    <ClInclude Include="global.h" />
-    <ClInclude Include="imgui\imconfig.h" />
-    <ClInclude Include="imgui\imgui.h" />
-    <ClInclude Include="imgui\imgui_internal.h" />
-    <ClInclude Include="imgui\stb_rect_pack.h" />
-    <ClInclude Include="imgui\stb_textedit.h" />
-    <ClInclude Include="imgui\stb_truetype.h" />
-    <ClInclude Include="module.h" />
-    <ClInclude Include="renderaction.h" />
-    <ClInclude Include="scene.h" />
-    <ClInclude Include="scene\bbox.h" />
-    <ClInclude Include="scene\bsp.h" />
-    <ClInclude Include="scene\camera.h" />
-    <ClInclude Include="scene\color.h" />
-    <ClInclude Include="scene\cube.h" />
-    <ClInclude Include="scene\line.h" />
-    <ClInclude Include="scene\mesh.h" />
-    <ClInclude Include="scene\node.h" />
-    <ClInclude Include="scene\particle.h" />
-    <ClInclude Include="scene\sprite.h" />
-    <ClInclude Include="scene\terrain.h" />
-    <ClInclude Include="scene\texture.h" />
-    <ClInclude Include="scene\transform.h" />
-    <ClInclude Include="stark3d.h" />
-    <ClInclude Include="utils\bitmap.h" />
-    <ClInclude Include="utils\deviceinfo.h" />
-    <ClInclude Include="utils\framework.h" />
-    <ClInclude Include="utils\loader.h" />
-    <ClInclude Include="utils\matrix.h" />
-    <ClInclude Include="utils\renderdevice.h" />
-    <ClInclude Include="utils\resourcemanager.h" />
-    <ClInclude Include="utils\shader.h" />
-    <ClInclude Include="utils\shadermanager.h" />
-    <ClInclude Include="utils\utils.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{2CD99B00-2EBD-4724-9B0A-E24440F1F0B3}</ProjectGuid>
@@ -164,14 +93,14 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_HAS_ITERATOR_DEBUGGING=0;_ITERATOR_DEBUG_LEVEL=0;BX_PLATFORM_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\lib\lib3ds-2.0.0\include;$(SolutionDir)..\lib\freeglut-2.8.1\include;$(SolutionDir)..\lib\glload\include;$(SolutionDir)..\lib\glm;$(SolutionDir)..\lib\stb;$(SolutionDir)..\lib\bgfx\include;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\lib\freeglut-2.8.1\include;$(SolutionDir)..\lib\glload\include;$(SolutionDir)..\lib\glm;$(SolutionDir)..\lib\stb;$(SolutionDir)..\lib\bgfx\include;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)..\lib\freeglut-2.8.1\lib\x86;$(SolutionDir)..\lib\glload\lib\x86;$(SolutionDir)..\lib\lib3ds-2.0.0\lib\x86;$(SolutionDir)..\lib\bgfx\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glloadD.lib;lib3ds.lib;bgfxDebug.lib;bxDebug.lib;bimgDebug.lib;bimg_decodeDebug.lib;psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glloadD.lib;bgfxDebug.lib;bxDebug.lib;bimgDebug.lib;bimg_decodeDebug.lib;psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

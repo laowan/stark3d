@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "stark3d", "stark3d.vcxproj", "{2CD99B00-2EBD-4724-9B0A-E24440F1F0B3}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "breakout", "..\breakout\breakout.vcxproj", "{9A69C308-464D-4B6E-A7B3-A91B8C0ADBFA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,19 +27,11 @@ Global
 		{2CD99B00-2EBD-4724-9B0A-E24440F1F0B3}.Release|Win32.Build.0 = Release|Win32
 		{2CD99B00-2EBD-4724-9B0A-E24440F1F0B3}.Release|x64.ActiveCfg = Release|x64
 		{2CD99B00-2EBD-4724-9B0A-E24440F1F0B3}.Release|x64.Build.0 = Release|x64
-		{9A69C308-464D-4B6E-A7B3-A91B8C0ADBFA}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{9A69C308-464D-4B6E-A7B3-A91B8C0ADBFA}.Debug|Mixed Platforms.Build.0 = Debug|Win32
-		{9A69C308-464D-4B6E-A7B3-A91B8C0ADBFA}.Debug|Win32.ActiveCfg = Debug|x64
-		{9A69C308-464D-4B6E-A7B3-A91B8C0ADBFA}.Debug|Win32.Build.0 = Debug|x64
-		{9A69C308-464D-4B6E-A7B3-A91B8C0ADBFA}.Debug|x64.ActiveCfg = Debug|x64
-		{9A69C308-464D-4B6E-A7B3-A91B8C0ADBFA}.Debug|x64.Build.0 = Debug|x64
-		{9A69C308-464D-4B6E-A7B3-A91B8C0ADBFA}.Release|Mixed Platforms.ActiveCfg = Release|Win32
-		{9A69C308-464D-4B6E-A7B3-A91B8C0ADBFA}.Release|Mixed Platforms.Build.0 = Release|Win32
-		{9A69C308-464D-4B6E-A7B3-A91B8C0ADBFA}.Release|Win32.ActiveCfg = Release|Win32
-		{9A69C308-464D-4B6E-A7B3-A91B8C0ADBFA}.Release|Win32.Build.0 = Release|Win32
-		{9A69C308-464D-4B6E-A7B3-A91B8C0ADBFA}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A3703246-F906-4406-85FF-6572CF137489}
 	EndGlobalSection
 EndGlobal

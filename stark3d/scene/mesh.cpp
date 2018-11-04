@@ -5,12 +5,12 @@ SK_BEGIN_NAMESPACE
 
 Mesh::Mesh(const std::string& file)
 {
-    FileLoader3DS loader;
-    loader.load(file);
+    //FileLoader3DS loader;
+    //loader.load(file);
 
     uint32 num;
     MeshData* meshes;
-    loader.getMeshData(&num, &meshes);
+    //loader.getMeshData(&num, &meshes);
 
     // create vbo
     
