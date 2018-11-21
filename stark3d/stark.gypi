@@ -21,6 +21,7 @@
         'include_dirs': 
         [
             '../lib/bgfx/include',
+            '../lib/glfw/include',
         ],
 
         'library_dirs':
@@ -30,6 +31,7 @@
 
         'dependencies': 
         [
+            'glfw',
         ],
 
         'conditions': 
@@ -75,6 +77,7 @@
                                     'bimgDebug.lib',
                                     'bimg_decodeDebug.lib',
                                     'psapi.lib',
+                                    'msvcrt.lib',
                                     '%(AdditionalDependencies)',
                                 ],
                             },
@@ -99,6 +102,7 @@
                                     'bimgRelease.lib',
                                     'bimg_decodeRelease.lib',
                                     'psapi.lib',
+                                    'msvcrt.lib',
                                 ],
                             },
                         }, # msvs_settings
