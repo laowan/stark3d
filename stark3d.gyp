@@ -14,6 +14,7 @@
         'includes':
         [
             'lib/glfw.gypi',
+            'lib/assimp.gypi',
             'stark3d/stark.gypi',
         ],
         'conditions': 

@@ -15,13 +15,13 @@
         'sources': 
         [
             'main.cpp',
-
         ],
 
         'include_dirs': 
         [
             '../lib/bgfx/include',
             '../lib/glfw/include',
+            '../lib/assimp/include',
         ],
 
         'library_dirs':
@@ -32,6 +32,7 @@
         'dependencies': 
         [
             'glfw',
+            'assimp',
         ],
 
         'conditions': 
@@ -76,8 +77,8 @@
                                     'bxDebug.lib',
                                     'bimgDebug.lib',
                                     'bimg_decodeDebug.lib',
-                                    'psapi.lib',
-                                    'msvcrt.lib',
+                                    #'psapi.lib',
+                                    #'msvcrt.lib',
                                     '%(AdditionalDependencies)',
                                 ],
                             },

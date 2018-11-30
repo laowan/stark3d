@@ -64,6 +64,8 @@
 					'WIN32_LEAN_AND_MEAN',
 					'_GLFW_USE_CONFIG_H',
 					'_CRT_SECURE_NO_WARNINGS',
+                    '_HAS_ITERATOR_DEBUGGING=0',
+                    '_ITERATOR_DEBUG_LEVEL=0',
 				],
 
 				'type': 'static_library',
@@ -85,6 +87,7 @@
 				  {
 				    'VCCLCompilerTool': 
 				    {
+                        'RuntimeLibrary': '1',  # /MTd
           				'ExceptionHandling': '2',
         			},
 
