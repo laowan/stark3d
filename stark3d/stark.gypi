@@ -15,6 +15,7 @@
         'sources': 
         [
             'main.cpp',
+            'tiny_obj_loader.h',
         ],
 
         'include_dirs': 
