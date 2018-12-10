@@ -16,6 +16,8 @@
         [
             'main.cpp',
             'tiny_obj_loader.h',
+            'global.h',
+            'utils/math.h',
         ],
 
         'include_dirs': 
@@ -46,7 +48,7 @@
                     'WIN32_LEAN_AND_MEAN',
                     '_HAS_ITERATOR_DEBUGGING=0',
                     '_ITERATOR_DEBUG_LEVEL=0',
-                    'BX_PLATFORM_WINDOWS',
+                    #'BX_PLATFORM_WINDOWS',
                 ],
 
                 'resource_include_dirs': 
@@ -78,7 +80,7 @@
                                     'bxDebug.lib',
                                     'bimgDebug.lib',
                                     'bimg_decodeDebug.lib',
-                                    #'psapi.lib',
+                                    'psapi.lib',
                                     #'msvcrt.lib',
                                     '%(AdditionalDependencies)',
                                 ],
