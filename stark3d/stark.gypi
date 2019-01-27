@@ -18,6 +18,9 @@
             'tiny_obj_loader.h',
             'global.h',
             'utils/math.h',
+            'learnsomething/learnsomething.h',
+            'learnsomething/eigen.cpp',
+            'learnsomething/thread.cpp',
         ],
 
         'include_dirs': 

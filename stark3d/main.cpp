@@ -14,6 +14,8 @@
 
 #include <iostream>
 
+#include "learnsomething/learnsomething.h"
+
 //using namespace SK;
 
 const int gsWinWidth = 800;
@@ -95,7 +97,7 @@ static void display(void)
     bgfx::frame();
 }
 
-int main(int argc, char *argv[])
+int mainloop()
 {
     GLFWwindow* window;
 
@@ -130,5 +132,12 @@ int main(int argc, char *argv[])
     }
 
     glfwTerminate();
+    return 0;
+}
+
+int main(int argc, char *argv[])
+{
+    LearnEigen();
+    //mainloop();
     return 0;
 }
