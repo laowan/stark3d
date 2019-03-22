@@ -15,6 +15,7 @@
         [
             'lib/glfw.gypi',
             'lib/assimp.gypi',
+            'lib/freetype.gypi',
             'stark3d/stark.gypi',
         ],
         'conditions': 

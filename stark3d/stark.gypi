@@ -34,6 +34,7 @@
             '../lib/bgfx/include',
             '../lib/glfw/include',
             '../lib/assimp/include',
+            '../lib/freetype/include',
             '../lib/stb',
         ],
 
