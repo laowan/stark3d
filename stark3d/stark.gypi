@@ -18,16 +18,23 @@
             'tiny_obj_loader.h',
             'global.h',
             'utils/math.h',
+            'utils/utils.h',
+            'utils/utils.cpp',
+            'external/edtaa3func/edtaa3func.h',
+            'external/edtaa3func/edtaa3func.cpp',
             'learnsomething/learnsomething.h',
             'learnsomething/eigen.cpp',
             'learnsomething/thread.cpp',
+            'learnsomething/sdf.cpp',
         ],
 
         'include_dirs': 
         [
+            '.',
             '../lib/bgfx/include',
             '../lib/glfw/include',
             '../lib/assimp/include',
+            '../lib/stb',
         ],
 
         'library_dirs':

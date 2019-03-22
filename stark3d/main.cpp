@@ -137,7 +137,7 @@ int mainloop()
 
 int main(int argc, char *argv[])
 {
-    LearnEigen();
+    LearnSdf();
     //mainloop();
     return 0;
 }
