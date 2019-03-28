@@ -47,6 +47,7 @@
         [
             'glfw',
             'assimp',
+            'freetype',
         ],
 
         'conditions': 

@@ -112,6 +112,7 @@
 				  {
 				    'VCCLCompilerTool': 
 				    {
+                        'RuntimeLibrary': '1',  # /MTd
           				'ExceptionHandling': '2',
         			},
 
