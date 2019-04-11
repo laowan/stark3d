@@ -3,6 +3,7 @@
 
 #include <GLFW/glfw3.h>
 
+#include "bx/math.h"
 #include "bgfx/bgfx.h"
 #include "bgfx/platform.h"
 
@@ -15,11 +16,65 @@
 #include <iostream>
 
 #include "learnsomething/learnsomething.h"
+#include "utils/bgfxutils.h"
 
 //using namespace SK;
 
 const int gsWinWidth = 800;
 const int gsWinHeight = 600;
+
+struct PosColorVertex
+{
+	float m_x;
+	float m_y;
+	float m_z;
+	uint32_t m_abgr;
+
+	static void init()
+	{
+		ms_decl
+			.begin()
+			.add(bgfx::Attrib::Position, 3, bgfx::AttribType::Float)
+			.add(bgfx::Attrib::Color0,   4, bgfx::AttribType::Uint8, true)
+			.end();
+	};
+
+	static bgfx::VertexDecl ms_decl;
+};
+
+bgfx::VertexDecl PosColorVertex::ms_decl;
+
+static PosColorVertex s_cubeVertices[] =
+{
+	{-1.0f,  1.0f,  1.0f, 0xff000000 },
+	{ 1.0f,  1.0f,  1.0f, 0xff0000ff },
+	{-1.0f, -1.0f,  1.0f, 0xff00ff00 },
+	{ 1.0f, -1.0f,  1.0f, 0xff00ffff },
+	{-1.0f,  1.0f, -1.0f, 0xffff0000 },
+	{ 1.0f,  1.0f, -1.0f, 0xffff00ff },
+	{-1.0f, -1.0f, -1.0f, 0xffffff00 },
+	{ 1.0f, -1.0f, -1.0f, 0xffffffff },
+};
+
+static const uint16_t s_cubeTriList[] =
+{
+	0, 1, 2, // 0
+	1, 3, 2,
+	4, 6, 5, // 2
+	5, 6, 7,
+	0, 2, 4, // 4
+	4, 2, 6,
+	1, 5, 3, // 6
+	5, 7, 3,
+	0, 4, 1, // 8
+	4, 5, 1,
+	2, 3, 6, // 10
+	6, 3, 7,
+};
+
+bgfx::VertexBufferHandle m_vbh;
+bgfx::IndexBufferHandle m_ibh;
+bgfx::ProgramHandle m_program;
 
 static void init(void)
 {
@@ -40,6 +95,25 @@ static void init(void)
         , 1.0f
         , 0
     );
+
+    // Create vertex stream declaration.
+    PosColorVertex::init();
+
+    // Create static vertex buffer.
+    m_vbh = bgfx::createVertexBuffer(
+        // Static data can be passed with bgfx::makeRef
+        bgfx::makeRef(s_cubeVertices, sizeof(s_cubeVertices))
+        , PosColorVertex::ms_decl
+    );
+
+    // Create static index buffer for triangle strip rendering.
+    m_ibh = bgfx::createIndexBuffer(
+        // Static data can be passed with bgfx::makeRef
+        bgfx::makeRef(s_cubeTriList, sizeof(s_cubeTriList))
+    );
+
+    // Create program from shaders.
+    m_program = loadProgram("vs_cubes", "fs_cubes");
 
     std::string objfile = "../res/bs0_tex_simplified.obj";
 
@@ -94,6 +168,22 @@ static void display(void)
         , stats->textHeight
     );
 
+    float at[3] = { 0.0f, 0.0f,   0.0f };
+    float eye[3] = { 0.0f, 0.0f, -35.0f };
+
+    // Set view and projection matrix for view 0.
+    {
+        float view[16];
+        bx::mtxLookAt(view, eye, at);
+
+        float proj[16];
+        bx::mtxProj(proj, 60.0f, float(gsWinWidth) / float(gsWinHeight), 0.1f, 100.0f, bgfx::getCaps()->homogeneousDepth);
+        bgfx::setViewTransform(0, view, proj);
+
+        // Set view 0 default viewport.
+        bgfx::setViewRect(0, 0, 0, uint16_t(gsWinWidth), uint16_t(gsWinHeight));
+    }
+
     bgfx::frame();
 }
 
@@ -137,7 +227,7 @@ int mainloop()
 
 int main(int argc, char *argv[])
 {
-    LearnSdf();
-    //mainloop();
+    //LearnSdf();
+    mainloop();
     return 0;
 }

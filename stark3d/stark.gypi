@@ -20,6 +20,8 @@
             'utils/math.h',
             'utils/utils.h',
             'utils/utils.cpp',
+            'utils/bgfxutils.h',
+            'utils/bgfxutils.cpp',
             'external/edtaa3func/edtaa3func.h',
             'external/edtaa3func/edtaa3func.cpp',
             'learnsomething/learnsomething.h',
@@ -32,6 +34,7 @@
         [
             '.',
             '../lib/bgfx/include',
+            '../lib/bgfx/include/bx/compat/msvc',
             '../lib/glfw/include',
             '../lib/assimp/include',
             '../lib/freetype/include',
