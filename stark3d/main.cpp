@@ -4,6 +4,7 @@
 #include <GLFW/glfw3.h>
 
 #include "bx/math.h"
+#include "bx/timer.h"
 #include "bgfx/bgfx.h"
 #include "bgfx/platform.h"
 
@@ -72,9 +73,26 @@ static const uint16_t s_cubeTriList[] =
 	6, 3, 7,
 };
 
+static const uint16_t s_cubeTriStrip[] =
+{
+    0, 1, 2,
+    3,
+    7,
+    1,
+    5,
+    0,
+    4,
+    2,
+    6,
+    7,
+    4,
+    5,
+};
+
 bgfx::VertexBufferHandle m_vbh;
 bgfx::IndexBufferHandle m_ibh;
 bgfx::ProgramHandle m_program;
+int64_t m_timeOffset;
 
 static void init(void)
 {
@@ -109,11 +127,13 @@ static void init(void)
     // Create static index buffer for triangle strip rendering.
     m_ibh = bgfx::createIndexBuffer(
         // Static data can be passed with bgfx::makeRef
-        bgfx::makeRef(s_cubeTriList, sizeof(s_cubeTriList))
+        bgfx::makeRef(s_cubeTriStrip, sizeof(s_cubeTriStrip))
     );
 
     // Create program from shaders.
     m_program = loadProgram("vs_cubes", "fs_cubes");
+
+    m_timeOffset = bx::getHPCounter();
 
     std::string objfile = "../res/bs0_tex_simplified.obj";
 
@@ -145,8 +165,20 @@ static void init(void)
 
 }
 
+static void exit(void)
+{
+    bgfx::destroy(m_vbh);
+    bgfx::destroy(m_ibh);
+    bgfx::destroy(m_program);
+
+    // Shutdown bgfx.
+    bgfx::shutdown();
+}
+
 static void display(void)
 {
+    float time = (float)((bx::getHPCounter() - m_timeOffset) / double(bx::getHPFrequency()));
+
     // Set view 0 default viewport.
     bgfx::setViewRect(0, 0, 0, uint16_t(gsWinWidth), uint16_t(gsWinHeight));
 
@@ -184,6 +216,34 @@ static void display(void)
         bgfx::setViewRect(0, 0, 0, uint16_t(gsWinWidth), uint16_t(gsWinHeight));
     }
 
+    uint64_t state = 0
+        | BGFX_STATE_WRITE_R
+        | BGFX_STATE_WRITE_G
+        | BGFX_STATE_WRITE_B
+        | BGFX_STATE_WRITE_A
+        | BGFX_STATE_WRITE_Z
+        | BGFX_STATE_DEPTH_TEST_LESS
+        | BGFX_STATE_CULL_CW
+        | BGFX_STATE_MSAA
+        | BGFX_STATE_PT_TRISTRIP
+        ;
+
+    float mtx[16];
+    bx::mtxRotateXY(mtx, time, time);
+
+    // Set model matrix for rendering.
+    bgfx::setTransform(mtx);
+
+    // Set vertex and index buffer.
+    bgfx::setVertexBuffer(0, m_vbh);
+    bgfx::setIndexBuffer(m_ibh);
+
+    // Set render states.
+    bgfx::setState(state);
+
+    // Submit primitive for rendering to view 0.
+    bgfx::submit(0, m_program);
+
     bgfx::frame();
 }
 
@@ -220,6 +280,8 @@ int mainloop()
         /* Poll for and process events */
         glfwPollEvents();
     }
+
+    exit();
 
     glfwTerminate();
     return 0;
