@@ -17,6 +17,8 @@
             'main.cpp',
             'tiny_obj_loader.h',
             'global.h',
+            'softrenderer.h',
+            'softrenderer.cpp',
             'utils/math.h',
             'utils/utils.h',
             'utils/utils.cpp',

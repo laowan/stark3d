@@ -1,0 +1,10 @@
+#ifndef SK_SOFT_RENDERER_H
+#define SK_SOFT_RENDERER_H
+
+#include "global.h"
+
+SK_BEGIN_NAMESPACE
+
+
+SK_END_NAMESPACE
+#endif SK_SOFT_RENDERER_H
