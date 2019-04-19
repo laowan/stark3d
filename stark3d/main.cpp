@@ -18,6 +18,7 @@
 
 #include "learnsomething/learnsomething.h"
 #include "utils/bgfxutils.h"
+#include "resources.h"
 
 //using namespace SK;
 
@@ -289,6 +290,9 @@ int mainloop()
 
 int main(int argc, char *argv[])
 {
+    std::string path = "../res/gltf/Triangle/Triangle.gltf";
+    SK::Resources::LoadGltf(path);
+
     //LearnSdf();
     mainloop();
     return 0;

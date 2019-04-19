@@ -19,6 +19,8 @@
             'global.h',
             'softrenderer.h',
             'softrenderer.cpp',
+            'resources.h',
+            'resources.cpp',
             'utils/math.h',
             'utils/utils.h',
             'utils/utils.cpp',
