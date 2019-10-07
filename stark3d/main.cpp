@@ -290,10 +290,11 @@ int mainloop()
 
 int main(int argc, char *argv[])
 {
-    std::string path = "../res/gltf/Triangle/Triangle.gltf";
-    SK::Resources::LoadGltf(path);
+    //std::string path = "../res/gltf/Triangle/Triangle.gltf";
+    //SK::Resources::LoadGltf(path);
 
+    LearnRayTracing();
     //LearnSdf();
-    mainloop();
+    //mainloop();
     return 0;
 }

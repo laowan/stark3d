@@ -108,6 +108,9 @@ public:
     }
 };
 
+inline Vec3f operator*(float t, const Vec3f &v) { return Vec3f(v.x * t, v.y * t, v.z * t); }
+inline float dot(const Vec3f& v1, const Vec3f& v2) { return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z; }
+
 class Vec4f
 {
 public:
@@ -205,7 +208,7 @@ public:
     static Mat4f LookAtMat(const Vec3f& eye, const Vec3f& target, const Vec3f& up)
     {
         Mat4f m;
-        Mat4f::LookAt(m, eye, target, up);
+        //Mat4f::LookAt(m, eye, target, up);
         return m;
     }
 };
