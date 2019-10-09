@@ -109,6 +109,7 @@ public:
 };
 
 inline Vec3f operator*(float t, const Vec3f &v) { return Vec3f(v.x * t, v.y * t, v.z * t); }
+inline Vec3f operator*(const Vec3f& a, const Vec3f& b) { return Vec3f(a.x * b.x, a.y * b.y, a.z * b.z); }
 inline float dot(const Vec3f& v1, const Vec3f& v2) { return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z; }
 
 class Vec4f

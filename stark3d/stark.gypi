@@ -32,6 +32,7 @@
             'learnsomething/eigen.cpp',
             'learnsomething/thread.cpp',
             'learnsomething/sdf.cpp',
+            'learnsomething/raytracing.cpp',
         ],
 
         'include_dirs': 
