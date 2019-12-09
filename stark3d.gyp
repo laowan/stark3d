@@ -32,7 +32,7 @@
                 {
                     'includes':
                     [
-                        #'src/of_glew.gypi',
+                        'lib/glew.gypi',
                     ]
                 }
             ],

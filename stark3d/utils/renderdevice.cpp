@@ -1,4 +1,5 @@
 #include "renderdevice.h"
+#include "utils/gldefine.h"
 
 SK_BEGIN_NAMESPACE
 

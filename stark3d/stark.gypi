@@ -21,11 +21,25 @@
             'softrenderer.cpp',
             'resources.h',
             'resources.cpp',
+            'utils/gldefine.h',
+            'utils/linmath.h',
             'utils/math.h',
             'utils/utils.h',
             'utils/utils.cpp',
-            'utils/bgfxutils.h',
-            'utils/bgfxutils.cpp',
+            'utils/texture.h',
+            'utils/texture.cpp',
+            'utils/shader.h',
+            'utils/shader.cpp',
+            'utils/shadermanager.h',
+            'utils/shadermanager.cpp',
+            'utils/renderdevice.h',
+            'utils/renderdevice.cpp',
+            'utils/resourcemanager.h',
+            'utils/resourcemanager.cpp',
+            'scene/world.h',
+            'scene/world.cpp',
+            'scene/camera.h',
+            'scene/camera.cpp',
             'external/edtaa3func/edtaa3func.h',
             'external/edtaa3func/edtaa3func.cpp',
             'learnsomething/learnsomething.h',
@@ -38,21 +52,21 @@
         'include_dirs': 
         [
             '.',
-            '../lib/bgfx/include',
-            '../lib/bgfx/include/bx/compat/msvc',
             '../lib/glfw/include',
             '../lib/assimp/include',
             '../lib/freetype/include',
             '../lib/stb',
+            '../lib/glew-2.1.0/include',
         ],
 
         'library_dirs':
         [
-            '../lib/bgfx/lib/x86',
+            #'../lib/bgfx/lib/x86',
         ],
 
         'dependencies': 
         [
+            'glew',
             'glfw',
             'assimp',
             'freetype',
@@ -96,10 +110,10 @@
                             {
                                 'AdditionalDependencies':
                                 [
-                                    'bgfxDebug.lib',
-                                    'bxDebug.lib',
-                                    'bimgDebug.lib',
-                                    'bimg_decodeDebug.lib',
+                                    #'bgfxDebug.lib',
+                                    #'bxDebug.lib',
+                                    #'bimgDebug.lib',
+                                    #'bimg_decodeDebug.lib',
                                     'psapi.lib',
                                     #'msvcrt.lib',
                                     '%(AdditionalDependencies)',
@@ -121,10 +135,10 @@
                             {
                                 'AdditionalDependencies':
                                 [
-                                    'bgfxRelease.lib',
-                                    'bxRelease.lib',
-                                    'bimgRelease.lib',
-                                    'bimg_decodeRelease.lib',
+                                    #'bgfxRelease.lib',
+                                    #'bxRelease.lib',
+                                    #'bimgRelease.lib',
+                                    #'bimg_decodeRelease.lib',
                                     'psapi.lib',
                                     'msvcrt.lib',
                                 ],

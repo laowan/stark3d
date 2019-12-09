@@ -2,7 +2,6 @@
 #define UTILS_MATRIX_H
 
 #include "global.h"
-#include <glm/glm.hpp>
 
 SK_BEGIN_NAMESPACE
 

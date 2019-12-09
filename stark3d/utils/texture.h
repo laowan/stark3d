@@ -1,12 +1,14 @@
 #ifndef _TEXTURE_H
 #define _TEXTURE_H
 
-#include "node.h"
-#include <glload/gl_3_3_comp.h>
+#include "global.h"
+#include "utils/gldefine.h"
+
+#include <string>
 
 SK_BEGIN_NAMESPACE
 
-class STARK_API Texture : public SceneNode
+class Texture
 {
 public:
     Texture(int minMagFiler = GL_LINEAR, int wrapMode = GL_CLAMP_TO_EDGE);
@@ -14,7 +16,6 @@ public:
     ~Texture();
 
     void bind();
-    bool render(RenderAction* act);
 
 private:
     void init(std::string file, int minMagFiler, int wrapMode);

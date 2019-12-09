@@ -1,13 +1,14 @@
-#ifndef _CAMERA_H
-#define _CAMERA_H
+#ifndef SK_CAMERA_H
+#define SK_CAMERA_H
 
-#include "node.h"
-#include "utils/matrix.h"
-#include <glload/gl_3_3_comp.h>
+#include "global.h"
+
+#include "utils/linmath.h"
+#include "utils/gldefine.h"
 
 SK_BEGIN_NAMESPACE
 
-class STARK_API Viewport
+class Viewport
 {
 public:
     Viewport() : extent(10.0f) {}
@@ -31,27 +32,27 @@ public:
     double pixScale; // screen pixel per unit in clip space
 };
 
-class STARK_API Camera : public SceneNode
+class Camera
 {
 public:
     Camera();
     ~Camera();
 
-    Viewport& getViewport() { return _viewport; }
-    Matrix& getViewMatrix() { return _viewMat; }
-    glm::mat4 getViewMat();
-    glm::mat4 getViewProjMat();
+    //Viewport& getViewport() { return _viewport; }
+    //Matrix& getViewMatrix() { return _viewMat; }
+    //glm::mat4 getViewMat();
+    //glm::mat4 getViewProjMat();
+    void getViewMat(mat4x4 mat);
 
     void reset();
-    void zoomAll(const BBox& bbox);
 
 private:
-    glm::mat4 getPerspectiveProjMat();
-    glm::mat4 getOrthographicProjMat();
+    //glm::mat4 getPerspectiveProjMat();
+    //glm::mat4 getOrthographicProjMat();
             
 private:
     Viewport _viewport;
-    Matrix _viewMat; // view to world
+    //Matrix _viewMat; // view to world
 };
 
 SK_END_NAMESPACE

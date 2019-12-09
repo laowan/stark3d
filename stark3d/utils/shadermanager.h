@@ -6,8 +6,9 @@
 
 SK_BEGIN_NAMESPACE
 
-class STARK_API ShaderManager
+class ShaderManager
 {
+    SK_DECLARE_IMPL(ShaderManager);
 public:
     ShaderManager();
     ~ShaderManager();
@@ -15,9 +16,6 @@ public:
     void use(std::string name);
     Shader* getShader(std::string name);
     Shader* currentShader();
-
-private:
-    SK_DECLARE_IMPL(ShaderManager);
 };
 
 SK_END_NAMESPACE

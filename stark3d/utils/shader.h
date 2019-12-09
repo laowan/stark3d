@@ -2,8 +2,9 @@
 #define UTIL_SHADER_H
 
 #include "global.h"
+#include "utils/linmath.h"
+
 #include <string>
-#include "glm/glm.hpp"
 
 SK_BEGIN_NAMESPACE
 
