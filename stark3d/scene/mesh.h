@@ -8,13 +8,15 @@
 
 SK_BEGIN_NAMESPACE
 
+class Shader;
+class RenderDevice;
 class Mesh
 {
 public:
     Mesh(const aiMesh* mesh);
     ~Mesh();
 
-    bool render();
+    bool render(Shader* shader, RenderDevice* device);
 private:
     uint32 _vertexbuf;
     uint32 _indexbuf;

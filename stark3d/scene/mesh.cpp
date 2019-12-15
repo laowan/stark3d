@@ -1,5 +1,7 @@
 #include "mesh.h"
+#include "utils/renderdevice.h"
 #include "utils/gldefine.h"
+#include "utils/shader.h"
 
 SK_BEGIN_NAMESPACE
 
@@ -35,38 +37,26 @@ Mesh::Mesh(const aiMesh* mesh)
 Mesh::~Mesh()
 {}
 
-bool Mesh::render()
+bool Mesh::render(Shader* shader, RenderDevice* device)
 {
-    /*
-    Shader* shader = Module::resMan().currentShader();
-    ShaderUniforms& uniforms = shader->uniforms();
-    glm::mat4 saveMvpMat = uniforms.mvp;
-    glm::mat4 saveMvMat = uniforms.mv;
+    shader->use();
 
-    uniforms.mv *= act->_modelMat.glMatrix();
-    uniforms.mvp *= act->_modelMat.glMatrix();
-    uniforms.color = act->_color;
-    uniforms.activeTexture = act->_activeTexture;
+    ShaderUniforms& uniforms = shader->uniforms();
+
+    mat4x4_identity(uniforms.mvp);
+
     shader->commitUniforms();
 
-    for (size_t i = 0; i < _vertexbufs.size(); i++)
-    {
-        Module::renderDev().setVertexBuffer(_vertexbufs[i]);
-        Module::renderDev().setIndexBuffer(_indexbufs[i]);
+    device->setVertexBuffer(_vertexbuf);
+    device->setIndexBuffer(_indexbuf);
 
-        uint32 stride(sizeof(float)* 3 + sizeof(float)* 3 + sizeof(float)* 2);
-        Module::renderDev().setVertexLayout(0, stride, 0);
-        Module::renderDev().setVertexLayout(1, stride, (const void*)(3 * sizeof(float)));
-        Module::renderDev().setVertexLayout(2, stride, (const void*)(6 * sizeof(float)));
-        Module::renderDev().draw(SK::PRIM_TRIANGLES, _indexCounts[i]);
+    uint32 stride(sizeof(float) * 3);
+    device->setVertexLayout(0, stride, 0);
+    device->draw(SK::PRIM_TRIANGLES, _indexCount);
 
-        Module::renderDev().setVertexBuffer(0);
-        Module::renderDev().setIndexBuffer(0);
-    }
+    device->setVertexBuffer(0);
+    device->setIndexBuffer(0);
 
-    uniforms.mvp = saveMvpMat;
-    uniforms.mv = saveMvMat;
-    */
     return true;
 }
 

@@ -44,8 +44,6 @@ WorldImpl::~WorldImpl()
 void WorldImpl::renderNode(Camera* camera, const aiScene* scene, const aiNode* node)
 {
     // take care transform
-    Shader* normalShader = shaderManager.getShader("normal");
-    normalShader->use();
 
     // render mesh in this node
     for (int i = 0; i < node->mNumMeshes; i++)
@@ -57,6 +55,10 @@ void WorldImpl::renderNode(Camera* camera, const aiScene* scene, const aiNode* n
             Mesh* skMesh = new Mesh(mesh);
             meshes[meshIdx] = skMesh;
         }
+
+        // render this mesh
+        Shader* normalShader = shaderManager.getShader("mesh3d");
+        meshes[meshIdx]->render(normalShader, &renderDevice);
     }
 
     for (int i = 0; i < node->mNumChildren; i++)
@@ -67,18 +69,18 @@ void WorldImpl::renderNode(Camera* camera, const aiScene* scene, const aiNode* n
 
 void WorldImpl::renderScene(Camera* camera, const aiScene* scene)
 {
-    if (!fbo)
-    {
-        int winWidth = camera->getViewport().pixWidth;
-        int winHeight = camera->getViewport().pixHeight;
-        fbo = renderDevice.createRenderBuffer(winWidth, winHeight);
-    }
+    //if (!fbo)
+    //{
+    //    int winWidth = camera->getViewport().pixWidth;
+    //    int winHeight = camera->getViewport().pixHeight;
+    //    fbo = renderDevice.createRenderBuffer(winWidth, winHeight);
+    //}
 
-    renderDevice.setRenderBuffer(fbo);
+    //renderDevice.setRenderBuffer(fbo);
 
     renderNode(camera, scene, scene->mRootNode);
 
-    renderDevice.setRenderBuffer(0);
+    //renderDevice.setRenderBuffer(0);
 }
 
 World::World()

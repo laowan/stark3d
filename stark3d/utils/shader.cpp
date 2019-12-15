@@ -161,8 +161,8 @@ void Shader::bind()
     glBindAttribLocation(d->_program, 1, "aNormal");
     glBindAttribLocation(d->_program, 2, "aTexCoord");
 
-    d->_uniforms.mvLoc = glGetUniformLocation(d->_program, "uModelViewMat");
-    d->_uniforms.mvpLoc = glGetUniformLocation(d->_program, "uModelViewProjMat");
+    d->_uniforms.mvLoc = glGetUniformLocation(d->_program, "uMV");
+    d->_uniforms.mvpLoc = glGetUniformLocation(d->_program, "uMVP");
     d->_uniforms.colorLoc = glGetUniformLocation(d->_program, "uColor");
     d->_uniforms.lightPositionLoc = glGetUniformLocation(d->_program, "uLightPosition");
     d->_uniforms.lightColorLoc = glGetUniformLocation(d->_program, "uLightColor");
