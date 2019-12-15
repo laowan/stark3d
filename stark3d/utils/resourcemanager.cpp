@@ -7,7 +7,7 @@ SK_BEGIN_NAMESPACE
 class ResourceManagerImpl : public Impl<ResourceManager>
 {
 public:
-    std::map<std::string, Texture*> textures;
+    //std::map<std::string, Texture*> textures;
     ShaderManager shaderMan;
 };
 
@@ -45,6 +45,7 @@ Shader* ResourceManager::getShader(std::string name)
     return d->shaderMan.getShader(name);
 }
 
+/*
 Texture* ResourceManager::loadTexture(std::string name)
 {
     SK_D(ResourceManager);
@@ -65,6 +66,6 @@ Texture* ResourceManager::getTexture(std::string name)
     else
         return loadTexture(name);
 }
-
+*/
 SK_END_NAMESPACE
 

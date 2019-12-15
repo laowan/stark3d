@@ -1,4 +1,4 @@
-#ifndef UTILS_SHADERMANAGER_H
+ #ifndef UTILS_SHADERMANAGER_H
 #define UTILS_SHADERMANAGER_H
 
 #include "global.h"

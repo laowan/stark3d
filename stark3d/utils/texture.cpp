@@ -1,4 +1,5 @@
 #include "texture.h"
+#include "utils/gldefine.h"
 
 SK_BEGIN_NAMESPACE
 
@@ -19,7 +20,7 @@ Texture::~Texture()
 
 void Texture::init(std::string file, int minMagFiler, int wrapMode)
 {
-    Bitmap bitmap = Bitmap::bitmapFromFile(file);
+    //Bitmap bitmap = Bitmap::bitmapFromFile(file);
 
     glGenTextures(1, &_object);
     glBindTexture(GL_TEXTURE_2D, _object);
@@ -44,13 +45,13 @@ void Texture::bind()
     glBindTexture(GL_TEXTURE_2D, _object);
 }
 
-bool Texture::render(RenderAction* act)
-{
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, _object);
-    
-    //act->_activeTexture = 0;
-    return true;
-}
+// bool Texture::render(RenderAction* act)
+// {
+//     glActiveTexture(GL_TEXTURE0);
+//     glBindTexture(GL_TEXTURE_2D, _object);
+//     
+//     //act->_activeTexture = 0;
+//     return true;
+// }
 
 SK_END_NAMESPACE

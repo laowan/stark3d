@@ -2,18 +2,23 @@
 #include <memory>
 #include <iostream>
 
+#include "GL/glew.h"
 #include <GLFW/glfw3.h>
 
 #include "scene/world.h"
+#include "scene/camera.h"
 #include "utils/linmath.h"
 
 const int gsWinWidth = 800;
 const int gsWinHeight = 600;
 
 SK::World gsWorld;
+SK::Camera gsCamera;
 
-static void init(void)
+static void init(int w, int h)
 {
+    gsCamera.getViewport().resize(w, h);
+
     std::string objfile = "../res/bs0_tex_simplified.obj";
     gsWorld.load(objfile);
 }
@@ -25,7 +30,7 @@ static void exit(void)
 
 static void display(void)
 {
-    gsWorld.render();
+    gsWorld.render(&gsCamera);
 }
 
 int mainloop()
@@ -47,7 +52,13 @@ int mainloop()
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
 
-    init();
+    GLenum err = glewInit();
+    if (GLEW_OK != err)
+    {
+        return -1;
+    }
+
+    init(gsWinWidth, gsWinHeight);
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))

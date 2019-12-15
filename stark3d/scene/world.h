@@ -2,6 +2,7 @@
 #define SK_WORLD_H
 
 #include "global.h"
+#include "camera.h"
 #include <string>
 
 SK_BEGIN_NAMESPACE
@@ -14,7 +15,7 @@ public:
     ~World();
 
     bool load(const std::string& path);
-    void render();
+    void render(Camera* camera);
 };
 
 SK_END_NAMESPACE

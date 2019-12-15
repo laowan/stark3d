@@ -40,6 +40,8 @@
             'scene/world.cpp',
             'scene/camera.h',
             'scene/camera.cpp',
+            'scene/mesh.h',
+            'scene/mesh.cpp',
             'external/edtaa3func/edtaa3func.h',
             'external/edtaa3func/edtaa3func.cpp',
             'learnsomething/learnsomething.h',
@@ -61,7 +63,7 @@
 
         'library_dirs':
         [
-            #'../lib/bgfx/lib/x86',
+            #'../lib/bgfx/lib/x86', 
         ],
 
         'dependencies': 
@@ -115,6 +117,7 @@
                                     #'bimgDebug.lib',
                                     #'bimg_decodeDebug.lib',
                                     'psapi.lib',
+                                    'opengl32.lib',
                                     #'msvcrt.lib',
                                     '%(AdditionalDependencies)',
                                 ],

@@ -12,7 +12,7 @@
      	],
 
         'dependencies': [],
-		'defines':[ "GLEW_STATIC" ],
+		'defines':[ "GLEW_BUILD" ],
         'direct_dependent_settings': 
 		{
 			'include_dirs': 
@@ -27,12 +27,12 @@
 				'defines': [
 					'WIN32',
 					'WIN32_LEAN_AND_MEAN',
-					#'_CRT_SECURE_NO_WARNINGS',
+					'VC_EXTRALEAN',
                     #'_HAS_ITERATOR_DEBUGGING=0',
                     #'_ITERATOR_DEBUG_LEVEL=0',
 				],
 
-				'type': 'static_library',
+				'type': 'shared_library',
 				'include_dirs': [],
 				'sources!': [],
 			    'sources': [],

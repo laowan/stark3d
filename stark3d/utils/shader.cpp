@@ -115,7 +115,7 @@ void Shader::init(std::string filename)
     vector<GLuint> shaderList;
     for (unsigned int i = 0; i < types.size(); i++)
     {
-        string fullpath = "./resource/shader/" + filename + types[i];
+        string fullpath = "../res/shader/" + filename + types[i];
         std::ifstream shaderFile(fullpath.c_str());
         std::stringstream shaderData;
         shaderData << shaderFile.rdbuf();
@@ -130,7 +130,7 @@ void Shader::init(std::string filename)
 
     d->_program = CreateProgram(shaderList);
 
-    std::for_each(shaderList.begin(), shaderList.end(), glDeleteShader);
+    //std::for_each(shaderList.begin(), shaderList.end(), glDeleteShader);
 
     bind();
 
@@ -178,21 +178,21 @@ void Shader::commitUniforms()
 {
     SK_D(Shader);
     if (d->_uniforms.mvLoc != -1)
-        glUniformMatrix4fv(d->_uniforms.mvLoc, 1, GL_FALSE, glm::value_ptr(d->_uniforms.mv));
+        glUniformMatrix4fv(d->_uniforms.mvLoc, 1, GL_FALSE, d->_uniforms.mv[0]);
     if (d->_uniforms.mvpLoc != -1)
-        glUniformMatrix4fv(d->_uniforms.mvpLoc, 1, GL_FALSE, glm::value_ptr(d->_uniforms.mvp));
+        glUniformMatrix4fv(d->_uniforms.mvpLoc, 1, GL_FALSE, d->_uniforms.mvp[0]);
     if (d->_uniforms.colorLoc != -1)
-        glUniform4fv(d->_uniforms.colorLoc, 1, glm::value_ptr(d->_uniforms.color));
+        glUniform4fv(d->_uniforms.colorLoc, 1, d->_uniforms.color);
     if (d->_uniforms.lightPositionLoc != -1)
-        glUniform3fv(d->_uniforms.lightPositionLoc, 1, glm::value_ptr(d->_uniforms.lightPosition));
+        glUniform3fv(d->_uniforms.lightPositionLoc, 1, d->_uniforms.lightPosition);
     if (d->_uniforms.lightColorLoc != -1)
-        glUniform3fv(d->_uniforms.lightColorLoc, 1, glm::value_ptr(d->_uniforms.lightColor));
+        glUniform3fv(d->_uniforms.lightColorLoc, 1, d->_uniforms.lightColor);
     if (d->_uniforms.colorMapLoc != -1)
         glUniform1i(d->_uniforms.colorMapLoc, d->_uniforms.activeTexture);
     if (d->_uniforms.colorMapLoc2 != -1)
         glUniform1i(d->_uniforms.colorMapLoc2, d->_uniforms.activeTexture2);
     if (d->_uniforms.filterLoc != -1)
-        glUniformMatrix4fv(d->_uniforms.filterLoc, 1, GL_FALSE, glm::value_ptr(d->_uniforms.filter));
+        glUniformMatrix4fv(d->_uniforms.filterLoc, 1, GL_FALSE, d->_uniforms.filter[0]);
     if (d->_uniforms.viewportWidthLoc != -1)
         glUniform1f(d->_uniforms.viewportWidthLoc, d->_uniforms.viewportWidth);
     if (d->_uniforms.viewportHeightLoc != -1)

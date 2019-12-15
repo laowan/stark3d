@@ -1,21 +1,24 @@
 #ifndef SCENE_MESH_H
 #define SCENE_MESH_H
 
-#include "node.h"
+#include "global.h"
+#include "assimp/mesh.h"
+
+#include <vector>
 
 SK_BEGIN_NAMESPACE
 
-class STARK_API Mesh : public SceneNode
+class Mesh
 {
 public:
-    Mesh(const std::string& file);
+    Mesh(const aiMesh* mesh);
     ~Mesh();
 
-    bool render(RenderAction* act);
+    bool render();
 private:
-    std::vector<uint32> _vertexbufs;
-    std::vector<uint32> _indexbufs;
-    std::vector<uint32> _indexCounts;
+    uint32 _vertexbuf;
+    uint32 _indexbuf;
+    uint32 _indexCount;
 };
 
 SK_END_NAMESPACE

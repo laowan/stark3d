@@ -4,7 +4,7 @@
 #include "global.h"
 #include <string>
 #include "shader.h"
-#include "scene/texture.h"
+#include "texture.h"
 
 SK_BEGIN_NAMESPACE
 
@@ -19,8 +19,8 @@ public:
     Shader* loadShader(std::string name);
     Shader* getShader(std::string name);
 
-    Texture* loadTexture(std::string name);
-    Texture* getTexture(std::string name);
+    //Texture* loadTexture(std::string name);
+    //Texture* getTexture(std::string name);
 
 private:
     SK_DECLARE_IMPL(ResourceManager);

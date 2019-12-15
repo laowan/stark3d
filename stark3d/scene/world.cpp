@@ -1,30 +1,62 @@
 #include "world.h"
-#include "camera.h"
+#include "mesh.h"
 #include "assimp/scene.h"
 #include "assimp/Importer.hpp"
+#include "utils/shadermanager.h"
+#include "utils/renderdevice.h"
+
+#include <map>
 
 SK_BEGIN_NAMESPACE
 
 class WorldImpl : public Impl<World>
 {
 public:
-    void renderNode(const Camera* camera, const aiScene* scene, const aiNode* node);
-    void renderScene(const Camera* camera, const aiScene* scene);
+    WorldImpl();
+    ~WorldImpl();
 
+    void renderNode(Camera* camera, const aiScene* scene, const aiNode* node);
+    void renderScene(Camera* camera, const aiScene* scene);
+
+    Assimp::Importer importer;
     const aiScene* scene;
-    Camera camera;
+    ShaderManager shaderManager;
+    RenderDevice renderDevice;
+
+    uint32 fbo = 0;
+
+    std::map<unsigned int, Mesh*> meshes;
 };
 
-void WorldImpl::renderNode(const Camera* camera, const aiScene* scene, const aiNode* node)
+WorldImpl::WorldImpl()
+{
+
+}
+
+WorldImpl::~WorldImpl()
+{
+    if (fbo)
+    {
+        renderDevice.destroyRenderBuffer(fbo);
+    }
+}
+
+void WorldImpl::renderNode(Camera* camera, const aiScene* scene, const aiNode* node)
 {
     // take care transform
-    
+    Shader* normalShader = shaderManager.getShader("normal");
+    normalShader->use();
 
     // render mesh in this node
     for (int i = 0; i < node->mNumMeshes; i++)
     {
         unsigned int meshIdx = node->mMeshes[i];
-        const aiMesh* mesh = scene->mMeshes[meshIdx];
+        if (meshes.find(meshIdx) == meshes.end())
+        {
+            const aiMesh* mesh = scene->mMeshes[meshIdx];
+            Mesh* skMesh = new Mesh(mesh);
+            meshes[meshIdx] = skMesh;
+        }
     }
 
     for (int i = 0; i < node->mNumChildren; i++)
@@ -33,9 +65,20 @@ void WorldImpl::renderNode(const Camera* camera, const aiScene* scene, const aiN
     }
 }
 
-void WorldImpl::renderScene(const Camera* camera, const aiScene* scene)
+void WorldImpl::renderScene(Camera* camera, const aiScene* scene)
 {
+    if (!fbo)
+    {
+        int winWidth = camera->getViewport().pixWidth;
+        int winHeight = camera->getViewport().pixHeight;
+        fbo = renderDevice.createRenderBuffer(winWidth, winHeight);
+    }
+
+    renderDevice.setRenderBuffer(fbo);
+
     renderNode(camera, scene, scene->mRootNode);
+
+    renderDevice.setRenderBuffer(0);
 }
 
 World::World()
@@ -51,20 +94,19 @@ World::~World()
 bool World::load(const std::string& path)
 {
     SK_D(World);
-    Assimp::Importer imp;
-    d->scene = imp.ReadFile(path, 0);
+    d->scene = d->importer.ReadFile(path, 0);
     if (!d->scene)
         return false;
 
     return true;
 }
 
-void World::render()
+void World::render(Camera* camera)
 {
     SK_D(World);
     if (d->scene)
     {
-        d->renderScene(&d->camera, d->scene);
+        d->renderScene(camera, d->scene);
     }
 }
 

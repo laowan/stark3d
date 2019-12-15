@@ -13,14 +13,14 @@ class ShaderUniforms
 public:
     ShaderUniforms();
 public:
-    glm::mat4 mv;
-    glm::mat4 mvp;
-    glm::vec4 color;
-    glm::vec3 lightPosition;
-    glm::vec3 lightColor;
+    mat4x4 mv;
+    mat4x4 mvp;
+    vec4 color;
+    vec3 lightPosition;
+    vec3 lightColor;
     uint32 activeTexture;
     uint32 activeTexture2;
-    glm::mat4 filter;
+    mat4x4 filter;
     float viewportWidth;
     float viewportHeight;
 

@@ -38,7 +38,7 @@ public:
     Camera();
     ~Camera();
 
-    //Viewport& getViewport() { return _viewport; }
+    Viewport& getViewport() { return _viewport; }
     //Matrix& getViewMatrix() { return _viewMat; }
     //glm::mat4 getViewMat();
     //glm::mat4 getViewProjMat();

@@ -2,6 +2,7 @@
 #define _RENDERDEVICE_H
 
 #include "global.h"
+#include "gldefine.h"
 #include <vector>
 
 SK_BEGIN_NAMESPACE
