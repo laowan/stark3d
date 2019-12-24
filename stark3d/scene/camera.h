@@ -39,20 +39,24 @@ public:
     ~Camera();
 
     Viewport& getViewport() { return _viewport; }
-    //Matrix& getViewMatrix() { return _viewMat; }
-    //glm::mat4 getViewMat();
-    //glm::mat4 getViewProjMat();
-    void getViewMat(mat4x4 mat);
 
-    void reset();
+    void getViewMat(mat4x4 mat);
+    void getProjMat(mat4x4 mat);
+
+    void setPerspective(float fov, float aspect, float n, float f);
+    void setLookAt(vec3 eye, vec3 target, vec3 up);
 
 private:
-    //glm::mat4 getPerspectiveProjMat();
-    //glm::mat4 getOrthographicProjMat();
+    void getPerspectiveProjMat(mat4x4 mat);
+    void getOrthographicProjMat(mat4x4 mat);
             
 private:
     Viewport _viewport;
-    //Matrix _viewMat; // view to world
+    mat4x4 _viewMat;
+    mat4x4 _projMat;
+    vec3 _eye;
+    vec3 _target;
+    vec3 _up;
 };
 
 SK_END_NAMESPACE
