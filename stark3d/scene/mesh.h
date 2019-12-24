@@ -19,6 +19,7 @@ public:
     bool render(Shader* shader, RenderDevice* device);
 private:
     uint32 _vertexbuf;
+    uint32 _normalBuf;
     uint32 _indexbuf;
     uint32 _indexCount;
 };

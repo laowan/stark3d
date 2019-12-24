@@ -16,6 +16,12 @@ Mesh::Mesh(const aiMesh* mesh)
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     _vertexbuf = bufId;
 
+    glGenBuffers(1, &bufId);
+    glBindBuffer(GL_ARRAY_BUFFER, bufId);
+    glBufferData(GL_ARRAY_BUFFER, numVertex * sizeof(aiVector3D), (void*)mesh->mNormals, GL_STATIC_DRAW);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    _normalBuf = bufId;
+
     std::vector<unsigned int> ids;
     for (int i = 0; i < mesh->mNumFaces; i++)
     {
@@ -35,7 +41,25 @@ Mesh::Mesh(const aiMesh* mesh)
 }
 
 Mesh::~Mesh()
-{}
+{
+    if (_vertexbuf)
+    {
+        glDeleteBuffers(1, &_vertexbuf);
+        _vertexbuf = 0;
+    }
+
+    if (_normalBuf)
+    {
+        glDeleteBuffers(1, &_normalBuf);
+        _normalBuf = 0;
+    }
+
+    if (_indexbuf)
+    {
+        glDeleteBuffers(1, &_indexbuf);
+        _indexbuf = 0;
+    }
+}
 
 bool Mesh::render(Shader* shader, RenderDevice* device)
 {
@@ -47,11 +71,15 @@ bool Mesh::render(Shader* shader, RenderDevice* device)
 
     shader->commitUniforms();
 
+    uint32 stride(sizeof(float) * 3);
     device->setVertexBuffer(_vertexbuf);
+    device->setVertexLayout(0, stride, 0);
+
+    device->setVertexBuffer(_normalBuf);
+    device->setVertexLayout(1, stride, 0);
+
     device->setIndexBuffer(_indexbuf);
 
-    uint32 stride(sizeof(float) * 3);
-    device->setVertexLayout(0, stride, 0);
     device->draw(SK::PRIM_TRIANGLES, _indexCount);
 
     device->setVertexBuffer(0);
