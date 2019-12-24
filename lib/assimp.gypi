@@ -12,6 +12,7 @@
 		'target_name': 'assimp',
 		'include_dirs': [
 		    'assimp/include',
+            'rapidjson/include',
     	],
 		
 		'sources': [
@@ -43,6 +44,13 @@
             'assimp/code/ObjFileParser.cpp',
             'assimp/code/ObjFileParser.h',
             'assimp/code/ObjTools.h',
+            'assimp/code/glTFImporter.h',
+            'assimp/code/glTFImporter.cpp',
+            'assimp/code/glTF2Importer.h',
+            'assimp/code/glTF2Importer.cpp',
+            'assimp/code/MakeVerboseFormat.h',
+            'assimp/code/MakeVerboseFormat.cpp',
+            'assimp/code/CreateAnimMesh.cpp',
      	],
 
         'dependencies': [
@@ -72,7 +80,7 @@
                     '_CRT_SECURE_NO_WARNINGS',
                     'ASSIMP_BUILD_NO_EXPORT',
                     'ASSIMP_BUILD_NO_C4D_IMPORTER',
-                    'ASSIMP_IMPORTER_GLTF_USE_OPEN3DGC=1',
+                    #'ASSIMP_IMPORTER_GLTF_USE_OPEN3DGC=1',
                     'ASSIMP_BUILD_DLL_EXPORT',
                     
                     # formats to disable
@@ -118,7 +126,7 @@
                     'ASSIMP_BUILD_NO_XGL_IMPORTER',
                     'ASSIMP_BUILD_NO_FBX_IMPORTER',
                     'ASSIMP_BUILD_NO_ASSBIN_IMPORTER',
-                    'ASSIMP_BUILD_NO_GLTF_IMPORTER',
+                    #'ASSIMP_BUILD_NO_GLTF_IMPORTER',
                     'ASSIMP_BUILD_NO_3MF_IMPORTER',
                     'ASSIMP_BUILD_NO_X3D_IMPORTER',
                     'ASSIMP_BUILD_NO_MMD_IMPORTER',

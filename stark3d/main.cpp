@@ -19,7 +19,8 @@ static void init(int w, int h)
 {
     gsCamera.getViewport().resize(w, h);
 
-    std::string objfile = "../res/bs0_tex_simplified.obj";
+    //std::string objfile = "../res/bs0_tex_simplified.obj";
+    std::string objfile = "../res/gltf/Box/Box.gltf";
     gsWorld.load(objfile);
 }
 
