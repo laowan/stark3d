@@ -44,7 +44,7 @@ public:
     void getProjMat(mat4x4 mat);
 
     void setPerspective(float fov, float aspect, float n, float f);
-    void setLookAt(vec3 eye, vec3 target, vec3 up);
+    void setLookAt(vec3 eye, vec3 front, vec3 up);
 
 private:
     void getPerspectiveProjMat(mat4x4 mat);
@@ -55,8 +55,9 @@ private:
     mat4x4 _viewMat;
     mat4x4 _projMat;
     vec3 _eye;
-    vec3 _target;
+    vec3 _front;
     vec3 _up;
+    vec3 _right;
 };
 
 SK_END_NAMESPACE

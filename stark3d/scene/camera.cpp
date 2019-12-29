@@ -11,7 +11,9 @@ Camera::~Camera()
 
 void Camera::getViewMat(mat4x4 mat)
 {
-    mat4x4_look_at(mat, _eye, _target, _up);
+    vec3 target;
+    vec3_add(target, _eye, _front);
+    mat4x4_look_at(mat, _eye, target, _up);
 }
 
 void Camera::getProjMat(mat4x4 mat)
@@ -24,11 +26,14 @@ void Camera::setPerspective(float fov, float aspect, float n, float f)
     mat4x4_perspective(_projMat, fov, aspect, n, f);
 }
 
-void Camera::setLookAt(vec3 eye, vec3 target, vec3 up)
+// front is a direction from eye 
+void Camera::setLookAt(vec3 eye, vec3 front, vec3 up)
 {
     memcpy(_eye, eye, sizeof(vec3));
-    memcpy(_target, target, sizeof(vec3));
+    memcpy(_front, front, sizeof(vec3));
     memcpy(_up, up, sizeof(vec3));
+
+    vec3_mul_cross(_right, _front, _up);
 }
 
 void Camera::getPerspectiveProjMat(mat4x4 mat)

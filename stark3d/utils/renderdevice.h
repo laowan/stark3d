@@ -83,6 +83,9 @@ public:
     void setRenderBuffer(uint32 obj);
     uint32 getRenderBufferTexture(uint32 obj);
 
+    void setClearColor(float r, float g, float b, float a);
+    void clearColorBuffer();
+
 private:
     SK_DECLARE_IMPL(RenderDevice);
 };

@@ -15,12 +15,27 @@ const int gsWinHeight = 600;
 SK::World gsWorld;
 SK::Camera gsCamera;
 
+float gsFov = 45;
+bool gsLeftMouseBtnDown = false;
+bool gsRightMouseBtnDown = false;
+double gsMouseLastPosX = 0.0;
+double gsMouseLastPosY = 0.0;
+double gsMouseCurPosX = 0.0;
+double gsMouseCurPoxY = 0.0;
+
 static void init(int w, int h)
 {
     gsCamera.getViewport().resize(w, h);
 
-    //std::string objfile = "../res/bs0_tex_simplified.obj";
-    std::string objfile = "../res/gltf/Box/Box.gltf";
+    vec3 eye = { 0, 0, 3 };
+    vec3 front = { 0, 0, -1 };
+    vec3 up = { 0, 1, 0 };
+    gsCamera.setLookAt(eye, front, up);
+
+    gsCamera.setPerspective(gsFov / 180 * 3.1415926, (float)w / h, 0.01f, 100.0f);
+
+    std::string objfile = "../res/bs0_tex_simplified.obj";
+    //std::string objfile = "../res/gltf/Box/Box.gltf";
     gsWorld.load(objfile);
 }
 
@@ -101,16 +116,47 @@ static void mouse_button_callback(GLFWwindow* window, int button, int action, in
         get_button_name(button),
         get_mods_name(mods),
         get_action_name(action));
+
+    if (button == GLFW_MOUSE_BUTTON_LEFT)
+    {
+        if (action == GLFW_PRESS)
+        {
+            gsLeftMouseBtnDown = true;
+            gsMouseLastPosX = gsMouseCurPosX;
+            gsMouseLastPosY = gsMouseCurPoxY;
+        }
+        else if (action == GLFW_RELEASE)
+            gsLeftMouseBtnDown = false;
+    }
+    else if (button == GLFW_MOUSE_BUTTON_RIGHT)
+    {
+        if (action == GLFW_PRESS)
+        {
+            gsRightMouseBtnDown = true;
+            gsMouseLastPosX = gsMouseCurPosX;
+            gsMouseLastPosY = gsMouseCurPoxY;
+        }
+        else if (action == GLFW_RELEASE)
+            gsRightMouseBtnDown = false;
+    }
 }
 
 static void cursor_position_callback(GLFWwindow* window, double x, double y)
 {
     printf("%0.3f: Cursor position: %f %f\n", glfwGetTime(), x, y);
+    gsMouseCurPosX = x;
+    gsMouseCurPoxY = y;
 }
 
 static void scroll_callback(GLFWwindow* window, double x, double y)
 {
     printf("%0.3f: Scroll: %0.3f %0.3f\n", glfwGetTime(), x, y);
+    if (y > 0.0)
+        gsFov += 1.0;
+    else
+        gsFov -= 1.0;
+
+    gsCamera.setPerspective(gsFov / 180 * 3.1415926, (float)gsWinWidth / gsWinHeight, 0.01f, 100.0f);
 }
 
 int mainloop()

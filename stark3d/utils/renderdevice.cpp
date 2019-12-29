@@ -142,4 +142,17 @@ uint32 RenderDevice::getRenderBufferTexture(uint32 obj)
     return rb.colorTexture;
 }
 
+void RenderDevice::setClearColor(float r, float g, float b, float a)
+{
+    SK_D(RenderDevice);
+    glClearColor(r, g, b, a);
+}
+
+void RenderDevice::clearColorBuffer()
+{
+    SK_D(RenderDevice);
+    glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
+    glClear(GL_COLOR_BUFFER_BIT);
+}
+
 SK_END_NAMESPACE

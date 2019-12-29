@@ -56,9 +56,20 @@ void WorldImpl::renderNode(Camera* camera, const aiScene* scene, const aiNode* n
             meshes[meshIdx] = skMesh;
         }
 
+        mat4x4 mvpMat;
+        mat4x4_identity(mvpMat);
+
+        mat4x4 viewMat;
+        camera->getViewMat(viewMat);
+
+        mat4x4 projMat;
+        camera->getProjMat(projMat);
+
+        mat4x4_mul(mvpMat, projMat, viewMat);
+
         // render this mesh
         Shader* normalShader = shaderManager.getShader("mesh3d");
-        meshes[meshIdx]->render(normalShader, &renderDevice);
+        meshes[meshIdx]->render(normalShader, mvpMat, &renderDevice);
     }
 
     for (int i = 0; i < node->mNumChildren; i++)
@@ -77,6 +88,9 @@ void WorldImpl::renderScene(Camera* camera, const aiScene* scene)
     //}
 
     //renderDevice.setRenderBuffer(fbo);
+
+    renderDevice.setClearColor(0.0, 0.0, 0.0, 1.0);
+    renderDevice.clearColorBuffer();
 
     renderNode(camera, scene, scene->mRootNode);
 

@@ -61,13 +61,13 @@ Mesh::~Mesh()
     }
 }
 
-bool Mesh::render(Shader* shader, RenderDevice* device)
+bool Mesh::render(Shader* shader, mat4x4 mvpMat, RenderDevice* device)
 {
     shader->use();
 
     ShaderUniforms& uniforms = shader->uniforms();
 
-    mat4x4_identity(uniforms.mvp);
+    mat4x4_dup(uniforms.mvp, mvpMat);
 
     shader->commitUniforms();
 

@@ -3,6 +3,7 @@
 
 #include "global.h"
 #include "assimp/mesh.h"
+#include "utils/linmath.h"
 
 #include <vector>
 
@@ -16,7 +17,7 @@ public:
     Mesh(const aiMesh* mesh);
     ~Mesh();
 
-    bool render(Shader* shader, RenderDevice* device);
+    bool render(Shader* shader, mat4x4 mvpMat, RenderDevice* device);
 private:
     uint32 _vertexbuf;
     uint32 _normalBuf;
