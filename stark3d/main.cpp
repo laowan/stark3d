@@ -22,17 +22,18 @@ double gsMouseLastPosX = 0.0;
 double gsMouseLastPosY = 0.0;
 double gsMouseCurPosX = 0.0;
 double gsMouseCurPoxY = 0.0;
+vec3 gsCameraPos = { 0, 0, 3 };
+vec3 gsCameraFront = { 0, 0, -1 };
+vec3 gsCameraUp = { 0, 1, 0 };
+vec3 gsCameraRight = { 0, 0, 0 };
 
 static void init(int w, int h)
 {
     gsCamera.getViewport().resize(w, h);
-
-    vec3 eye = { 0, 0, 3 };
-    vec3 front = { 0, 0, -1 };
-    vec3 up = { 0, 1, 0 };
-    gsCamera.setLookAt(eye, front, up);
-
+    gsCamera.setLookAt(gsCameraPos, gsCameraFront, gsCameraUp);
     gsCamera.setPerspective(gsFov / 180 * 3.1415926, (float)w / h, 0.01f, 100.0f);
+
+    vec3_mul_cross(gsCameraRight, gsCameraFront, gsCameraUp);
 
     std::string objfile = "../res/bs0_tex_simplified.obj";
     //std::string objfile = "../res/gltf/Box/Box.gltf";
@@ -144,6 +145,23 @@ static void mouse_button_callback(GLFWwindow* window, int button, int action, in
 static void cursor_position_callback(GLFWwindow* window, double x, double y)
 {
     printf("%0.3f: Cursor position: %f %f\n", glfwGetTime(), x, y);
+
+    double ratio = 0.005;
+    if (gsLeftMouseBtnDown)
+    {
+        vec3 deltaX;
+        vec3_scale(deltaX, gsCameraRight, (gsMouseLastPosX - x) * ratio);
+
+        vec3 deltaY;
+        vec3_scale(deltaY, gsCameraUp, -(gsMouseLastPosY - y) * ratio);
+
+        vec3 pos;
+        vec3_add(pos, gsCameraPos, deltaX);
+        vec3_add(pos, pos, deltaY);
+
+        gsCamera.setLookAt(pos, gsCameraFront, gsCameraUp);
+    }
+
     gsMouseCurPosX = x;
     gsMouseCurPoxY = y;
 }
