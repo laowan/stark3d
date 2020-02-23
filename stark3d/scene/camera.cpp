@@ -36,6 +36,16 @@ void Camera::setLookAt(vec3 eye, vec3 front, vec3 up)
     vec3_mul_cross(_right, _front, _up);
 }
 
+void Camera::getPosition(vec3 pos)
+{
+    memcpy(pos, _eye, sizeof(vec3));
+}
+
+void Camera::getFrontDir(vec3 front)
+{
+    memcpy(front, _front, sizeof(vec3));
+}
+
 void Camera::getPerspectiveProjMat(mat4x4 mat)
 {
     // http://www.songho.ca/opengl/gl_projectionmatrix.html

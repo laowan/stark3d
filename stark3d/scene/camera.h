@@ -45,6 +45,8 @@ public:
 
     void setPerspective(float fov, float aspect, float n, float f);
     void setLookAt(vec3 eye, vec3 front, vec3 up);
+    void getPosition(vec3 pos);
+    void getFrontDir(vec3 front);
 
 private:
     void getPerspectiveProjMat(mat4x4 mat);

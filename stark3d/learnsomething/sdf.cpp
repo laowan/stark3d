@@ -16,7 +16,7 @@
 
 void LearnSdf()
 {
-    const char* fontPath = "../res/HYQuHeiW.ttf";
+    const char* fontPath = "../res/American Typewriter.ttf";
 
     FT_Library ftLib;
     if (FT_Init_FreeType(&ftLib)) return;
@@ -31,12 +31,22 @@ void LearnSdf()
     int fontSizePoints = (int)(64.f * fontSize);
     if (FT_Set_Char_Size(face, fontSizePoints, fontSizePoints, dpi, dpi)) return;
 
-    if (FT_Load_Char(face, 65, FT_LOAD_RENDER | FT_LOAD_NO_AUTOHINT) == 0)
+    if (FT_Load_Char(face, 48, FT_LOAD_RENDER | FT_LOAD_NO_AUTOHINT) == 0)
     {
         unsigned char* buffer = face->glyph->bitmap.buffer;
         int rows = face->glyph->bitmap.rows;
         int width = face->glyph->bitmap.width;
         stbi_write_bmp("a.bmp", width, rows, 1, buffer);
+
+        FT_Outline _outline;
+        _outline = face->glyph->outline;
+
+        // Print outline details, taken from the glyph in the slot.
+        std::cout << "\nNum points: " << _outline.n_points;
+        std::cout << "\nNum contours: " << _outline.n_contours;
+        std::cout << "\nContour endpoint index values:";
+        for (int i = 0; i < _outline.n_contours; i++) std::cout << " " << _outline.contours[i];
+        std::cout << "\n-->\n";
     }
 
     FT_Done_Face(face);
@@ -49,6 +59,7 @@ void LearnSdf()
 //     stbi_write_bmp("1100.bmp", x + 2 * 3, y + 2 * 3, 1, sdf_data);
 // 
 //     stbi_image_free(data);
+    return;
 }
 
 #endif

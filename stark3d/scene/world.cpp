@@ -82,12 +82,19 @@ void WorldImpl::renderScene(Camera* camera, const aiScene* scene)
 {
     //if (!fbo)
     //{
-    //    int winWidth = camera->getViewport().pixWidth;
+    //    int winWidth = camera->getV iewport().pixWidth;
     //    int winHeight = camera->getViewport().pixHeight;
     //    fbo = renderDevice.createRenderBuffer(winWidth, winHeight);
     //}
 
     //renderDevice.setRenderBuffer(fbo);
+
+    glDisable(GL_CULL_FACE);
+
+    glEnable(GL_DEPTH_TEST);
+    glDepthMask(GL_TRUE);
+    glClearDepth(1.0f);
+    glClear(GL_DEPTH_BUFFER_BIT);
 
     renderDevice.setClearColor(0.0, 0.0, 0.0, 1.0);
     renderDevice.clearColorBuffer();

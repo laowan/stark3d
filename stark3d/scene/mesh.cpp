@@ -9,6 +9,7 @@ Mesh::Mesh(const aiMesh* mesh)
 {
     // create vbo
     uint32 numVertex = mesh->mNumVertices;
+    //numVertex = 3;
     GLuint bufId;
     glGenBuffers(1, &bufId);
     glBindBuffer(GL_ARRAY_BUFFER, bufId);
