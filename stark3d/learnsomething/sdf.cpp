@@ -10,13 +10,16 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb/stb_image_write.h"
 
+#define SDF_IMPLEMENTATION
+#include "sdf.h"
+
 #include "ft2build.h"
 #include FT_FREETYPE_H
 #include FT_STROKER_H
 
 void LearnSdf()
 {
-    const char* fontPath = "../res/HYQuHeiW.ttf";
+    const char* fontPath = "../res/signika-regular.ttf";
 
     FT_Library ftLib;
     if (FT_Init_FreeType(&ftLib)) return;
@@ -31,24 +34,33 @@ void LearnSdf()
     int fontSizePoints = (int)(64.f * fontSize);
     if (FT_Set_Char_Size(face, fontSizePoints, fontSizePoints, dpi, dpi)) return;
 
+    unsigned char* buffer = NULL;
+    int rows = 0;
+    int width = 0;
+
     if (FT_Load_Char(face, 65, FT_LOAD_RENDER | FT_LOAD_NO_AUTOHINT) == 0)
     {
-        unsigned char* buffer = face->glyph->bitmap.buffer;
-        int rows = face->glyph->bitmap.rows;
-        int width = face->glyph->bitmap.width;
+        buffer = face->glyph->bitmap.buffer;
+        rows = face->glyph->bitmap.rows;
+        width = face->glyph->bitmap.width;
         stbi_write_bmp("a.bmp", width, rows, 1, buffer);
     }
 
+    int x, y, n;
+    unsigned char *data = stbi_load("a.bmp", &x, &y, &n, 1);
+ 
+    x = width;
+    y = rows;
+    unsigned char* sdf_data = makeDistanceMap(buffer, x, y, 3);
+    stbi_write_bmp("aa.bmp", x + 2 * 3, y + 2 * 3, 1, sdf_data);
+    stbi_write_png("a.png", x + 2 * 3, y + 2 * 3, 1, sdf_data, x + 2 * 3);
+
+    free(sdf_data);
+ 
+    stbi_image_free(data);
+
     FT_Done_Face(face);
     FT_Done_FreeType(ftLib);
-
-//     int x, y, n;
-//     unsigned char *data = stbi_load("110.bmp", &x, &y, &n, 1);
-// 
-//     unsigned char* sdf_data = makeDistanceMap(data, x, y, 3);
-//     stbi_write_bmp("1100.bmp", x + 2 * 3, y + 2 * 3, 1, sdf_data);
-// 
-//     stbi_image_free(data);
 }
 
 #endif

@@ -227,8 +227,11 @@ int mainloop()
     return 0;
 }
 
+#include "learnsomething/learnsomething.h"
+
 int main(int argc, char *argv[])
 {
-    mainloop();
+    //mainloop();
+    LearnSdf();
     return 0;
 }
