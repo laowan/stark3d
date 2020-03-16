@@ -44,6 +44,16 @@ void LearnSdf()
         rows = face->glyph->bitmap.rows;
         width = face->glyph->bitmap.width;
         stbi_write_bmp("a.bmp", width, rows, 1, buffer);
+
+        FT_Outline _outline;
+        _outline = face->glyph->outline;
+
+        // Print outline details, taken from the glyph in the slot.
+        std::cout << "\nNum points: " << _outline.n_points;
+        std::cout << "\nNum contours: " << _outline.n_contours;
+        std::cout << "\nContour endpoint index values:";
+        for (int i = 0; i < _outline.n_contours; i++) std::cout << " " << _outline.contours[i];
+        std::cout << "\n-->\n";
     }
 
     int x, y, n;

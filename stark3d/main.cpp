@@ -127,7 +127,10 @@ static void mouse_button_callback(GLFWwindow* window, int button, int action, in
             gsMouseLastPosY = gsMouseCurPoxY;
         }
         else if (action == GLFW_RELEASE)
+        {
             gsLeftMouseBtnDown = false;
+            gsCamera.getPosition(gsCameraPos);
+        }
     }
     else if (button == GLFW_MOUSE_BUTTON_RIGHT)
     {
@@ -138,7 +141,10 @@ static void mouse_button_callback(GLFWwindow* window, int button, int action, in
             gsMouseLastPosY = gsMouseCurPoxY;
         }
         else if (action == GLFW_RELEASE)
+        {
             gsRightMouseBtnDown = false;
+            gsCamera.getFrontDir(gsCameraFront);
+        }
     }
 }
 
@@ -160,6 +166,16 @@ static void cursor_position_callback(GLFWwindow* window, double x, double y)
         vec3_add(pos, pos, deltaY);
 
         gsCamera.setLookAt(pos, gsCameraFront, gsCameraUp);
+    }
+    else if (gsRightMouseBtnDown)
+    {
+        float angle = (x - gsMouseLastPosX) * ratio;
+        float fx = cos(angle) * gsCameraFront[0] + sin(angle) * gsCameraFront[2];
+        float fy = gsCameraFront[1];
+        float fz = -sin(angle) * gsCameraFront[0] + cos(angle) * gsCameraFront[2];
+
+        vec3 front = { fx, fy, fz };
+        gsCamera.setLookAt(gsCameraPos, front, gsCameraUp);
     }
 
     gsMouseCurPosX = x;
