@@ -24,6 +24,7 @@
             'utils/gldefine.h',
             'utils/linmath.h',
             'utils/math.h',
+            'utils/geom.h',
             'utils/utils.h',
             'utils/utils.cpp',
             'utils/texture.h',

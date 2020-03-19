@@ -5,6 +5,15 @@
 
 SK_BEGIN_NAMESPACE
 
+class Vec2f
+{
+public:
+    float x, y;
+    Vec2f() : x(0.0f), y(0.0f) {}
+    Vec2f(const float x, const float y) : x(x), y(y) { }
+    Vec2f(const Vec2f &v) : x(v.x), y(v.y) { }
+};
+
 class Vec3f
 {
 public:
