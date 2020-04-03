@@ -17,6 +17,10 @@
 #include FT_FREETYPE_H
 #include FT_STROKER_H
 
+/* Handy routines for converting from fixed point */
+#define FT_FLOOR(X) ((X & -64) / 64)
+#define FT_CEIL(X)  (((X + 63) & -64) / 64)
+
 void LearnSdf()
 {
     const char* fontPath = "../res/signika-regular.ttf";
@@ -33,6 +37,9 @@ void LearnSdf()
     int dpi = 72;
     int fontSizePoints = (int)(64.f * fontSize);
     if (FT_Set_Char_Size(face, fontSizePoints, fontSizePoints, dpi, dpi)) return;
+
+    FT_Fixed scale = face->size->metrics.y_scale;
+    int _lineHeight = FT_CEIL(FT_MulFix(face->ascender - face->descender, scale));
 
     unsigned char* buffer = NULL;
     int rows = 0;

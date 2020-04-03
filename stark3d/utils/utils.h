@@ -8,6 +8,12 @@ extern unsigned char* makeDistanceMap(unsigned char *img, int width, int height,
 // extern void skCreateScene2();
 
 #if defined(_WIN32) || defined(WIN32)
+#include <string>
+std::string GbkToUtf8(const std::string& strGbk);
+std::string Utf8ToGbk(const std::string& strUtf8);
+std::wstring GbkToUnicode(const std::string& strGbk);
+std::string UnicodeToGbk(const std::wstring& strUnicode);
+
 typedef unsigned __int64 SKUInt64;
 
 typedef struct timeval
