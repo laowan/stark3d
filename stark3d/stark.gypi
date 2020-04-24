@@ -73,6 +73,7 @@
             'glfw',
             'assimp',
             'freetype',
+            'lua',
         ],
 
         'conditions': 
