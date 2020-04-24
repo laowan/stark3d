@@ -21,8 +21,8 @@ class Font;
 class FontAtlas
 {
 public:
-    FontAtlas(Font* font);
-    ~FontAtlas();
+    FontAtlas(Font* font) {}
+    ~FontAtlas() {}
 private:
     Font* _font;
 };
@@ -31,9 +31,9 @@ class FontAtlasCache
 {
 public:
     FontAtlasCache() {}
-    ~FontAtlasCache();
+    ~FontAtlasCache() {}
 
-    FontAtlas* getFontAltas(const TTFConfig& config);
+    FontAtlas* getFontAltas(const TTFConfig& config) { return nullptr; }
 
 private:
     std::unordered_map<std::string, FontAtlas*> _atlasMap;
