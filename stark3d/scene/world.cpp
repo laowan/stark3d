@@ -1,5 +1,6 @@
 #include "world.h"
 #include "mesh.h"
+#include "font.h"
 #include "assimp/scene.h"
 #include "assimp/Importer.hpp"
 #include "utils/shadermanager.h"
@@ -26,11 +27,13 @@ public:
     uint32 fbo = 0;
 
     std::map<unsigned int, Mesh*> meshes;
+
+    FontAtlasCache* _fontAtlasCache;
 };
 
 WorldImpl::WorldImpl()
 {
-
+    _fontAtlasCache = nullptr;
 }
 
 WorldImpl::~WorldImpl()
@@ -111,7 +114,8 @@ World::World()
 
 World::~World()
 {
-
+    SK_E(World);
+    SK_SAFE_DELETE(d->_fontAtlasCache);
 }
 
 bool World::load(const std::string& path)
@@ -131,6 +135,16 @@ void World::render(Camera* camera)
     {
         d->renderScene(camera, d->scene);
     }
+}
+
+FontAtlasCache* World::getFontAtlasCache()
+{
+    SK_D(World);
+    if (d->_fontAtlasCache == nullptr)
+    {
+        d->_fontAtlasCache = new FontAtlasCache;
+    }
+    return d->_fontAtlasCache;
 }
 
 SK_END_NAMESPACE

@@ -64,6 +64,18 @@ private:
 #define SK_C(C) const C##Impl* d = static_cast<const C##Impl*>(__impl__(this)); d
 #define SK_Q(C) C* q = __self__; q
 
+//
+// Macro for simplifying to delete a pointer and set it nullptr.
+//
+#define SK_SAFE_FREE(obj) \
+    if(obj) { free(obj); obj = nullptr; }
+
+#define SK_SAFE_DELETE(obj) \
+    if (obj) { delete obj; obj = nullptr; }
+
+#define SK_SAFE_DELETE_ARRAY(arr) \
+    if (arr) { delete[] arr; arr = nullptr; }
+
 #ifdef _DEBUG
     #include <assert.h>
     #define ASSERT(exp) assert(exp)

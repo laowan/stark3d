@@ -7,6 +7,8 @@
 
 SK_BEGIN_NAMESPACE
 
+class FontAtlasCache;
+
 class World
 {
     SK_DECLARE_IMPL(World);
@@ -16,6 +18,8 @@ public:
 
     bool load(const std::string& path);
     void render(Camera* camera);
+
+    FontAtlasCache* getFontAtlasCache();
 };
 
 SK_END_NAMESPACE

@@ -245,9 +245,30 @@ int mainloop()
 
 #include "learnsomething/learnsomething.h"
 
+#include "utils/geom.h"
+#include "utils/utils.h"
+#include "scene/font.h"
+using namespace SK;
+
+#include <iostream>
+
 int main(int argc, char *argv[])
 {
     //mainloop();
-    LearnSdf();
+    //LearnSdf();
+
+    FontAtlasCache* atlasCache = gsWorld.getFontAtlasCache();
+
+    TTFConfig config;
+    config.fontFilePath = "C:/123.ttf";
+    config.fontSize = 50;
+    config.outlineSize = 10;
+    FontAtlas* fontAtlas = atlasCache->getFontAltas(config);
+
+    fontAtlas = atlasCache->getFontAltas(config);
+
+    config.fontSize = 100;
+    fontAtlas = atlasCache->getFontAltas(config);
+
     return 0;
 }
