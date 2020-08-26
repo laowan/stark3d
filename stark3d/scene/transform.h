@@ -1,27 +1,24 @@
-#ifndef _TRANSFORM_H
-#define _TRANSFORM_H
+#pragma once
 
-#include "node.h"
+#include "global.h"
+#include "utils/math.h"
+#include <vector>
 
 SK_BEGIN_NAMESPACE
 
 class Matrix;
-class Transform : public SceneNode
+class Transform
 {
 public:
     Transform();
     ~Transform();
-    std::string type() { return "Transform"; }
-
-    bool renderEnter(RenderAction* act);
-    bool render(RenderAction* act);
-    bool renderLeave(RenderAction* act);
-
-    Matrix& matrix() { return *_matrix; }
 private:
-    Matrix* _matrix;
+    Transform* _parent;
+    std::vector<Transform*> _children;
+
+    Vector3 _position;
+    Quaternion _rotation;
+    Vector3 _scale;
 };
 
 SK_END_NAMESPACE
-
-#endif

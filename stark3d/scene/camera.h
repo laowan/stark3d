@@ -1,5 +1,4 @@
-#ifndef SK_CAMERA_H
-#define SK_CAMERA_H
+#pragma once
 
 #include "global.h"
 
@@ -32,7 +31,8 @@ public:
     double pixScale; // screen pixel per unit in clip space
 };
 
-class Camera
+class Component;
+class Camera : public Component
 {
 public:
     Camera();
@@ -63,5 +63,3 @@ private:
 };
 
 SK_END_NAMESPACE
-
-#endif

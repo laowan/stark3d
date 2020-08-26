@@ -35,9 +35,8 @@ static void init(int w, int h)
 
     vec3_mul_cross(gsCameraRight, gsCameraFront, gsCameraUp);
 
-    std::string objfile = "../res/bs0_tex_simplified.obj";
-    //std::string objfile = "../res/gltf/Box/Box.gltf";
-    gsWorld.load(objfile);
+    std::string file = "../res/gltf/Box/Box.gltf";
+    gsWorld.load(file);
 }
 
 static void exit(void)
@@ -243,32 +242,8 @@ int mainloop()
     return 0;
 }
 
-#include "learnsomething/learnsomething.h"
-
-#include "utils/geom.h"
-#include "utils/utils.h"
-#include "scene/font.h"
-using namespace SK;
-
-#include <iostream>
-
 int main(int argc, char *argv[])
 {
-    //mainloop();
-    //LearnSdf();
-
-    FontAtlasCache* atlasCache = gsWorld.getFontAtlasCache();
-
-    TTFConfig config;
-    config.fontFilePath = "C:/123.ttf";
-    config.fontSize = 50;
-    config.outlineSize = 10;
-    FontAtlas* fontAtlas = atlasCache->getFontAltas(config);
-
-    fontAtlas = atlasCache->getFontAltas(config);
-
-    config.fontSize = 100;
-    fontAtlas = atlasCache->getFontAltas(config);
-
+    mainloop();
     return 0;
 }

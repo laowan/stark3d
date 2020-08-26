@@ -20,6 +20,8 @@ public:
     void render(Camera* camera);
 
     FontAtlasCache* getFontAtlasCache();
+private:
+    Camera* camera;
 };
 
 SK_END_NAMESPACE

@@ -1,27 +1,18 @@
-#ifndef SK_MATH_H
-#define SK_MATH_H
+#pragma once
 
 #include "global.h"
+#include "linmath.h"
 
 SK_BEGIN_NAMESPACE
 
-class Vec2f
-{
-public:
-    float x, y;
-    Vec2f() : x(0.0f), y(0.0f) {}
-    Vec2f(const float x, const float y) : x(x), y(y) { }
-    Vec2f(const Vec2f &v) : x(v.x), y(v.y) { }
-};
-
-class Vec3f
+class Vector3
 {
 public:
     float x, y, z;
 
-    Vec3f() : x(0.0f), y(0.0f), z(0.0f) { }
-    Vec3f(const float x, const float y, const float z) : x(x), y(y), z(z) { }
-    Vec3f(const Vec3f &v) : x(v.x), y(v.y), z(v.z) { }
+    Vector3() : x(0.0f), y(0.0f), z(0.0f) { }
+    Vector3(const float x, const float y, const float z) : x(x), y(y), z(z) { }
+    Vector3(const Vector3 &v) : x(v.x), y(v.y), z(v.z) { }
 
     void set(const float x, const float y, const float z)
     {
@@ -30,34 +21,34 @@ public:
         this->z = z;
     }
 
-    bool operator==(const Vec3f &v) const { return (x == v.x) && (y == v.y) && (z == v.z); }
-    bool operator!=(const Vec3f &v) const { return !(*this == v); }
+    bool operator==(const Vector3 &v) const { return (x == v.x) && (y == v.y) && (z == v.z); }
+    bool operator!=(const Vector3 &v) const { return !(*this == v); }
     
-    Vec3f operator-() const { return Vec3f(-x, -y, -z); }
+    Vector3 operator-() const { return Vector3(-x, -y, -z); }
     
-    Vec3f operator+(const Vec3f &v) const { return Vec3f(x + v.x, y + v.y, z + v.z); }
-    Vec3f &operator+=(const Vec3f &v) { return *this = *this + v; }
+    Vector3 operator+(const Vector3 &v) const { return Vector3(x + v.x, y + v.y, z + v.z); }
+    Vector3 &operator+=(const Vector3 &v) { return *this = *this + v; }
     
-    Vec3f operator-(const Vec3f &v) const { return Vec3f(x - v.x, y - v.y, z - v.z); }
-    Vec3f &operator-=(const Vec3f &v) { return *this = *this - v; }
+    Vector3 operator-(const Vector3 &v) const { return Vector3(x - v.x, y - v.y, z - v.z); }
+    Vector3 &operator-=(const Vector3 &v) { return *this = *this - v; }
 
-    Vec3f operator*(const float f) const  { return Vec3f(x * f, y * f, z * f); }
-    Vec3f &operator*=(const float f) { x *= f; y *= f; z *= f; return *this; }
+    Vector3 operator*(const float f) const  { return Vector3(x * f, y * f, z * f); }
+    Vector3 &operator*=(const float f) { x *= f; y *= f; z *= f; return *this; }
 
-    Vec3f operator/(const float f) const { return Vec3f(x / f, y / f, z / f); }
-    Vec3f &operator/=(const float f) { x /= f; y /= f; z /= f; return *this; }
+    Vector3 operator/(const float f) const { return Vector3(x / f, y / f, z / f); }
+    Vector3 &operator/=(const float f) { x /= f; y /= f; z /= f; return *this; }
 
     // ----------------
     // Special products
     // ----------------
-    float dot(const Vec3f &v) const
+    float dot(const Vector3 &v) const
     {
         return x * v.x + y * v.y + z * v.z;
     }
 
-    Vec3f cross(const Vec3f &v) const
+    Vector3 cross(const Vector3 &v) const
     {
-        return Vec3f(y * v.z - z * v.y, z * v.x - x * v.z, x * v.y - y * v.x);
+        return Vector3(y * v.z - z * v.y, z * v.x - x * v.z, x * v.y - y * v.x);
     }
 
     // ----------------
@@ -73,15 +64,15 @@ public:
         return x * x + y * y + z * z;
     }
 
-    Vec3f normalized() const
+    Vector3 normalized() const
     {
         float l = length();
         if (l < 0.000001f)
         {
-            return Vec3f(0.0f, 0.0f, 0.0f);
+            return Vector3(0.0f, 0.0f, 0.0f);
         }
         float invLen = 1.0f / l;
-        return Vec3f(x * invLen, y * invLen, z * invLen);
+        return Vector3(x * invLen, y * invLen, z * invLen);
     }
 
     void normalize()
@@ -101,70 +92,70 @@ public:
         z *= invLen;
     }
 
-    static Vec3f Normalize(const Vec3f& v)
+    static Vector3 Normalize(const Vector3& v)
     {
         return v.normalized();
     }
 
-    Vec3f lerp(const Vec3f &v, float f) const
+    Vector3 lerp(const Vector3 &v, float f) const
     {
-        return Vec3f(x + (v.x - x) * f, y + (v.y - y) * f, z + (v.z - z) * f);
+        return Vector3(x + (v.x - x) * f, y + (v.y - y) * f, z + (v.z - z) * f);
     }
 
-    static Vec3f Lerp(const Vec3f& a, const Vec3f& b, float f)
+    static Vector3 Lerp(const Vector3& a, const Vector3& b, float f)
     {
         return a.lerp(b, f);
     }
 };
 
-inline Vec3f operator*(float t, const Vec3f &v) { return Vec3f(v.x * t, v.y * t, v.z * t); }
-inline Vec3f operator*(const Vec3f& a, const Vec3f& b) { return Vec3f(a.x * b.x, a.y * b.y, a.z * b.z); }
-inline float dot(const Vec3f& v1, const Vec3f& v2) { return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z; }
+inline Vector3 operator*(float t, const Vector3 &v) { return Vector3(v.x * t, v.y * t, v.z * t); }
+inline Vector3 operator*(const Vector3& a, const Vector3& b) { return Vector3(a.x * b.x, a.y * b.y, a.z * b.z); }
+inline float dot(const Vector3& v1, const Vector3& v2) { return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z; }
 
-class Vec4f
+class Vector4
 {
 public:
     float x, y, z, w;
 
-    Vec4f() : x(0), y(0), z(0), w(0)
+    Vector4() : x(0), y(0), z(0), w(0)
     {
     }
 
-    explicit Vec4f(const float x, const float y, const float z, const float w) :
+    explicit Vector4(const float x, const float y, const float z, const float w) :
         x(x), y(y), z(z), w(w)
     {
     }
 
-    explicit Vec4f(Vec3f v) : x(v.x), y(v.y), z(v.z), w(1.0f)
+    explicit Vector4(Vector3 v) : x(v.x), y(v.y), z(v.z), w(1.0f)
     {
     }
 
-    Vec4f operator+(const Vec4f &v) const
+    Vector4 operator+(const Vector4 &v) const
     {
-        return Vec4f(x + v.x, y + v.y, z + v.z, w + v.w);
+        return Vector4(x + v.x, y + v.y, z + v.z, w + v.w);
     }
 
-    Vec4f operator-(const Vec4f &v) const
+    Vector4 operator-(const Vector4 &v) const
     {
-        return Vec4f(x - v.x, y - v.y, z - v.z, w - v.w);
+        return Vector4(x - v.x, y - v.y, z - v.z, w - v.w);
     }
 
-    Vec4f operator-() const
+    Vector4 operator-() const
     {
-        return Vec4f(-x, -y, -z, -w);
+        return Vector4(-x, -y, -z, -w);
     }
 
-    Vec4f operator*(const float f) const
+    Vector4 operator*(const float f) const
     {
-        return Vec4f(x * f, y * f, z * f, w * f);
+        return Vector4(x * f, y * f, z * f, w * f);
     }
 
-    Vec4f operator/(const float f) const
+    Vector4 operator/(const float f) const
     {
-        return Vec4f(x / f, y / f, z / f, w / f);
+        return Vector4(x / f, y / f, z / f, w / f);
     }
 
-    bool operator==(const Vec4f& right) const
+    bool operator==(const Vector4& right) const
     {
         return (x == right.x) &&
                (y == right.y) &&
@@ -172,7 +163,7 @@ public:
                (w == right.w);
     }
 
-    bool operator!=(const Vec4f& right) const
+    bool operator!=(const Vector4& right) const
     {
         return !(*this == right);
     }
@@ -187,7 +178,7 @@ public:
 };
 
 
-class Mat4f
+class Matrix4
 {
 public:
     union
@@ -196,7 +187,7 @@ public:
         float x[16];
     };
 
-    Mat4f()
+    Matrix4()
     {
         c[0][0] = 1; c[1][0] = 0; c[2][0] = 0; c[3][0] = 0;
         c[0][1] = 0; c[1][1] = 1; c[2][1] = 0; c[3][1] = 0;
@@ -204,7 +195,7 @@ public:
         c[0][3] = 0; c[1][3] = 0; c[2][3] = 0; c[3][3] = 1;
     }
 
-    Mat4f(const float *floatArray16)
+    Matrix4(const float *floatArray16)
     {
         for (unsigned int i = 0; i < 4; ++i)
         {
@@ -215,14 +206,25 @@ public:
         }
     }
 
-    static Mat4f LookAtMat(const Vec3f& eye, const Vec3f& target, const Vec3f& up)
+    static Matrix4 LookAtMat(const Vector3& eye, const Vector3& target, const Vector3& up)
     {
-        Mat4f m;
-        //Mat4f::LookAt(m, eye, target, up);
+        Matrix4 m;
+        //Matrix4::LookAt(m, eye, target, up);
         return m;
     }
 };
 
-SK_END_NAMESPACE
+class Quaternion
+{
+public:
+    union
+    {
+        quat qua;
+        struct { float x, y, z, w; };
+    };
 
-#endif
+    Quaternion() : x(0.0f), y(0.0f), z(0.0f), w(0.0f) {}
+    Quaternion(const float x, const float y, const float z, const float w) : x(x), y(y), z(z), w(w) {}
+};
+
+SK_END_NAMESPACE

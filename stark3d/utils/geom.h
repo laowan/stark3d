@@ -16,13 +16,13 @@ class Rect
 //    D +-----------+ C
 //
 public:
-    Rect(const Vec2f a, const Vec2f b, const Vec2f c, const Vec2f d):a(a),b(b),c(c),d(d) {}
-    Rect(const Vec2f origin, float width, float height, float angle) {}
+    Rect(const Vector3 a, const Vector3 b, const Vector3 c, const Vector3 d):a(a),b(b),c(c),d(d) {}
+    Rect(const Vector3 origin, float width, float height, float angle) {}
     
     // return the offset distance use D as the original point
-    Vec2f offset(const Vec2f p)
+    Vector3 offset(const Vector3 p)
     {
-        Vec2f result;
+        Vector3 result;
 
         // distance to AD
         float A = a.y - d.y;
@@ -40,8 +40,8 @@ public:
     }
 
 private:
-    Vec2f a, b, c, d;
-    Vec2f origin;
+    Vector3 a, b, c, d;
+    Vector3 origin;
     float w, h;
     float angle;
 };

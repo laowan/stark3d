@@ -312,6 +312,38 @@
     <ClCompile Include="..\stark3d\learnsomething\raytracing.cpp">
       <Filter>stark3d\learnsomething</Filter>
     </ClCompile>
-    <None Include="..\stark3d.gyp"/>
+    <None Include="..\stark3d.gyp" />
+    <ClCompile Include="..\stark3d\scene\transform.cpp">
+      <Filter>stark3d\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\stark3d\scene\component.cpp">
+      <Filter>stark3d\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\stark3d\scene\entity.cpp">
+      <Filter>stark3d\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\stark3d\scene\meshrenderer.cpp">
+      <Filter>stark3d\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\stark3d\scene\renderer.cpp">
+      <Filter>stark3d\scene</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\stark3d\scene\entity.h">
+      <Filter>stark3d\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\stark3d\scene\transform.h">
+      <Filter>stark3d\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\stark3d\scene\component.h">
+      <Filter>stark3d\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\stark3d\scene\meshrenderer.h">
+      <Filter>stark3d\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\stark3d\scene\renderer.h">
+      <Filter>stark3d\scene</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
