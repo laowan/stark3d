@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw">
+      <UniqueIdentifier>{994FC437-AC1E-3BB2-3E50-AAD8A592A082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw">
+      <UniqueIdentifier>{994FC437-AC1E-3BB2-3E50-AAD8A592A082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw\include">
+      <UniqueIdentifier>{57CA55B8-BCC5-4000-CE3A-58972F82E9CB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw\include\GLFW">
+      <UniqueIdentifier>{5373772A-EA7F-A228-5EE0-5C890C1D93F9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw">
+      <UniqueIdentifier>{994FC437-AC1E-3BB2-3E50-AAD8A592A082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw\include">
+      <UniqueIdentifier>{57CA55B8-BCC5-4000-CE3A-58972F82E9CB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw\include\GLFW">
+      <UniqueIdentifier>{5373772A-EA7F-A228-5EE0-5C890C1D93F9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw">
+      <UniqueIdentifier>{994FC437-AC1E-3BB2-3E50-AAD8A592A082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw">
+      <UniqueIdentifier>{994FC437-AC1E-3BB2-3E50-AAD8A592A082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw">
+      <UniqueIdentifier>{994FC437-AC1E-3BB2-3E50-AAD8A592A082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw">
+      <UniqueIdentifier>{994FC437-AC1E-3BB2-3E50-AAD8A592A082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw">
+      <UniqueIdentifier>{994FC437-AC1E-3BB2-3E50-AAD8A592A082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw">
+      <UniqueIdentifier>{994FC437-AC1E-3BB2-3E50-AAD8A592A082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw">
+      <UniqueIdentifier>{994FC437-AC1E-3BB2-3E50-AAD8A592A082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw">
+      <UniqueIdentifier>{994FC437-AC1E-3BB2-3E50-AAD8A592A082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw">
+      <UniqueIdentifier>{994FC437-AC1E-3BB2-3E50-AAD8A592A082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw">
+      <UniqueIdentifier>{994FC437-AC1E-3BB2-3E50-AAD8A592A082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw">
+      <UniqueIdentifier>{994FC437-AC1E-3BB2-3E50-AAD8A592A082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw">
+      <UniqueIdentifier>{994FC437-AC1E-3BB2-3E50-AAD8A592A082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw">
+      <UniqueIdentifier>{994FC437-AC1E-3BB2-3E50-AAD8A592A082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw">
+      <UniqueIdentifier>{994FC437-AC1E-3BB2-3E50-AAD8A592A082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw">
+      <UniqueIdentifier>{994FC437-AC1E-3BB2-3E50-AAD8A592A082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw">
+      <UniqueIdentifier>{994FC437-AC1E-3BB2-3E50-AAD8A592A082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw">
+      <UniqueIdentifier>{994FC437-AC1E-3BB2-3E50-AAD8A592A082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw">
+      <UniqueIdentifier>{994FC437-AC1E-3BB2-3E50-AAD8A592A082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw">
+      <UniqueIdentifier>{994FC437-AC1E-3BB2-3E50-AAD8A592A082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw">
+      <UniqueIdentifier>{994FC437-AC1E-3BB2-3E50-AAD8A592A082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw">
+      <UniqueIdentifier>{994FC437-AC1E-3BB2-3E50-AAD8A592A082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw">
+      <UniqueIdentifier>{994FC437-AC1E-3BB2-3E50-AAD8A592A082}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\glfw\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\lib\glfw\glfw_config.h">
+      <Filter>lib\glfw</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\glfw\include\GLFW\glfw3.h">
+      <Filter>lib\glfw\include\GLFW</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\glfw\include\GLFW\glfw3native.h">
+      <Filter>lib\glfw\include\GLFW</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\glfw\src\egl_context.h">
+      <Filter>lib\glfw\src</Filter>
+    </ClInclude>
+    <ClCompile Include="..\lib\glfw\src\egl_context.c">
+      <Filter>lib\glfw\src</Filter>
+    </ClCompile>
+    <ClInclude Include="..\lib\glfw\src\internal.h">
+      <Filter>lib\glfw\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\glfw\src\mappings.h">
+      <Filter>lib\glfw\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\glfw\src\osmesa_context.h">
+      <Filter>lib\glfw\src</Filter>
+    </ClInclude>
+    <ClCompile Include="..\lib\glfw\src\osmesa_context.c">
+      <Filter>lib\glfw\src</Filter>
+    </ClCompile>
+    <ClInclude Include="..\lib\glfw\src\wgl_context.h">
+      <Filter>lib\glfw\src</Filter>
+    </ClInclude>
+    <ClCompile Include="..\lib\glfw\src\wgl_context.c">
+      <Filter>lib\glfw\src</Filter>
+    </ClCompile>
+    <ClInclude Include="..\lib\glfw\src\win32_joystick.h">
+      <Filter>lib\glfw\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\glfw\src\win32_platform.h">
+      <Filter>lib\glfw\src</Filter>
+    </ClInclude>
+    <ClCompile Include="..\lib\glfw\src\context.c">
+      <Filter>lib\glfw\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\glfw\src\init.c">
+      <Filter>lib\glfw\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\glfw\src\input.c">
+      <Filter>lib\glfw\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\glfw\src\monitor.c">
+      <Filter>lib\glfw\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\glfw\src\vulkan.c">
+      <Filter>lib\glfw\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\glfw\src\window.c">
+      <Filter>lib\glfw\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\glfw\src\win32_init.c">
+      <Filter>lib\glfw\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\glfw\src\win32_joystick.c">
+      <Filter>lib\glfw\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\glfw\src\win32_monitor.c">
+      <Filter>lib\glfw\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\glfw\src\win32_thread.c">
+      <Filter>lib\glfw\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\glfw\src\win32_time.c">
+      <Filter>lib\glfw\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\glfw\src\win32_window.c">
+      <Filter>lib\glfw\src</Filter>
+    </ClCompile>
+    <None Include="..\stark3d.gyp"/>
+  </ItemGroup>
+</Project>

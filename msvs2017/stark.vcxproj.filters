@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d\utils">
+      <UniqueIdentifier>{742E9A0E-D1B0-643D-E893-71064FFA2C51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d\utils">
+      <UniqueIdentifier>{742E9A0E-D1B0-643D-E893-71064FFA2C51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d\utils">
+      <UniqueIdentifier>{742E9A0E-D1B0-643D-E893-71064FFA2C51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d\utils">
+      <UniqueIdentifier>{742E9A0E-D1B0-643D-E893-71064FFA2C51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d\utils">
+      <UniqueIdentifier>{742E9A0E-D1B0-643D-E893-71064FFA2C51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d\utils">
+      <UniqueIdentifier>{742E9A0E-D1B0-643D-E893-71064FFA2C51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d\utils">
+      <UniqueIdentifier>{742E9A0E-D1B0-643D-E893-71064FFA2C51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d\utils">
+      <UniqueIdentifier>{742E9A0E-D1B0-643D-E893-71064FFA2C51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d\utils">
+      <UniqueIdentifier>{742E9A0E-D1B0-643D-E893-71064FFA2C51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d\utils">
+      <UniqueIdentifier>{742E9A0E-D1B0-643D-E893-71064FFA2C51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d\utils">
+      <UniqueIdentifier>{742E9A0E-D1B0-643D-E893-71064FFA2C51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d\utils">
+      <UniqueIdentifier>{742E9A0E-D1B0-643D-E893-71064FFA2C51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d\utils">
+      <UniqueIdentifier>{742E9A0E-D1B0-643D-E893-71064FFA2C51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d\utils">
+      <UniqueIdentifier>{742E9A0E-D1B0-643D-E893-71064FFA2C51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d\utils">
+      <UniqueIdentifier>{742E9A0E-D1B0-643D-E893-71064FFA2C51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d\utils">
+      <UniqueIdentifier>{742E9A0E-D1B0-643D-E893-71064FFA2C51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d\scene">
+      <UniqueIdentifier>{A9450049-6700-46A1-3442-BB475B65D2B6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d\scene">
+      <UniqueIdentifier>{A9450049-6700-46A1-3442-BB475B65D2B6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d\scene">
+      <UniqueIdentifier>{A9450049-6700-46A1-3442-BB475B65D2B6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d\scene">
+      <UniqueIdentifier>{A9450049-6700-46A1-3442-BB475B65D2B6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d\scene">
+      <UniqueIdentifier>{A9450049-6700-46A1-3442-BB475B65D2B6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d\scene">
+      <UniqueIdentifier>{A9450049-6700-46A1-3442-BB475B65D2B6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d\external">
+      <UniqueIdentifier>{323CF671-16D1-0362-1BD3-4E39441797F7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d\external\edtaa3func">
+      <UniqueIdentifier>{AFF30093-B95B-1B83-193F-17C97FB3A5AF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d\external">
+      <UniqueIdentifier>{323CF671-16D1-0362-1BD3-4E39441797F7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d\external\edtaa3func">
+      <UniqueIdentifier>{AFF30093-B95B-1B83-193F-17C97FB3A5AF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d\learnsomething">
+      <UniqueIdentifier>{3853929D-AAC5-A760-40D5-0F1D057338EF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d\learnsomething">
+      <UniqueIdentifier>{3853929D-AAC5-A760-40D5-0F1D057338EF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d\learnsomething">
+      <UniqueIdentifier>{3853929D-AAC5-A760-40D5-0F1D057338EF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d\learnsomething">
+      <UniqueIdentifier>{3853929D-AAC5-A760-40D5-0F1D057338EF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d">
+      <UniqueIdentifier>{73AD5940-B7EB-583D-4C96-BE25CFDBE387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stark3d\learnsomething">
+      <UniqueIdentifier>{3853929D-AAC5-A760-40D5-0F1D057338EF}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\stark3d\main.cpp">
+      <Filter>stark3d</Filter>
+    </ClCompile>
+    <ClInclude Include="..\stark3d\tiny_obj_loader.h">
+      <Filter>stark3d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\stark3d\global.h">
+      <Filter>stark3d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\stark3d\softrenderer.h">
+      <Filter>stark3d</Filter>
+    </ClInclude>
+    <ClCompile Include="..\stark3d\softrenderer.cpp">
+      <Filter>stark3d</Filter>
+    </ClCompile>
+    <ClInclude Include="..\stark3d\resources.h">
+      <Filter>stark3d</Filter>
+    </ClInclude>
+    <ClCompile Include="..\stark3d\resources.cpp">
+      <Filter>stark3d</Filter>
+    </ClCompile>
+    <ClInclude Include="..\stark3d\utils\gldefine.h">
+      <Filter>stark3d\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\stark3d\utils\linmath.h">
+      <Filter>stark3d\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\stark3d\utils\math.h">
+      <Filter>stark3d\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\stark3d\utils\geom.h">
+      <Filter>stark3d\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\stark3d\utils\utils.h">
+      <Filter>stark3d\utils</Filter>
+    </ClInclude>
+    <ClCompile Include="..\stark3d\utils\utils.cpp">
+      <Filter>stark3d\utils</Filter>
+    </ClCompile>
+    <ClInclude Include="..\stark3d\utils\texture.h">
+      <Filter>stark3d\utils</Filter>
+    </ClInclude>
+    <ClCompile Include="..\stark3d\utils\texture.cpp">
+      <Filter>stark3d\utils</Filter>
+    </ClCompile>
+    <ClInclude Include="..\stark3d\utils\shader.h">
+      <Filter>stark3d\utils</Filter>
+    </ClInclude>
+    <ClCompile Include="..\stark3d\utils\shader.cpp">
+      <Filter>stark3d\utils</Filter>
+    </ClCompile>
+    <ClInclude Include="..\stark3d\utils\shadermanager.h">
+      <Filter>stark3d\utils</Filter>
+    </ClInclude>
+    <ClCompile Include="..\stark3d\utils\shadermanager.cpp">
+      <Filter>stark3d\utils</Filter>
+    </ClCompile>
+    <ClInclude Include="..\stark3d\utils\renderdevice.h">
+      <Filter>stark3d\utils</Filter>
+    </ClInclude>
+    <ClCompile Include="..\stark3d\utils\renderdevice.cpp">
+      <Filter>stark3d\utils</Filter>
+    </ClCompile>
+    <ClInclude Include="..\stark3d\utils\resourcemanager.h">
+      <Filter>stark3d\utils</Filter>
+    </ClInclude>
+    <ClCompile Include="..\stark3d\utils\resourcemanager.cpp">
+      <Filter>stark3d\utils</Filter>
+    </ClCompile>
+    <ClInclude Include="..\stark3d\scene\world.h">
+      <Filter>stark3d\scene</Filter>
+    </ClInclude>
+    <ClCompile Include="..\stark3d\scene\world.cpp">
+      <Filter>stark3d\scene</Filter>
+    </ClCompile>
+    <ClInclude Include="..\stark3d\scene\camera.h">
+      <Filter>stark3d\scene</Filter>
+    </ClInclude>
+    <ClCompile Include="..\stark3d\scene\camera.cpp">
+      <Filter>stark3d\scene</Filter>
+    </ClCompile>
+    <ClInclude Include="..\stark3d\scene\mesh.h">
+      <Filter>stark3d\scene</Filter>
+    </ClInclude>
+    <ClCompile Include="..\stark3d\scene\mesh.cpp">
+      <Filter>stark3d\scene</Filter>
+    </ClCompile>
+    <ClInclude Include="..\stark3d\external\edtaa3func\edtaa3func.h">
+      <Filter>stark3d\external\edtaa3func</Filter>
+    </ClInclude>
+    <ClCompile Include="..\stark3d\external\edtaa3func\edtaa3func.cpp">
+      <Filter>stark3d\external\edtaa3func</Filter>
+    </ClCompile>
+    <ClInclude Include="..\stark3d\learnsomething\learnsomething.h">
+      <Filter>stark3d\learnsomething</Filter>
+    </ClInclude>
+    <ClCompile Include="..\stark3d\learnsomething\eigen.cpp">
+      <Filter>stark3d\learnsomething</Filter>
+    </ClCompile>
+    <ClCompile Include="..\stark3d\learnsomething\thread.cpp">
+      <Filter>stark3d\learnsomething</Filter>
+    </ClCompile>
+    <ClCompile Include="..\stark3d\learnsomething\sdf.cpp">
+      <Filter>stark3d\learnsomething</Filter>
+    </ClCompile>
+    <ClCompile Include="..\stark3d\learnsomething\raytracing.cpp">
+      <Filter>stark3d\learnsomething</Filter>
+    </ClCompile>
+    <None Include="..\stark3d.gyp"/>
+  </ItemGroup>
+</Project>

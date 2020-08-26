@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A4987897-A71A-6DC8-F910-6F380FF6C71C}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>freetype</RootNamespace>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props"/>
+  <PropertyGroup Label="Configuration">
+    <CharacterSet>MultiByte</CharacterSet>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Label="Locals">
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props"/>
+  <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props"/>
+  <ImportGroup Label="ExtensionSettings"/>
+  <ImportGroup Label="PropertySheets">
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros"/>
+  <PropertyGroup>
+    <ExecutablePath>$(ExecutablePath);$(MSBuildProjectDirectory)\..\bin\;$(MSBuildProjectDirectory)\..\bin\</ExecutablePath>
+    <IntDir>$(Configuration)\obj\$(ProjectName)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <TargetName>$(ProjectName)</TargetName>
+    <TargetPath>$(OutDir)lib\$(ProjectName)$(TargetExt)</TargetPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\lib\freetype;..\lib\freetype\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <MinimalRebuild>true</MinimalRebuild>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions>WIN32;OF_WIN32;OF_USE_GLES3;OF_USE_GLES31;GL_GLEXT_PROTOTYPES;FT2_BUILD_LIBRARY;WIN32_LEAN_AND_MEAN;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <TreatWarningAsError>true</TreatWarningAsError>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)lib\$(ProjectName)$(TargetExt)</OutputFile>
+    </Lib>
+    <Link>
+      <AdditionalDependencies>user32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>..\lib\freetype;..\lib\freetype\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;OF_WIN32;OF_USE_GLES3;OF_USE_GLES31;GL_GLEXT_PROTOTYPES;FT2_BUILD_LIBRARY;WIN32_LEAN_AND_MEAN;_DEBUG;%(PreprocessorDefinitions);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\lib\freetype;..\lib\freetype\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <ExceptionHandling>Async</ExceptionHandling>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions>WIN32;OF_WIN32;OF_USE_GLES3;OF_USE_GLES31;GL_GLEXT_PROTOTYPES;FT2_BUILD_LIBRARY;WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <TreatWarningAsError>true</TreatWarningAsError>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)lib\$(ProjectName)$(TargetExt)</OutputFile>
+    </Lib>
+    <Link>
+      <AdditionalDependencies>user32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>..\lib\freetype;..\lib\freetype\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;OF_WIN32;OF_USE_GLES3;OF_USE_GLES31;GL_GLEXT_PROTOTYPES;FT2_BUILD_LIBRARY;WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="..\stark3d.gyp"/>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\lib\freetype\include\freetype\config\ftconfig.h"/>
+    <ClInclude Include="..\lib\freetype\include\freetype\config\ftheader.h"/>
+    <ClInclude Include="..\lib\freetype\include\freetype\config\ftmodule.h"/>
+    <ClInclude Include="..\lib\freetype\include\freetype\config\ftoption.h"/>
+    <ClInclude Include="..\lib\freetype\include\freetype\config\ftstdlib.h"/>
+    <ClInclude Include="..\lib\freetype\include\ft2build.h"/>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\lib\freetype\src\autofit\autofit.c"/>
+    <ClCompile Include="..\lib\freetype\src\base\ftbase.c"/>
+    <ClCompile Include="..\lib\freetype\src\base\ftbbox.c"/>
+    <ClCompile Include="..\lib\freetype\src\base\ftbdf.c"/>
+    <ClCompile Include="..\lib\freetype\src\base\ftbitmap.c"/>
+    <ClCompile Include="..\lib\freetype\src\base\ftcid.c"/>
+    <ClCompile Include="..\lib\freetype\src\base\ftdebug.c"/>
+    <ClCompile Include="..\lib\freetype\src\base\ftfntfmt.c"/>
+    <ClCompile Include="..\lib\freetype\src\base\ftfstype.c"/>
+    <ClCompile Include="..\lib\freetype\src\base\ftgasp.c"/>
+    <ClCompile Include="..\lib\freetype\src\base\ftglyph.c"/>
+    <ClCompile Include="..\lib\freetype\src\base\ftgxval.c"/>
+    <ClCompile Include="..\lib\freetype\src\base\ftinit.c"/>
+    <ClCompile Include="..\lib\freetype\src\base\ftlcdfil.c"/>
+    <ClCompile Include="..\lib\freetype\src\base\ftmm.c"/>
+    <ClCompile Include="..\lib\freetype\src\base\ftotval.c"/>
+    <ClCompile Include="..\lib\freetype\src\base\ftpatent.c"/>
+    <ClCompile Include="..\lib\freetype\src\base\ftpfr.c"/>
+    <ClCompile Include="..\lib\freetype\src\base\ftstroke.c"/>
+    <ClCompile Include="..\lib\freetype\src\base\ftsynth.c"/>
+    <ClCompile Include="..\lib\freetype\src\base\ftsystem.c"/>
+    <ClCompile Include="..\lib\freetype\src\base\fttype1.c"/>
+    <ClCompile Include="..\lib\freetype\src\base\ftwinfnt.c"/>
+    <ClCompile Include="..\lib\freetype\src\bdf\bdf.c"/>
+    <ClCompile Include="..\lib\freetype\src\bzip2\ftbzip2.c"/>
+    <ClCompile Include="..\lib\freetype\src\cache\ftcache.c"/>
+    <ClCompile Include="..\lib\freetype\src\cff\cff.c"/>
+    <ClCompile Include="..\lib\freetype\src\cid\type1cid.c"/>
+    <ClCompile Include="..\lib\freetype\src\gzip\ftgzip.c"/>
+    <ClCompile Include="..\lib\freetype\src\lzw\ftlzw.c"/>
+    <ClCompile Include="..\lib\freetype\src\pcf\pcf.c"/>
+    <ClCompile Include="..\lib\freetype\src\pfr\pfr.c"/>
+    <ClCompile Include="..\lib\freetype\src\psaux\psaux.c"/>
+    <ClCompile Include="..\lib\freetype\src\pshinter\pshinter.c"/>
+    <ClCompile Include="..\lib\freetype\src\psnames\psnames.c"/>
+    <ClCompile Include="..\lib\freetype\src\raster\raster.c"/>
+    <ClCompile Include="..\lib\freetype\src\sfnt\sfnt.c"/>
+    <ClCompile Include="..\lib\freetype\src\smooth\smooth.c"/>
+    <ClCompile Include="..\lib\freetype\src\truetype\truetype.c"/>
+    <ClCompile Include="..\lib\freetype\src\type1\type1.c"/>
+    <ClCompile Include="..\lib\freetype\src\type42\type42.c"/>
+    <ClCompile Include="..\lib\freetype\src\winfonts\winfnt.c"/>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets"/>
+  <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets"/>
+  <ImportGroup Label="ExtensionTargets"/>
+</Project>

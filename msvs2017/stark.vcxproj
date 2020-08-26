@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{2BAC1019-0828-AFC9-AF01-3FED9A3EE854}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>stark</RootNamespace>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props"/>
+  <PropertyGroup Label="Configuration">
+    <CharacterSet>MultiByte</CharacterSet>
+    <ConfigurationType>Application</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Label="Locals">
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props"/>
+  <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props"/>
+  <ImportGroup Label="ExtensionSettings"/>
+  <ImportGroup Label="PropertySheets">
+    <Import Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"/>
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros"/>
+  <PropertyGroup>
+    <ExecutablePath>$(ExecutablePath);$(MSBuildProjectDirectory)\..\bin\;$(MSBuildProjectDirectory)\..\bin\</ExecutablePath>
+    <IntDir>$(Configuration)\obj\$(ProjectName)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <TargetName>$(ProjectName)</TargetName>
+    <TargetPath>$(OutDir)\$(ProjectName)$(TargetExt)</TargetPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\stark3d;..\lib\glfw\include;..\lib\assimp\include;..\lib\freetype\include;..\lib\stb;..\lib\glew-2.1.0\include;..\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <MinimalRebuild>true</MinimalRebuild>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions>WIN32;OF_WIN32;OF_USE_GLES3;OF_USE_GLES31;GL_GLEXT_PROTOTYPES;WIN32_LEAN_AND_MEAN;_HAS_ITERATOR_DEBUGGING=0;_ITERATOR_DEBUG_LEVEL=0;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <TreatWarningAsError>false</TreatWarningAsError>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>psapi.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
+    </Link>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;OF_WIN32;OF_USE_GLES3;OF_USE_GLES31;GL_GLEXT_PROTOTYPES;WIN32_LEAN_AND_MEAN;_HAS_ITERATOR_DEBUGGING=0;_ITERATOR_DEBUG_LEVEL=0;_DEBUG;%(PreprocessorDefinitions);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\stark3d;..\lib\glfw\include;..\lib\assimp\include;..\lib\freetype\include;..\lib\stb;..\lib\glew-2.1.0\include;..\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PreprocessorDefinitions>WIN32;OF_WIN32;OF_USE_GLES3;OF_USE_GLES31;GL_GLEXT_PROTOTYPES;WIN32_LEAN_AND_MEAN;_HAS_ITERATOR_DEBUGGING=0;_ITERATOR_DEBUG_LEVEL=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <TreatWarningAsError>true</TreatWarningAsError>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>psapi.lib;msvcrt.lib</AdditionalDependencies>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <OutputFile>$(OutDir)$(ProjectName)$(TargetExt)</OutputFile>
+    </Link>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;OF_WIN32;OF_USE_GLES3;OF_USE_GLES31;GL_GLEXT_PROTOTYPES;WIN32_LEAN_AND_MEAN;_HAS_ITERATOR_DEBUGGING=0;_ITERATOR_DEBUG_LEVEL=0;%(PreprocessorDefinitions);%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="..\stark3d.gyp"/>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\stark3d\tiny_obj_loader.h"/>
+    <ClInclude Include="..\stark3d\global.h"/>
+    <ClInclude Include="..\stark3d\softrenderer.h"/>
+    <ClInclude Include="..\stark3d\resources.h"/>
+    <ClInclude Include="..\stark3d\utils\gldefine.h"/>
+    <ClInclude Include="..\stark3d\utils\linmath.h"/>
+    <ClInclude Include="..\stark3d\utils\math.h"/>
+    <ClInclude Include="..\stark3d\utils\geom.h"/>
+    <ClInclude Include="..\stark3d\utils\utils.h"/>
+    <ClInclude Include="..\stark3d\utils\texture.h"/>
+    <ClInclude Include="..\stark3d\utils\shader.h"/>
+    <ClInclude Include="..\stark3d\utils\shadermanager.h"/>
+    <ClInclude Include="..\stark3d\utils\renderdevice.h"/>
+    <ClInclude Include="..\stark3d\utils\resourcemanager.h"/>
+    <ClInclude Include="..\stark3d\scene\world.h"/>
+    <ClInclude Include="..\stark3d\scene\camera.h"/>
+    <ClInclude Include="..\stark3d\scene\mesh.h"/>
+    <ClInclude Include="..\stark3d\external\edtaa3func\edtaa3func.h"/>
+    <ClInclude Include="..\stark3d\learnsomething\learnsomething.h"/>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\stark3d\main.cpp"/>
+    <ClCompile Include="..\stark3d\softrenderer.cpp"/>
+    <ClCompile Include="..\stark3d\resources.cpp"/>
+    <ClCompile Include="..\stark3d\utils\utils.cpp"/>
+    <ClCompile Include="..\stark3d\utils\texture.cpp"/>
+    <ClCompile Include="..\stark3d\utils\shader.cpp"/>
+    <ClCompile Include="..\stark3d\utils\shadermanager.cpp"/>
+    <ClCompile Include="..\stark3d\utils\renderdevice.cpp"/>
+    <ClCompile Include="..\stark3d\utils\resourcemanager.cpp"/>
+    <ClCompile Include="..\stark3d\scene\world.cpp"/>
+    <ClCompile Include="..\stark3d\scene\camera.cpp"/>
+    <ClCompile Include="..\stark3d\scene\mesh.cpp"/>
+    <ClCompile Include="..\stark3d\external\edtaa3func\edtaa3func.cpp"/>
+    <ClCompile Include="..\stark3d\learnsomething\eigen.cpp"/>
+    <ClCompile Include="..\stark3d\learnsomething\thread.cpp"/>
+    <ClCompile Include="..\stark3d\learnsomething\sdf.cpp"/>
+    <ClCompile Include="..\stark3d\learnsomething\raytracing.cpp"/>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="glew.vcxproj">
+      <Project>{E2099C8D-A173-7C03-1BA3-08634F4CD7F5}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="glfw.vcxproj">
+      <Project>{C167FB9A-2246-C0BF-CC26-53A1C8D087F5}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="assimp.vcxproj">
+      <Project>{47881F3A-3883-F41B-D9F6-707D5170A754}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="freetype.vcxproj">
+      <Project>{A4987897-A71A-6DC8-F910-6F380FF6C71C}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="lua.vcxproj">
+      <Project>{9D6DB591-946E-2FFF-8CE8-67B1436A1767}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets"/>
+  <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets"/>
+  <ImportGroup Label="ExtensionTargets"/>
+</Project>

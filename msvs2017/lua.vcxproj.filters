@@ -1,0 +1,716 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{2739B19F-16DF-601C-060A-FF86F6A40045}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5">
+      <UniqueIdentifier>{0CAA03A6-307C-9A09-E9D4-F3BCD488913C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib\lua-5.3.5\src">
+      <UniqueIdentifier>{8CDEE807-BC53-E450-C8B8-4DEBB66742D4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\lib\lua-5.3.5\src\lapi.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClInclude Include="..\lib\lua-5.3.5\src\lapi.h">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClInclude>
+    <ClCompile Include="..\lib\lua-5.3.5\src\lauxlib.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClInclude Include="..\lib\lua-5.3.5\src\lauxlib.h">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClInclude>
+    <ClCompile Include="..\lib\lua-5.3.5\src\lbaselib.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\lua-5.3.5\src\lbitlib.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\lua-5.3.5\src\lcode.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClInclude Include="..\lib\lua-5.3.5\src\lcode.h">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClInclude>
+    <ClCompile Include="..\lib\lua-5.3.5\src\lcorolib.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\lua-5.3.5\src\lctype.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClInclude Include="..\lib\lua-5.3.5\src\lctype.h">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClInclude>
+    <ClCompile Include="..\lib\lua-5.3.5\src\ldblib.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\lua-5.3.5\src\ldebug.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClInclude Include="..\lib\lua-5.3.5\src\ldebug.h">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClInclude>
+    <ClCompile Include="..\lib\lua-5.3.5\src\ldo.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClInclude Include="..\lib\lua-5.3.5\src\ldo.h">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClInclude>
+    <ClCompile Include="..\lib\lua-5.3.5\src\ldump.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\lua-5.3.5\src\lfunc.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClInclude Include="..\lib\lua-5.3.5\src\lfunc.h">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClInclude>
+    <ClCompile Include="..\lib\lua-5.3.5\src\lgc.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClInclude Include="..\lib\lua-5.3.5\src\lgc.h">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClInclude>
+    <ClCompile Include="..\lib\lua-5.3.5\src\linit.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\lua-5.3.5\src\liolib.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\lua-5.3.5\src\llex.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClInclude Include="..\lib\lua-5.3.5\src\llex.h">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\lua-5.3.5\src\llimits.h">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClInclude>
+    <ClCompile Include="..\lib\lua-5.3.5\src\lmathlib.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\lua-5.3.5\src\lmem.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClInclude Include="..\lib\lua-5.3.5\src\lmem.h">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClInclude>
+    <ClCompile Include="..\lib\lua-5.3.5\src\loadlib.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\lua-5.3.5\src\lobject.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClInclude Include="..\lib\lua-5.3.5\src\lobject.h">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClInclude>
+    <ClCompile Include="..\lib\lua-5.3.5\src\lopcodes.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClInclude Include="..\lib\lua-5.3.5\src\lopcodes.h">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClInclude>
+    <ClCompile Include="..\lib\lua-5.3.5\src\loslib.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\lua-5.3.5\src\lparser.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClInclude Include="..\lib\lua-5.3.5\src\lparser.h">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\lua-5.3.5\src\lprefix.h">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClInclude>
+    <ClCompile Include="..\lib\lua-5.3.5\src\lstate.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClInclude Include="..\lib\lua-5.3.5\src\lstate.h">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClInclude>
+    <ClCompile Include="..\lib\lua-5.3.5\src\lstring.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClInclude Include="..\lib\lua-5.3.5\src\lstring.h">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClInclude>
+    <ClCompile Include="..\lib\lua-5.3.5\src\lstrlib.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\lua-5.3.5\src\ltable.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClInclude Include="..\lib\lua-5.3.5\src\ltable.h">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClInclude>
+    <ClCompile Include="..\lib\lua-5.3.5\src\ltablib.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\lua-5.3.5\src\ltm.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClInclude Include="..\lib\lua-5.3.5\src\ltm.h">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\lua-5.3.5\src\lua.h">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClInclude>
+    <None Include="..\lib\lua-5.3.5\src\lua.hpp">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </None>
+    <ClInclude Include="..\lib\lua-5.3.5\src\luaconf.h">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\lua-5.3.5\src\lualib.h">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClInclude>
+    <ClCompile Include="..\lib\lua-5.3.5\src\lundump.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClInclude Include="..\lib\lua-5.3.5\src\lundump.h">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClInclude>
+    <ClCompile Include="..\lib\lua-5.3.5\src\lutf8lib.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\lua-5.3.5\src\lvm.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClInclude Include="..\lib\lua-5.3.5\src\lvm.h">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClInclude>
+    <ClCompile Include="..\lib\lua-5.3.5\src\lzio.c">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClCompile>
+    <ClInclude Include="..\lib\lua-5.3.5\src\lzio.h">
+      <Filter>lib\lua-5.3.5\src</Filter>
+    </ClInclude>
+    <None Include="..\stark3d.gyp"/>
+  </ItemGroup>
+</Project>
