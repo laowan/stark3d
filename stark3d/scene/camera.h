@@ -4,6 +4,7 @@
 
 #include "utils/linmath.h"
 #include "utils/gldefine.h"
+#include "component.h"
 
 SK_BEGIN_NAMESPACE
 

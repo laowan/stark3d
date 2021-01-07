@@ -242,7 +242,7 @@ int mainloop()
     return 0;
 }
 
-int main(int argc, char *argv[])
+int mainxx(int argc, char *argv[])
 {
     mainloop();
     return 0;
