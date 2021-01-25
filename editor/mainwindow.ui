@@ -23,7 +23,7 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout_3" stretch=""/>
+   <layout class="QVBoxLayout" name="verticalLayout_3"/>
   </widget>
   <widget class="QToolBar" name="effectToolBar">
    <property name="windowTitle">
@@ -65,23 +65,9 @@
      <x>0</x>
      <y>0</y>
      <width>663</width>
-     <height>23</height>
+     <height>26</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuOpen">
-    <property name="title">
-     <string>&amp;Video</string>
-    </property>
-    <addaction name="actionOpenWebCamera"/>
-    <addaction name="actionStopWebCamera"/>
-    <addaction name="separator"/>
-    <addaction name="actionMirrorVideo"/>
-   </widget>
-   <widget class="QMenu" name="menuFilters">
-    <property name="title">
-     <string>Fil&amp;ters</string>
-    </property>
-   </widget>
    <widget class="QMenu" name="menu_About">
     <property name="title">
      <string>&amp;About</string>
@@ -211,8 +197,6 @@
     </property>
    </widget>
    <addaction name="menuEffect"/>
-   <addaction name="menuFilters"/>
-   <addaction name="menuOpen"/>
    <addaction name="menu_Tools"/>
    <addaction name="menu_Settings"/>
    <addaction name="menu_About"/>
@@ -233,7 +217,7 @@
   </action>
   <action name="actionSaveEffect">
    <property name="icon">
-    <iconset resource="filterdesigner.qrc">
+    <iconset>
      <normaloff>:/res/save.png</normaloff>:/res/save.png</iconset>
    </property>
    <property name="text">
@@ -248,7 +232,7 @@
   </action>
   <action name="actionOpenEffect">
    <property name="icon">
-    <iconset resource="filterdesigner.qrc">
+    <iconset>
      <normaloff>:/res/open.png</normaloff>:/res/open.png</iconset>
    </property>
    <property name="text">
@@ -279,7 +263,7 @@
   </action>
   <action name="actionNewEffect">
    <property name="icon">
-    <iconset resource="filterdesigner.qrc">
+    <iconset>
      <normaloff>:/res/neweffect.png</normaloff>:/res/neweffect.png</iconset>
    </property>
    <property name="text">
@@ -294,7 +278,7 @@
   </action>
   <action name="actionSaveEffectAs">
    <property name="icon">
-    <iconset resource="filterdesigner.qrc">
+    <iconset>
      <normaloff>:/res/saveas.png</normaloff>:/res/saveas.png</iconset>
    </property>
    <property name="text">
@@ -325,7 +309,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="filterdesigner.qrc">
+    <iconset>
      <normaloff>:/res/mirrorvideo.png</normaloff>:/res/mirrorvideo.png</iconset>
    </property>
    <property name="text">
@@ -355,7 +339,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="filterdesigner.qrc">
+    <iconset>
      <normaloff>:/res/mirrorsticker.png</normaloff>:/res/mirrorsticker.png</iconset>
    </property>
    <property name="text">
@@ -461,7 +445,7 @@
   </action>
   <action name="actionPack">
    <property name="icon">
-    <iconset resource="filterdesigner.qrc">
+    <iconset>
      <normaloff>:/res/pack.png</normaloff>:/res/pack.png</iconset>
    </property>
    <property name="text">
@@ -499,7 +483,7 @@
   </action>
   <action name="actionOpenWebCamera">
    <property name="icon">
-    <iconset resource="filterdesigner.qrc">
+    <iconset>
      <normaloff>:/res/selectcamera.png</normaloff>:/res/selectcamera.png</iconset>
    </property>
    <property name="text">
@@ -511,7 +495,7 @@
   </action>
   <action name="actionStopWebCamera">
    <property name="icon">
-    <iconset resource="filterdesigner.qrc">
+    <iconset>
      <normaloff>:/res/stopcamera.png</normaloff>:/res/stopcamera.png</iconset>
    </property>
    <property name="text">
@@ -643,7 +627,7 @@
   </action>
   <action name="actionReset">
    <property name="icon">
-    <iconset resource="filterdesigner.qrc">
+    <iconset>
      <normaloff>:/res/reset.png</normaloff>:/res/reset.png</iconset>
    </property>
    <property name="text">
@@ -829,7 +813,7 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="filterdesigner.qrc"/>
+  <include location="editor.qrc"/>
  </resources>
  <connections>
   <connection>
