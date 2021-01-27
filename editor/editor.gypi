@@ -16,6 +16,7 @@
         "MOC_FILELIST": [
             "<(MOC_DEST_DIR)/moc_application.cpp",
             "<(MOC_DEST_DIR)/moc_mainwindow.cpp",
+            "<(MOC_DEST_DIR)/moc_renderpanel.cpp",
         ],
         "conditions": [
             [
@@ -38,6 +39,8 @@
                 "mainwindow.cpp",
                 "mainwindow.h",
                 "mainwindow.ui",
+                "renderpanel.h",
+                "renderpanel.cpp",
                 "editor.qrc",
                 "qss.qrc",
                 "<@(MOC_FILELIST)",
@@ -104,12 +107,14 @@
                 "<(QTDIR)/include/QtWidgets",
                 "./",
                 "editor",
+                "../lib/bgfx/include",
                 "<(UI_DEST_DIR)",
                 "<(RCC_FILELIST)",
             ],
             "library_dirs": [
                 "<(QTDIR)/lib",
                 "<(PRODUCT_DIR)",
+                "../lib/bgfx/lib/x86",
             ],
             "dependencies": [
                 #"stark",
@@ -121,10 +126,11 @@
                         "defines": [
                             "WIN32",
                             "WIN32_LEAN_AND_MEAN",
+                            "_ITERATOR_DEBUG_LEVEL=0",
                             "_M_IX86",
                         ],
-                        "include_dirs": ["../../3rd/Kinect/v2.0_1409/inc"],
-                        "library_dirs": ["../../3rd/Kinect/v2.0_1409/lib/x86"],
+                        #"include_dirs": ["../../3rd/Kinect/v2.0_1409/inc"],
+                        #"library_dirs": ["../../3rd/Kinect/v2.0_1409/lib/x86"],
                         "resource_include_dirs": ["$(ProjectDir)"],
                         "sources": [
                             "editor.rc",
@@ -132,7 +138,7 @@
                         "configurations": {
                             "Debug": {
                                 "msvs_settings": {
-                                    "VCCLCompilerTool": {"RuntimeLibrary": "3"},  # /MDd
+                                    "VCCLCompilerTool": {"RuntimeLibrary": "1"},  # /MTd
                                     "VCLinkerTool": {
                                         "ImageHasSafeExceptionHandlers": "false",  # /SAFESEH:NO
                                         "AdditionalDependencies": [
@@ -140,10 +146,16 @@
                                             "user32.lib",
                                             "winmm.lib",
                                             "ole32.lib",
+                                            "gdi32.lib",
+                                            "psapi.lib",
                                             "oleaut32.lib",
                                             "Qt5Cored.lib",
                                             "Qt5Guid.lib",
                                             "Qt5Widgetsd.lib",
+                                            "bgfxDebug.lib",
+                                            "bxDebug.lib",
+                                            "bimgDebug.lib",
+                                            "bimg_decodeDebug.lib",
                                         ],
                                         "conditions": [
                                         ],

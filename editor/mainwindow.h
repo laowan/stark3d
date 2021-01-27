@@ -4,6 +4,7 @@
 
 namespace SkEditor
 {
+    class RenderPanel;
     class MainWindow : public QMainWindow
     {
         Q_OBJECT
@@ -12,5 +13,8 @@ namespace SkEditor
         ~MainWindow();
     private:
         Ui::mainWindow _ui;
+        RenderPanel* _renderPanel;
+        QDockWidget* _scenePanel;
+        QDockWidget* _logPanel;
     };
 }
