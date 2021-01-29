@@ -48,6 +48,10 @@ stark3d/Build/
 stark3d/Library/
 stark3d/stark3d.opensdf
 stark3d/stark3d.sdf
+scripts/bin
+scripts/generated
+scripts/obj
+scripts/.vs
 lib/freeglut-2.8.1/lib/x86/freeglut.exp
 lib/freeglut-2.8.1/lib/x86/freeglut.exp
 *.pdb

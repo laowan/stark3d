@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="editor">
+      <UniqueIdentifier>{AC2EC5FA-98D0-EFD0-818B-03256DCC7621}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="generated">
+      <UniqueIdentifier>{54368C0D-C0A0-4084-09DF-F12975881ED9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="generated\moc">
+      <UniqueIdentifier>{82E4C2CA-EEA4-3E01-B7DF-877E235F83DD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="generated\qrc">
+      <UniqueIdentifier>{E9F5C2CA-55B6-3E01-1EF1-877E8A7083DD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="generated\ui">
+      <UniqueIdentifier>{415DD7CF-2DC0-6674-D645-9F2AC28732F7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\editor\application.h">
+      <Filter>editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor\mainwindow.h">
+      <Filter>editor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editor\renderpanel.h">
+      <Filter>editor</Filter>
+    </ClInclude>
+    <ClInclude Include="generated\ui\ui_mainwindow.h">
+      <Filter>generated\ui</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\editor\application.cpp">
+      <Filter>editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor\main.cpp">
+      <Filter>editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor\mainwindow.cpp">
+      <Filter>editor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editor\renderpanel.cpp">
+      <Filter>editor</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\moc\moc_mainwindow.cpp">
+      <Filter>generated\moc</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\moc\moc_renderpanel.cpp">
+      <Filter>generated\moc</Filter>
+    </ClCompile>
+    <ClCompile Include="generated\qrc\qrc_editor.cpp">
+      <Filter>generated\qrc</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\editor\mainwindow.ui">
+      <Filter>editor</Filter>
+    </None>
+  </ItemGroup>
+</Project>

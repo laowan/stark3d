@@ -8,6 +8,9 @@ namespace SkEditor
         : QMainWindow(parent)
     {
         _ui.setupUi(this);
+
+        centralWidget()->setMaximumHeight(0);
+
         _renderPanel = new RenderPanel(this);
         _renderPanel->init();
 
@@ -28,7 +31,6 @@ namespace SkEditor
         QTimer *timer = new QTimer(this);
         connect(timer, &QTimer::timeout, _renderPanel, &RenderPanel::render);
         timer->start(100);
-        
     }
 
     MainWindow::~MainWindow()
