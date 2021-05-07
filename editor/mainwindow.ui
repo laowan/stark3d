@@ -32,128 +32,46 @@
      <x>0</x>
      <y>0</y>
      <width>663</width>
-     <height>26</height>
+     <height>23</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu_Tools">
+   <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>&amp;Tools</string>
+     <string>File</string>
     </property>
+    <addaction name="actionOpenGLTF"/>
    </widget>
-   <widget class="QMenu" name="menu_Settings">
-    <property name="title">
-     <string>&amp;Settings</string>
-    </property>
-   </widget>
-   <addaction name="menu_Tools"/>
-   <addaction name="menu_Settings"/>
+   <addaction name="menuFile"/>
   </widget>
+  <action name="actionOpenGLTF">
+   <property name="text">
+    <string>Open GLTF</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
   <include location="editor.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>actionOpenGLTF</sender>
+   <signal>triggered()</signal>
+   <receiver>mainWindow</receiver>
+   <slot>onLoadGLTF()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>331</x>
+     <y>280</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
  <slots>
-  <slot>onValueChanged(int)</slot>
-  <slot>onOpenInputMediaFile0()</slot>
-  <slot>onPlay()</slot>
-  <slot>onOpenImage()</slot>
-  <slot>onFilterListCurrentItemChanged(QListWidgetItem*,QListWidgetItem*)</slot>
-  <slot>onRemoveFilter()</slot>
-  <slot>onToggledSever()</slot>
-  <slot>onAboutQT()</slot>
-  <slot>onAbout()</slot>
-  <slot>onOpenEffect()</slot>
-  <slot>onSaveEffect()</slot>
-  <slot>onGenerateLUT512()</slot>
-  <slot>onGenerateLUT64()</slot>
-  <slot>onNewEffect()</slot>
-  <slot>onSaveEffectAs()</slot>
-  <slot>onMoveUpFilter()</slot>
-  <slot>onMoveDownFilter()</slot>
-  <slot>onSyncClient()</slot>
-  <slot>onAddBaseBeauty()</slot>
-  <slot>onEffectParamfFilterIndexChanged(int)</slot>
-  <slot>onEffectParamfParamfIndexChanged(int)</slot>
-  <slot>onOpenEffectFolder()</slot>
-  <slot>onViewEffectData()</slot>
-  <slot>onSavePhoneScreen()</slot>
-  <slot>onRestartEffectAnimation()</slot>
-  <slot>onIsFadeout(bool)</slot>
-  <slot>onFadeoutStartDurationSliderChanged(int)</slot>
-  <slot>onSetDuration(bool)</slot>
-  <slot>onMirrorVideo(bool)</slot>
-  <slot>onSyncResClient()</slot>
-  <slot>onSyncDataClient()</slot>
-  <slot>onFreezeUnFreezeFilter()</slot>
-  <slot>onFlipVideo(bool)</slot>
-  <slot>onMirrorSticker(bool)</slot>
-  <slot>onUndo()</slot>
-  <slot>onRedo()</slot>
-  <slot>onLoadMusic()</slot>
-  <slot>onSceneListCurrentItemChanged(QListWidgetItem*,QListWidgetItem*)</slot>
-  <slot>onMoveUpScene()</slot>
-  <slot>onMoveDownScene()</slot>
-  <slot>onRemoveScene()</slot>
-  <slot>onFreezeUnFreezeScene()</slot>
-  <slot>onConvertCubeToOf3dlut()</slot>
-  <slot>onPauseOrPlayAnimation(bool)</slot>
-  <slot>onConvertCubeTo512_512_LUT()</slot>
-  <slot>onConvertCubeTo64_64_LUT()</slot>
-  <slot>onOpenGame()</slot>
-  <slot>onStartGame()</slot>
-  <slot>onPauseGame()</slot>
-  <slot>onResumeGame()</slot>
-  <slot>onSplitLookUpTableFilter()</slot>
-  <slot>onRemoveAnimator()</slot>
-  <slot>onFreezeUnFreezeAnimator()</slot>
-  <slot>onAnimatorListCurrentItemChanged(QListWidgetItem*,QListWidgetItem*)</slot>
-  <slot>onStopGame()</slot>
-  <slot>onPack()</slot>
-  <slot>onSplitLookUpTableFilterKeepVersion()</slot>
-  <slot>onSetDeviceLevelsLow()</slot>
-  <slot>onSetDeviceLevelsNormal()</slot>
-  <slot>onSetDeviceLevelsHigh()</slot>
-  <slot>onOpenWebCamera()</slot>
-  <slot>onStopWebCamera()</slot>
-  <slot>onTrackMode(QAction*)</slot>
-  <slot>onTrackTimeChanged(int)</slot>
-  <slot>onToggledSyncWithVideo(bool)</slot>
-  <slot>onProfilerOn(bool)</slot>
-  <slot>onFaceBlendshapeARKit()</slot>
-  <slot>onEncryptLuaScript()</slot>
-  <slot>onDecryptLuaScript()</slot>
-  <slot>onDestoryGame()</slot>
-  <slot>onReloadGame()</slot>
-  <slot>onConvertSVGA2ToY2A()</slot>
-  <slot>onConvertPngToWebp()</slot>
-  <slot>onPatchPackageGame()</slot>
-  <slot>onInsertAsset(QString,QString)</slot>
-  <slot>onRecordWebpAnimation()</slot>
-  <slot>onSetMouseControlState(bool)</slot>
-  <slot>onOpenDemoEffect(QString)</slot>
-  <slot>onReset()</slot>
-  <slot>onConvertToWebm()</slot>
-  <slot>onRecordToPngs()</slot>
-  <slot>onGenerateMusicSpectrum()</slot>
-  <slot>onChangeAvatarMode()</slot>
-  <slot>onSyncVideoDuration()</slot>
-  <slot>onInputMediaCountComboBoxChanged(int)</slot>
-  <slot>onOpenInputMediaFile1()</slot>
-  <slot>onOpenInputMediaFile2()</slot>
-  <slot>onOpenInputMediaFile3()</slot>
-  <slot>onOpenInputMediaFile4()</slot>
-  <slot>onFilterTimeLineChanged(int)</slot>
-  <slot>onSendMessage()</slot>
-  <slot>onSavePicture()</slot>
-  <slot>onResizeImagesHalf()</slot>
-  <slot>onUseCameraAsInput(int)</slot>
-  <slot>onRecordToVideo()</slot>
-  <slot>onUserImageCheckBox(bool)</slot>
-  <slot>onBrowseUserImage()</slot>
-  <slot>onFaceLandmarkTool()</slot>
-  <slot>onShadingModeShaded()</slot>
-  <slot>onShadingModeWireframe()</slot>
+  <slot>onLoadGLTF()</slot>
  </slots>
 </ui>

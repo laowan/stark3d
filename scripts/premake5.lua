@@ -59,81 +59,229 @@ executeQtMocOrUICommand('moc', mocHeaders, QT_GENERATED_MOC_DIR, 'moc_', '.cpp')
 executeQtMocOrUICommand('uic', uiResFiles, QT_GENERATED_UI_DIR, 'ui_', '.h')
 executeQtQrcCommand('rcc', qrcFiles, QT_GENERATED_QRC_DIR, 'qrc_', '.cpp')
 
-project "editor"
-   kind "ConsoleApp"
-   language "C++"
-   targetdir "bin/%{cfg.buildcfg}"
+project "glfw"
+    kind "StaticLib"
+    language "C"
+    targetdir "bin/%{cfg.buildcfg}"
+    
+    files {
+        "../lib/glfw/src/context.c",
+        "../lib/glfw/src/egl_context.c",
+        "../lib/glfw/src/init.c",
+        "../lib/glfw/src/input.c",
+        "../lib/glfw/src/monitor.c",
+        "../lib/glfw/src/osmesa_context.c",
+        "../lib/glfw/src/vulkan.c",
+        "../lib/glfw/src/wgl_context.c",
+        "../lib/glfw/src/win32_init.c",
+        "../lib/glfw/src/win32_joystick.c",
+        "../lib/glfw/src/win32_monitor.c",
+        "../lib/glfw/src/win32_thread.c",
+        "../lib/glfw/src/win32_time.c",
+        "../lib/glfw/src/win32_window.c",
+        "../lib/glfw/src/window.c",
+    }
+    
+    includedirs {
+        "../lib/glfw/include",
+        "../lib/glfw",
+    }
+    
+    defines { "_GLFW_USE_CONFIG_H" }
 
+project "glew"
+   kind "SharedLib"
+   language "C"
+   targetdir "bin/%{cfg.buildcfg}"
+   
    files {
-      "../editor/*.h",
-      "../editor/*.cpp",
-      "../editor/*.ui",
-      QT_GENERATED_MOC_DIR .. '*.cpp',
-      QT_GENERATED_UI_DIR .. '*.h',
-      QT_GENERATED_QRC_DIR .. '*.cpp',
+      "../lib/glew-2.1.0/include/GL/glew.h",
+      "../lib/glew-2.1.0/include/GL/wglew.h",
+      "../lib/glew-2.1.0/src/glew.c",
    }
    
    includedirs {
-      QT_GENERATED_UI_DIR,
-      QTDIR .. "include",
-      QTDIR .. "include/QtCore",
-      QTDIR .. "include/QtGui",
-      QTDIR .. "include/QtWidgets",
-      "../lib/bgfx/include"
-   }
-
-   libdirs {
-      QTDIR .. "lib",
-      "../lib/bgfx/lib/x86"
+      "../lib/glew-2.1.0/include"
    }
    
    links {
+      "opengl32.lib",
+      "user32.lib",
       "gdi32.lib",
-      "psapi.lib",
    }
    
-   defines { "_ITERATOR_DEBUG_LEVEL=0" }
-      
+   defines { "GLEW_BUILD" }
+   
    filter "configurations:Debug"
       defines { "DEBUG" }
       symbols "On"
-      staticruntime "on"
-      links {
-         "Qt5Cored",
-         "Qt5Guid",
-         "Qt5Widgetsd",
-         "bgfxDebug.lib",
-         "bimg_decodeDebug.lib",
-         "bimgDebug.lib",
-         "bxDebug.lib"
-      }
 
    filter "configurations:Release"
       defines { "NDEBUG" }
       optimize "On"
-      staticruntime "on"
-      links {
-         "Qt5Core",
-         "Qt5Gui",
-         "Qt5Widgets",
-         "bgfxRelease.lib",
-         "bimg_decodeRelease.lib",
-         "bimgRelease.lib",
-         "bxRelease.lib"
-      }
       
-      filter "platforms:x86"
-        system "Windows"
-        architecture "x86"
+project "freetype"
+    kind "StaticLib"
+    language "C"
+    targetdir "bin/%{cfg.buildcfg}"
+    
+    files {
+        '../lib/freetype/include/**.h',
+		'../lib/freetype/src/**.h',
+		'../lib/freetype/src/autofit/autofit.c',
+		'../lib/freetype/src/base/ftbase.c',
+		'../lib/freetype/src/base/ftbbox.c',
+		'../lib/freetype/src/base/ftbdf.c',
+		'../lib/freetype/src/base/ftbitmap.c',
+		'../lib/freetype/src/base/ftcid.c',
+		'../lib/freetype/src/base/ftdebug.c',
+		'../lib/freetype/src/base/ftfntfmt.c',
+		'../lib/freetype/src/base/ftfstype.c',
+		'../lib/freetype/src/base/ftgasp.c',
+		'../lib/freetype/src/base/ftglyph.c',
+		'../lib/freetype/src/base/ftgxval.c',
+		'../lib/freetype/src/base/ftinit.c',
+		'../lib/freetype/src/base/ftlcdfil.c',
+		'../lib/freetype/src/base/ftmm.c',
+		'../lib/freetype/src/base/ftotval.c',
+		'../lib/freetype/src/base/ftpatent.c',
+		'../lib/freetype/src/base/ftpfr.c',
+		'../lib/freetype/src/base/ftstroke.c',
+		'../lib/freetype/src/base/ftsynth.c',
+		'../lib/freetype/src/base/ftsystem.c',
+		'../lib/freetype/src/base/fttype1.c',
+		'../lib/freetype/src/base/ftwinfnt.c',
+		'../lib/freetype/src/bdf/bdf.c',
+		'../lib/freetype/src/bzip2/ftbzip2.c',
+		'../lib/freetype/src/cache/ftcache.c',
+		'../lib/freetype/src/cff/cff.c',
+		'../lib/freetype/src/cid/type1cid.c',
+		'../lib/freetype/src/gzip/ftgzip.c',
+		'../lib/freetype/src/lzw/ftlzw.c',
+		'../lib/freetype/src/pcf/pcf.c',
+		'../lib/freetype/src/pfr/pfr.c',
+		'../lib/freetype/src/psaux/psaux.c',
+		'../lib/freetype/src/pshinter/pshinter.c',
+		'../lib/freetype/src/psnames/psnames.c',
+		'../lib/freetype/src/raster/raster.c',
+		'../lib/freetype/src/sfnt/sfnt.c',
+		'../lib/freetype/src/smooth/smooth.c',
+		'../lib/freetype/src/truetype/truetype.c',
+		'../lib/freetype/src/type1/type1.c',
+		'../lib/freetype/src/type42/type42.c',
+		'../lib/freetype/src/winfonts/winfnt.c',
+    }
+    
+    includedirs {
+        "../lib/freetype/include",
+    }
+    
+    defines { "FT2_BUILD_LIBRARY" }
+    
+project "app"
+    kind "ConsoleApp"
+    language "C++"
+    targetdir "bin/%{cfg.buildcfg}"
+    
+    files {
+        "../app/*.cpp"
+    }
+    
+    includedirs {
+        "../lib/glew-2.1.0/include",
+        "../lib/glfw/include",
+        "../lib/freetype/include"
+    }
+    
+    libdirs {
+        "bin/%{cfg.buildcfg}"
+    }
+    
+    links {
+        "glew",
+        "freetype",
+        "glfw",
+        "gdi32.lib",
+        "psapi.lib",
+        "opengl32.lib",
+        "glu32.lib",
+    }
 
-      filter "platforms:x86_64"
-        system "Windows"
-        architecture "x86_64"
-
-   configuration "windows"        
-      postbuildcommands {
-         --string.format("copy /Y %s %s", QTDIR:gsub('/', '\\').."bin\\Qt5Cored.dll", ".\\bin\\Debug\\Qt5Cored.dll"),
-         --string.format("copy /Y %s %s", QTDIR:gsub('/', '\\').."bin\\Qt5Guid.dll", ".\\bin\\Debug\\Qt5Guid.dll"),
-         --string.format("copy /Y %s %s", QTDIR:gsub('/', '\\').."bin\\Qt5Widgetsd.dll", ".\\bin\\Debug\\Qt5Widgetsd.dll"),
-         string.format('call python ..\\tools\\run_deployqt.py %s .\\bin\\$(Configuration)\\editor.exe', QTDIR:gsub('/', '\\')),
-      }
+--project "editor"
+--   kind "ConsoleApp"
+--   language "C++"
+--   targetdir "bin/%{cfg.buildcfg}"
+--
+--   files {
+--      "../editor/*.h",
+--      "../editor/*.cpp",
+--      "../editor/*.ui",
+--      QT_GENERATED_MOC_DIR .. '*.cpp',
+--      QT_GENERATED_UI_DIR .. '*.h',
+--      QT_GENERATED_QRC_DIR .. '*.cpp',
+--   }
+--   
+--   includedirs {
+--      QT_GENERATED_UI_DIR,
+--      QTDIR .. "include",
+--      QTDIR .. "include/QtCore",
+--      QTDIR .. "include/QtGui",
+--      QTDIR .. "include/QtWidgets",
+--      "../lib/bgfx/include",
+--      "../lib/glew-2.1.0/include",
+--      "../lib/freetype/include"
+--   }
+--
+--   libdirs {
+--      QTDIR .. "lib",
+--      "../lib/bgfx/lib/x86",
+--      "bin/%{cfg.buildcfg}"
+--   }
+--   
+--   links {
+--      "gdi32.lib",
+--      "psapi.lib",
+--      "glew.lib",
+--      "opengl32.lib",
+--      "glu32.lib",
+--      "freetype.lib"
+--   }
+--   
+--   defines { "_ITERATOR_DEBUG_LEVEL=0" }
+--      
+--   filter "configurations:Debug"
+--      defines { "DEBUG" }
+--      symbols "On"
+--      staticruntime "on"
+--      links {
+--         "Qt5Cored",
+--         "Qt5Guid",
+--         "Qt5Widgetsd",
+--      }
+--
+--   filter "configurations:Release"
+--      defines { "NDEBUG" }
+--      optimize "On"
+--      staticruntime "on"
+--      links {
+--         "Qt5Core",
+--         "Qt5Gui",
+--         "Qt5Widgets",
+--      }
+--      
+--      filter "platforms:x86"
+--        system "Windows"
+--        architecture "x86"
+--
+--      filter "platforms:x86_64"
+--        system "Windows"
+--        architecture "x86_64"
+--
+--   configuration "windows"        
+--      postbuildcommands {
+--         --string.format("copy /Y %s %s", QTDIR:gsub('/', '\\').."bin\\Qt5Cored.dll", ".\\bin\\Debug\\Qt5Cored.dll"),
+--         --string.format("copy /Y %s %s", QTDIR:gsub('/', '\\').."bin\\Qt5Guid.dll", ".\\bin\\Debug\\Qt5Guid.dll"),
+--         --string.format("copy /Y %s %s", QTDIR:gsub('/', '\\').."bin\\Qt5Widgetsd.dll", ".\\bin\\Debug\\Qt5Widgetsd.dll"),
+--         string.format('call python ..\\tools\\run_deployqt.py %s .\\bin\\$(Configuration)\\editor.exe', QTDIR:gsub('/', '\\')),
+--      }
+ 

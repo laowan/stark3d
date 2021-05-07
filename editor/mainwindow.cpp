@@ -2,6 +2,9 @@
 #include "renderpanel.h"
 #include <QTimer>
 
+#include <windows.h>
+#include <QDebug>
+
 namespace SkEditor
 {
     MainWindow::MainWindow(QMainWindow* parent)
@@ -12,12 +15,16 @@ namespace SkEditor
         centralWidget()->setMaximumHeight(0);
 
         _renderPanel = new RenderPanel(this);
+        _renderPanel->setupGL();
         _renderPanel->init();
 
         _scenePanel = new QDockWidget(this);
         _scenePanel->setWindowTitle("Scene");
+        _scenePanel->hide();
+
         _logPanel = new QDockWidget(this);
         _logPanel->setWindowTitle("Log");
+        _logPanel->hide();
 
         setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
         setCorner(Qt::TopRightCorner, Qt::RightDockWidgetArea);
@@ -36,5 +43,10 @@ namespace SkEditor
     MainWindow::~MainWindow()
     {
 
+    }
+
+    void MainWindow::onLoadGLTF()
+    {
+        qDebug() << "onLoadGLTF()";
     }
 }

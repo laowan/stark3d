@@ -11,6 +11,10 @@ namespace SkEditor
     public:
         MainWindow(QMainWindow* parent = 0);
         ~MainWindow();
+
+    protected slots:
+        void onLoadGLTF();
+
     private:
         Ui::mainWindow _ui;
         RenderPanel* _renderPanel;

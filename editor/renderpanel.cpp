@@ -265,28 +265,13 @@ namespace SkEditor
         CheckedGLCall(glBindFragDataLocation(ShaderProgram, 0, "outColor"));
         CheckedGLCall(glLinkProgram(ShaderProgram));
         CheckedGLCall(glUseProgram(ShaderProgram));
-        
-//         bgfx::PlatformData pd;
-//         pd.ndt = nullptr;
-//         pd.nwh = (HWND)winId();
-//         pd.context = nullptr;
-//         pd.backBuffer = nullptr;
-//         pd.backBufferDS = nullptr;
-//         bgfx::setPlatformData(pd);
-// 
-//         bgfx::renderFrame();
-// 
-//         bgfx::Init init;
-//         init.type = bgfx::RendererType::Enum::Count;
-//         init.vendorId = 0;
-//         init.resolution.width = 500;
-//         init.resolution.height = 500;
-//         bool ret = bgfx::init(init);
-//         std::cout << ret << std::endl;
     }
 
     void RenderPanel::render()
     {
+        QSize sz = size();
+        glViewport(0, 0, sz.width(), sz.height());
+
         CheckedGLCall(glUseProgram(ShaderProgram));
         GLint PositionAttribute = CheckedGLResult(glGetAttribLocation(ShaderProgram, "position"));
         CheckedGLCall(glEnableVertexAttribArray(PositionAttribute));
@@ -295,14 +280,10 @@ namespace SkEditor
         CheckedGLCall(glVertexAttribPointer(PositionAttribute, 2, GL_FLOAT, GL_FALSE, 0, 0));
         CheckedGLCall(glBindBuffer(GL_ARRAY_BUFFER, 0));
 
+        glClearColor(0.5, 0.5, 0.5, 1.0);
         CheckedGLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
         CheckedGLCall(glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0));
 
         ::SwapBuffers(_hDC);
-
-//         std::cout << "render" << std::endl;
-//         bgfx::setDebug(BGFX_DEBUG_TEXT /*| BGFX_DEBUG_STATS*/);
-//         bgfx::setViewClear(0, BGFX_CLEAR_COLOR | BGFX_CLEAR_DEPTH, 0x303030ff, 1.0f, 0);
-//         bgfx::frame();
     }
 }
