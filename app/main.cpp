@@ -34,6 +34,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "stark3d.h"
+
 static const char* titles[] =
 {
     "Red",
@@ -103,6 +105,8 @@ int main(int argc, char** argv)
 
     glfwWindowHint(GLFW_DECORATED, decorated);
     glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
+
+    SK::Scene* scene = new SK::Scene();
 
     GLenum err = glewInit();
 

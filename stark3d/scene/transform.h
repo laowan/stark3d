@@ -1,13 +1,14 @@
 #pragma once
 
 #include "global.h"
+#include "scene/component.h"
 #include "utils/math.h"
 #include <vector>
 
 SK_BEGIN_NAMESPACE
 
 class Matrix;
-class Transform
+class Transform : public Component
 {
 public:
     Transform();

@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glew", "glew.vcxproj", "{74
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glfw", "glfw.vcxproj", "{9563977C-819A-980D-2A87-7E10169D140F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "stark", "stark.vcxproj", "{CA496110-365E-89C1-FFDF-2C216BB385F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -31,6 +33,10 @@ Global
 		{9563977C-819A-980D-2A87-7E10169D140F}.Debug|Win32.Build.0 = Debug|Win32
 		{9563977C-819A-980D-2A87-7E10169D140F}.Release|Win32.ActiveCfg = Release|Win32
 		{9563977C-819A-980D-2A87-7E10169D140F}.Release|Win32.Build.0 = Release|Win32
+		{CA496110-365E-89C1-FFDF-2C216BB385F2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CA496110-365E-89C1-FFDF-2C216BB385F2}.Debug|Win32.Build.0 = Debug|Win32
+		{CA496110-365E-89C1-FFDF-2C216BB385F2}.Release|Win32.ActiveCfg = Release|Win32
+		{CA496110-365E-89C1-FFDF-2C216BB385F2}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

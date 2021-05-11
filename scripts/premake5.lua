@@ -178,6 +178,34 @@ project "freetype"
     
     defines { "FT2_BUILD_LIBRARY" }
     
+project "stark"
+    kind "StaticLib"
+    language "C++"
+    targetdir "bin/%{cfg.buildcfg}"
+    
+    files {
+        "../stark3d/scene/scene.h",
+        "../stark3d/scene/scene.cpp",
+        "../stark3d/scene/entity.h",
+        "../stark3d/scene/entity.cpp",
+        "../stark3d/scene/component.h",
+        "../stark3d/scene/component.cpp",
+        "../stark3d/scene/transform.h",
+        "../stark3d/scene/transform.cpp",
+        "../stark3d/scene/camera.h",
+        "../stark3d/scene/camera.cpp",
+        "../stark3d/utils/math.h",
+        "../stark3d/engine.h",
+        "../stark3d/engine.cpp",
+        "../stark3d/global.h",
+        "../stark3d/stark3d.h",
+    }
+    
+    includedirs {
+        "../stark3d"
+    }
+    
+    
 project "app"
     kind "ConsoleApp"
     language "C++"
@@ -190,7 +218,8 @@ project "app"
     includedirs {
         "../lib/glew-2.1.0/include",
         "../lib/glfw/include",
-        "../lib/freetype/include"
+        "../lib/freetype/include",
+        "../stark3d"
     }
     
     libdirs {
@@ -201,6 +230,7 @@ project "app"
         "glew",
         "freetype",
         "glfw",
+        "stark",
         "gdi32.lib",
         "psapi.lib",
         "opengl32.lib",

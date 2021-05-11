@@ -11,21 +11,21 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{665E880B-D267-887C-5BE3-9E7CC7EB937C}</ProjectGuid>
+    <ProjectGuid>{CA496110-365E-89C1-FFDF-2C216BB385F2}</ProjectGuid>
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>app</RootNamespace>
+    <RootNamespace>stark</RootNamespace>
     <LatestTargetPlatformVersion>$([Microsoft.Build.Utilities.ToolLocationHelper]::GetLatestSDKTargetPlatformVersion('Windows', '10.0'))</LatestTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v141</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v141</PlatformToolset>
@@ -41,61 +41,57 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LinkIncremental>true</LinkIncremental>
     <OutDir>bin\Debug\</OutDir>
-    <IntDir>obj\x86\Debug\app\</IntDir>
-    <TargetName>app</TargetName>
-    <TargetExt>.exe</TargetExt>
+    <IntDir>obj\x86\Debug\stark\</IntDir>
+    <TargetName>stark</TargetName>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LinkIncremental>true</LinkIncremental>
     <OutDir>bin\Release\</OutDir>
-    <IntDir>obj\x86\Release\app\</IntDir>
-    <TargetName>app</TargetName>
-    <TargetExt>.exe</TargetExt>
+    <IntDir>obj\x86\Release\stark\</IntDir>
+    <TargetName>stark</TargetName>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>..\lib\glew-2.1.0\include;..\lib\glfw\include;..\lib\freetype\include;..\stark3d;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\stark3d;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>gdi32.lib;psapi.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>bin\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>..\lib\glew-2.1.0\include;..\lib\glfw\include;..\lib\freetype\include;..\stark3d;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\stark3d;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>gdi32.lib;psapi.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>bin\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\app\main.cpp" />
+    <ClInclude Include="..\stark3d\engine.h" />
+    <ClInclude Include="..\stark3d\global.h" />
+    <ClInclude Include="..\stark3d\scene\camera.h" />
+    <ClInclude Include="..\stark3d\scene\component.h" />
+    <ClInclude Include="..\stark3d\scene\entity.h" />
+    <ClInclude Include="..\stark3d\scene\scene.h" />
+    <ClInclude Include="..\stark3d\scene\transform.h" />
+    <ClInclude Include="..\stark3d\stark3d.h" />
+    <ClInclude Include="..\stark3d\utils\math.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="glew.vcxproj">
-      <Project>{7463977C-609A-980D-0987-7E10F59C140F}</Project>
-    </ProjectReference>
-    <ProjectReference Include="freetype.vcxproj">
-      <Project>{89895BD8-7556-B6E3-9E6F-A48B8A9BEB71}</Project>
-    </ProjectReference>
-    <ProjectReference Include="glfw.vcxproj">
-      <Project>{9563977C-819A-980D-2A87-7E10169D140F}</Project>
-    </ProjectReference>
-    <ProjectReference Include="stark.vcxproj">
-      <Project>{CA496110-365E-89C1-FFDF-2C216BB385F2}</Project>
-    </ProjectReference>
+    <ClCompile Include="..\stark3d\engine.cpp" />
+    <ClCompile Include="..\stark3d\scene\camera.cpp" />
+    <ClCompile Include="..\stark3d\scene\component.cpp" />
+    <ClCompile Include="..\stark3d\scene\entity.cpp" />
+    <ClCompile Include="..\stark3d\scene\scene.cpp" />
+    <ClCompile Include="..\stark3d\scene\transform.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
