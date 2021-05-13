@@ -2,27 +2,23 @@
 #define SCENE_MESH_H
 
 #include "global.h"
-#include "assimp/mesh.h"
-#include "utils/linmath.h"
+#include "utils/math.h"
 
 #include <vector>
 
 SK_BEGIN_NAMESPACE
 
-class Shader;
-class RenderDevice;
 class Mesh
 {
 public:
-    Mesh(const aiMesh* mesh);
+    Mesh();
     ~Mesh();
 
-    bool render(Shader* shader, mat4x4 mvpMat, RenderDevice* device);
-private:
-    uint32 _vertexbuf;
-    uint32 _normalBuf;
-    uint32 _indexbuf;
-    uint32 _indexCount;
+public:
+    std::vector<Vector3> positions;
+    std::vector<Vector3> normals;
+    std::vector<Vector3> tangents;
+    std::vector<uint16> indices;
 };
 
 SK_END_NAMESPACE

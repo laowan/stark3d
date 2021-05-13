@@ -194,7 +194,11 @@ project "stark"
         "../stark3d/scene/transform.cpp",
         "../stark3d/scene/camera.h",
         "../stark3d/scene/camera.cpp",
+        "../stark3d/scene/mesh.h",
+        "../stark3d/scene/mesh.cpp",
         "../stark3d/utils/math.h",
+        "../stark3d/utils/fileutils.h",
+        "../stark3d/utils/fileutils.cpp",
         "../stark3d/engine.h",
         "../stark3d/engine.cpp",
         "../stark3d/global.h",
@@ -202,10 +206,15 @@ project "stark"
     }
     
     includedirs {
-        "../stark3d"
+        "../stark3d",
+        "../lib/glew-2.1.0/include",
     }
     
+    links {
+        "glew",
+    }
     
+-- app
 project "app"
     kind "ConsoleApp"
     language "C++"

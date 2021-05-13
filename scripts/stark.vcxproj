@@ -56,7 +56,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>..\stark3d;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\stark3d;..\lib\glew-2.1.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
@@ -67,7 +67,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>..\stark3d;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\stark3d;..\lib\glew-2.1.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
@@ -80,9 +80,11 @@
     <ClInclude Include="..\stark3d\scene\camera.h" />
     <ClInclude Include="..\stark3d\scene\component.h" />
     <ClInclude Include="..\stark3d\scene\entity.h" />
+    <ClInclude Include="..\stark3d\scene\mesh.h" />
     <ClInclude Include="..\stark3d\scene\scene.h" />
     <ClInclude Include="..\stark3d\scene\transform.h" />
     <ClInclude Include="..\stark3d\stark3d.h" />
+    <ClInclude Include="..\stark3d\utils\fileutils.h" />
     <ClInclude Include="..\stark3d\utils\math.h" />
   </ItemGroup>
   <ItemGroup>
@@ -90,8 +92,15 @@
     <ClCompile Include="..\stark3d\scene\camera.cpp" />
     <ClCompile Include="..\stark3d\scene\component.cpp" />
     <ClCompile Include="..\stark3d\scene\entity.cpp" />
+    <ClCompile Include="..\stark3d\scene\mesh.cpp" />
     <ClCompile Include="..\stark3d\scene\scene.cpp" />
     <ClCompile Include="..\stark3d\scene\transform.cpp" />
+    <ClCompile Include="..\stark3d\utils\fileutils.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="glew.vcxproj">
+      <Project>{7463977C-609A-980D-0987-7E10F59C140F}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

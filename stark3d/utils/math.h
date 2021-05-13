@@ -2,6 +2,7 @@
 
 #include "global.h"
 #include "linmath.h"
+#include "memory.h" // memcpy
 
 SK_BEGIN_NAMESPACE
 
@@ -204,6 +205,12 @@ public:
                 c[i][j] = floatArray16[i * 4 + j];
             }
         }
+    }
+
+    Matrix4& operator=(const Matrix4& mat)
+    {
+        memcpy(x, mat.x, sizeof(Matrix4));
+        return *this;
     }
 
     static Matrix4 LookAtMat(const Vector3& eye, const Vector3& target, const Vector3& up)

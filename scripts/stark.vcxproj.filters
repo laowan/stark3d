@@ -20,6 +20,9 @@
     <ClInclude Include="..\stark3d\scene\entity.h">
       <Filter>scene</Filter>
     </ClInclude>
+    <ClInclude Include="..\stark3d\scene\mesh.h">
+      <Filter>scene</Filter>
+    </ClInclude>
     <ClInclude Include="..\stark3d\scene\scene.h">
       <Filter>scene</Filter>
     </ClInclude>
@@ -27,6 +30,9 @@
       <Filter>scene</Filter>
     </ClInclude>
     <ClInclude Include="..\stark3d\stark3d.h" />
+    <ClInclude Include="..\stark3d\utils\fileutils.h">
+      <Filter>utils</Filter>
+    </ClInclude>
     <ClInclude Include="..\stark3d\utils\math.h">
       <Filter>utils</Filter>
     </ClInclude>
@@ -42,11 +48,17 @@
     <ClCompile Include="..\stark3d\scene\entity.cpp">
       <Filter>scene</Filter>
     </ClCompile>
+    <ClCompile Include="..\stark3d\scene\mesh.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
     <ClCompile Include="..\stark3d\scene\scene.cpp">
       <Filter>scene</Filter>
     </ClCompile>
     <ClCompile Include="..\stark3d\scene\transform.cpp">
       <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\stark3d\utils\fileutils.cpp">
+      <Filter>utils</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

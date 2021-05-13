@@ -10,8 +10,10 @@ class Component;
 class Entity
 {
 public:
-    Entity(const std::string& name);
+    Entity(const std::string& name = "");
     ~Entity();
+
+    Transform* getTransform() { return _transform; }
 
     template <class T>
     T* addComponent();

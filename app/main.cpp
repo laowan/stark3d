@@ -107,6 +107,7 @@ int main(int argc, char** argv)
     glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
 
     SK::Scene* scene = new SK::Scene();
+    scene->loadGLTF("../res/gltf/Box/Box.gltf");
 
     GLenum err = glewInit();
 
