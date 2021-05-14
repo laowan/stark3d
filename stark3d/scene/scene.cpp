@@ -1,5 +1,6 @@
 #include "scene/scene.h"
 #include "scene/mesh.h"
+#include "scene/camera.h"
 #include "utils/fileutils.h"
 
 #define CGLTF_IMPLEMENTATION
@@ -81,15 +82,21 @@ struct GLTFLoader
         }
     }
 
-    void loadNode(cgltf_node* node, cgltf_data* data, Scene* scene)
+    void loadNode(cgltf_node* node, cgltf_data* data, Entity* parent, Scene* scene)
     {
-        Entity* ent = new Entity();
+        Entity* ent = new Entity(node->name);
         scene->addEntity(ent);
+
+        Transform* trans = ent->getTransform();
+        if (parent)
+        {
+            trans->setParent(parent->getTransform());
+        }
 
         if (node->has_matrix)
         {
             Matrix4 mat(node->matrix);
-            ent->getTransform()->setMatrix(mat);
+            trans->setMatrix(mat);
         }
 
         if (node->mesh)
@@ -102,7 +109,7 @@ struct GLTFLoader
 
         for (int i = 0; i < node->children_count; i++)
         {
-            loadNode(node->children[i], data, scene);
+            loadNode(node->children[i], data, ent, scene);
         }
     }
 
@@ -124,13 +131,18 @@ struct GLTFLoader
                 cgltf_scene gltfScene = data->scenes[0];
                 if (gltfScene.nodes_count > 0)
                 {
-                    loadNode(gltfScene.nodes[0], data, scene);
+                    loadNode(gltfScene.nodes[0], data, nullptr, scene);
                 }
             }
 
             cgltf_free(data);
         }
         return false;
+    }
+
+    void dump(Entity* ent)
+    {
+
     }
 };
 
@@ -166,6 +178,22 @@ bool Scene::loadGLTF(const std::string& path)
 {
     GLTFLoader loader;
     return loader.load(path, this);
+}
+
+void Scene::update()
+{
+
+}
+
+void Scene::render()
+{
+    _camera->render(this);
+}
+
+void Scene::dump()
+{
+    GLTFLoader loader;
+    loader.dump(_entities[0]);
 }
 
 SK_END_NAMESPACE

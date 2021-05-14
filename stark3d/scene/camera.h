@@ -33,11 +33,14 @@ public:
 };
 
 class Component;
+class Scene;
 class Camera : public Component
 {
 public:
     Camera();
     ~Camera();
+
+    void render(Scene* scene);
 
     Viewport& getViewport() { return _viewport; }
 

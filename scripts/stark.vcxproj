@@ -80,7 +80,11 @@
     <ClInclude Include="..\stark3d\scene\camera.h" />
     <ClInclude Include="..\stark3d\scene\component.h" />
     <ClInclude Include="..\stark3d\scene\entity.h" />
+    <ClInclude Include="..\stark3d\scene\material.h" />
     <ClInclude Include="..\stark3d\scene\mesh.h" />
+    <ClInclude Include="..\stark3d\scene\meshrenderer.h" />
+    <ClInclude Include="..\stark3d\scene\object.h" />
+    <ClInclude Include="..\stark3d\scene\renderer.h" />
     <ClInclude Include="..\stark3d\scene\scene.h" />
     <ClInclude Include="..\stark3d\scene\transform.h" />
     <ClInclude Include="..\stark3d\stark3d.h" />
@@ -92,7 +96,10 @@
     <ClCompile Include="..\stark3d\scene\camera.cpp" />
     <ClCompile Include="..\stark3d\scene\component.cpp" />
     <ClCompile Include="..\stark3d\scene\entity.cpp" />
+    <ClCompile Include="..\stark3d\scene\material.cpp" />
     <ClCompile Include="..\stark3d\scene\mesh.cpp" />
+    <ClCompile Include="..\stark3d\scene\meshrenderer.cpp" />
+    <ClCompile Include="..\stark3d\scene\renderer.cpp" />
     <ClCompile Include="..\stark3d\scene\scene.cpp" />
     <ClCompile Include="..\stark3d\scene\transform.cpp" />
     <ClCompile Include="..\stark3d\utils\fileutils.cpp" />

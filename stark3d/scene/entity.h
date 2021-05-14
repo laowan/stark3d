@@ -1,13 +1,14 @@
 #pragma once
 
 #include "global.h"
+#include "scene/object.h"
 #include "scene/transform.h"
 #include <vector>
 
 SK_BEGIN_NAMESPACE
 
 class Component;
-class Entity
+class Entity : public Object
 {
 public:
     Entity(const std::string& name = "");
@@ -27,7 +28,6 @@ private:
 private:
     std::vector<Component*> _components;
     Transform* _transform;
-    std::string _name;
 };
 
 template <class T>

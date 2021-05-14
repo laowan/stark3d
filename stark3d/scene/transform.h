@@ -15,6 +15,7 @@ public:
     ~Transform() {}
 
     void setMatrix(const Matrix4& mat) { _isMatrix = true; _matrix = mat; }
+    void setParent(Transform* parent) { _parent = parent; }
 
 private:
     Transform* _parent;

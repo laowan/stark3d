@@ -20,7 +20,19 @@
     <ClInclude Include="..\stark3d\scene\entity.h">
       <Filter>scene</Filter>
     </ClInclude>
+    <ClInclude Include="..\stark3d\scene\material.h">
+      <Filter>scene</Filter>
+    </ClInclude>
     <ClInclude Include="..\stark3d\scene\mesh.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\stark3d\scene\meshrenderer.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\stark3d\scene\object.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\stark3d\scene\renderer.h">
       <Filter>scene</Filter>
     </ClInclude>
     <ClInclude Include="..\stark3d\scene\scene.h">
@@ -48,7 +60,16 @@
     <ClCompile Include="..\stark3d\scene\entity.cpp">
       <Filter>scene</Filter>
     </ClCompile>
+    <ClCompile Include="..\stark3d\scene\material.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
     <ClCompile Include="..\stark3d\scene\mesh.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\stark3d\scene\meshrenderer.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\stark3d\scene\renderer.cpp">
       <Filter>scene</Filter>
     </ClCompile>
     <ClCompile Include="..\stark3d\scene\scene.cpp">

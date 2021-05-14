@@ -4,7 +4,7 @@ SK_BEGIN_NAMESPACE
 
 Entity::Entity(const std::string& name)
 {
-    _name = name;
+    //setName(name);
     _transform = addComponent<Transform>();
 }
 

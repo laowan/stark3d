@@ -1,5 +1,4 @@
-#ifndef SCENE_MESH_H
-#define SCENE_MESH_H
+#pragma once
 
 #include "global.h"
 #include "utils/math.h"
@@ -14,13 +13,18 @@ public:
     Mesh();
     ~Mesh();
 
+    int getVBO();
+    int getIBO();
+
 public:
     std::vector<Vector3> positions;
     std::vector<Vector3> normals;
     std::vector<Vector3> tangents;
     std::vector<uint16> indices;
+
+private:
+    int _vbo;
+    int _ibo;
 };
 
 SK_END_NAMESPACE
-
-#endif
