@@ -2,7 +2,7 @@
 
 #include "global.h"
 
-#include "utils/linmath.h"
+#include "utils/math.h"
 #include "utils/gldefine.h"
 #include "component.h"
 
@@ -42,8 +42,14 @@ public:
 
     void render(Scene* scene);
 
-    Viewport& getViewport() { return _viewport; }
+    const Matrix4& getViewMatrix();
+    const Matrix4& getProjectMatrix();
 
+private:
+    Matrix4 _viewMat;
+    Matrix4 _projMat;
+
+    /*
     void getViewMat(mat4x4 mat);
     void getProjMat(mat4x4 mat);
 
@@ -55,7 +61,6 @@ public:
 private:
     void getPerspectiveProjMat(mat4x4 mat);
     void getOrthographicProjMat(mat4x4 mat);
-            
 private:
     Viewport _viewport;
     mat4x4 _viewMat;
@@ -64,6 +69,7 @@ private:
     vec3 _front;
     vec3 _up;
     vec3 _right;
+      */      
 };
 
 SK_END_NAMESPACE

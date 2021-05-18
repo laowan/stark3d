@@ -182,18 +182,12 @@ public:
 class Matrix4
 {
 public:
-    union
-    {
-        float c[4][4];	// Column major order for OpenGL: c[column][row]
-        float x[16];
-    };
+
+    mat4x4 m;
 
     Matrix4()
     {
-        c[0][0] = 1; c[1][0] = 0; c[2][0] = 0; c[3][0] = 0;
-        c[0][1] = 0; c[1][1] = 1; c[2][1] = 0; c[3][1] = 0;
-        c[0][2] = 0; c[1][2] = 0; c[2][2] = 1; c[3][2] = 0;
-        c[0][3] = 0; c[1][3] = 0; c[2][3] = 0; c[3][3] = 1;
+        mat4x4_identity(m);
     }
 
     Matrix4(const float *floatArray16)
@@ -202,15 +196,22 @@ public:
         {
             for (unsigned int j = 0; j < 4; ++j)
             {
-                c[i][j] = floatArray16[i * 4 + j];
+                m[i][j] = floatArray16[i * 4 + j];
             }
         }
     }
 
     Matrix4& operator=(const Matrix4& mat)
     {
-        memcpy(x, mat.x, sizeof(Matrix4));
+        memcpy(m, mat.m, sizeof(mat4x4));
         return *this;
+    }
+
+    Matrix4 operator*(const Matrix4& mat) const
+    {
+        Matrix4 retMat;
+        mat4x4_mul(retMat.m, (vec4*)m, (vec4*)mat.m);
+        return retMat;
     }
 
     static Matrix4 LookAtMat(const Vector3& eye, const Vector3& target, const Vector3& up)

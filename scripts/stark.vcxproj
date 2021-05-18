@@ -77,6 +77,9 @@
   <ItemGroup>
     <ClInclude Include="..\stark3d\engine.h" />
     <ClInclude Include="..\stark3d\global.h" />
+    <ClInclude Include="..\stark3d\graphics\program.h" />
+    <ClInclude Include="..\stark3d\graphics\shader.h" />
+    <ClInclude Include="..\stark3d\graphics\texture.h" />
     <ClInclude Include="..\stark3d\scene\camera.h" />
     <ClInclude Include="..\stark3d\scene\component.h" />
     <ClInclude Include="..\stark3d\scene\entity.h" />
@@ -93,6 +96,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\stark3d\engine.cpp" />
+    <ClCompile Include="..\stark3d\graphics\program.cpp" />
+    <ClCompile Include="..\stark3d\graphics\shader.cpp" />
+    <ClCompile Include="..\stark3d\graphics\texture.cpp" />
     <ClCompile Include="..\stark3d\scene\camera.cpp" />
     <ClCompile Include="..\stark3d\scene\component.cpp" />
     <ClCompile Include="..\stark3d\scene\entity.cpp" />
