@@ -12,6 +12,7 @@ class Program
 public:
     Program() : _id(0) {}
 
+    bool init(const std::string& vs, const std::string& fs);
     bool initFromFile(const std::string& vs, const std::string& fs);
 
     void use();
@@ -41,6 +42,11 @@ public:
 
     int  getUniformCount();
     //void getUniformInfo(int nIndex, SUniformInfo& rInfo);
+
+private:
+    std::string process(const char* source, bool version300);
+    bool compileShader(GLuint* shader, GLenum type, const char* source, bool version300);
+    bool linkProgram();
 
 private:
     int _id;

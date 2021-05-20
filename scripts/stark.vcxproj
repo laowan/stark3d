@@ -56,7 +56,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>..\stark3d;..\lib\glew-2.1.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\stark3d;..\lib\glew-2.1.0\include;..\lib\lua-5.3.5\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
@@ -67,7 +67,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>..\stark3d;..\lib\glew-2.1.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\stark3d;..\lib\glew-2.1.0\include;..\lib\lua-5.3.5\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
@@ -91,6 +91,7 @@
     <ClInclude Include="..\stark3d\scene\scene.h" />
     <ClInclude Include="..\stark3d\scene\transform.h" />
     <ClInclude Include="..\stark3d\stark3d.h" />
+    <ClInclude Include="..\stark3d\utils\data.h" />
     <ClInclude Include="..\stark3d\utils\fileutils.h" />
     <ClInclude Include="..\stark3d\utils\math.h" />
   </ItemGroup>
@@ -108,11 +109,15 @@
     <ClCompile Include="..\stark3d\scene\renderer.cpp" />
     <ClCompile Include="..\stark3d\scene\scene.cpp" />
     <ClCompile Include="..\stark3d\scene\transform.cpp" />
+    <ClCompile Include="..\stark3d\utils\data.cpp" />
     <ClCompile Include="..\stark3d\utils\fileutils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="glew.vcxproj">
       <Project>{7463977C-609A-980D-0987-7E10F59C140F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="lua.vcxproj">
+      <Project>{C78D880B-3397-887C-BC12-9F7C281B947C}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -20,6 +20,9 @@ public:
     std::vector<Vector3> positions;
     std::vector<Vector3> normals;
     std::vector<Vector3> tangents;
+    std::vector<Vector2> uv;
+    std::vector<Vector2> uv2;
+    std::vector<Vector4> colors;
     std::vector<uint16> indices;
 
 private:

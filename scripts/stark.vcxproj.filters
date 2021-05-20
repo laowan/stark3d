@@ -54,6 +54,9 @@
       <Filter>scene</Filter>
     </ClInclude>
     <ClInclude Include="..\stark3d\stark3d.h" />
+    <ClInclude Include="..\stark3d\utils\data.h">
+      <Filter>utils</Filter>
+    </ClInclude>
     <ClInclude Include="..\stark3d\utils\fileutils.h">
       <Filter>utils</Filter>
     </ClInclude>
@@ -98,6 +101,9 @@
     </ClCompile>
     <ClCompile Include="..\stark3d\scene\transform.cpp">
       <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\stark3d\utils\data.cpp">
+      <Filter>utils</Filter>
     </ClCompile>
     <ClCompile Include="..\stark3d\utils\fileutils.cpp">
       <Filter>utils</Filter>

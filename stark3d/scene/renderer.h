@@ -9,6 +9,7 @@ SK_BEGIN_NAMESPACE
 class Camera;
 class Material;
 class Component;
+class Scene;
 class Renderer : public Component
 {
 public:
@@ -32,17 +33,17 @@ public:
         int indexOffset = 0;
     };
 
-    virtual void render(Camera* camera);
-    virtual void render(Camera* camera, Material* mat);
+    virtual void render(Camera* camera, Scene* scene);
+    virtual void render(Camera* camera, Material* mat, Scene* scene);
 
-    void setMaterial(Material* material) { _material = material; }
-    Material* getMaterial() { return _material; }
+    void setMaterialId(int materialId) { _materialId = materialId; }
+    int getMaterialId() { return _materialId; }
 
-    virtual void fillVertexBuffer(int materialIndex, std::vector<VertexBuffer>& attribs) = 0;
-    virtual void fillIndexBuffer(int materialIndex, IndexBuffer& indexBuffer) = 0;
+    virtual void fillVertexBuffer(Scene* scene, int materialIndex, std::vector<VertexBuffer>& attribs) = 0;
+    virtual void fillIndexBuffer(Scene* scene, int materialIndex, IndexBuffer& indexBuffer) = 0;
 
 private:
-    Material* _material;
+    int _materialId;
 };
 
 SK_END_NAMESPACE

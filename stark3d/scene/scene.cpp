@@ -1,6 +1,9 @@
 #include "scene/scene.h"
 #include "scene/mesh.h"
 #include "scene/camera.h"
+#include "scene/material.h"
+#include "scene/meshrenderer.h"
+#include "graphics/shader.h"
 #include "utils/fileutils.h"
 
 #define CGLTF_IMPLEMENTATION
@@ -12,6 +15,7 @@ struct GLTFLoader
 {
     std::string gltfPath;
     std::string gltfDir;
+    Scene* _scene;
 
     std::string getUriPath(const std::string& uri)
     {
@@ -24,7 +28,14 @@ struct GLTFLoader
         return ret;
     }
 
-    void loadMesh(cgltf_mesh* gltfMesh, cgltf_data* data, Mesh* mesh)
+    void loadMaterial(cgltf_material* gltfMaterial, cgltf_data* data, Material* material)
+    {
+        Shader* shader = new Shader;
+        shader->load("mesh3d");
+        material->setShader(shader);
+    }
+
+    void loadMesh(cgltf_mesh* gltfMesh, cgltf_data* data, Mesh* mesh, Entity* entity)
     {
         cgltf_primitive prim = gltfMesh->primitives[0];
         for (int i = 0; i < prim.attributes_count; i++)
@@ -80,12 +91,24 @@ struct GLTFLoader
                 }
             }
         }
+
+        // material
+        Material* material = new Material;
+        loadMaterial(prim.material, data, material);
+        int materialId = _scene->addMaterial(material);
+        int meshId = _scene->addMesh(mesh);
+
+        MeshRenderer* meshRender = new MeshRenderer;
+        meshRender->setMeshId(meshId);
+        meshRender->setMaterialId(materialId);
+
+        _scene->addRenderer(meshRender);
     }
 
-    void loadNode(cgltf_node* node, cgltf_data* data, Entity* parent, Scene* scene)
+    void loadNode(cgltf_node* node, cgltf_data* data, Entity* parent)
     {
-        Entity* ent = new Entity(node->name);
-        scene->addEntity(ent);
+        Entity* ent = new Entity(node->name ? node->name : "default");
+        _scene->addEntity(ent);
 
         Transform* trans = ent->getTransform();
         if (parent)
@@ -102,19 +125,21 @@ struct GLTFLoader
         if (node->mesh)
         {
             Mesh* mesh = new Mesh();
-            scene->addMesh(mesh);
+            _scene->addMesh(mesh);
 
-            loadMesh(node->mesh, data, mesh);
+            loadMesh(node->mesh, data, mesh, ent);
         }
 
         for (int i = 0; i < node->children_count; i++)
         {
-            loadNode(node->children[i], data, ent, scene);
+            loadNode(node->children[i], data, ent);
         }
     }
 
     bool load(const std::string& path, Scene* scene)
     {
+        _scene = scene;
+
         cgltf_options options;
         memset(&options, 0, sizeof(cgltf_options));
 
@@ -131,7 +156,7 @@ struct GLTFLoader
                 cgltf_scene gltfScene = data->scenes[0];
                 if (gltfScene.nodes_count > 0)
                 {
-                    loadNode(gltfScene.nodes[0], data, nullptr, scene);
+                    loadNode(gltfScene.nodes[0], data, nullptr);
                 }
             }
 
@@ -172,6 +197,34 @@ void Scene::removeEntity(Entity* entity)
     auto it = std::find(_entities.begin(), _entities.end(), entity);
     if (it != _entities.end())
         _entities.erase(it);
+}
+
+int Scene::addMesh(Mesh* mesh)
+{ 
+    _meshes.push_back(mesh);
+    return _meshes.size(); 
+}
+
+Mesh* Scene::getMesh(int n)
+{ 
+    return _meshes[n - 1];
+}
+
+int Scene::addMaterial(Material* material)
+{
+    _materials.push_back(material);
+    return _materials.size();
+}
+
+Material* Scene::getMaterial(int n)
+{
+    return _materials[n - 1];
+}
+
+int Scene::addRenderer(Renderer* renderer)
+{
+    _renderers.push_back(renderer);
+    return _renderers.size();
 }
 
 bool Scene::loadGLTF(const std::string& path)

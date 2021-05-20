@@ -2,6 +2,151 @@
 
 SK_BEGIN_NAMESPACE
 
+// private
+std::string Program::process(const char* source, bool version300)
+{
+    std::string tempStr(source);
+    return tempStr;
+}
+
+bool Program::compileShader(GLuint* shader, GLenum type, const char* source, bool version300)
+{
+    std::string processedSource = process(source, version300);
+    const GLchar* sources[] = {
+        processedSource.c_str()
+    };
+
+    *shader = glCreateShader(type);
+    glShaderSource(*shader, sizeof(sources) / sizeof(*sources), sources, NULL);
+    glCompileShader(*shader);
+
+    GLint logLength;
+    glGetShaderiv(*shader, GL_INFO_LOG_LENGTH, &logLength);
+    if (logLength > 0)
+    {
+        char *log = (char *)malloc(logLength);
+        glGetShaderInfoLog(*shader, logLength, &logLength, log);
+        printf("Shader compile log:%s", log);
+        free(log);
+    }
+
+    GLint status;
+    glGetShaderiv(*shader, GL_COMPILE_STATUS, &status);
+    if (status == 0)
+    {
+        glDeleteShader(*shader);
+        *shader = 0;
+        return false;
+    }
+
+    return true;
+}
+
+bool Program::linkProgram()
+{
+    GLint status;
+    glLinkProgram(_id);
+
+    //#ifdef _DEBUG
+    GLint logLength;
+    glGetProgramiv(_id, GL_INFO_LOG_LENGTH, &logLength);
+    if (logLength > 0)
+    {
+        char *log = (char *)malloc(logLength);
+        glGetProgramInfoLog(_id, logLength, &logLength, log);
+        printf("Program link log:%s", log);
+        free(log);
+    }
+    //#endif
+
+    glGetProgramiv(_id, GL_LINK_STATUS, &status);
+    if (status == 0)
+    {
+        return false;
+    }
+
+    return true;
+}
+
+bool Program::init(const std::string& vs, const std::string& fs)
+{
+    GLuint vertShader = 0;
+    GLuint fragShader = 0;
+
+    std::string vsStr = vs.c_str();
+    std::string fsStr = fs.c_str();
+
+    //
+    // Create shader program.
+    //
+    _id = glCreateProgram();
+    if (0 >= _id)
+    {
+        GLenum ret = glGetError();
+        printf("Failed to create program. error id: %d", ret);
+        return false;
+    }
+
+    //
+    // Create and compile vertex shader.
+    //
+    if (!compileShader(&vertShader, GL_VERTEX_SHADER, vsStr.c_str(), false))
+    {
+        printf("Failed to compile vertex shader");
+        return false;
+    }
+
+    //
+    // Create and compile fragment shader.
+    //
+    if (!compileShader(&fragShader, GL_FRAGMENT_SHADER, fsStr.c_str(), false))
+    {
+        printf("Failed to compile fragment shader");
+        return false;
+    }
+
+    //
+    // Attach vertex shader to program.
+    //
+    glAttachShader(_id, vertShader);
+
+    //
+    // Attach fragment shader to program.
+    //
+    glAttachShader(_id, fragShader);
+
+    //
+    // Link program.
+    //
+    if (!linkProgram())
+    {
+        printf("Failed to link program: %d", _id);
+
+        glDeleteShader(vertShader);
+        vertShader = 0;
+
+        glDeleteShader(fragShader);
+        fragShader = 0;
+
+        glDeleteProgram(_id);
+        _id = 0;
+
+        return false;
+    }
+
+    //
+    // Release vertex and fragment shaders.
+    //
+    glDetachShader(_id, vertShader);
+    glDeleteShader(vertShader);
+
+    glDetachShader(_id, fragShader);
+    glDeleteShader(fragShader);
+
+
+    return true;
+}
+
 bool Program::initFromFile(const std::string& vs, const std::string& fs)
 {
     return true;

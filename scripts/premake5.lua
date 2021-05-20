@@ -59,6 +59,22 @@ executeQtMocOrUICommand('moc', mocHeaders, QT_GENERATED_MOC_DIR, 'moc_', '.cpp')
 executeQtMocOrUICommand('uic', uiResFiles, QT_GENERATED_UI_DIR, 'ui_', '.h')
 executeQtQrcCommand('rcc', qrcFiles, QT_GENERATED_QRC_DIR, 'qrc_', '.cpp')
 
+-- lua
+project "lua"
+    kind "StaticLib"
+    language "C"
+    targetdir "bin/%{cfg.buildcfg}"
+    
+    files {
+        "../lib/lua-5.3.5/src/*.h",
+        "../lib/lua-5.3.5/src/*.c",
+    }
+    
+    includedirs {
+        "../lib/lua-5.3.5"
+    }
+
+-- glfw
 project "glfw"
     kind "StaticLib"
     language "C"
@@ -89,6 +105,7 @@ project "glfw"
     
     defines { "_GLFW_USE_CONFIG_H" }
 
+-- glew
 project "glew"
    kind "SharedLib"
    language "C"
@@ -120,6 +137,7 @@ project "glew"
       defines { "NDEBUG" }
       optimize "On"
       
+-- freetype
 project "freetype"
     kind "StaticLib"
     language "C"
@@ -177,7 +195,8 @@ project "freetype"
     }
     
     defines { "FT2_BUILD_LIBRARY" }
-    
+
+-- stark
 project "stark"
     kind "StaticLib"
     language "C++"
@@ -191,6 +210,8 @@ project "stark"
         "../stark3d/utils/math.h",
         "../stark3d/utils/fileutils.h",
         "../stark3d/utils/fileutils.cpp",
+        "../stark3d/utils/data.h",
+        "../stark3d/utils/data.cpp",
         "../stark3d/engine.h",
         "../stark3d/engine.cpp",
         "../stark3d/global.h",
@@ -200,10 +221,12 @@ project "stark"
     includedirs {
         "../stark3d",
         "../lib/glew-2.1.0/include",
+        "../lib/lua-5.3.5/src",
     }
     
     links {
         "glew",
+        "lua"
     }
     
 -- app

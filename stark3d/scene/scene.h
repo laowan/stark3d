@@ -9,6 +9,7 @@ SK_BEGIN_NAMESPACE
 class Mesh;
 class Renderer;
 class Camera;
+class Material;
 class Scene
 {
 public:
@@ -19,8 +20,13 @@ public:
     void addEntity(Entity* entity);
     void removeEntity(Entity* entity);
 
-    void addMesh(Mesh* mesh) { _meshes.push_back(mesh); }
-    void addRenderer(Renderer* renderer) { _renderers.push_back(renderer); }
+    int addMesh(Mesh* mesh);
+    Mesh* getMesh(int n);
+
+    int addMaterial(Material* material);
+    Material* getMaterial(int n);
+
+    int addRenderer(Renderer* renderer);
 
     std::vector<Renderer*>& getRenderer() { return _renderers; }
 
@@ -32,10 +38,9 @@ public:
     void dump();
 
 private:
-
-private:
     std::vector<Entity*> _entities;
     std::vector<Mesh*> _meshes;
+    std::vector<Material*> _materials;
     std::vector<Renderer*> _renderers;
     Camera* _camera;
 };

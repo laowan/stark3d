@@ -44,6 +44,7 @@ private:
 public:
     void setMatrix(const std::string& name, const Matrix4& mat);
 
+    void setShader(Shader* shader) { _shader = shader; }
     Shader* getShader() { return _shader; }
     void applyUniform(Program* program);
 

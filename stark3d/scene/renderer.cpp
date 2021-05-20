@@ -1,18 +1,19 @@
 #include "scene/renderer.h"
 #include "scene/camera.h"
 #include "scene/material.h"
+#include "scene/scene.h"
 #include "graphics/shader.h"
 #include "graphics/program.h"
 
 SK_BEGIN_NAMESPACE
 
-void Renderer::render(Camera* camera)
+void Renderer::render(Camera* camera, Scene* scene)
 {
-    Material* mat = getMaterial();
-    render(camera, mat);
+    Material* mat = scene->getMaterial(_materialId);
+    render(camera, mat, scene);
 }
 
-void Renderer::render(Camera* camera, Material* material)
+void Renderer::render(Camera* camera, Material* material, Scene* scene)
 {
     const Matrix4& vmat = camera->getViewMatrix();
     const Matrix4& pmat = camera->getProjectMatrix();
@@ -28,8 +29,8 @@ void Renderer::render(Camera* camera, Material* material)
 
     std::vector<VertexBuffer> attribs;
     IndexBuffer indexBuffer;
-    fillVertexBuffer(0, attribs);
-    fillIndexBuffer(0, indexBuffer);
+    fillVertexBuffer(scene, 0, attribs);
+    fillIndexBuffer(scene, 0, indexBuffer);
 
     for (const auto& i : attribs)
     {

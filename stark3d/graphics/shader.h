@@ -20,6 +20,7 @@ public:
     };
 
     void load(const std::string& name);
+    void compile();
 
     Program* getProgram() { return _pass.program; }
 

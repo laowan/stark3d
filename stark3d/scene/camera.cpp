@@ -16,7 +16,7 @@ void Camera::render(Scene* scene)
     std::vector<Renderer*>& renderers = scene->getRenderer();
     for (auto renderer : renderers)
     {
-        renderer->render(this);
+        renderer->render(this, scene);
     }
 }
 
