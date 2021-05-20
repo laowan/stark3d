@@ -32,6 +32,7 @@ struct GLTFLoader
     {
         Shader* shader = new Shader;
         shader->load("mesh3d");
+        shader->compile();
         material->setShader(shader);
     }
 
@@ -95,6 +96,10 @@ struct GLTFLoader
         // material
         Material* material = new Material;
         loadMaterial(prim.material, data, material);
+
+        //Shader* shader = new Shader();
+        //shader->load()
+
         int materialId = _scene->addMaterial(material);
         int meshId = _scene->addMesh(mesh);
 
@@ -173,7 +178,7 @@ struct GLTFLoader
 
 Scene::Scene()
 {
-
+    _camera = new Camera;
 }
 
 Scene::~Scene()

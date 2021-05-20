@@ -15,6 +15,7 @@ void Shader::load(const std::string& name)
 void Shader::compile()
 {
     _pass.program = new Program();
+    _pass.program->init(_pass.vs, _pass.fs);
 }
 
 SK_END_NAMESPACE

@@ -92,63 +92,66 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
 
 int main(int argc, char** argv)
 {
-    int i, ch;
+    int i = 0, ch;
     int decorated = GLFW_FALSE;
     int focusOnShow = GLFW_TRUE;
     int running = GLFW_TRUE;
-    GLFWwindow* windows[4];
+    GLFWwindow* windows;
 
     glfwSetErrorCallback(error_callback);
 
     if (!glfwInit())
         exit(EXIT_FAILURE);
 
-    glfwWindowHint(GLFW_DECORATED, decorated);
+    //glfwWindowHint(GLFW_DECORATED, decorated);
     glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
 
-    SK::Scene* scene = new SK::Scene();
-    scene->loadGLTF("../res/gltf/Box/Box.gltf");
+    int left, top, right, bottom;
+    //if (i)
+    //    glfwWindowHint(GLFW_FOCUS_ON_SHOW, focusOnShow);
 
-    GLenum err = glewInit();
-
-    for (i = 0; i < 4; i++)
+    windows = glfwCreateWindow(200, 200, titles[i], NULL, NULL);
+    if (!windows)
     {
-        int left, top, right, bottom;
-        if (i)
-            glfwWindowHint(GLFW_FOCUS_ON_SHOW, focusOnShow);
-
-        windows[i] = glfwCreateWindow(200, 200, titles[i], NULL, NULL);
-        if (!windows[i])
-        {
-            glfwTerminate();
-            exit(EXIT_FAILURE);
-        }
-
-        glfwSetKeyCallback(windows[i], key_callback);
-
-        glfwMakeContextCurrent(windows[i]);
-        glClearColor(colors[i].r, colors[i].g, colors[i].b, 1.f);
-
-        glfwGetWindowFrameSize(windows[i], &left, &top, &right, &bottom);
-        glfwSetWindowPos(windows[i],
-            100 + (i & 1) * (200 + left + right),
-            100 + (i >> 1) * (200 + top + bottom));
+        glfwTerminate();
+        exit(EXIT_FAILURE);
     }
 
-    for (i = 0; i < 4; i++)
-        glfwShowWindow(windows[i]);
+    glfwSetKeyCallback(windows, key_callback);
+
+    glfwMakeContextCurrent(windows);
+    glClearColor(colors[i].r, colors[i].g, colors[i].b, 1.f);
+
+    glfwGetWindowFrameSize(windows, &left, &top, &right, &bottom);
+    glfwSetWindowPos(windows,
+        100 + (i & 1) * (200 + left + right),
+        100 + (i >> 1) * (200 + top + bottom));
+
+    glfwShowWindow(windows);
+        
+    glfwMakeContextCurrent(windows);
+
+    GLenum err = glewInit();
+    if (err != GLEW_OK)
+    {
+        fprintf(stderr, "Error: '%s'\n", glewGetErrorString(err));
+        return 1;
+    }
+
+    SK::Scene scene;
+    scene.loadGLTF("../res/gltf/Box/Box.gltf");
 
     while (running)
     {
-        for (i = 0; i < 4; i++)
-        {
-            glfwMakeContextCurrent(windows[i]);
-            glClear(GL_COLOR_BUFFER_BIT);
-            glfwSwapBuffers(windows[i]);
+        glClear(GL_COLOR_BUFFER_BIT);
 
-            if (glfwWindowShouldClose(windows[i]))
-                running = GLFW_FALSE;
-        }
+        scene.update();
+        scene.render();
+
+        glfwSwapBuffers(windows);
+
+        if (glfwWindowShouldClose(windows))
+            running = GLFW_FALSE;
 
         glfwWaitEvents();
     }

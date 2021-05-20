@@ -226,7 +226,8 @@ project "stark"
     
     links {
         "glew",
-        "lua"
+        "lua",
+        "opengl32.lib",
     }
     
 -- app

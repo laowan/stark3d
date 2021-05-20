@@ -16,5 +16,5 @@ void main()
     float diff = max(dot(norm, lightDir), 0.0);
 
     vec3 result = diff * lightColor;
-    outputColor = vec4(result, 1.0);
+    outputColor = vec4(0.0, 0.0, 1.0, 1.0);
 }

@@ -48,28 +48,6 @@ public:
 private:
     Matrix4 _viewMat;
     Matrix4 _projMat;
-
-    /*
-    void getViewMat(mat4x4 mat);
-    void getProjMat(mat4x4 mat);
-
-    void setPerspective(float fov, float aspect, float n, float f);
-    void setLookAt(vec3 eye, vec3 front, vec3 up);
-    void getPosition(vec3 pos);
-    void getFrontDir(vec3 front);
-
-private:
-    void getPerspectiveProjMat(mat4x4 mat);
-    void getOrthographicProjMat(mat4x4 mat);
-private:
-    Viewport _viewport;
-    mat4x4 _viewMat;
-    mat4x4 _projMat;
-    vec3 _eye;
-    vec3 _front;
-    vec3 _up;
-    vec3 _right;
-      */      
 };
 
 SK_END_NAMESPACE
