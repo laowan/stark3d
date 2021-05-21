@@ -5,6 +5,7 @@
 #include "scene/meshrenderer.h"
 #include "graphics/shader.h"
 #include "utils/fileutils.h"
+#include "utils/log.h"
 
 #define CGLTF_IMPLEMENTATION
 #include "external/cgltf/cgltf.h"
@@ -232,6 +233,7 @@ int Scene::addRenderer(Renderer* renderer)
 
 bool Scene::loadGLTF(const std::string& path)
 {
+    SK_LOGI("123");
     GLTFLoader loader;
     return loader.load(path, this);
 }

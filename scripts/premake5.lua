@@ -136,6 +136,28 @@ project "glew"
    filter "configurations:Release"
       defines { "NDEBUG" }
       optimize "On"
+
+-- fmt
+--project "fmt"
+--   kind "StaticLib"
+--   language "C++"
+--   targetdir "bin/%{cfg.buildcfg}"
+--   
+--   files {
+--      "../lib/fmt/src/*.cc",
+--   }
+--   
+--   includedirs {
+--      "../lib/fmt/include"
+--   }
+--   
+--   filter "configurations:Debug"
+--      defines { "DEBUG" }
+--      symbols "On"
+--
+--   filter "configurations:Release"
+--      defines { "NDEBUG" }
+--      optimize "On"
       
 -- freetype
 project "freetype"
@@ -212,6 +234,8 @@ project "stark"
         "../stark3d/utils/fileutils.cpp",
         "../stark3d/utils/data.h",
         "../stark3d/utils/data.cpp",
+        "../stark3d/utils/log.h",
+        "../stark3d/utils/log.cpp",
         "../stark3d/engine.h",
         "../stark3d/engine.cpp",
         "../stark3d/global.h",
@@ -222,6 +246,8 @@ project "stark"
         "../stark3d",
         "../lib/glew-2.1.0/include",
         "../lib/lua-5.3.5/src",
+        "../lib/fmt/include",
+        "../lib/fmtlog",
     }
     
     links {

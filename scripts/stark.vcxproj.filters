@@ -60,6 +60,9 @@
     <ClInclude Include="..\stark3d\utils\fileutils.h">
       <Filter>utils</Filter>
     </ClInclude>
+    <ClInclude Include="..\stark3d\utils\log.h">
+      <Filter>utils</Filter>
+    </ClInclude>
     <ClInclude Include="..\stark3d\utils\math.h">
       <Filter>utils</Filter>
     </ClInclude>
@@ -106,6 +109,9 @@
       <Filter>utils</Filter>
     </ClCompile>
     <ClCompile Include="..\stark3d\utils\fileutils.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\stark3d\utils\log.cpp">
       <Filter>utils</Filter>
     </ClCompile>
   </ItemGroup>

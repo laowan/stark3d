@@ -3,6 +3,7 @@
 #include "global.h"
 #include "scene/component.h"
 #include <vector>
+#include <string>
 
 SK_BEGIN_NAMESPACE
 

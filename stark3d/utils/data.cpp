@@ -1,4 +1,5 @@
 #include "utils/data.h"
+#include <stdexcept>
 
 SK_BEGIN_NAMESPACE
 
