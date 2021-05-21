@@ -35,6 +35,11 @@ struct GLTFLoader
         shader->load("mesh3d");
         shader->compile();
         material->setShader(shader);
+
+        if (gltfMaterial->has_pbr_metallic_roughness)
+        {
+
+        }
     }
 
     void loadMesh(cgltf_mesh* gltfMesh, cgltf_data* data, Mesh* mesh, Entity* entity)
@@ -70,6 +75,26 @@ struct GLTFLoader
                         {
                             mesh->normals.push_back(Vector3(x, y, z));
                         }
+                    }
+                }
+            }
+            else if (attr.type == cgltf_attribute_type_texcoord)
+            {
+                cgltf_accessor* accessor = attr.data;
+                if (accessor->type == cgltf_type_vec2)
+                {
+                    cgltf_size viewOffset = accessor->offset;
+                    cgltf_size bufferOffset = accessor->buffer_view->offset;
+                    cgltf_buffer* buffer = accessor->buffer_view->buffer;
+
+                    char* bufferData = (char*)buffer->data;
+                    float* floatData = (float*)&bufferData[bufferOffset + viewOffset];
+
+                    for (int n = 0; n < accessor->count; n++)
+                    {
+                        float u = floatData[2 * n];
+                        float v = floatData[2 * n + 1];
+                        mesh->uv.push_back(Vector2(u, v));
                     }
                 }
             }

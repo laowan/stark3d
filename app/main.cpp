@@ -189,8 +189,7 @@ int main(int argc, char** argv)
     }
 
     sScene = new SK::Scene;
-    //sScene->loadGLTF("../res/gltf/Box/Box.gltf");
-    sScene->loadGLTF("../res/gltf/Triangle/Triangle.gltf");
+    sScene->loadGLTF("../res/gltf/BoxTextured/BoxTextured.gltf");
 
     while (running)
     {
