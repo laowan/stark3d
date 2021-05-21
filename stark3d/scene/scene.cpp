@@ -130,8 +130,6 @@ struct GLTFLoader
         if (node->mesh)
         {
             Mesh* mesh = new Mesh();
-            _scene->addMesh(mesh);
-
             loadMesh(node->mesh, data, mesh, ent);
         }
 

@@ -6,6 +6,13 @@
 
 SK_BEGIN_NAMESPACE
 
+const float PI = 3.1415926;
+
+inline float Radian(float angle)
+{
+    return angle * PI / 180.0f;
+}
+
 class Vector2
 {
 public:
@@ -227,6 +234,20 @@ public:
         Matrix4 m;
         //Matrix4::LookAt(m, eye, target, up);
         return m;
+    }
+
+    static Matrix4 RotMat(float x, float y, float z) // x, y, z in radians
+    {
+        mat4x4 m1, m2;
+        mat4x4_identity(m1);
+        mat4x4_identity(m2);
+        mat4x4_rotate_Y(m2, m1, y); // rotate y
+
+        mat4x4_rotate_X(m1, m2, x); // rotate x
+
+        Matrix4 ret;
+        mat4x4_rotate_Z(ret.m, m1, z); // rotate z
+        return ret;
     }
 };
 

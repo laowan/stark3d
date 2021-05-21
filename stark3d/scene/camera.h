@@ -42,6 +42,8 @@ public:
 
     void render(Scene* scene);
 
+    void setViewMatrix(const Matrix4& mat) { _viewMat = mat; }
+
     const Matrix4& getViewMatrix();
     const Matrix4& getProjectMatrix();
 

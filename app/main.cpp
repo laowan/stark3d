@@ -23,7 +23,7 @@
 //
 //========================================================================
 //
-// This test creates four windows and clears each in a different color
+// This test creates four window and clears each in a different color
 //
 //========================================================================
 
@@ -35,6 +35,13 @@
 #include <stdlib.h>
 
 #include "stark3d.h"
+#include "utils/math.h"
+#include "scene/camera.h"
+
+bool sRightBtnDown = false;
+SK::Vector2 sBeginPos;
+SK::Matrix4 sViewMat;
+SK::Scene* sScene = nullptr;
 
 static const char* titles[] =
 {
@@ -57,9 +64,9 @@ static const struct
 
 static void usage(void)
 {
-    printf("Usage: windows [-h] [-b] [-f] \n");
+    printf("Usage: window [-h] [-b] [-f] \n");
     printf("Options:\n");
-    printf("  -b create decorated windows\n");
+    printf("  -b create decorated window\n");
     printf("  -f set focus on show off for all but first window\n");
     printf("  -h show this help\n");
 }
@@ -90,13 +97,53 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
     }
 }
 
+static void cursor_position_callback(GLFWwindow* window, double xpos, double ypos)
+{
+    if (sRightBtnDown)
+    {
+        float dx = (float)xpos - sBeginPos.x;
+        float dy = (float)ypos - sBeginPos.y;
+        printf("dx dy %.2f, %.2f\n", dx, dy);
+
+        SK::Matrix4 mat = SK::Matrix4::RotMat(SK::Radian(dy), SK::Radian(-dx), 0);
+
+        SK::Camera* camera = sScene->getCamera();
+        camera->setViewMatrix(sViewMat * mat);
+    }
+}
+
+void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
+{
+    printf("mouse button %d, %d, %d\n", button, action, mods);
+    if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
+    {
+        sRightBtnDown = true;
+        double xpos, ypos;
+        glfwGetCursorPos(window, &xpos, &ypos);
+        sBeginPos.x = (float)xpos;
+        sBeginPos.y = (float)ypos;
+
+        SK::Camera* camera = sScene->getCamera();
+        sViewMat = camera->getViewMatrix();
+    }
+    else
+    {
+        sRightBtnDown = false;
+    }
+}
+
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+{
+    printf("scroll %.2f, %.2f\n", xoffset, yoffset);
+}
+
 int main(int argc, char** argv)
 {
     int i = 0, ch;
     int decorated = GLFW_FALSE;
     int focusOnShow = GLFW_TRUE;
     int running = GLFW_TRUE;
-    GLFWwindow* windows;
+    GLFWwindow* window;
 
     glfwSetErrorCallback(error_callback);
 
@@ -110,26 +157,29 @@ int main(int argc, char** argv)
     //if (i)
     //    glfwWindowHint(GLFW_FOCUS_ON_SHOW, focusOnShow);
 
-    windows = glfwCreateWindow(200, 200, titles[i], NULL, NULL);
-    if (!windows)
+    window = glfwCreateWindow(400, 400, titles[i], NULL, NULL);
+    if (!window)
     {
         glfwTerminate();
         exit(EXIT_FAILURE);
     }
 
-    glfwSetKeyCallback(windows, key_callback);
+    glfwSetKeyCallback(window, key_callback);
+    glfwSetCursorPosCallback(window, cursor_position_callback);
+    glfwSetMouseButtonCallback(window, mouse_button_callback);
+    glfwSetScrollCallback(window, scroll_callback);
 
-    glfwMakeContextCurrent(windows);
+    glfwMakeContextCurrent(window);
     glClearColor(colors[i].r, colors[i].g, colors[i].b, 1.f);
 
-    glfwGetWindowFrameSize(windows, &left, &top, &right, &bottom);
-    glfwSetWindowPos(windows,
+    glfwGetWindowFrameSize(window, &left, &top, &right, &bottom);
+    glfwSetWindowPos(window,
         100 + (i & 1) * (200 + left + right),
         100 + (i >> 1) * (200 + top + bottom));
 
-    glfwShowWindow(windows);
+    glfwShowWindow(window);
         
-    glfwMakeContextCurrent(windows);
+    glfwMakeContextCurrent(window);
 
     GLenum err = glewInit();
     if (err != GLEW_OK)
@@ -138,24 +188,27 @@ int main(int argc, char** argv)
         return 1;
     }
 
-    SK::Scene scene;
-    scene.loadGLTF("../res/gltf/Box/Box.gltf");
+    sScene = new SK::Scene;
+    //sScene->loadGLTF("../res/gltf/Box/Box.gltf");
+    sScene->loadGLTF("../res/gltf/Triangle/Triangle.gltf");
 
     while (running)
     {
-        glClear(GL_COLOR_BUFFER_BIT);
+        //glClear(GL_COLOR_BUFFER_BIT);
 
-        scene.update();
-        scene.render();
+        sScene->update();
+        sScene->render();
 
-        glfwSwapBuffers(windows);
+        glfwSwapBuffers(window);
 
-        if (glfwWindowShouldClose(windows))
+        if (glfwWindowShouldClose(window))
             running = GLFW_FALSE;
 
-        glfwWaitEvents();
+        //glfwWaitEvents();
+        glfwPollEvents();
     }
 
+    delete sScene;
     glfwTerminate();
     exit(EXIT_SUCCESS);
 }

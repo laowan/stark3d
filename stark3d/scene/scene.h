@@ -29,6 +29,7 @@ public:
     int addRenderer(Renderer* renderer);
 
     std::vector<Renderer*>& getRenderer() { return _renderers; }
+    Camera* getCamera() { return _camera; }
 
     bool loadGLTF(const std::string& path);
 
