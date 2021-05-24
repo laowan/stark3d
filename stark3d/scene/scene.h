@@ -10,6 +10,7 @@ class Mesh;
 class Renderer;
 class Camera;
 class Material;
+class Texture;
 class Scene
 {
 public:
@@ -25,6 +26,9 @@ public:
 
     int addMaterial(Material* material);
     Material* getMaterial(int n);
+
+    int addTexture(Texture* texture);
+    Texture* getTexture(int n);
 
     int addRenderer(Renderer* renderer);
 
@@ -43,6 +47,7 @@ private:
     std::vector<Mesh*> _meshes;
     std::vector<Material*> _materials;
     std::vector<Renderer*> _renderers;
+    std::vector<Texture*> _textures;
     Camera* _camera;
 };
 

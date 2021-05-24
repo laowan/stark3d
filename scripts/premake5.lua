@@ -248,6 +248,7 @@ project "stark"
         "../lib/lua-5.3.5/src",
         "../lib/fmt/include",
         "../lib/fmtlog",
+        "../lib/stb"
     }
     
     links {

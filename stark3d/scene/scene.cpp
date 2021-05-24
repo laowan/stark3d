@@ -4,6 +4,7 @@
 #include "scene/material.h"
 #include "scene/meshrenderer.h"
 #include "graphics/shader.h"
+#include "graphics/texture.h"
 #include "utils/fileutils.h"
 #include "utils/log.h"
 
@@ -14,18 +15,18 @@ SK_BEGIN_NAMESPACE
 
 struct GLTFLoader
 {
-    std::string gltfPath;
-    std::string gltfDir;
+    std::string _gltfPath;
+    std::string _gltfDir;
     Scene* _scene;
 
     std::string getUriPath(const std::string& uri)
     {
-        if (gltfDir.empty())
+        if (_gltfDir.empty())
         {
-            GetParentPath(gltfPath, gltfDir);
+            GetParentPath(_gltfPath, _gltfDir);
         }
         std::string ret;
-        PathJoin(ret, gltfDir, uri);
+        PathJoin(ret, _gltfDir, uri);
         return ret;
     }
 
@@ -35,10 +36,18 @@ struct GLTFLoader
         shader->load("mesh3d");
         shader->compile();
         material->setShader(shader);
+        material->setName(gltfMaterial->name);
 
         if (gltfMaterial->has_pbr_metallic_roughness)
         {
-
+            cgltf_texture* gltfTexture = gltfMaterial->pbr_metallic_roughness.base_color_texture.texture;
+            if (gltfTexture)
+            {
+                Texture* texture = new Texture;
+                texture->createFromFile(getUriPath(gltfTexture->image->uri));
+                _scene->addTexture(texture);
+                material->setTexture("uTexture", texture->textureId());
+            }
         }
     }
 
@@ -168,6 +177,7 @@ struct GLTFLoader
     bool load(const std::string& path, Scene* scene)
     {
         _scene = scene;
+        _gltfPath = path;
 
         cgltf_options options;
         memset(&options, 0, sizeof(cgltf_options));
@@ -207,7 +217,12 @@ Scene::Scene()
 
 Scene::~Scene()
 {
-
+    if (_camera) delete _camera;
+    for (auto ent : _entities) delete ent;
+    for (auto msh : _meshes) delete msh;
+    for (auto mat : _materials) delete mat;
+    for (auto ren : _renderers) delete ren;
+    for (auto tex : _textures) delete tex;
 }
 
 Entity* Scene::createEntity(const std::string& name)
@@ -248,6 +263,17 @@ int Scene::addMaterial(Material* material)
 Material* Scene::getMaterial(int n)
 {
     return _materials[n - 1];
+}
+
+int Scene::addTexture(Texture* texture)
+{
+    _textures.push_back(texture);
+    return _textures.size();
+}
+
+Texture* Scene::getTexture(int n)
+{
+    return _textures[n];
 }
 
 int Scene::addRenderer(Renderer* renderer)

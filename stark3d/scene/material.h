@@ -1,6 +1,7 @@
 #pragma once
 
 #include "global.h"
+#include "scene/object.h"
 #include "utils/math.h"
 #include <string>
 #include <map>
@@ -9,7 +10,7 @@ SK_BEGIN_NAMESPACE
 
 class Shader;
 class Program;
-class Material
+class Material : public Object
 {
 private:
     struct Property
@@ -31,7 +32,7 @@ private:
             float color[4];
             float floatValue;
             int intValue;
-            //OF_Texture texture;
+            uint32 texture;
         };
 
         std::string name;
@@ -43,6 +44,7 @@ private:
 
 public:
     void setMatrix(const std::string& name, const Matrix4& mat);
+    void setTexture(const std::string& name, uint32 textureId);
 
     void setShader(Shader* shader) { _shader = shader; }
     Shader* getShader() { return _shader; }

@@ -8,6 +8,11 @@ void Material::setMatrix(const std::string& name, const Matrix4& mat)
     setProperty(name, mat, Property::Type::Matrix);
 }
 
+void Material::setTexture(const std::string& name, uint32 textureId)
+{
+    setProperty(name, textureId, Property::Type::Texture);
+}
+
 void Material::applyUniform(Program* program)
 {
     for (const auto& i : _properties)
@@ -32,6 +37,7 @@ void Material::applyUniform(Program* program)
                 program->setUniform1i(p.name, p.data.intValue);
                 break;
             case Property::Type::Texture:
+                program->setUniformTexture(p.name, 0, p.data.texture);
                 break;
             }
         }

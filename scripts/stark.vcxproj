@@ -55,7 +55,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>..\stark3d;..\lib\glew-2.1.0\include;..\lib\lua-5.3.5\src;..\lib\fmt\include;..\lib\fmtlog;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\stark3d;..\lib\glew-2.1.0\include;..\lib\lua-5.3.5\src;..\lib\fmt\include;..\lib\fmtlog;..\lib\stb;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>
@@ -69,7 +69,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>..\stark3d;..\lib\glew-2.1.0\include;..\lib\lua-5.3.5\src;..\lib\fmt\include;..\lib\fmtlog;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\stark3d;..\lib\glew-2.1.0\include;..\lib\lua-5.3.5\src;..\lib\fmt\include;..\lib\fmtlog;..\lib\stb;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
     </ClCompile>
     <Link>

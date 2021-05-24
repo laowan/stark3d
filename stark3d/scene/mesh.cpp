@@ -26,6 +26,7 @@ int Mesh::getVBO()
     if (positions.size() > 0) bufferSize += sizeof(Vector3) * vertexCount;
     if (normals.size() > 0) bufferSize += sizeof(Vector3) * vertexCount;
     if (tangents.size() > 0) bufferSize += sizeof(Vector3) * vertexCount;
+    if (uv.size() > 0) bufferSize += sizeof(Vector2) * vertexCount;
 
     char* buffer = (char*)malloc(bufferSize);
     int offset = 0;
@@ -46,6 +47,12 @@ int Mesh::getVBO()
     {
         int size = sizeof(Vector3) * vertexCount;
         memcpy(&buffer[offset], tangents.data(), size);
+        offset += size;
+    }
+    if (uv.size() > 0)
+    {
+        int size = sizeof(Vector2) * vertexCount;
+        memcpy(&buffer[offset], uv.data(), size);
         offset += size;
     }
 
