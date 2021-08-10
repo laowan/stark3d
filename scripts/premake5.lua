@@ -271,11 +271,13 @@ project "app"
         "../lib/glew-2.1.0/include",
         "../lib/glfw/include",
         "../lib/freetype/include",
+        "../lib/vulkan/1.2.135.0/Include",
         "../stark3d"
     }
     
     libdirs {
-        "bin/%{cfg.buildcfg}"
+        "bin/%{cfg.buildcfg}",
+        "../lib/vulkan/1.2.135.0/Lib32"
     }
     
     links {
@@ -287,6 +289,7 @@ project "app"
         "psapi.lib",
         "opengl32.lib",
         "glu32.lib",
+        "vulkan-1.lib"
     }
 
 --project "editor"
