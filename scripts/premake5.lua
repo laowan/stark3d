@@ -5,59 +5,8 @@ local QT_GENERATED_UI_DIR = "./generated/ui/"
 local QT_GENERATED_QRC_DIR = "./generated/qrc/"
 
 workspace "stark3d"
-   configurations { "Debug", "Release" }
-   platforms { "x86" } --, "x86_64" }
-   
-local function executeQtMocOrUICommand(command, files, absoluteDir, filePrefix, fileExtension)
-    if type(files) ~= 'table' then return end
-
-    for i, file in ipairs(files) do
-        local baseName = filePrefix .. path.getbasename(file)
-        local fileStat = os.stat(file)
-
-        print('==> Found different timestamp: ' .. file)
-        local command = string.format('%sbin/%s %s -o %s', QTDIR, command, file, absoluteDir .. '/' .. baseName .. fileExtension)
-        print('==> ' .. command)
-        os.execute(command)
-    end
-end
-
-local function executeQtQrcCommand(command, files, absoluteDir, filePrefix, fileExtension)
-    if type(files) ~= 'table' then
-        return
-    end
-
-    for i, file in ipairs(files) do
-        local baseName = path.getbasename(file)
-        local baseNameWithPrefix = filePrefix .. baseName
-        local fileStat = os.stat(file)
-        
-        print('==> Found different timestamp: ' .. file)
-        local command = string.format('%sbin/%s %s -name %s -o %s', QTDIR, command, file, baseName, absoluteDir .. '/' .. baseNameWithPrefix .. fileExtension)
-        print('==> ' .. command)
-        os.execute(command)
-    end
-end
-
-local mocHeaders = {
-   "../editor/mainwindow.h",
-   "../editor/renderpanel.h",
-}
-
-local uiResFiles = {
-   "../editor/mainwindow.ui",
-}
-
-local qrcFiles = {
-   "../editor/editor.qrc"
-}
-
-os.mkdir("./generated/moc")
-os.mkdir("./generated/ui")
-os.mkdir("./generated/qrc")
-executeQtMocOrUICommand('moc', mocHeaders, QT_GENERATED_MOC_DIR, 'moc_', '.cpp')
-executeQtMocOrUICommand('uic', uiResFiles, QT_GENERATED_UI_DIR, 'ui_', '.h')
-executeQtQrcCommand('rcc', qrcFiles, QT_GENERATED_QRC_DIR, 'qrc_', '.cpp')
+    configurations { "Debug", "Release" }
+    platforms { "x86" } --, "x86_64" }
 
 -- lua
 project "lua"
