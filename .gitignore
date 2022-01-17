@@ -66,3 +66,8 @@ msvs2017/.vs
 msvs2017
 Step1
 Step1_build
+.gradle
+.idea
+local.properties
+app/.cxx
+app/build
