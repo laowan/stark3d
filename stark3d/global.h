@@ -83,4 +83,12 @@ private:
     #define ASSERT(exp)
 #endif
 
+/*
+    USE_DEVICE_OPENGL
+    USE_DEVICE_VULKAN
+	USE_DEVICE_DIRECT3D11
+	USE_DEVICE_DIRECT3D12
+*/
+#define USE_DEVICE_OPENGL
+
 #endif

@@ -169,7 +169,7 @@ project "freetype"
 
 -- stark
 project "stark"
-    kind "StaticLib"
+    kind "WindowedApp"
     language "C++"
     targetdir "bin/%{cfg.buildcfg}"
     
@@ -189,6 +189,7 @@ project "stark"
         "../stark3d/engine.cpp",
         "../stark3d/global.h",
         "../stark3d/stark3d.h",
+        "../stark3d/main.cpp",
     }
     
     includedirs {
@@ -240,82 +241,4 @@ project "app"
         "glu32.lib",
         "vulkan-1.lib"
     }
-
---project "editor"
---   kind "ConsoleApp"
---   language "C++"
---   targetdir "bin/%{cfg.buildcfg}"
---
---   files {
---      "../editor/*.h",
---      "../editor/*.cpp",
---      "../editor/*.ui",
---      QT_GENERATED_MOC_DIR .. '*.cpp',
---      QT_GENERATED_UI_DIR .. '*.h',
---      QT_GENERATED_QRC_DIR .. '*.cpp',
---   }
---   
---   includedirs {
---      QT_GENERATED_UI_DIR,
---      QTDIR .. "include",
---      QTDIR .. "include/QtCore",
---      QTDIR .. "include/QtGui",
---      QTDIR .. "include/QtWidgets",
---      "../lib/bgfx/include",
---      "../lib/glew-2.1.0/include",
---      "../lib/freetype/include"
---   }
---
---   libdirs {
---      QTDIR .. "lib",
---      "../lib/bgfx/lib/x86",
---      "bin/%{cfg.buildcfg}"
---   }
---   
---   links {
---      "gdi32.lib",
---      "psapi.lib",
---      "glew.lib",
---      "opengl32.lib",
---      "glu32.lib",
---      "freetype.lib"
---   }
---   
---   defines { "_ITERATOR_DEBUG_LEVEL=0" }
---      
---   filter "configurations:Debug"
---      defines { "DEBUG" }
---      symbols "On"
---      staticruntime "on"
---      links {
---         "Qt5Cored",
---         "Qt5Guid",
---         "Qt5Widgetsd",
---      }
---
---   filter "configurations:Release"
---      defines { "NDEBUG" }
---      optimize "On"
---      staticruntime "on"
---      links {
---         "Qt5Core",
---         "Qt5Gui",
---         "Qt5Widgets",
---      }
---      
---      filter "platforms:x86"
---        system "Windows"
---        architecture "x86"
---
---      filter "platforms:x86_64"
---        system "Windows"
---        architecture "x86_64"
---
---   configuration "windows"        
---      postbuildcommands {
---         --string.format("copy /Y %s %s", QTDIR:gsub('/', '\\').."bin\\Qt5Cored.dll", ".\\bin\\Debug\\Qt5Cored.dll"),
---         --string.format("copy /Y %s %s", QTDIR:gsub('/', '\\').."bin\\Qt5Guid.dll", ".\\bin\\Debug\\Qt5Guid.dll"),
---         --string.format("copy /Y %s %s", QTDIR:gsub('/', '\\').."bin\\Qt5Widgetsd.dll", ".\\bin\\Debug\\Qt5Widgetsd.dll"),
---         string.format('call python ..\\tools\\run_deployqt.py %s .\\bin\\$(Configuration)\\editor.exe', QTDIR:gsub('/', '\\')),
---      }
  
