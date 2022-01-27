@@ -80,9 +80,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\app\main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="glew.vcxproj">
       <Project>{7463977C-609A-980D-0987-7E10F59C140F}</Project>
     </ProjectReference>
