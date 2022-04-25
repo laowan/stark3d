@@ -1,12 +1,16 @@
 -- premake5.lua
-local QTDIR = "E:/qt_5.15/5.15.2/msvc2019/"
-local QT_GENERATED_MOC_DIR = "./generated/moc/"
-local QT_GENERATED_UI_DIR = "./generated/ui/"
-local QT_GENERATED_QRC_DIR = "./generated/qrc/"
 
 workspace "stark3d"
     configurations { "Debug", "Release" }
-    platforms { "x86" } --, "x86_64" }
+    platforms { "Win32", "Win64" }
+
+    filter { "platforms:Win32" }
+        system "Windows"
+        architecture "x86"
+
+    filter { "platforms:Win32" }
+        system "Windows"
+        architecture "x86_64"
 
 -- lua
 project "lua"
@@ -116,49 +120,49 @@ project "freetype"
     
     files {
         '../lib/freetype/include/**.h',
-		'../lib/freetype/src/**.h',
-		'../lib/freetype/src/autofit/autofit.c',
-		'../lib/freetype/src/base/ftbase.c',
-		'../lib/freetype/src/base/ftbbox.c',
-		'../lib/freetype/src/base/ftbdf.c',
-		'../lib/freetype/src/base/ftbitmap.c',
-		'../lib/freetype/src/base/ftcid.c',
-		'../lib/freetype/src/base/ftdebug.c',
-		'../lib/freetype/src/base/ftfntfmt.c',
-		'../lib/freetype/src/base/ftfstype.c',
-		'../lib/freetype/src/base/ftgasp.c',
-		'../lib/freetype/src/base/ftglyph.c',
-		'../lib/freetype/src/base/ftgxval.c',
-		'../lib/freetype/src/base/ftinit.c',
-		'../lib/freetype/src/base/ftlcdfil.c',
-		'../lib/freetype/src/base/ftmm.c',
-		'../lib/freetype/src/base/ftotval.c',
-		'../lib/freetype/src/base/ftpatent.c',
-		'../lib/freetype/src/base/ftpfr.c',
-		'../lib/freetype/src/base/ftstroke.c',
-		'../lib/freetype/src/base/ftsynth.c',
-		'../lib/freetype/src/base/ftsystem.c',
-		'../lib/freetype/src/base/fttype1.c',
-		'../lib/freetype/src/base/ftwinfnt.c',
-		'../lib/freetype/src/bdf/bdf.c',
-		'../lib/freetype/src/bzip2/ftbzip2.c',
-		'../lib/freetype/src/cache/ftcache.c',
-		'../lib/freetype/src/cff/cff.c',
-		'../lib/freetype/src/cid/type1cid.c',
-		'../lib/freetype/src/gzip/ftgzip.c',
-		'../lib/freetype/src/lzw/ftlzw.c',
-		'../lib/freetype/src/pcf/pcf.c',
-		'../lib/freetype/src/pfr/pfr.c',
-		'../lib/freetype/src/psaux/psaux.c',
-		'../lib/freetype/src/pshinter/pshinter.c',
-		'../lib/freetype/src/psnames/psnames.c',
-		'../lib/freetype/src/raster/raster.c',
-		'../lib/freetype/src/sfnt/sfnt.c',
-		'../lib/freetype/src/smooth/smooth.c',
-		'../lib/freetype/src/truetype/truetype.c',
-		'../lib/freetype/src/type1/type1.c',
-		'../lib/freetype/src/type42/type42.c',
-		'../lib/freetype/src/winfonts/winfnt.c',
+        '../lib/freetype/src/**.h',
+        '../lib/freetype/src/autofit/autofit.c',
+        '../lib/freetype/src/base/ftbase.c',
+        '../lib/freetype/src/base/ftbbox.c',
+        '../lib/freetype/src/base/ftbdf.c',
+        '../lib/freetype/src/base/ftbitmap.c',
+        '../lib/freetype/src/base/ftcid.c',
+        '../lib/freetype/src/base/ftdebug.c',
+        '../lib/freetype/src/base/ftfntfmt.c',
+        '../lib/freetype/src/base/ftfstype.c',
+        '../lib/freetype/src/base/ftgasp.c',
+        '../lib/freetype/src/base/ftglyph.c',
+        '../lib/freetype/src/base/ftgxval.c',
+        '../lib/freetype/src/base/ftinit.c',
+        '../lib/freetype/src/base/ftlcdfil.c',
+        '../lib/freetype/src/base/ftmm.c',
+        '../lib/freetype/src/base/ftotval.c',
+        '../lib/freetype/src/base/ftpatent.c',
+        '../lib/freetype/src/base/ftpfr.c',
+        '../lib/freetype/src/base/ftstroke.c',
+        '../lib/freetype/src/base/ftsynth.c',
+        '../lib/freetype/src/base/ftsystem.c',
+        '../lib/freetype/src/base/fttype1.c',
+        '../lib/freetype/src/base/ftwinfnt.c',
+        '../lib/freetype/src/bdf/bdf.c',
+        '../lib/freetype/src/bzip2/ftbzip2.c',
+        '../lib/freetype/src/cache/ftcache.c',
+        '../lib/freetype/src/cff/cff.c',
+        '../lib/freetype/src/cid/type1cid.c',
+        '../lib/freetype/src/gzip/ftgzip.c',
+        '../lib/freetype/src/lzw/ftlzw.c',
+        '../lib/freetype/src/pcf/pcf.c',
+        '../lib/freetype/src/pfr/pfr.c',
+        '../lib/freetype/src/psaux/psaux.c',
+        '../lib/freetype/src/pshinter/pshinter.c',
+        '../lib/freetype/src/psnames/psnames.c',
+        '../lib/freetype/src/raster/raster.c',
+        '../lib/freetype/src/sfnt/sfnt.c',
+        '../lib/freetype/src/smooth/smooth.c',
+        '../lib/freetype/src/truetype/truetype.c',
+        '../lib/freetype/src/type1/type1.c',
+        '../lib/freetype/src/type42/type42.c',
+        '../lib/freetype/src/winfonts/winfnt.c',
     }
     
     includedirs {
@@ -198,7 +202,8 @@ project "stark"
         "../lib/lua-5.3.5/src",
         "../lib/fmt/include",
         "../lib/fmtlog",
-        "../lib/stb"
+        "../lib/stb",
+        "../lib/cgltf"
     }
     
     links {
@@ -207,7 +212,45 @@ project "stark"
         "opengl32.lib",
     }
     
+
+-- minimal_d3d11
+project "minimal_d3d11"
+    kind "WindowedApp"
+    language "C++"
+    targetdir "bin/%{cfg.buildcfg}"
+
+    files {
+        "../examples/minimal_d3d11/code.cpp",
+        "../examples/minimal_d3d11/data.h",
+    }
+
+    includedirs {
+        "../examples/minimal_d3d11",
+    }
+
+    links {
+    }
+
+-- minimal_gl
+project "minimal_gl"
+    kind "WindowedApp"
+    language "C++"
+    targetdir "bin/%{cfg.buildcfg}"
+
+    files {
+        "../examples/minimal_gl/main.cpp",
+    }
+
+    includedirs {
+        "../examples/minimal_gl",
+    }
+
+    links {
+        "opengl32.lib",
+    }
+
 -- app
+--[[
 project "app"
     kind "ConsoleApp"
     language "C++"
@@ -241,7 +284,7 @@ project "app"
         "glu32.lib",
         "vulkan-1.lib"
     }
- 
+--]]
 -- assimp
 --[[
 project "assimp"

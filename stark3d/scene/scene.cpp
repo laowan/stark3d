@@ -9,7 +9,7 @@
 #include "utils/log.h"
 
 #define CGLTF_IMPLEMENTATION
-#include "external/cgltf/cgltf.h"
+#include "cgltf.h"
 
 SK_BEGIN_NAMESPACE
 
