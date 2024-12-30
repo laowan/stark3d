@@ -1,35 +1,51 @@
-# Copyright (c) 2019-2021, Arm Limited and Contributors
-#
-# SPDX-License-Identifier: Apache-2.0
-#
-# Licensed under the Apache License, Version 2.0 the "License";
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
+find_package(Vulkan REQUIRED)
 
-cmake_minimum_required(VERSION 3.10)
+add_library(vkbootstrap STATIC)
+add_library(glm INTERFACE)
+add_library(vma INTERFACE)
 
-project(third_party LANGUAGES C CXX)
+add_library(stb_image INTERFACE)
 
-# GLFW
-option(GLFW_BUILD_DOCS OFF)
-option(GLFW_BUILD_TESTS OFF)
-option(GLFW_BUILD_EXAMPLES OFF)
-option(GLFW_BUILD_TESTS OFF)
-option(GLFW_INSTALL OFF)
-if (VKB_WSI_SELECTION STREQUAL WAYLAND)
-	set(GLFW_USE_WAYLAND ON)
-endif()
+add_subdirectory(fastgltf)
+add_subdirectory(fmt EXCLUDE_FROM_ALL)
+add_subdirectory(SDL EXCLUDE_FROM_ALL)
 
-add_subdirectory(glfw-3.3.8)
+target_sources(vkbootstrap PRIVATE 
+  vkbootstrap/VkBootstrap.h
+  vkbootstrap/VkBootstrap.cpp
+  )
 
-set_property(TARGET glfw PROPERTY FOLDER "ThirdParty")
+target_include_directories(vkbootstrap PUBLIC vkbootstrap)
+target_link_libraries(vkbootstrap PUBLIC Vulkan::Vulkan $<$<BOOL:UNIX>:${CMAKE_DL_LIBS}>)
 
+#both vma and glm and header only libs so we only need the include path
+target_include_directories(vma INTERFACE vma)
+
+target_include_directories(glm INTERFACE glm)
+
+#add_library(sdl2 INTERFACE)
+
+#target_include_directories(sdl2 INTERFACE $ENV{VULKAN_SDK}/Include/SDL2 )
+#target_link_directories(sdl2 INTERFACE $ENV{VULKAN_SDK}/Lib )
+
+#target_link_libraries(sdl2 INTERFACE SDL2 SDL2main)
+
+add_library(imgui STATIC)
+
+target_include_directories(imgui PUBLIC imgui)
+
+target_sources(imgui PRIVATE 
+  imgui/imgui.h
+  imgui/imgui.cpp
+
+  imgui/imgui_demo.cpp
+  imgui/imgui_draw.cpp
+  imgui/imgui_widgets.cpp
+  imgui/imgui_tables.cpp
+  imgui/imgui_impl_vulkan.cpp
+  imgui/imgui_impl_sdl2.cpp
+  )
+
+target_link_libraries(imgui PUBLIC Vulkan::Vulkan SDL2::SDL2)
+
+target_include_directories(stb_image INTERFACE stb_image)
