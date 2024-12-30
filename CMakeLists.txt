@@ -1,90 +1,44 @@
-# ==================================================================================================
-# CMake
-# ==================================================================================================
-cmake_minimum_required(VERSION 3.19)
+﻿# CMakeList.txt : CMake project for vulkan_guide, include source and define
+# project specific logic here.
+#
+cmake_minimum_required (VERSION 3.8)
 
-# ==================================================================================================
-# Project declaration
-# ==================================================================================================
-project(STARK)
+project ("vulkan_guide")
 
-# ==================================================================================================
-# Options
-# ==================================================================================================
 
-# ==================================================================================================
-# CMake policies
-# ==================================================================================================
-if (CMAKE_VERSION VERSION_GREATER_EQUAL "3.12")
-    cmake_policy(SET CMP0074 NEW)
-endif()
+find_package(Vulkan REQUIRED)
 
-# ==================================================================================================
-# OS specific
-# ==================================================================================================
-if (WIN32)
-endif()
-
-# ==================================================================================================
-#  Paths
-# ==================================================================================================
-# Where our external libs are
-set(EXTERNAL ${CMAKE_CURRENT_SOURCE_DIR}/third_party)
-
-# Where our libraries are
-set(LIBRARIES ${CMAKE_CURRENT_SOURCE_DIR}/libs)
-
-# Where our stark3d code is
-set(STARK3D ${CMAKE_CURRENT_SOURCE_DIR})
-
-# Where our tools are
-set(TOOLS ${CMAKE_CURRENT_SOURCE_DIR}/tools)
-
-# ==================================================================================================
-# General compiler flags
-# ==================================================================================================
-
-# ==================================================================================================
-# Release compiler flags
-# ==================================================================================================
-
-# ==================================================================================================
-# Debug compiler flags
-# ==================================================================================================
-
-# ==================================================================================================
-# Linker flags
-# ==================================================================================================
-
-# ==================================================================================================
-# Project flags
-# ==================================================================================================
-
-# ==================================================================================================
-# Sub-projects
-# ==================================================================================================
-
-add_subdirectory(${STARK3D}/stark3d)
-add_subdirectory(${STARK3D}/test_vulkan)
-
-add_subdirectory(${EXTERNAL}/libassimp/tnt)
-add_subdirectory(${EXTERNAL}/libpng/tnt)
-add_subdirectory(${EXTERNAL}/libsdl2/tnt)
-add_subdirectory(${EXTERNAL}/libz/tnt)
-add_subdirectory(${EXTERNAL}/tinyexr/tnt)
-
-# Add third party libraries
 add_subdirectory(third_party)
 
+set (CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/bin")
+set (CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/bin")
+
+add_subdirectory(src)
+
+find_program(GLSL_VALIDATOR glslangValidator HINTS /usr/bin /usr/local/bin $ENV{VULKAN_SDK}/Bin/ $ENV{VULKAN_SDK}/Bin32/)
 
 
 
 
+file(GLOB_RECURSE GLSL_SOURCE_FILES
+    "${PROJECT_SOURCE_DIR}/shaders/*.frag"
+    "${PROJECT_SOURCE_DIR}/shaders/*.vert"
+    "${PROJECT_SOURCE_DIR}/shaders/*.comp"
+    )
 
+foreach(GLSL ${GLSL_SOURCE_FILES})
+  message(STATUS "BUILDING SHADER")
+  get_filename_component(FILE_NAME ${GLSL} NAME)
+  set(SPIRV "${PROJECT_SOURCE_DIR}/shaders/${FILE_NAME}.spv")
+  message(STATUS ${GLSL})
+  add_custom_command(
+    OUTPUT ${SPIRV}
+    COMMAND ${GLSL_VALIDATOR} -V ${GLSL} -o ${SPIRV}
+    DEPENDS ${GLSL})
+  list(APPEND SPIRV_BINARY_FILES ${SPIRV})
+endforeach(GLSL)
 
-
-
-
-
-
-
+add_custom_target(
+    Shaders 
+    DEPENDS ${SPIRV_BINARY_FILES}
+    )
